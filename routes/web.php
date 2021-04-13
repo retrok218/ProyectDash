@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 /*
 |--------------------------------------------------------------------------
@@ -45,13 +45,28 @@ Route::post('/passForgot', 'Auth\ForgotPasswordController@validateEmail')->name(
 Route::post('/passUpdate', 'Auth\ForgotPasswordController@updatePass')->name('updatePass');
 Route::get('/forgot/verify/{id}', 'Auth\ForgotPasswordController@validateTokenPassReset')->name('forgotPassW');
 Route::get('/passModal', 'Auth\ForgotPasswordController@');
+
+// controladores dash
 Route::get('/dash','GraficController@index');
 Route::get('/grafic','GraficController@graficas');
 
-Route::get('/dash2','GraficController@prueva');
+// tikes totales tabla
+Route::get('/dash2','GraficController@tickett');
+//  Tickets asignados
+Route::get('/tks_asignados','GraficController@ticketa');
+//  Tickets Atendidos
+Route::get ('/tks_atendidos','GraficController@tickets_atendidos');
+// Tickets estatus Solicitud de Toner
+Route::get ('/tickets_sol_toner', 'Tks_DT_controlle@tickets_sol_toner');
+// Tickets estatus en espera de Informacion
+Route::get ('/tickets_espera_inf', 'Tks_DT_controlle@tickets_esp_info');
+// ticket Estatus pendiente
+Route::get ('/tickets_pendiente', 'Tks_DT_controlle@tickets_pendiente');
 
 
-Route::get('/', function () {
+
+
+Route::get('/', function ()  {
     if (Auth::check()){
             if( Auth::user()->hasRole('admin') || Auth::user()->hasRole('SuperAdmin')){
             return redirect('/admin');

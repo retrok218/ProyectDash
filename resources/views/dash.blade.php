@@ -7,7 +7,7 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="card-deck mt-3">
-          
+
 
           <div class="card text-center  mb-3 bg-white style="max-width: 18rem"">
             <div class="card-header"><h3>Tickets Totales</h3> </div>
@@ -55,7 +55,7 @@
 
     <div class="row">
       <div class="col-lg-12">
-        <a href="/grafic" class="btn btn-primary btn-lg enable" role="button" aria-disabled="true">Estatus Tickets</a>
+        <a href="/grafic" class="btn btn-success btn-lg enable" role="button" aria-disabled="true">Estatus Tickets</a>
       </div>
 
     </div>

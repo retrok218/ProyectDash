@@ -56,24 +56,17 @@ class GraficController extends Controller
       $SolicitudToner = DB:: table('ticket')->where('service_id','=',79)->count();
       $impresorasintt = DB:: table('ticket')->where('service_id','=',78)->count();
       $tickets_por_dia=DB::table('ticket')->whereDate('create_time',('='),$fecha_actual)->count();
-
       $tickets_por_mes=DB::table('ticket')->whereMonth('create_time','=',$fecha_mes)
                                           ->whereYear('create_time','=',$fecha_año)->count();
-
       $tickets_por_año=DB::table('ticket')->whereYear('create_time','=',$fecha_año)->count();
-
-
       $ticket_mespasado=DB::table('ticket')->whereMonth('create_time','=',$fecha_mesp)
                                           ->whereYear('create_time','=',$fecha_año)
                                            ->count();
-
       $ticket_diap=DB::table('ticket')->whereDay('create_time','=',$fecha_diap)
                                       ->whereYear('create_time','=',$fecha_año)
                                       ->count();
       //$ticket_por_mes = DB::table('ticket')->whereMonth('create_time', ('='),1)->count();
       $progresbar  = ($rticket*100) / $tickte ;
-
-
       return view('dash')
       ->with('ticket', $tickte)
       ->with('asignado',$asignado)
@@ -121,94 +114,69 @@ class GraficController extends Controller
       ;}
 
 
+// controlador para datatable de los tickets totales
+    // public function tickett(){
+    //   $tickets_totales =DB::table('ticket')
+    //   ->join('queue','queue.id','=','ticket.id')
+    //   ->select('*')
+    //   ->get();
+    //   return view('graficas/tablatickets')
+    //   ->with('tickets_totales',$tickets_totales)
+    //
+    // ;}
 
-    public function prueva()
-    {
-      $tickets_registro =DB::table('ticket')->get();
 
+
+
+
+
+
+    // controlador para tickets asignados
+    public function ticketa(){
+      $tkasignado =DB::table('ticket')
+      ->where('ticket_state_id','=', 12)
+      ->join('queue','queue.id','queue_id')
+      ->select('ticket.tn','ticket.create_time','ticket.title','queue.name','ticket.customer_user_id')
+      ->get();
+      $tickets_registro =DB::table('ticket') ->get();
       $tickte = DB::table('ticket')->count();
       $asignado =DB::table('ticket')->where('ticket_state_id','=', 12)->count();
       $atendido = DB::table('ticket')->where('ticket_state_id','=', 13)->count();
-      $espinformacion = DB::table('ticket')->where('ticket_state_id','=', 15)->count();
-      $rticket = DB::table('ticket')->where('ticket_state_id','=', 2)->count();
-      //$prueba = DB:: table('prueba')->count();
       $pendienteatc = DB:: table('ticket')->where('ticket_state_id','=',7)->count();
-      $new = DB:: table('ticket')->where('ticket_state_id','=',1)->count();
-      $cerradocinEX = DB:: table('ticket')->where('ticket_state_id','=',3)->count();
-      $open = DB:: table('ticket')->where('ticket_state_id','=',4)->count();
-      $removed = DB:: table('ticket')->where('ticket_state_id','=',5)->count();
-      $pendienteRE = DB:: table('ticket')->where('ticket_state_id','=',6)->count();
-      $pendienteAC = DB:: table('ticket')->where('ticket_state_id','=',8)->count();
-      $merged = DB:: table('ticket')->where('ticket_state_id','=',9)->count();
-      $cerradoPT = DB:: table('ticket')->where('ticket_state_id','=',10)->count();
-      $notificadoalU = DB:: table('ticket')->where('ticket_state_id','=',11)->count();
-      $CerradoPT2 = DB:: table('ticket')->where('ticket_state_id','=',14)->count();
-      $merged = DB:: table('ticket')->where('ticket_state_id','=',16)->count();
-      $Documentofirmado = DB:: table('ticket')->where('ticket_state_id','=',17)->count();
-      $Entramite = DB:: table('ticket')->where('ticket_state_id','=',18)->count();
-      $FaltaDocumentar = DB:: table('ticket')->where('ticket_state_id','=',19)->count();
-      $FalteActaRES = DB:: table('ticket')->where('ticket_state_id','=',21)->count();
-      $SolicitudToner = DB:: table('ticket')->where('service_id','=',79)->count();
-      $impresorasintt = DB:: table('ticket')->where('service_id','=',78)->count();
+      $solicitudToner = DB:: table('ticket')->where('service_id','=',79)->count();
+      $espinformacion = DB::table('ticket')->where('ticket_state_id','=', 15)->count();
 
-      return view('graficas/tablatickets')
+      return view('graficas/tickets_asignados')
+      ->with('tkasignado',$tkasignado)
+      ->with('tickets_registro',$tickets_registro)
       ->with('ticket', $tickte)
       ->with('asignado',$asignado)
       ->with('atendido',$atendido)
       ->with('espinformacion',$espinformacion)
-      ->with('rticket', $rticket)
+
       ->with('pendienteatc',$pendienteatc)
-      ->with('solicitudroner',$SolicitudToner)
-      ->with('tickets_registro',$tickets_registro)
-    ;}  
+      ->with('solicitudroner',$solicitudToner)
+
+    ;}
+// Fin Controlador tickets asignados
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// controlador tickets totales
     public function graficas()
     {
+      $tickets_totales =DB::table('ticket')
+      ->join('queue','queue.id','queue_id')
+      ->select('ticket.tn','ticket.create_time','ticket.title','queue.name','ticket.customer_user_id')
+      ->get();
 
-      $tickets_registro =DB::table('ticket')->get();
-
+      $tickets_registro =DB::table('ticket') ->get();
       $tickte = DB::table('ticket')->count();
+      $rticket = DB::table('ticket')->where('ticket_state_id','=', 2)->count();
       $asignado =DB::table('ticket')->where('ticket_state_id','=', 12)->count();
       $atendido = DB::table('ticket')->where('ticket_state_id','=', 13)->count();
-      $espinformacion = DB::table('ticket')->where('ticket_state_id','=', 15)->count();
-      $rticket = DB::table('ticket')->where('ticket_state_id','=', 2)->count();
-      //$prueba = DB:: table('prueba')->count();
       $pendienteatc = DB:: table('ticket')->where('ticket_state_id','=',7)->count();
-      $new = DB:: table('ticket')->where('ticket_state_id','=',1)->count();
-      $cerradocinEX = DB:: table('ticket')->where('ticket_state_id','=',3)->count();
-      $open = DB:: table('ticket')->where('ticket_state_id','=',4)->count();
-      $removed = DB:: table('ticket')->where('ticket_state_id','=',5)->count();
-      $pendienteRE = DB:: table('ticket')->where('ticket_state_id','=',6)->count();
-      $pendienteAC = DB:: table('ticket')->where('ticket_state_id','=',8)->count();
-      $merged = DB:: table('ticket')->where('ticket_state_id','=',9)->count();
-      $cerradoPT = DB:: table('ticket')->where('ticket_state_id','=',10)->count();
-      $notificadoalU = DB:: table('ticket')->where('ticket_state_id','=',11)->count();
-      $CerradoPT2 = DB:: table('ticket')->where('ticket_state_id','=',14)->count();
-      $merged = DB:: table('ticket')->where('ticket_state_id','=',16)->count();
-      $Documentofirmado = DB:: table('ticket')->where('ticket_state_id','=',17)->count();
-      $Entramite = DB:: table('ticket')->where('ticket_state_id','=',18)->count();
-      $FaltaDocumentar = DB:: table('ticket')->where('ticket_state_id','=',19)->count();
-      $FalteActaRES = DB:: table('ticket')->where('ticket_state_id','=',21)->count();
-      $SolicitudToner = DB:: table('ticket')->where('service_id','=',79)->count();
-      $impresorasintt = DB:: table('ticket')->where('service_id','=',78)->count();
+      $solicitudToner = DB:: table('ticket')->where('service_id','=',79)->count();
+      $espinformacion = DB::table('ticket')->where('ticket_state_id','=', 15)->count();
 
       return view('graficas/estatustickets')
       ->with('ticket', $tickte)
@@ -217,7 +185,39 @@ class GraficController extends Controller
       ->with('espinformacion',$espinformacion)
       ->with('rticket', $rticket)
       ->with('pendienteatc',$pendienteatc)
-      ->with('solicitudroner',$SolicitudToner)
+      ->with('solicitudroner',$solicitudToner)
       ->with('tickets_registro',$tickets_registro)
+      ->with('tickets_totales',$tickets_totales)
+
     ;}
+
+
+// controlador tickets Atendidos
+  public function tickets_atendidos()
+  {
+    $tkasignado =DB::table('ticket')
+    ->where('ticket_state_id','=', 13)
+    ->join('queue','queue.id','queue_id')
+    ->select('ticket.tn','ticket.create_time','ticket.title','queue.name','ticket.customer_user_id')
+    ->get();
+    $tickets_registro =DB::table('ticket') ->get();
+    $tickte = DB::table('ticket')->count();
+    $asignado =DB::table('ticket')->where('ticket_state_id','=', 12)->count();
+    $atendido = DB::table('ticket')->where('ticket_state_id','=', 13)->count();
+    $pendienteatc = DB:: table('ticket')->where('ticket_state_id','=',7)->count();
+    $solicitudToner = DB:: table('ticket')->where('service_id','=',79)->count();
+    $espinformacion = DB::table('ticket')->where('ticket_state_id','=', 15)->count();
+
+    return view('graficas/tickets_atendidos')
+    ->with('tkasignado',$tkasignado)
+    ->with('tickets_registro',$tickets_registro)
+    ->with('ticket', $tickte)
+    ->with('asignado',$asignado)
+    ->with('atendido',$atendido)
+    ->with('espinformacion',$espinformacion)
+
+    ->with('pendienteatc',$pendienteatc)
+    ->with('solicitudroner',$solicitudToner)
+
+  ;}
 }
