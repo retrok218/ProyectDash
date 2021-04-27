@@ -72,11 +72,11 @@ Route::get('/', function ()  {
             return redirect('/admin');
             }
             else{
-                return redirect('/home');
+                return redirect('/dash');
                 }
 
         }else{
-    return redirect('/login');
+    return redirect('/dash');
     }
     });
 

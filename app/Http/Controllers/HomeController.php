@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('dash');
     }
 
     public function condTerminos(){
@@ -31,5 +31,5 @@ class HomeController extends Controller
         return view('modals/home/condTerminos');
     }
 
-   
+
 }

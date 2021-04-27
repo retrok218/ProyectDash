@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="kt-login__signin">
                                     <div class="kt-login__head">
-                                        <h3 class="kt-login__title">Ingresar </h3>
+                                        <h3 class="kt-login__title">Ingresar Sistema de Monitoreo de Tickets </h3>
                                     </div>
                                     <div class="kt-login__form">
                                         <form method="POST" class="kt-form">

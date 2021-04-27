@@ -65,6 +65,44 @@ class GraficController extends Controller
       $ticket_diap=DB::table('ticket')->whereDay('create_time','=',$fecha_diap)
                                       ->whereYear('create_time','=',$fecha_año)
                                       ->count();
+                                      // datos segun el mes
+      $mes_enero=DB::table('ticket')->whereMonth('create_time','=', 1)
+                                    ->whereYear('create_time','=', $fecha_año)
+                                    ->count();
+      $mes_febrero=DB::table('ticket')->whereMonth('create_time','=', 2)
+                                                                  ->whereYear('create_time','=', $fecha_año)
+                                                                  ->count();
+      $mes_marzo=DB::table('ticket')->whereMonth('create_time','=', 3)
+                                                  ->whereYear('create_time','=', $fecha_año)
+                                                  ->count();
+      $mes_abril=DB::table('ticket')->whereMonth('create_time','=', 4)
+                                                              ->whereYear('create_time','=', $fecha_año)
+                                                              ->count();
+
+      // Grafica lineal mes pasado
+
+      $mes_enero2=DB::table('ticket')->whereMonth('create_time','=', 1)
+                                    ->whereYear('create_time','=', $fecha_añop)
+                                    ->count();
+      $mes_febrero2=DB::table('ticket')->whereMonth('create_time','=', 2)
+                                                                  ->whereYear('create_time','=', $fecha_añop)
+                                                                  ->count();
+      $mes_marzo2=DB::table('ticket')->whereMonth('create_time','=', 3)
+                                                  ->whereYear('create_time','=', $fecha_añop)
+                                                  ->count();
+      $mes_abril2=DB::table('ticket')->whereMonth('create_time','=', 4)
+                                                              ->whereYear('create_time','=', $fecha_añop)
+                                                              ->count();
+
+
+// $mesgrafica=0;
+//                                 if ($mesgrafica<=12) {
+//                                   DB::table('ticket')
+//                                 }
+
+                    // datos segun el mes
+
+
       //$ticket_por_mes = DB::table('ticket')->whereMonth('create_time', ('='),1)->count();
       $progresbar  = ($rticket*100) / $tickte ;
       return view('dash')
@@ -111,6 +149,17 @@ class GraficController extends Controller
 
       ->with('pruemesp',$ticket_mespasado)
       ->with('diap',$ticket_diap)
+
+      ->with('mes_enero',$mes_enero)
+      ->with('mes_febrero',$mes_febrero)
+      ->with('mes_marzo',$mes_marzo)
+      ->with('mes_abril',$mes_abril)
+
+      ->with('mes_enero2',$mes_enero2)
+      ->with('mes_febrero2',$mes_febrero2)
+      ->with('mes_marzo2',$mes_marzo2)
+      ->with('mes_abril2',$mes_abril2)
+
       ;}
 
 

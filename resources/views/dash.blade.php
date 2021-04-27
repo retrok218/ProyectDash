@@ -2,7 +2,15 @@
 @extends('home')
 @section('content')
 
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+
+
+
 <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
 
     <div class="row">
       <div class="col-lg-12">
@@ -31,6 +39,10 @@
   </div>
 
           </div>
+
+
+
+
 
           <div class="card text-center  mb-3 bg-white style="max-width: 18rem"">
             <div class="card-header"><h3>Tickets del Dia</h3> </div>
@@ -78,11 +90,7 @@
           <div class="kt-portlet__body kt-portlet__body--fit kt-portlet__body--unfill">
               <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
                   style="min-height: 400px; background-image: url(./assets/media//products/product4.jpg)">
-                <div >
-                  <div >
                     <div id="chartContainer"  > </div>
-                  </div>
-                </div>
               </div>
           </div>
         </div>
@@ -91,40 +99,33 @@
 
 
     <div class="row">
-      <div class="col-xl-6">
-        <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
-            style="min-height: 400px; background-image: url(./assets/media//products/product4.jpg)">
-          <div class="card-shadow mb-4">
-            <div class="card-body">
-              <div id="chartContainer4" > </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-xl-6">
-        <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
-            style="min-height: 400px; background-image: url(./assets/media//products/product4.jpg)">
-          <div class="card-shadow mb-4">
-            <div class="card-body">
-              <div id="chartContainer1" > </div>
-            </div>
+      <div class="col-lg-12">
+        <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+          <div class="kt-portlet__body kt-portlet__body--fit kt-portlet__body--unfill">
+              <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
+                  style="min-height: 400px; background-image: url(./assets/media//products/product4.jpg)">
+                    <div id="chartContainer4"  > </div>
+              </div>
           </div>
         </div>
       </div>
     </div>
 
+
+
+
     <div class="row">
       <div class="col-lg-12">
-        <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
-            style="min-height: 400px; background-image: url(./assets/media//products/product4.jpg)">
-          <div class="card-shadow mb-4">
-            <div class="card-body">
-              <<div id="chartContainer3" style="height: 300px; width: 100%;"> </div>
-            </div>
+        <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+          <div class="kt-portlet__body kt-portlet__body--fit kt-portlet__body--unfill">
+              <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
+                  style="min-height: 400px; background-image: url(./assets/media//products/product4.jpg)">
+                    <div id="chartContainer1"  > </div>
+              </div>
           </div>
         </div>
       </div>
+    </div>
 
 
 
@@ -133,95 +134,173 @@
 
 </div>
 
+
+
+
 @section('scripts')
 <script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
 
 <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.stock.min.js"></script>
+<script type="text/javascript"> </script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js" ></script>
 
-<script type="text/javascript">
 <!-- scrip grafica -->
-<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script type="text/javascript">
 
-      						<script type="text/javascript">
-                  window.onload = function (){
+            window.onload = function (){
+              var dataLength = 0;
+                var data = [];
+                var updateInterval = 500;
+                updateChart();
+                function updateChart() {
+                    $.getJSON("data.php", function (result) {
+                        if (dataLength !== result.length) {
+                            for (var i = dataLength; i < result.length; i++) {
+                                data.push({
+                                    x: parseInt(result[i].valorx),
+                                    y: parseInt(result[i].valory)
+                                });
+                            }
+                            dataLength = result.length;
+                            chart.render();
+                        }
+                    });
+                }
 
 
-      								var chart = new CanvasJS.Chart("chartContainer",
-      								{
+              CanvasJS.addCultureInfo("es",
+                {
+                    decimalSeparator: ".",
+                    digitGroupSeparator: ",",
+                    days: ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"],
+                    months:["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Nobiembre","Diciembre",]
+               });
+
+
+
+      								var chart = new CanvasJS.Chart("chartContainer",{
       									animationEnabled: true,
       									animationDuration: 1000,
       									interactivityEnabled: true,
                         exportEnabled: true,
 
       									title:{
-      										text: "Tickets "
+      										text: "  Tickets  "
       									},
+
       									legend:{
-      		horizontalAlign: "right",
-      		verticalAlign: "center"
-      	},
+                      		horizontalAlign: "right",
+                      		verticalAlign: "center"
+      	                 },
       									data: [//array of dataSeries
       										{ //dataSeries object
-
       										 /*** Change type "column" to "bar", "area", "line" or "pie"***/
       										 type: "pie",
       										 showInLegend: true,
       										 legendText: "{label}",
+
       										 dataPoints: [
       										 { label: "Tikets Totales", y: {{ $ticket}}  },
-      										 { label: "Tickets Estatus Resueltos", y: {{$rticket}} },
+      										 { label: "Tickets Resueltos", y: {{$rticket}} },
       										 { label: "Tickets Asignados", y: {{$asignado}} },
-      										 { label: "Tickets Cerrados por Tiempo", y: {{$cerradoPT}} },
+      										 { label: "Tickets Cerrados por Tiempo", y: {{$cerradoPT}} }
 
       										 ]
       									 }
       									 ]
       								 });
-      								 chart.render();
+                       chart.render();
 
-      								 // SEPARADOR
+                          // SEPARADOR
 
-      								 var chart = new CanvasJS.Chart("chartContainer4",
-      						{
-      							animationEnabled: true,
-      							animationDuration: 1000,
-      							interactivityEnabled: true,
-      								title: {
-      										text: "Tickets "
-      								},
-      								axisX: {
-      										interval: 10,
-      								},
-      								data: [
-      								{
-      									type: "line",
-      									legendMarkerType: "triangle",
-      									legendMarkerColor: "green",
-      									color: "rgba(255,12,32,.3)",
+var chart = new CanvasJS.Chart("chartContainer4",{
+                aanimationEnabled: true,
+                animationDuration: 1000,
+                interactivityEnabled: true,
+                exportEnabled: true,
+                culture:"es",
+                theme:"light1",
+                title:{text: " Tickets Por Mes"},
 
 
-      										dataPoints: [
+    axisX:{
+      interval: 1,
+  intervalType: "month",
+  valueFormatString: "MMMM"
 
-      											{ label: "Mes {{$mes}} "  ,y: {{$tickets_por_mes}} },
-      											{ y: {{$rticket}} , label: "Resueltos" },
-      											{ y: {{$asignado}} , label: "Tickets Asignados"  },
-      											{ y: {{$cerradoPT}} ,label: "Tickets Cerrados por Tiempo" }
-      										]
-      								},
-      								]
-      						});
-      				chart.render();
+    },
 
-      				// separador 2
+    toolTip: {
+		shared: true
+	},
+	legend: {
+		cursor: "pointer",
+		itemclick: toggleDataSeries
+	},
 
-              var chart = new CanvasJS.Chart("chartContainer1",
+
+  data: [{
+  		type: "line",
+  		name: "2020",
+  		color: "#369EAD",
+  		showInLegend: true,
+  		axisYIndex: 1,
+      dataPoints: [
+              {x:new Date(2021,00,00), y: {{$mes_enero}} },
+              {x:new Date(2021,01,00), y: {{$mes_febrero}} },
+              {x:new Date(2021,02,00), y: {{$mes_marzo}} },
+              {x:new Date(2021,03,00), y: {{$mes_abril}} },
+      ]
+  	},
+  	{
+  		type: "line",
+  		name: "2021",
+  		color: "#C24642",
+  		axisYIndex: 1,
+  		showInLegend: true,
+      dataPoints: [
+              {x:new Date(2020,00,00), y: {{$mes_enero2}} },
+              {x:new Date(2020,01,00), y: {{$mes_febrero2}} },
+              {x:new Date(2020,02,00), y: {{$mes_marzo2}} },
+              {x:new Date(2020,03,00), y: {{$mes_abril2}} },
+      ]
+  	}
+  ]
+
+
+
+
+
+
+});
+chart.render();
+function toggleDataSeries(e) {
+if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+  e.dataSeries.visible = false;
+} else {
+  e.dataSeries.visible = true;
+}
+e.chart.render();
+}
+
+
+
+
+
+
+
+
+
+  // separador 2
+    var chart = new CanvasJS.Chart("chartContainer1",
          {
            animationEnabled: true,
            animationDuration: 1000,
            interactivityEnabled: true,
+           exportEnabled: true,
              title: {
-                 text: "Tickets "
+                 text: "Tickets Estatus "
              },
              data: [
              {
@@ -238,54 +317,11 @@
      chart.render();
 
      // Separador 3 construccion
-     var dataPoints = [];
-     var stockChart = new CanvasJS.StockChart("chartContainer3",{
-    title: {
-        text: "StockChart Title"
-      },
-    charts: [{
-      data: [{
-        type: "line", //Change it to "spline", "area", "column"
-        dataPoints : dataPoints
-      }]
-    }],
-    navigator: {
-      slider: {
-        minimum: new Date({{$año}},{{$mes}}, {{$dia}}),
-        maximum: new Date({{$año}},{{$mes}}, {{$dia}})
-      }
-    }
-  });
-
-  $.getJSON("https://canvasjs.com/data/docs/btcusd2018.json", function(data) {
-    for(var i = 0; i < data.length; i++){
-      dataPoints.push({x: new Date(data[i].date), y: Number(data[i].close)});
-    }
-
-    stockChart.render();
-  });
 
 
-   }
-
+  ;}
 
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

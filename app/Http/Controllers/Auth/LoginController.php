@@ -44,8 +44,9 @@ class LoginController extends Controller {
 
         if($validator==true) {
             $datosUsuario=DB::table('users')->where('usuario', '=', $usuario)->first();
-            $id=$datosUsuario->id;
+            $id=$datosUsuario->id_rol; //id se cambia por id_rol
             $modelHasRol=DB::table('model_has_roles')->where('model_id', '=', $id)->first();
+
             $idRol=$modelHasRol->role_id; //id del rol
             $role_permissions=User::role_permissions($idRol);
             $id_permission=$role_permissions->permission_id;
@@ -79,7 +80,7 @@ class LoginController extends Controller {
     public function verify($code) {
         $user=User::where('confirmation_code', $code)->first();
 
-        if ( ! $user) return redirect('/');
+        if ( !$user) return redirect('/home');
         $user->confirmed=true;
         $user->confirmation_code=null;
         $user->estatus=1;
