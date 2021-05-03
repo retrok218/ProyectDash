@@ -18,7 +18,9 @@
 
 
           <div class="card text-center  mb-3 bg-white style="max-width: 18rem"">
+
             <div class="card-header"><h3>Tickets Totales</h3> </div>
+
             <div class="card-body">
                 <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $ticket}} </i> </div>
             </div>
@@ -77,7 +79,7 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="progress">
-              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow=$atendido aria-valuemin="0" aria-valuemax=$ticket style="width: 34%"></div>
+              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow=$rticket aria-valuemin="0" aria-valuemax=$ticket style="width: 24%"></div>
           </div>
         </div>
       </div>
@@ -199,6 +201,7 @@
       										 type: "pie",
       										 showInLegend: true,
       										 legendText: "{label}",
+                           indexLabel: "{label} - #percent%",
 
       										 dataPoints: [
       										 { label: "Tikets Totales", y: {{ $ticket}}  },
@@ -305,8 +308,9 @@ e.chart.render();
              data: [
              {
                type: "column",
+               indexLabel: "{label} - #percent%",
                dataPoints: [
-                   { y: {{$ticket}} , label: " Totales"  },
+                   { y: {{$ticket}}  , label: " Totales"  },
                    { y: {{$rticket}} , label: "Resueltos" },
                    { y: {{$asignado}} , label: "Tickets Asignados"  },
                    { y: {{$cerradoPT}} ,label: "Tickets Cerrados por Tiempo" }

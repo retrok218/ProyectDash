@@ -90,6 +90,9 @@
                                 </div>
                             </div>
 
+
+
+
                             <div class="col-lg-6 col-xl-4 order-lg-1 order-xl-1">
                                 <!--begin:: Widgets/Blog-->
                                 <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
@@ -141,7 +144,27 @@
                                 </div>
                                 <!--end:: Widgets/Blog-->
                             </div>
+                            <div class="">
+
+                            </div>
+
+
+                              <div class="col-xl-8 order-lg-4 order-xl-1">
+
+                            <input type="button" name="Dahs" value="Dash" >
+                            <a href="/dash">Dahsboard gradfica</a>
+
+
+                            </div>
                         </div>
+
+                        <div class="row">
+                          <h1>Ejemplo de bariables de otrs  </h1>
+
+                        </div>
+
+
+
                         <!--End::Row-->
 
                         <!--Begin::Row-->

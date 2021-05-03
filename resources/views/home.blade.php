@@ -111,7 +111,7 @@
     </div>
     @include('layouts/scripts/scripts')
     <script src="{{ URL::asset('js/layout.js') }}" type="text/javascript"></script>
-    
+
 
     <script type="text/javascript">
         // var global URL

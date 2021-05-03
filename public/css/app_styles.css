@@ -15,8 +15,8 @@
         left: 40%;
         margin-top: -12px; /* Negative half of height. */
         margin-left: -100px;
-    }  
-  
+    }
+
 }
 
 .datepicker table tr td.active:active:hover, .datepicker table tr td.active.highlighted:active:hover, .datepicker table tr td.active.active:hover, .datepicker table tr td.active.highlighted.active:hover, .datepicker table tr td.active:active:focus, .datepicker table tr td.active.highlighted:active:focus, .datepicker table tr td.active.active:focus, .datepicker table tr td.active.highlighted.active:focus, .datepicker table tr td.active:active.focus, .datepicker table tr td.active.highlighted:active.focus, .datepicker table tr td.active.active.focus, .datepicker table tr td.active.highlighted.active.focus {
@@ -48,7 +48,7 @@
     .kt-content  {
         background-image: url(../assets/media/bg/bg-cdmx_op.png) !important ;
         background-repeat: no-repeat;
-        
+
         /* border: 2px dashed #333; */
         background-position: center bottom; /*Positioning*/
         background-size: 90% 25%;
@@ -58,24 +58,24 @@
     .kt-content  {
         background-image: url(../assets/media/bg/bg-cdmx_op.png) !important ;
         background-repeat: no-repeat;
-        
+
         /* border: 2px dashed #333; */
         background-position: center bottom; /*Positioning*/
         background-size: 80% 25%;
     }
-  
+
 }
 
 @media (max-width: 740px) and (min-width: 360px){
     .kt-content  {
         background-image: url(../assets/media/bg/bg-cdmx_op.png) !important ;
         background-repeat: no-repeat;
-        
+
         /* border: 2px dashed #333; */
         background-position: center bottom; /*Positioning*/
         background-size: 90% 25%;
     }
-  
+
 }
 
 .kt-font-cdmx {
@@ -114,4 +114,22 @@
     background: #00B056;
     color: #fff;
 }
+
+.loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('images/pageLoader.gif') 50% 50% no-repeat rgb(249,249,249);
+    opacity: .8;
+}
+
+
+
+
+
+
+
 /*table.dataTable thead {background-color:#00B056;font-weight: bold;}*/

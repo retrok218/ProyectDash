@@ -48,6 +48,7 @@
 
         </div>
         <div class="card text-center  mb-3 bg-white style="max-width: 18rem"">
+
           <div class="card-header"><h3>Tickets  Estatus En Espera de Informaicon</h3> </div>
           <div class="card-body">
               <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $espinformacion}} </i> </div>
@@ -162,9 +163,9 @@ $(document).ready(function(){
   "info": true,
   "autoWidth": true,
   "language": idioma,
-  "lengthMenu": [[10,20, -1],[10,20,30,"Mostrar Todo"]],
+  "lengthMenu": [[10,20,-1],[10,20,30,"Mostrar Todo"]],
 
-  "order":[1 ,'desc'],
+  "order":[1,'desc'],
   dom: 'Bfrt<"col-md-6 inline"i> <"col-md-6 inline"p>',
 
 
@@ -182,14 +183,17 @@ $(document).ready(function(){
         buttons: [
 
 
+
                    {
                        extend:    'pdfHtml5',
                        text:      '<i class="fa fa-file-pdf-o"></i>PDF',
                        title:'Titulo de tabla en pdf',
                        titleAttr: 'PDF',
                        className: 'btn btn-app export pdf',
+                       orientation: 'landscape',
+                       pageSize: 'TABLOID',
                        exportOptions: {
-                           columns: [ 0, 1 ]
+                      columns: [ 0,1,2,3,4]
                        },
                        customize:function(doc) {
 
@@ -200,14 +204,19 @@ $(document).ready(function(){
                            }
                            doc.styles['td:nth-child(2)'] = {
                                width: '100px',
-                               'max-width': '100px'
+                               'max-width': '100px',
+                                margin: [ 0, 0, 0, 12 ],
                            },
                            doc.styles.tableHeader = {
                                fillColor:'#4c8aa0',
                                color:'white',
-                               alignment:'center'
-                           },
-                           doc.content[1].margin = [ 100, 0, 100, 0 ]
+                               alignment:'center',
+
+                           }
+
+
+                           doc.content[0].margin = [ 0, 0, 0, 12 ]
+
 
                        }
 
@@ -220,7 +229,7 @@ $(document).ready(function(){
                        titleAttr: 'Excel',
                        className: 'btn btn-app export excel',
                        exportOptions: {
-                           columns: [ 0, 1 ]
+                           columns: [ 0,1,2,3,4 ]
                        },
                    },
 
@@ -231,7 +240,7 @@ $(document).ready(function(){
                        titleAttr: 'Imprimir',
                        className: 'btn btn-app export imprimir',
                        exportOptions: {
-                           columns: [ 0, 1 ]
+                           columns: [ 0,1,2,3,4]
                        }
                    },
                    {

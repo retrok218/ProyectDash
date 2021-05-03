@@ -72,11 +72,11 @@ Route::get('/', function ()  {
             return redirect('/admin');
             }
             else{
-                return redirect('/dash');
+                return redirect('/home');
                 }
 
         }else{
-    return redirect('/dash');
+    return redirect('/login');
     }
     });
 
@@ -95,7 +95,7 @@ Route::get('/', function ()  {
  Route::group(['middleware' => ['role:SuperAdmin']], function() {
   //editar usuarios
      Route::group(['prefix' => 'admin'], function() {
-        Route::get('/', 'AdminController@dashboard');
+        Route::get('/', 'GraficController@index'); //se cambia el controlador por GraficController 
       Route::get('/index', 'AdminController@index');
       Route::get('/listar_usuarios', 'AdminController@listar_usuarios');
      // Route::get('/listar_roles', 'AdminController@listar_roles');

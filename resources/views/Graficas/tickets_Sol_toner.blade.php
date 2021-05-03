@@ -65,6 +65,23 @@
         </div>
 
 
+        <!-- Grafica Tickets Solicitud de Toner -->
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+                      <div class="kt-portlet__body kt-portlet__body--fit kt-portlet__body--unfill">
+                          <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
+                              style="min-height: 400px; background-image: url(./assets/media//products/product4.jpg)">
+                                <div id="chartContainer"  > </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+        <!-- Grafica Tickets Solicitud de Toner -->
+
+
       <div class="row">
         <div class="col-12">
           <div class="card">
@@ -129,7 +146,7 @@
                       "sLoadingRecords": "Cargando...",
                       "oPaginate": {
                           "sFirst":    "Primero",
-                          "sLast":     "Ãšltimo",
+                          "sLast":     "Ultimo",
                           "sNext":     "Siguiente",
                           "sPrevious": "Anterior"
                       },
@@ -154,11 +171,12 @@
         $(document).ready(function(){
          $('#tablatk').DataTable( {
            "paging": true,
+           dom: 'Bfrtip',
           "lengthChange": true,
           "searching": true,
           "ordering": true,
           "info": true,
-          "autoWidth": true,
+          "autoWidth": false,
           "language": idioma,
           "lengthMenu": [[10,20, -1],[10,20,30,"Mostrar Todo"]],
 
@@ -190,8 +208,10 @@
                                title:'Titulo de tabla en pdf',
                                titleAttr: 'PDF',
                                className: 'btn btn-app export pdf',
+                               orientation: 'landscape',
+                               pageSize: 'TABLOID',
                                exportOptions: {
-                                   columns: [ 0,1,2,3,4]
+                              columns: [ 0,1,2,3,4]
                                },
                                customize:function(doc) {
 
@@ -202,14 +222,19 @@
                                    }
                                    doc.styles['td:nth-child(2)'] = {
                                        width: '100px',
-                                       'max-width': '100px'
+                                       'max-width': '100px',
+                                        margin: [ 0, 0, 0, 12 ],
                                    },
                                    doc.styles.tableHeader = {
                                        fillColor:'#4c8aa0',
                                        color:'white',
-                                       alignment:'center'
-                                   },
-                                   doc.content[1].margin = [ 100, 0, 100, 0 ]
+                                       alignment:'center',
+
+                                   }
+
+
+                                   doc.content[0].margin = [ 0, 0, 0, 12 ]
+
 
                                }
 
@@ -222,7 +247,7 @@
                                titleAttr: 'Excel',
                                className: 'btn btn-app export excel',
                                exportOptions: {
-                                   columns: [ 0, 1 ]
+                                   columns: [ 0,1,2,3,4 ]
                                },
                            },
 
@@ -233,7 +258,7 @@
                                titleAttr: 'Imprimir',
                                className: 'btn btn-app export imprimir',
                                exportOptions: {
-                                   columns: [ 0, 1 ]
+                                   columns: [ 0,1,2,3,4]
                                }
                            },
                            {
@@ -251,9 +276,79 @@
          } );
         } );
 </script>
-
 @section('scripts')
 <script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+
+            window.onload = function (){
+              var dataLength = 0;
+                var data = [];
+                var updateInterval = 500;
+                updateChart();
+                function updateChart() {
+                    $.getJSON("data.php", function (result) {
+                        if (dataLength !== result.length) {
+                            for (var i = dataLength; i < result.length; i++) {
+                                data.push({
+                                    x: parseInt(result[i].valorx),
+                                    y: parseInt(result[i].valory)
+                                });
+                            }
+                            dataLength = result.length;
+                            chart.render();
+                        }
+                    });
+                }
+
+
+              CanvasJS.addCultureInfo("es",
+                {
+                    decimalSeparator: ".",
+                    digitGroupSeparator: ",",
+                    days: ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"],
+                    months:["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Nobiembre","Diciembre",]
+               });
+
+
+
+                      var chart = new CanvasJS.Chart("chartContainer",{
+                        animationEnabled: true,
+                        animationDuration: 1000,
+                        interactivityEnabled: true,
+                        exportEnabled: true,
+
+                        title:{
+                          text: "  Tickets Estatus Solicitud Toner "
+                        },
+
+                        legend:{
+                          horizontalAlign: "right",
+                          verticalAlign: "center"
+                         },
+                        data: [//array of dataSeries
+                          { //dataSeries object
+                           /*** Change type "column" to "bar", "area", "line" or "pie"***/
+                           type: "pie",
+                           showInLegend: true,
+                           legendText: "{label}",
+
+                           dataPoints: [
+                           { label: "Tikets Totales:{{ $ticket}} ", y: {{ $ticket}}  },
+                           {label: "Tickets Solicitud de Toner :{{$solicitudroner}}" , y:{{$solicitudroner}} },
+
+
+                           ]
+
+
+                         }
+                         ]
+                       });
+                       chart.render();
+;}
+
+</script>
 
 @endsection
 @endsection

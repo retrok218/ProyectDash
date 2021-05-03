@@ -65,6 +65,25 @@
         </div>
 
 
+
+                <!-- Grafica Tickets Espera de informacion -->
+
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+                              <div class="kt-portlet__body kt-portlet__body--fit kt-portlet__body--unfill">
+                                  <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
+                                      style="min-height: 400px; background-image: url(./assets/media//products/product4.jpg)">
+                                        <div id="chartContainer"  > </div>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                <!-- Grafica Tickets Esspera de informacion  -->
+
+
+
       <div class="row">
         <div class="col-12">
           <div class="card">
@@ -118,7 +137,7 @@
                       "sProcessing":     "Procesando...",
                       "sLengthMenu":     "Mostrar _MENU_ registros",
                       "sZeroRecords":    "No se encontraron resultados",
-                      "sEmptyTable":     "Sin tickets por el momento",
+                      "sEmptyTable":     "NingÃºn dato disponible en esta tabla",
                       "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
                       "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
                       "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
@@ -187,11 +206,13 @@
                            {
                                extend:    'pdfHtml5',
                                text:      '<i class="fa fa-file-pdf-o"></i>PDF',
-                               title:'Tickets ',
+                               title:'Titulo de tabla en pdf',
                                titleAttr: 'PDF',
                                className: 'btn btn-app export pdf',
+                               orientation: 'landscape',
+                               pageSize: 'TABLOID',
                                exportOptions: {
-                                   columns: [ 0,1,2,3,4 ]
+                              columns: [ 0,1,2,3,4]
                                },
                                customize:function(doc) {
 
@@ -202,14 +223,19 @@
                                    }
                                    doc.styles['td:nth-child(2)'] = {
                                        width: '100px',
-                                       'max-width': '100px'
+                                       'max-width': '100px',
+                                        margin: [ 0, 0, 0, 12 ],
                                    },
                                    doc.styles.tableHeader = {
                                        fillColor:'#4c8aa0',
                                        color:'white',
-                                       alignment:'center'
-                                   },
-                                   doc.content[1].margin = [ 100, 0, 100, 0 ]
+                                       alignment:'center',
+
+                                   }
+
+
+                                   doc.content[0].margin = [ 0, 0, 0, 12 ]
+
 
                                }
 
@@ -233,7 +259,7 @@
                                titleAttr: 'Imprimir',
                                className: 'btn btn-app export imprimir',
                                exportOptions: {
-                                   columns: [ 0,1,2,3,4 ]
+                                   columns: [ 0,1,2,3,4]
                                }
                            },
                            {
@@ -251,9 +277,80 @@
          } );
         } );
 </script>
-
 @section('scripts')
 <script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+            window.onload = function (){
+              var dataLength = 0;
+                var data = [];
+                var updateInterval = 500;
+                updateChart();
+                function updateChart() {
+                    $.getJSON("data.php", function (result) {
+                        if (dataLength !== result.length) {
+                            for (var i = dataLength; i < result.length; i++) {
+                                data.push({
+                                    x: parseInt(result[i].valorx),
+                                    y: parseInt(result[i].valory)
+                                });
+                            }
+                            dataLength = result.length;
+                            chart.render();
+                        }
+                    });
+                }
+
+
+              CanvasJS.addCultureInfo("es",
+                {
+                    decimalSeparator: ".",
+                    digitGroupSeparator: ",",
+                    days: ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"],
+                    months:["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Nobiembre","Diciembre",]
+               });
+
+
+
+                      var chart = new CanvasJS.Chart("chartContainer",{
+                        animationEnabled: true,
+                        animationDuration: 1000,
+                        interactivityEnabled: true,
+                        exportEnabled: true,
+
+                        title:{
+                          text: "  Tickets Espera de Informacion  "
+                        },
+
+                        legend:{
+                          horizontalAlign: "right",
+                          verticalAlign: "center"
+                         },
+                        data: [//array of dataSeries
+                          { //dataSeries object
+                           /*** Change type "column" to "bar", "area", "line" or "pie"***/
+                           type: "pie",
+                           showInLegend: true,
+                           legendText: "{label}",
+                           indexLabel: "{label} - #percent%",
+
+                           dataPoints: [
+                           { label: "Tikets Totales: {{ $ticket}} ", y: {{ $ticket}}  },
+                           {label: "Tickets Espera de informacion:{{$espinformacion}} " , y:{{$espinformacion}} },
+
+
+                           ]
+
+
+                         }
+                         ]
+                       });
+                       chart.render();
+;}
+
+</script>
+
 
 @endsection
 @endsection

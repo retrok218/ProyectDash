@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\User;
 use App\Models\ModelHasRole;
@@ -13,6 +12,7 @@ use Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\ConexionBD2;
 class AdminController extends Controller
 {
 
@@ -34,12 +34,17 @@ class AdminController extends Controller
     {
        $perfil = Auth::user()->hasAnyRole(['SuperAdmin', 'Admin']);
        if($perfil == true){
-       return view('admin.dashboard');}
+// regresa la vista admin.dashboard
+       return view('/admin.dashboard');}
        else {
            return view('/home');
        }
 
     }
+
+
+
+
     public function create() {
                 $roles = DB::table('roles')->get();
                 return view('modals/users/add_user')->with('roles', $roles);
