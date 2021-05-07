@@ -62,6 +62,11 @@ Route::get ('/tickets_sol_toner', 'Tks_DT_controlle@tickets_sol_toner');
 Route::get ('/tickets_espera_inf', 'Tks_DT_controlle@tickets_esp_info');
 // ticket Estatus pendiente
 Route::get ('/tickets_pendiente', 'Tks_DT_controlle@tickets_pendiente');
+//eje de card
+
+Route::get('/car', function(){
+  return view('/Graficas/cardtickets');
+});
 
 
 
@@ -95,7 +100,7 @@ Route::get('/', function ()  {
  Route::group(['middleware' => ['role:SuperAdmin']], function() {
   //editar usuarios
      Route::group(['prefix' => 'admin'], function() {
-        Route::get('/', 'GraficController@index'); //se cambia el controlador por GraficController 
+        Route::get('/', 'GraficController@index'); //se cambia el controlador por GraficController
       Route::get('/index', 'AdminController@index');
       Route::get('/listar_usuarios', 'AdminController@listar_usuarios');
      // Route::get('/listar_roles', 'AdminController@listar_roles');

@@ -1,5 +1,7 @@
 @extends('home')
 @section('content')
+
+
 <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
 
   <div class="row">
@@ -69,7 +71,7 @@
 
 <!-- Tabla principal Tickets totales -->
 
-<div class="container">
+
   <div class="row">
     <div class="col-lg-12">
       <div class="card">
@@ -105,13 +107,15 @@
         </div>
   </div>
   </div>
-  </div>
+
 
 </div>
-</div>
 
+</div>
 
 @include('layouts/scripts/scripts')
+
+
 <script>
 
 var idioma=
@@ -181,9 +185,6 @@ $(document).ready(function(){
         },
 
         buttons: [
-
-
-
                    {
                        extend:    'pdfHtml5',
                        text:      '<i class="fa fa-file-pdf-o"></i>PDF',
@@ -258,17 +259,7 @@ $(document).ready(function(){
  } );
 } );
 </script>
-
-
 <!-- fin de Tabla ticket totales  -->
-
-
-
-
-
-
-
-
 @section('scripts')
 <script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
 

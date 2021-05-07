@@ -1,99 +1,96 @@
-
 @extends('home')
 @section('content')
 
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid ">
 
 
 
-<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
-
-
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="card-deck mt-3">
-
-
-          <div class="card text-center  mb-3 bg-white style="max-width: 18rem"">
-
-            <div class="card-header"><h3>Tickets Totales</h3> </div>
-
-            <div class="card-body">
-                <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $ticket}} </i> </div>
-            </div>
-          </div>
-
-          <div class="card text-center  mb-3 bg-white style="max-width: 18rem"">
-            <div class="card-header"><h3>Tickets del Mes</h3> </div>
-            <div class="card-body">
-                <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $tickets_por_mes }} </i> </div>
-            </div>
-            <div class="btn-group" role="group">
-    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Mes pasado
-    </button>
-    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-      <a class="dropdown-item"> Ticket del mes pasado {{$pruemesp}} </a>
+<div class="row ">
+    <div class="col-lg-3">
+			<h2 class="h1t">Monitoreo de Tickets</h2>
     </div>
-  </div>
-
-          </div>
-
-
-
-
-
-          <div class="card text-center  mb-3 bg-white style="max-width: 18rem"">
-            <div class="card-header"><h3>Tickets del Dia</h3> </div>
-            <div class="card-body">
-                <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px"> {{ $tickets_por_dia }} </i> </div>
-            </div>
-            <div class="btn-group" role="group">
-    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Dia pasado
-    </button>
-    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-      <a class="dropdown-item"> Ticket del dia pasado {{$diap}} </a>
+    <div class="col-lg-3">
+        <div class="card text-center mb-3   " style="max-width: 100rem">
+          <div class="card-header bg-white  border-dark"><h3>Tickets Totales</h3> <i class="fa fa-address-card" style="font-size:25px "> {{ $ticket}} </i> </div>
+        </div>
     </div>
-  </div>
-
-
+    <div class="col-lg-3">
+        <div class="card text-center mb-3 bg-white" style="max-width: 100rem">
+          <div class="card-header bg-white  border-dark"><h4>Tickets del Mes</h4>  <i class="fa fa-address-card" style="font-size:25px "> {{ $tickets_por_mes }} </i> </div>
+          <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Mes pasado
+          </button>
+          <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+            <a class="dropdown-item  border-dark"> Ticket del mes pasado {{$pruemesp}} </a>
           </div>
         </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card text-center mb-3 bg-white" style="max-width: 100rem">
+          <div class="card-header bg-white  border-dark"><h4>Tickets del Dia</h4>  <i class="fa fa-address-card" style="font-size:25px "> {{ $tickets_por_mes }} </i> </div>
+          <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dia pasado
+          </button>
+          <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+            <a class="dropdown-item  border-dark"> Ticket del dia pasado {{$diap}} </a>
+          </div>
+        </div>
+    </div>
 
+</div>
+<hr>
+
+    <div class="row">
+      <div class="col-lg-12 ">
+        <div class="card-deck mb-3">
+          <!-- Borde de los card -->
+  				<div class="col-md-4">
+            <div class="card">
+              <div class="card-header alert-success text-center border-dark  mb-3  "><h3>Tickets Totales</h3> </div>
+  					  <div class="inview" id="sales-doughnut-chart-us"></div>
+  				  </div>
+          </div>
+
+  				<div class="col-md-4">
+            <div class="card">
+              <div class="card-header alert-success text-center border-dark  mb-3  "><h3>Tickets Resueltos </h3> </div>
+              <div class="inview" id="sales-doughnut-chart-nl"></div>
+            </div>
+  				</div>
+
+  				<div class="col-md-4">
+            <div class="card">
+              <div class="card-header alert-success text-center border-dark  mb-3  "> <h3>Tickets Asignados</h3> </div>
+              <div class="inview" id="sales-doughnut-chart-de"></div>
+            </div>
+  				</div>
+        </div>
       </div>
     </div>
 
     <div class="row">
       <div class="col-lg-12">
-        <a href="/grafic" class="btn btn-success btn-lg enable" role="button" aria-disabled="true">Estatus Tickets</a>
+        <span class="spinner-grow spinner-grow-sm"></span>
+        <a href="/grafic" class="btn btn-outline-success" role="button" aria-disabled="true">Estatus Tickets</a>
       </div>
 
     </div>
 
 <br>
 
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="progress">
-              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow=$rticket aria-valuemin="0" aria-valuemax=$ticket style="width: 24%"></div>
-          </div>
-        </div>
-      </div>
 
 
 
+<div class="card border-dark  mb-3 " style="max-width: 100rem;">
     <div class="row">
       <div class="col-lg-12">
         <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
-          <div class="kt-portlet__body kt-portlet__body--fit kt-portlet__body--unfill">
-              <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
-                  style="min-height: 400px; background-image: url(./assets/media//products/product4.jpg)">
-                    <div id="chartContainer"  > </div>
-              </div>
+          <div class="card-shadow">
+            <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
+                style="min-height: 400px; background-image: url(./assets/media//products/product4.jpg)">
+                  <div id="chartContainer"  > </div>
+            </div>
+            </div>
           </div>
         </div>
       </div>
@@ -141,7 +138,6 @@
 
 @section('scripts')
 <script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
-
 <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.stock.min.js"></script>
 <script type="text/javascript"> </script>
@@ -150,7 +146,7 @@
 <!-- scrip grafica -->
 <script type="text/javascript">
 
-            window.onload = function (){
+window.onload = function (){
               var dataLength = 0;
                 var data = [];
                 var updateInterval = 500;
@@ -181,6 +177,10 @@
 
 
 
+
+
+
+
       								var chart = new CanvasJS.Chart("chartContainer",{
       									animationEnabled: true,
       									animationDuration: 1000,
@@ -188,7 +188,7 @@
                         exportEnabled: true,
 
       									title:{
-      										text: "  Tickets  "
+      										text: "  Tickets {{$ticket}}  "
       									},
 
       									legend:{
@@ -204,10 +204,27 @@
                            indexLabel: "{label} - #percent%",
 
       										 dataPoints: [
-      										 { label: "Tikets Totales", y: {{ $ticket}}  },
-      										 { label: "Tickets Resueltos", y: {{$rticket}} },
-      										 { label: "Tickets Asignados", y: {{$asignado}} },
-      										 { label: "Tickets Cerrados por Tiempo", y: {{$cerradoPT}} }
+      										 { label: "Tikets Nuevos - {{$nuevo}} ", y: {{$nuevo }}  },
+                           { label: "Tikets resuelto-{{$rticket }} ", y: {{$rticket }}  },
+                           { label: "Tikets cerradoinex-{{$cerradocinEX }} ", y: {{$cerradocinEX }}  },
+                           { label: "Tikets Abierto-{{ $open}} ", y: {{ $open}}  },
+                           { label: "Tikets removed-{{$removed }} ", y: {{$removed }}  },
+                           { label: "Tikets Pendiente Reminder-{{$pendienteRE }}  ", y: {{$pendienteRE }}  },
+                           { label: "Tikets Pendiente Auto Cerrado-{{$pendienteatc }}", y: {{$pendienteatc }}  },
+                           { label: "Tikets Cerrado por Tiempo-{{$cerradoPT }} ", y: {{$cerradoPT }}  },
+                           { label: "Tikets Notificado-{{$notificadoalU }} ", y: {{$notificadoalU }}  },
+                           { label: "Tikets Asignado- {{$asignado }}", y: {{$asignado }}  },
+                           { label: "Tikets Atendido-{{$atendido }} ", y: {{$atendido }}  },
+                           { label: "Tikets espera de informacion-{{$espinformacion }} ", y: {{$espinformacion }}  },
+                           { label: "Tikets merged - {{$merged}} ", y: {{$merged }}  },
+                           { label: "Tikets Doc Firmado - {{$Documentofirmado}} ", y: {{$Documentofirmado }}  },
+                           { label: "Tikets En Tramite - {{$Entramite}} ", y: {{$Entramite }}  },
+                           { label: "Tikets falta Documentar - {{$FaltaDocumentar}} ", y: {{$FaltaDocumentar }}  },
+                           { label: "Tikets Falta Acta Res - {{$FalteActaRES}} ", y: {{$FalteActaRES }}  },
+
+
+
+
 
       										 ]
       									 }
@@ -278,6 +295,7 @@ var chart = new CanvasJS.Chart("chartContainer4",{
 
 });
 chart.render();
+
 function toggleDataSeries(e) {
 if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
   e.dataSeries.visible = false;
@@ -286,14 +304,6 @@ if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
 }
 e.chart.render();
 }
-
-
-
-
-
-
-
-
 
   // separador 2
     var chart = new CanvasJS.Chart("chartContainer1",
@@ -308,12 +318,13 @@ e.chart.render();
              data: [
              {
                type: "column",
-               indexLabel: "{label} - #percent%",
+               ilegendText: "{label}",
+
                dataPoints: [
-                   { y: {{$ticket}}  , label: " Totales"  },
-                   { y: {{$rticket}} , label: "Resueltos" },
-                   { y: {{$asignado}} , label: "Tickets Asignados"  },
-                   { y: {{$cerradoPT}} ,label: "Tickets Cerrados por Tiempo" }
+                 { label: "Tikets Totales", y: {{ $ticket}}  },
+                 { label: "Tickets Resueltos", y: {{$rticket}} },
+                 { label: "Tickets Asignados", y: {{$asignado}} },
+                 { label: "Tickets Cerrados por Tiempo", y: {{$cerradoPT}} }
                  ]
              }
              ]
@@ -322,15 +333,116 @@ e.chart.render();
 
      // Separador 3 construccion
 
+  var chart = new CanvasJS.Chart("sales-doughnut-chart-us",
+       {
+         animationEnabled: true,
+          backgroundColor: "white",
 
-  ;}
+          title: {
+            fontColor: "#848484",
+            fontSize: 70,
+            horizontalAlign: "center",
+            text: "{{$ticket}}",
+            verticalAlign: "center"
+          },
+          toolTip: {
+            backgroundColor: "#ffffff",
+            borderThickness: 0,
+            cornerRadius: 0,
+            fontColor: "#424242"
+           },
+           data: [
+           {
+             explodeOnClick: false,
+              innerRadius: "90%",
+              radius: "90%",
+              startAngle: 270,
+              type: "doughnut",
 
+
+             dataPoints: [
+               { y: {{$ticket}}, color: "#1F842F ", toolTipContent:null },
+               ]
+           }
+           ]
+       });
+   chart.render();
+
+
+   var chart = new CanvasJS.Chart("sales-doughnut-chart-nl",
+        {
+          animationEnabled: true,
+           backgroundColor: "white",
+
+           title: {
+             fontColor: "#848484",
+             fontSize: 70,
+             horizontalAlign: "center",
+             text: "{{$rticket}}",
+             verticalAlign: "center"
+           },
+           toolTip: {
+             backgroundColor: "#ffffff",
+             borderThickness: 0,
+             cornerRadius: 0,
+             fontColor: "#424242"
+            },
+            data: [
+            {
+              explodeOnClick: false,
+               innerRadius: "90%",
+               radius: "90%",
+               startAngle: 270,
+               type: "doughnut",
+
+
+              dataPoints: [
+
+                { y: {{$ticket-$rticket}}, name: "Tks Diferente Estatus", color:  "#F11B1B", exploded: true  },
+                { y:  {{$rticket}} , name: "Ticket Resueltos", color: "#1F842F" ,toolTipContent:null}
+                ]
+            }
+            ]
+        });
+    chart.render();
+
+
+    var chart = new CanvasJS.Chart("sales-doughnut-chart-de",
+         {
+           animationEnabled: true,
+            backgroundColor: "white",
+
+            title: {
+              fontColor: "#848484",
+              fontSize: 70,
+              horizontalAlign: "center",
+              text: "{{$asignado}}",
+              verticalAlign: "center"
+            },
+            toolTip: {
+              backgroundColor: "#ffffff",
+              borderThickness: 0,
+              cornerRadius: 0,
+              fontColor: "#424242"
+             },
+             data: [
+             {
+               explodeOnClick: false,
+                innerRadius: "90%",
+                radius: "90%",
+                startAngle: 270,
+                type: "doughnut",
+                dataPoints: [
+                  { y: {{$ticket-$asignado}}, name: "Tks Diferente Estatus", color:  "#01FA29" , exploded: true  },
+                  { y:  {{$asignado}} , name: "Ticket Asignados", color: "#1F842F" ,toolTipContent:null}
+                 ]
+             }
+             ]
+         });
+     chart.render();
+
+;}
 </script>
-
-
-
-
-
 
 @endsection
 @endsection

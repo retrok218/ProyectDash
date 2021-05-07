@@ -30,3 +30,9 @@
 
 
 <!-- link para grafic controller datatable -->
+<link rel="stylesheet" href="{{ asset('css/card.css') }}" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+
+
+
+<!-- stilos card -->

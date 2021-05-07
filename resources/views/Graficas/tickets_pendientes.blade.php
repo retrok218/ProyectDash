@@ -337,6 +337,7 @@
                            type: "pie",
                            showInLegend: true,
                            legendText: "{label}",
+                           indexLabel: "{label} - #percent%",
 
                            dataPoints: [
                            { label: "Tikets Totales:{{ $ticket}} ", y: {{ $ticket}}  },

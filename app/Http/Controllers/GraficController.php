@@ -42,27 +42,28 @@ class GraficController extends Controller
 
       $tickte = DB::connection('pgsql2')->table('ticket')->count();
       $ticket_all = DB::connection('pgsql2')->table('ticket')->get();
-      $asignado =DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 12)->count();
-      $atendido = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 13)->count();
-      $espinformacion = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 15)->count();
+      $nuevo = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',1)->count();
       $rticket = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 2)->count();
-      //$prueba = DB::connection('pgsql2')-> table('prueba')->count();
-      $pendienteatc = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',7)->count();
-      $new = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',1)->count();
       $cerradocinEX = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',3)->count();
       $open = DB:: connection('pgsql2')->table('ticket')->where('ticket_state_id','=',4)->count();
       $removed = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',5)->count();
       $pendienteRE = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',6)->count();
+      $pendienteatc = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',7)->count();
       $pendienteAC = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',8)->count();
       $merged = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',9)->count();
-      $cerradoPT = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',10)->count();
+      $cerradoPT = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',10)->count();  // crear grafica y tabla
       $notificadoalU = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',11)->count();
+      $asignado =DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 12)->count();
+      $atendido = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 13)->count(); // crear tabla para visualizar
       $CerradoPT2 = DB:: connection('pgsql2')->table('ticket')->where('ticket_state_id','=',14)->count();
+      $espinformacion = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 15)->count();
       $merged = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',16)->count();
       $Documentofirmado = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',17)->count();
       $Entramite = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',18)->count();
       $FaltaDocumentar = DB:: connection('pgsql2')->table('ticket')->where('ticket_state_id','=',19)->count();
       $FalteActaRES = DB:: connection('pgsql2')->table('ticket')->where('ticket_state_id','=',21)->count();
+
+      //$prueba = DB::connection('pgsql2')-> table('prueba')->count();
       $SolicitudToner = DB::connection('pgsql2')-> table('ticket')->where('service_id','=',79)->count();
       $impresorasintt = DB::connection('pgsql2')-> table('ticket')->where('service_id','=',78)->count();
       $tickets_por_dia=DB::connection('pgsql2')->table('ticket')->whereDate('create_time',('='),$fecha_actual)->count();
@@ -104,17 +105,6 @@ class GraficController extends Controller
                                                               ->whereYear('create_time','=', $fecha_añop)
                                                               ->count();
 
-
-// $mesgrafica=0;
-//                                 if ($mesgrafica<=12) {
-//                                   DB::table('ticket')
-//                                 }
-
-                    // datos segun el mes
-
-
-      //$ticket_por_mes = DB::table('ticket')->whereMonth('create_time', ('='),1)->count();
-      $progresbar  = ($rticket*100) / $tickte ;
     if($perfil == true){
       return view('dash')
       ->with('ticket', $tickte)
@@ -126,7 +116,7 @@ class GraficController extends Controller
       //->with('abierto' , $abierto)
       //seleccionados
       ->with('pendienteatc',$pendienteatc)
-      ->with('new',$new)
+      ->with('nuevo',$nuevo)
       ->with('cerradocinEX',$cerradocinEX)
       ->with('open',$open)
       ->with('removed',$removed)
@@ -141,8 +131,8 @@ class GraficController extends Controller
       ->with('Entramite',$Entramite)
       ->with('FaltaDocumentar',$FaltaDocumentar)
       ->with('FalteActaRES',$FalteActaRES)
-      //->with('prueba', $prueba)
-      ->with('progreso',$progresbar)
+
+
       ->with('solicitudroner',$SolicitudToner)
       ->with('impresorasintt',$impresorasintt)
       ->with('tickets_por_mes',$tickets_por_mes)

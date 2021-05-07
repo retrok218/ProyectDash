@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="Updates and statistics">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <title>Sistema | General</title>
 
     <link rel="icon" type="image/vnd.microsoft.icon" href="{{ asset('assets/media/logos/favicon.ico') }}" sizes="48X16">
@@ -20,6 +21,7 @@
 </head>
 @guest
 <body
+
     <?php ?>
     class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--enabled kt-subheader--fixed kt-subheader--solid kt-page--loading"  >
     <div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
@@ -63,6 +65,7 @@
 <!-- begin::Body -->
 
 <body
+
     <?php /* class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--enabled kt-subheader--fixed kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading" */?>
     class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-aside--enabled kt-aside--fixed kt-page--loading" >
     <!-- begin:: Page -->
@@ -113,10 +116,14 @@
     <script src="{{ URL::asset('js/layout.js') }}" type="text/javascript"></script>
 
 
+
+
     <script type="text/javascript">
         // var global URL
         var url = '{!! URL::asset('') !!}';
         </script>
+
+
     <!-- end:: Page -->
 
     @yield('scripts')
