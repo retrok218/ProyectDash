@@ -147,15 +147,12 @@ class GraficController extends Controller
       ->with('dia',$fecha_dia)
       ->with('año',$fecha_año)
       ->with('mesp',$ticket_mespasado)
-
-      ->with('pruemesp',$ticket_mespasado)
       ->with('diap',$ticket_diap)
-
+      ->with('pruemesp',$ticket_mespasado)
       ->with('mes_enero',$mes_enero)
       ->with('mes_febrero',$mes_febrero)
       ->with('mes_marzo',$mes_marzo)
       ->with('mes_abril',$mes_abril)
-
       ->with('mes_enero2',$mes_enero2)
       ->with('mes_febrero2',$mes_febrero2)
       ->with('mes_marzo2',$mes_marzo2)

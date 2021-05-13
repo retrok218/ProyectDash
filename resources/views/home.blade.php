@@ -9,7 +9,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="Updates and statistics">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <title>Sistema | General</title>
 
     <link rel="icon" type="image/vnd.microsoft.icon" href="{{ asset('assets/media/logos/favicon.ico') }}" sizes="48X16">
@@ -17,11 +16,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,600,700">
     <!--end::Fonts -->
     @include('layouts/css/css')
+    <link rel="stylesheet" href="{{ asset('/css/preloader.css') }}" />
     @yield('styles')
+
 </head>
 @guest
 <body
-
     <?php ?>
     class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--enabled kt-subheader--fixed kt-subheader--solid kt-page--loading"  >
     <div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
@@ -65,11 +65,11 @@
 <!-- begin::Body -->
 
 <body
-
     <?php /* class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--enabled kt-subheader--fixed kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading" */?>
     class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-aside--enabled kt-aside--fixed kt-page--loading" >
     <!-- begin:: Page -->
     <!-- begin:: Header Mobile -->
+
     <div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
         <div class="kt-header-mobile__logo">
             <a href="/home">
@@ -94,8 +94,18 @@
             <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
                 <!-- begin:: Header -->
                 @include('layouts/header/header')
-                <!-- end:: Header -->
-                <!-- begin: Content -->
+<!-- end:: Header -->
+<!-- begin: Content -->
+<!-- Spiner  -->
+                <div id="glass">
+                    <div id="loader-wrapper">
+                        <div id="loader"> </div>
+                        
+                        <div class="loader-section section-left">  <img src="\public\assets\media\logos\logo_saf.png"> </div>
+                        <div class="loader-section section-right"></div>
+                    </div>
+                </div>
+<!-- Fin Spiner  -->
 
                 <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
                     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
@@ -116,17 +126,29 @@
     <script src="{{ URL::asset('js/layout.js') }}" type="text/javascript"></script>
 
 
-
-
     <script type="text/javascript">
         // var global URL
         var url = '{!! URL::asset('') !!}';
         </script>
-
-
     <!-- end:: Page -->
 
-    @yield('scripts')
+
+<!-- scrip Spiner  -->
+    <script>
+        window.addEventListener('load',function(){
+        document.querySelector('body').classList.add("loaded")
+        });
+    </script>
+<!-- scrip Spiner  -->
+
+
+
+
+
+
+
+
+ @yield('scripts')
 </body>
 <!-- end::Body -->
 @endguest

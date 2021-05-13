@@ -3,64 +3,69 @@
 
 <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid ">
 
+<div class="row shadow-lg p-3 mb-5 bg-white rounded fondo " >
+    <div class=" card-header shadow-sm p-3 mb-5 bg-white rounded ">
+      <div class="col-lg-12 ">
+        <h1 class="h1t">Monitoreo de Tickets</h1>
+      </div>
+    </div>
 
+    <div class=" card-deck text-center  col-lg-12 " >
+        <div class="col-lg-4 shadow p-3 mb-5 bg-white rounded">  
+              <h4>Tickets </h4>
+              <div class="card-body "> <i class="fa fa-address-card logocard"> {{ $ticket }} </i> </div>                       
+        </div>
 
-<div class="row ">
-    <div class="col-lg-3">
-			<h2 class="h1t">Monitoreo de Tickets</h2>
-    </div>
-    <div class="col-lg-3">
-        <div class="card text-center mb-3   " style="max-width: 100rem">
-          <div class="card-header bg-white  border-dark"><h3>Tickets Totales</h3> <i class="fa fa-address-card" style="font-size:25px "> {{ $ticket}} </i> </div>
+        <div class="  col-lg-4 shadow p-3 mb-5 bg-white rounded" >  
+              <h4 >Tickets del Mes</h4>
+              <div class="card-body"> <i class="fa fa-address-card logocard"> {{ $tickets_por_mes }} </i> </div>
+              <button type="button" class="btn btn-default dropdown-toggle"
+                 data-toggle="dropdown"> Ticket del Mes Pasado <span class="">
+               </span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a>{{$mesp}}</a></li>
+              </ul>
+            <i class="bi bi-arrow-down-square-fill"></i>
         </div>
-    </div>
-    <div class="col-lg-3">
-        <div class="card text-center mb-3 bg-white" style="max-width: 100rem">
-          <div class="card-header bg-white  border-dark"><h4>Tickets del Mes</h4>  <i class="fa fa-address-card" style="font-size:25px "> {{ $tickets_por_mes }} </i> </div>
-          <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Mes pasado
+
+        <div class="  col-lg-4 shadow p-3 mb-5 bg-white rounded" >  
+          <h4 >Tickets del dia</h4>
+          <div class="card-body"> <i class="fa fa-address-card logocard"> {{ $tickets_por_dia }} </i> </div>
+          <button type="button" class="btn btn-default dropdown-toggle"
+             data-toggle="dropdown"> Ticket del Dia Pasado <span class="">
+           </span>
           </button>
-          <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-            <a class="dropdown-item  border-dark"> Ticket del mes pasado {{$pruemesp}} </a>
-          </div>
-        </div>
+          <ul class="dropdown-menu" role="menu">
+            <li><a>{{$diap}}</a></li>
+          </ul>
+        <i class="bi bi-arrow-down-square-fill"></i>
     </div>
-    <div class="col-lg-3">
-        <div class="card text-center mb-3 bg-white" style="max-width: 100rem">
-          <div class="card-header bg-white  border-dark"><h4>Tickets del Dia</h4>  <i class="fa fa-address-card" style="font-size:25px "> {{ $tickets_por_mes }} </i> </div>
-          <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dia pasado
-          </button>
-          <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-            <a class="dropdown-item  border-dark"> Ticket del dia pasado {{$diap}} </a>
-          </div>
-        </div>
+
     </div>
 
 </div>
-<hr>
-
-    <div class="row">
+    <div class="row shadow-lg p-3 mb-5 bg-white rounded fondo">
       <div class="col-lg-12 ">
-        <div class="card-deck mb-3">
-          <!-- Borde de los card -->
+        <div class="card-deck mb-3 bg-white">
+
   				<div class="col-md-4">
-            <div class="card">
-              <div class="card-header alert-success text-center border-dark  mb-3  "><h3>Tickets Totales</h3> </div>
+            <div class="card ">
+              <div class="card-header  text-center border-dark  mb-3  "><h3>Tickets Totales</h3> </div>
   					  <div class="inview" id="sales-doughnut-chart-us"></div>
   				  </div>
           </div>
 
   				<div class="col-md-4">
             <div class="card">
-              <div class="card-header alert-success text-center border-dark  mb-3  "><h3>Tickets Resueltos </h3> </div>
+              <div class="card-header text-center border-dark  mb-3 "><h3>Tickets Resueltos </h3> </div>
               <div class="inview" id="sales-doughnut-chart-nl"></div>
             </div>
   				</div>
 
   				<div class="col-md-4">
             <div class="card">
-              <div class="card-header alert-success text-center border-dark  mb-3  "> <h3>Tickets Asignados</h3> </div>
+              <div class="card-header text-center border-dark  mb-3 "> <h3>Tickets Asignados</h3> </div>
               <div class="inview" id="sales-doughnut-chart-de"></div>
             </div>
   				</div>
@@ -68,7 +73,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row ">
       <div class="col-lg-12">
         <span class="spinner-grow spinner-grow-sm"></span>
         <a href="/grafic" class="btn btn-outline-success" role="button" aria-disabled="true">Estatus Tickets</a>
@@ -81,23 +86,23 @@
 
 
 
-<div class="card border-dark  mb-3 " style="max-width: 100rem;">
+<div class="card   mb-3 shadow-lg p-3 mb-5 bg-white rounded  " style="max-width: 100rem;">
     <div class="row">
       <div class="col-lg-12">
         <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
-          <div class="card-shadow">
+          
             <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
                 style="min-height: 400px; background-image: url(./assets/media//products/product4.jpg)">
                   <div id="chartContainer"  > </div>
             </div>
-            </div>
+            
           </div>
         </div>
       </div>
     </div>
 
 
-    <div class="row">
+    <div class="row shadow-lg p-3 mb-5 bg-white rounded">
       <div class="col-lg-12">
         <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
           <div class="kt-portlet__body kt-portlet__body--fit kt-portlet__body--unfill">
@@ -113,7 +118,7 @@
 
 
 
-    <div class="row">
+    <div class="row shadow-lg p-3 mb-5 bg-white rounded">
       <div class="col-lg-12">
         <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
           <div class="kt-portlet__body kt-portlet__body--fit kt-portlet__body--unfill">
@@ -125,10 +130,6 @@
         </div>
       </div>
     </div>
-
-
-
-
 
 
 </div>
@@ -398,7 +399,7 @@ e.chart.render();
 
               dataPoints: [
 
-                { y: {{$ticket-$rticket}}, name: "Tks Diferente Estatus", color:  "#F11B1B", exploded: true  },
+                { y: {{$ticket-$rticket}}, name: "Diferente Estatus", color:  "#F11B1B", exploded: true  },
                 { y:  {{$rticket}} , name: "Ticket Resueltos", color: "#1F842F" ,toolTipContent:null}
                 ]
             }
@@ -433,7 +434,7 @@ e.chart.render();
                 startAngle: 270,
                 type: "doughnut",
                 dataPoints: [
-                  { y: {{$ticket-$asignado}}, name: "Tks Diferente Estatus", color:  "#01FA29" , exploded: true  },
+                  { y: {{$ticket-$asignado}}, name: "Tks Diferente Estatus", color:  "#F11B1B" , exploded: true  },
                   { y:  {{$asignado}} , name: "Ticket Asignados", color: "#1F842F" ,toolTipContent:null}
                  ]
              }
