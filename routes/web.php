@@ -67,6 +67,8 @@ Route::get ('/tickets_pendiente', 'Tks_DT_controlle@tickets_pendiente');
 Route::get('/car', function(){
   return view('/Graficas/cardtickets');
 });
+//Grafoca Tickets por Area
+Route::get('/porarea', 'Tks_DT_controlle@ticket_area');
 
 
 

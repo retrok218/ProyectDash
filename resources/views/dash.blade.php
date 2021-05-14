@@ -6,17 +6,17 @@
 <div class="row shadow-lg p-3 mb-5 bg-white rounded fondo " >
     <div class=" card-header shadow-sm p-3 mb-5 bg-white rounded ">
       <div class="col-lg-12 ">
-        <h1 class="h1t">Monitoreo de Tickets</h1>
+        <h1 class="h1t">Monitoreo de Tickets </h1>
       </div>
     </div>
 
     <div class=" card-deck text-center  col-lg-12 " >
-        <div class="col-lg-4 shadow p-3 mb-5 bg-white rounded">  
+        <div class="col-lg-4 shadow p-3 mb-5 bg-white rounded">
               <h4>Tickets </h4>
-              <div class="card-body "> <i class="fa fa-address-card logocard"> {{ $ticket }} </i> </div>                       
+              <div class="card-body "> <i class="fa fa-address-card logocard"> {{ $ticket }} </i> </div>
         </div>
 
-        <div class="  col-lg-4 shadow p-3 mb-5 bg-white rounded" >  
+        <div class="  col-lg-4 shadow p-3 mb-5 bg-white rounded" >
               <h4 >Tickets del Mes</h4>
               <div class="card-body"> <i class="fa fa-address-card logocard"> {{ $tickets_por_mes }} </i> </div>
               <button type="button" class="btn btn-default dropdown-toggle"
@@ -29,7 +29,7 @@
             <i class="bi bi-arrow-down-square-fill"></i>
         </div>
 
-        <div class="  col-lg-4 shadow p-3 mb-5 bg-white rounded" >  
+        <div class="  col-lg-4 shadow p-3 mb-5 bg-white rounded" >
           <h4 >Tickets del dia</h4>
           <div class="card-body"> <i class="fa fa-address-card logocard"> {{ $tickets_por_dia }} </i> </div>
           <button type="button" class="btn btn-default dropdown-toggle"
@@ -76,11 +76,9 @@
     <div class="row ">
       <div class="col-lg-12">
         <span class="spinner-grow spinner-grow-sm"></span>
-        <a href="/grafic" class="btn btn-outline-success" role="button" aria-disabled="true">Estatus Tickets</a>
+        <a href="/grafic" class="btn btn-outline-success" role="button" aria-disabled="true">Estatus Tickets {{$tk_por_area_1}}</a>
       </div>
-
     </div>
-
 <br>
 
 
@@ -90,12 +88,12 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
-          
+
             <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
                 style="min-height: 400px; background-image: url(./assets/media//products/product4.jpg)">
                   <div id="chartContainer"  > </div>
             </div>
-            
+
           </div>
         </div>
       </div>
@@ -130,9 +128,11 @@
         </div>
       </div>
     </div>
-
-
 </div>
+
+
+
+
 
 
 

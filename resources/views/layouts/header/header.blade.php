@@ -7,7 +7,7 @@
         <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile  kt-header-menu--layout-default ">
 
             <div class="kt-aside__brand-logo">
-                <a href="{{ url('/home') }}">
+                <a href="{{ url('/dash') }}">
                     <img alt="Logo" src="{{ URL::asset('assets/media/company-logos/SAF_logo_header.svg')}}" width="350"
                         style="padding-top: 8px">
                 </a>
@@ -17,7 +17,7 @@
 
                   <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
                   <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-                  
+
                   <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
                      <ul class="kt-menu__subnav">
                         <li class="kt-menu__item  kt-menu__item--submenu" data-ktmenu-submenu-toggle="hover" aria-haspopup="true">

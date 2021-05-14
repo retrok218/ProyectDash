@@ -21,15 +21,8 @@ class GraficController extends Controller
 {
     public function index()
     {
-
       $perfil = Auth::user()->hasAnyRole(['SuperAdmin', 'Admin']);
-
 // regresa la vista admin.dashboard
-
-
-
-
-
       $fecha_actual = Carbon::now()->toDateString(); //fecha ->toDateString da el formato que maneja la bd
       $fecha_mes = Carbon::now()->format('m');
       $fecha_dia = Carbon::now()->format('d');
@@ -37,8 +30,6 @@ class GraficController extends Controller
       $fecha_mesp= $fecha_mes-1;
       $fecha_añop= $fecha_año-1;
       $fecha_diap= $fecha_dia-1;
-
-
 
       $tickte = DB::connection('pgsql2')->table('ticket')->count();
       $ticket_all = DB::connection('pgsql2')->table('ticket')->get();
@@ -104,6 +95,12 @@ class GraficController extends Controller
       $mes_abril2=DB::connection('pgsql2')->table('ticket')->whereMonth('create_time','=', 4)
                                                               ->whereYear('create_time','=', $fecha_añop)
                                                               ->count();
+      
+      // ticket por Area
+      $tk_por_area_1=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',1)->count();
+
+
+
 
     if($perfil == true){
       return view('dash')
@@ -158,16 +155,18 @@ class GraficController extends Controller
       ->with('mes_marzo2',$mes_marzo2)
       ->with('mes_abril2',$mes_abril2)
 
+      //ticket por area
+      ->with('tk_por_area_1',$tk_por_area_1)
+      
 
-
-      // iff
     ;}
+ ;}
 
-    else {
-        return view('/home');
-    }
 
-      ;}
+
+
+
+
 
 
 // controlador para datatable de los tickets totales
@@ -180,11 +179,6 @@ class GraficController extends Controller
     //   ->with('tickets_totales',$tickets_totales)
     //
     // ;}
-
-
-
-
-
 
 
     // controlador para tickets asignados

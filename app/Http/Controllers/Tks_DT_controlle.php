@@ -105,4 +105,32 @@ class Tks_DT_controlle extends Controller
     ->with('solicitudroner',$solicitudToner)
 
     ;}
+
+
+//tickets Por area
+public function ticket_area(){
+    $tk_por_area_1=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',1)->count();
+    $tk_por_area_2=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',2)->count();
+    $tk_por_area_3=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',3)->count();
+    $tk_por_area_4=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',4)->count();
+
+    $tk_por_area_32=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',32)->count();
+    $tk_por_area_33=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',33)->count();
+
+    $tk_por_area_36=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',36)->count();
+    $tk_por_area_37=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',37)->count();
+    
+
+
+    return view('graficas/graficaporarea')
+    ->with([
+      'tk_por_area_1'=>$tk_por_area_1
+      'tk_por_area_2'=>$tk_por_area_2
+      'tk_por_area_3'=>$tk_por_area_3
+      'tk_por_area_4'=>$tk_por_area_4
+
+      
+
+    ]);}
+
 }

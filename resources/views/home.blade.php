@@ -100,9 +100,9 @@
                 <div id="glass">
                     <div id="loader-wrapper">
                         <div id="loader"> </div>
-                        
-                        <div class="loader-section section-left">  <img src="\public\assets\media\logos\logo_saf.png"> </div>
-                        <div class="loader-section section-right"></div>
+
+                        <div class="loader-section section-left"> <img src="assets/media/bg/bg-5.jpg" > </div>
+                        <div class="loader-section section-right">  </div>
                     </div>
                 </div>
 <!-- Fin Spiner  -->
