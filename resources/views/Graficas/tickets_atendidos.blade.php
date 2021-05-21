@@ -4,27 +4,29 @@
 
 
     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
-      <div class="row">
+
+      <div class="row mb-3 shadow-lg p-3 mb-5 bg-white rounded fondo1">
         <div class="col-xl-12">
           <div class="card-deck mt-3">
-            <div class="card text-center  mb-3 bg-white style="max-width: 18rem"">
-              <div class="card-header"><h3>Tickets Totales</h3> </div>
+
+            <div class="card text-center"  mb-3 bg-white style="max-width: 100rem">
+              <div class="card-header h1t"><h3>Tickets Totales</h3> </div>
                 <div class="card-body">
                     <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $ticket}} </i> </div>
                 </div>
                 <a href="/grafic" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>
             </div>
 
-            <div class="card text-center  mb-3 bg-white style="max-width: 18rem"">
-              <div class="card-header"><h3>Tickets Estatus Asignados</h3> </div>
+            <div class="card text-center"  mb-3 bg-white style="max-width: 100rem">
+              <div class="card-header h1t"><h3>Tickets Estatus Asignados</h3> </div>
               <div class="card-body">
                   <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px " id="btAsignados"> {{ $asignado}} </i> </div>
               </div>
               <a href="/tks_asignados" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>
             </div>
 
-            <div class="card text-center  mb-3 bg-white style="max-width: 18rem"">
-              <div class="card-header"><h3>Tickets Estatus Atendidos</h3> </div>
+            <div class="card text-center"  mb-3 bg-white style="max-width: 100rem">
+              <div class="card-header h1t"><h3>Tickets Estatus Atendidos</h3> </div>
               <div class="card-body">
                   <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $atendido}} </i> </div>
               </div>
@@ -33,24 +35,24 @@
           </div>
 
           <div class="card-deck mt-3">
-            <div class="card text-center  mb-3 bg-white style="max-width: 18rem"">
-              <div class="card-header"><h3>Tickets  Estatus Pendientes</h3> </div>
+            <div class="card text-center"  mb-3 bg-white style="max-width: 100rem">
+              <div class="card-header h1t"><h3>Tickets  Estatus Pendientes</h3> </div>
               <div class="card-body">
                   <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $pendienteatc}} </i> </div>
               </div>
               <a href="/tickets_pendiente" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>
 
             </div>
-            <div class="card text-center  mb-3 bg-white style="max-width: 18rem"">
-              <div class="card-header"><h3>Tickets  Solicitud de Toner</h3> </div>
+            <div class="card text-center"  mb-3 bg-white style="max-width: 100rem">
+              <div class="card-header h1t"><h3>Tickets  Solicitud de Toner</h3> </div>
               <div class="card-body">
                   <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $solicitudroner}} </i> </div>
               </div>
               <a href="/tickets_sol_toner" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>
 
             </div>
-            <div class="card text-center  mb-3 bg-white style="max-width: 18rem"">
-              <div class="card-header"><h3>Tickets  Estatus En Espera de Informaicon</h3> </div>
+            <div class="card text-center"  mb-3 bg-white style="max-width: 100rem">
+              <div class="card-header h1t"><h3>Tickets  Estatus En Espera de Informaicon</h3> </div>
               <div class="card-body">
                   <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $espinformacion}} </i> </div>
               </div>
@@ -77,22 +79,19 @@
             </div>
           </div>
         </div>
-<!-- Grafica Tickets Atendidos -->
-
+<!-- Creacion de graica tickets atendidos -->
 
       <div class="row">
-        <div class="col-12">
-          <div class="card">
+        <div class="col-xl-12">
+          <div class="card ">
             <div class="card text-center"  >
-            <div class="card-header"><h2> Tickets Atendidos </h2> </div>
+            <div class="card-header titulo_card"><h2> Tickets Atendido </h2> </div>
             </div>
-            <div class="card-body">
-
-              <div class="card mb-4 border-0">
-
+            <div class="card-body" >
+              
   <!--begin: Datatable -->
-                <table id="tablatk"  class="table table-striped table-bordered" style="width:100%">
-                    <thead>
+                <table id="tablatk"  class="table table-striped table-bordered " >
+                    <thead >
                       <tr>
                         <th>Numero de Ticfket</th>
                         <th> Creado </th>
@@ -103,25 +102,24 @@
                       </tr>
                     </thead>
                     <tbody>
-                      @foreach($tkasignado as $tkasignado)
+                      @foreach($tkatendidos as $tkatendidos)
                       <tr>
-                        <td>{{$tkasignado->tn}}</td>
-                        <td>{{$tkasignado->create_time}}</td>
-                        <td>{{$tkasignado->title}}</td>
-                        <td>{{$tkasignado->name}}</td>
-                        <td>{{$tkasignado->customer_user_id}}</td>
+                        <td>{{$tkatendidos->tn}}</td>
+                        <td>{{$tkatendidos->create_time}}</td>
+                        <td>{{$tkatendidos->title}}</td>
+                        <td>{{$tkatendidos->name}}</td>
+                        <td>{{$tkatendidos->customer_user_id}}</td>
 
                       </tr>
                       @endforeach
                     </tbody>
                 </table>
               <!--end: Datatable -->
+             
               </div>
-
               </div>
 
           </div>
-      </div>
       </div>
       </div>
       @include('layouts/scripts/scripts')
@@ -133,7 +131,7 @@
                       "sProcessing":     "Procesando...",
                       "sLengthMenu":     "Mostrar _MENU_ registros",
                       "sZeroRecords":    "No se encontraron resultados",
-                      "sEmptyTable":     "NingÃºn dato disponible en esta tabla",
+                      "sEmptyTable":     "Sin Tickets por el momento",
                       "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
                       "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
                       "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
@@ -202,7 +200,7 @@
                            {
                                extend:    'pdfHtml5',
                                text:      '<i class="fa fa-file-pdf-o"></i>PDF',
-                               title:'Titulo de tabla en pdf',
+                               title:'Tickets Atendidos',
                                titleAttr: 'PDF',
                                className: 'btn btn-app export pdf',
                                orientation: 'landscape',
@@ -240,7 +238,7 @@
                            {
                                extend:    'excelHtml5',
                                text:      '<i class="fa fa-file-excel-o"></i>Excel',
-                               title:'Titulo de tabla en excel',
+                               title:'Tickets Atendidos',
                                titleAttr: 'Excel',
                                className: 'btn btn-app export excel',
                                exportOptions: {
@@ -251,7 +249,7 @@
                            {
                                extend:    'print',
                                text:      '<i class="fa fa-print"></i>Imprimir',
-                               title:'Titulo de tabla en impresion',
+                               title:'Tickets Atendidos',
                                titleAttr: 'Imprimir',
                                className: 'btn btn-app export imprimir',
                                exportOptions: {

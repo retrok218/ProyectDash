@@ -62,13 +62,7 @@ Route::get ('/tickets_sol_toner', 'Tks_DT_controlle@tickets_sol_toner');
 Route::get ('/tickets_espera_inf', 'Tks_DT_controlle@tickets_esp_info');
 // ticket Estatus pendiente
 Route::get ('/tickets_pendiente', 'Tks_DT_controlle@tickets_pendiente');
-//eje de card
 
-Route::get('/car', function(){
-  return view('/Graficas/cardtickets');
-});
-//Grafoca Tickets por Area
-Route::get('/porarea', 'Tks_DT_controlle@ticket_area');
 
 
 

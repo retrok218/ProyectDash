@@ -4,12 +4,10 @@
 
 <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
 
-
-
-  <div class="row">
-    <div class="col-xl-12">
-      <div class="card-deck mt-3">
-        <div class="card text-center  mb-3 bg-white style="max-width: 18rem"">
+  <div class="row shadow-lg p-3 mb-5  rounded ">
+    <div class="col-xl-12 fondo1">
+      <div class="card-deck mt-3 " >
+        <div class="card text-center  mb-3 bg-white" >
           <div class="card-header"><h3>Tickets Totales</h3> </div>
             <div class="card-body">
                 <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $ticket}} </i> </div>
@@ -17,7 +15,7 @@
             <a href="/grafic" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>
         </div>
 
-        <div class="card text-center  mb-3 bg-white style="max-width: 18rem"">
+        <div class="card text-center  mb-3 bg-white" >
           <div class="card-header"><h3>Tickets Estatus Asignados</h3> </div>
           <div class="card-body">
               <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px " id="btAsignados"> {{ $asignado}} </i> </div>
@@ -25,7 +23,7 @@
           <a href="/tks_asignados" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>
         </div>
 
-        <div class="card text-center  mb-3 bg-white style="max-width: 18rem"">
+        <div class="card text-center  mb-3 bg-white" >
           <div class="card-header"><h3>Tickets Estatus Atendidos</h3> </div>
           <div class="card-body">
               <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $atendido}} </i> </div>
@@ -35,7 +33,7 @@
       </div>
 
       <div class="card-deck mt-3">
-        <div class="card text-center  mb-3 bg-white style="max-width: 18rem"">
+        <div class="card text-center  mb-3 bg-white" >
           <div class="card-header"><h3>Tickets  Estatus Pendientes</h3> </div>
           <div class="card-body">
               <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $pendienteatc}} </i> </div>
@@ -43,7 +41,7 @@
           <a href="/tickets_pendiente" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>
 
         </div>
-        <div class="card text-center  mb-3 bg-white style="max-width: 18rem"">
+        <div class="card text-center  mb-3 bg-white" >
           <div class="card-header"><h3>Tickets  Solicitud de Toner</h3> </div>
           <div class="card-body">
               <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $solicitudroner}} </i> </div>
@@ -51,7 +49,7 @@
           <a href="/tickets_sol_toner" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>
 
         </div>
-        <div class="card text-center  mb-3 bg-white style="max-width: 18rem"">
+        <div class="card text-center  mb-3 bg-white" >
 
           <div class="card-header"><h3>Tickets  Estatus En Espera de Informaicon</h3> </div>
           <div class="card-body">
@@ -76,13 +74,13 @@
 
   <div class="row">
     <div class="col-lg-12">
-      <div class="card">
+      
         <div class="card text-center"  >
-          <div class="card-header"><h2> Tickets Totales </h2> </div>
+          <div class="card-header titulo_card"><h2> Tickets Totales </h2> </div>
         </div>
         <div class="card-body">
 <!--begin: Datatable -->
-              <table id="tablatk"  class="table table-striped table-bordered" style="width:100%">
+              <table id="tablatk"  class="table table-striped table-bordered" >
                   <thead>
                     <tr>
                       <th>N Ticket</th>
@@ -107,7 +105,7 @@
               </table>
             <!--end: Datatable -->
         </div>
-  </div>
+  
   </div>
 
 
@@ -136,8 +134,7 @@ var idioma=
               "sInfoThousands":  ",",
               "sLoadingRecords": "Cargando...",
               "oPaginate": {
-                  "sFirst":    "Primero",
-                  "sLast":     "Ãšltimo",
+                  
                   "sNext":     "Siguiente",
                   "sPrevious": "Anterior"
               },
@@ -190,7 +187,7 @@ $(document).ready(function(){
                    {
                        extend:    'pdfHtml5',
                        text:      '<i class="fa fa-file-pdf-o"></i>PDF',
-                       title:'Titulo de tabla en pdf',
+                       title:'Tickets Totales',
                        titleAttr: 'PDF',
                        className: 'btn btn-app export pdf',
                        orientation: 'landscape',
@@ -201,7 +198,7 @@ $(document).ready(function(){
                        customize:function(doc) {
 
                            doc.styles.title = {
-                               color: '#4c8aa0',
+                               color: '#114627',
                                fontSize: '30',
                                alignment: 'center'
                            }
@@ -211,7 +208,7 @@ $(document).ready(function(){
                                 margin: [ 0, 0, 0, 12 ],
                            },
                            doc.styles.tableHeader = {
-                               fillColor:'#4c8aa0',
+                               fillColor:'#114627',
                                color:'white',
                                alignment:'center',
 
@@ -267,3 +264,4 @@ $(document).ready(function(){
 
 @endsection
 @endsection
+

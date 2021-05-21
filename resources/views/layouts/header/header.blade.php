@@ -3,6 +3,7 @@
     <!-- begin:: Header Menu -->
     <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn"><i
             class="la la-close"></i></button>
+            
     <div class="kt-header-menu-wrapper" id="kt_header_menu_wrapper">
         <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile  kt-header-menu--layout-default ">
 
@@ -10,7 +11,9 @@
                 <a href="{{ url('/dash') }}">
                     <img alt="Logo" src="{{ URL::asset('assets/media/company-logos/SAF_logo_header.svg')}}" width="350"
                         style="padding-top: 8px">
+                       
                 </a>
+                
             </div>
 
                <ul class="kt-menu__nav ">
@@ -38,6 +41,8 @@
                   </div>
                   </li>
                </ul>
+               
+               
 
         </div>
     </div>

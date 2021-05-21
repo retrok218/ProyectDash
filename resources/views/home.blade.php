@@ -9,6 +9,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="Updates and statistics">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Refresca la pagina cada 5 segundos
+    <meta http-equiv="refresh" content="5">
+    -->
+
     <title>Sistema | General</title>
 
     <link rel="icon" type="image/vnd.microsoft.icon" href="{{ asset('assets/media/logos/favicon.ico') }}" sizes="48X16">
@@ -16,7 +20,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,600,700">
     <!--end::Fonts -->
     @include('layouts/css/css')
-    <link rel="stylesheet" href="{{ asset('/css/preloader.css') }}" />
     @yield('styles')
 
 </head>
@@ -99,10 +102,15 @@
 <!-- Spiner  -->
                 <div id="glass">
                     <div id="loader-wrapper">
-                        <div id="loader"> </div>
+                    <div id="loader"> </div>
 
-                        <div class="loader-section section-left"> <img src="assets/media/bg/bg-5.jpg" > </div>
-                        <div class="loader-section section-right">  </div>
+                        <div class="loader-section section-left" >
+                            <img src="assets/media/bg/bg-cdmx.png" width="100%" height="80%"> 
+                        </div>
+                        <div class="loader-section section-right"> 
+                            <img src="assets/media/bg/bg-cdmx.png" width="100%" height="80%"> 
+                        </div>
+
                     </div>
                 </div>
 <!-- Fin Spiner  -->

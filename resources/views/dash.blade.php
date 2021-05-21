@@ -1,23 +1,29 @@
 @extends('home')
 @section('content')
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid ">
 
-<div class="row shadow-lg p-3 mb-5 bg-white rounded fondo " >
-    <div class=" card-header shadow-sm p-3 mb-5 bg-white rounded ">
+<div class="row shadow-lg p-3 mb-5  rounded fondo1 " >
+
+
+    <div class=" card-header shadow-sm p-3 mb-5 rounded " style="background: transparent ">
       <div class="col-lg-12 ">
-        <h1 class="h1t">Monitoreo de Tickets </h1>
+        <h1 class="h1t">Monitoreo de Tickets  </h1>
+        
       </div>
     </div>
 
     <div class=" card-deck text-center  col-lg-12 " >
-        <div class="col-lg-4 shadow p-3 mb-5 bg-white rounded">
-              <h4>Tickets </h4>
+        <div class="col-lg-4 shadow p-3 mb-5 bg-white rounded" style="background: transparent ">
+          <div class="card-header titulo_card"><h2>Tickets Totales </h2></div>
+              
               <div class="card-body "> <i class="fa fa-address-card logocard"> {{ $ticket }} </i> </div>
         </div>
 
         <div class="  col-lg-4 shadow p-3 mb-5 bg-white rounded" >
-              <h4 >Tickets del Mes</h4>
+            <div class="card-header titulo_card"><h2 >Tickets del Mes</h2> </div>    
+          
               <div class="card-body"> <i class="fa fa-address-card logocard"> {{ $tickets_por_mes }} </i> </div>
               <button type="button" class="btn btn-default dropdown-toggle"
                  data-toggle="dropdown"> Ticket del Mes Pasado <span class="">
@@ -30,7 +36,7 @@
         </div>
 
         <div class="  col-lg-4 shadow p-3 mb-5 bg-white rounded" >
-          <h4 >Tickets del dia</h4>
+          <div class="card-header titulo_card"><h2>Tickets del dia</h2></div>
           <div class="card-body"> <i class="fa fa-address-card logocard"> {{ $tickets_por_dia }} </i> </div>
           <button type="button" class="btn btn-default dropdown-toggle"
              data-toggle="dropdown"> Ticket del Dia Pasado <span class="">
@@ -44,61 +50,79 @@
 
     </div>
 
+    <div class="row ">
+      <div class="col-lg-12">
+        <span class="spinner-grow spinner-grow-sm"></span>
+        <a href="/grafic" class="btn btn-success" role="button" aria-disabled ="true">Estatus Tickets</a>
+        
+      </div>
+    </div>
+
 </div>
-    <div class="row shadow-lg p-3 mb-5 bg-white rounded fondo">
+    <div class="row shadow-lg p-3 mb-5  rounded fondo  fondo1" >
       <div class="col-lg-12 ">
-        <div class="card-deck mb-3 bg-white">
+        <div class="card-deck mb-3 ">
 
   				<div class="col-md-4">
             <div class="card ">
-              <div class="card-header  text-center border-dark  mb-3  "><h3>Tickets Totales</h3> </div>
+              <div class="card-header  text-center border-dark  mb-3 h1t  "><h3>Tickets Totales</h3> </div>
   					  <div class="inview" id="sales-doughnut-chart-us"></div>
   				  </div>
           </div>
 
   				<div class="col-md-4">
             <div class="card">
-              <div class="card-header text-center border-dark  mb-3 "><h3>Tickets Resueltos </h3> </div>
+              <div class="card-header text-center border-dark  mb-3 h1t "><h3>Tickets Resueltos </h3> </div>
               <div class="inview" id="sales-doughnut-chart-nl"></div>
             </div>
   				</div>
 
   				<div class="col-md-4">
             <div class="card">
-              <div class="card-header text-center border-dark  mb-3 "> <h3>Tickets Asignados</h3> </div>
+              <div class="card-header text-center border-dark  mb-3 h1t "> <h3>Tickets Asignados</h3> </div>
               <div class="inview" id="sales-doughnut-chart-de"></div>
             </div>
   				</div>
         </div>
       </div>
+      
     </div>
 
-    <div class="row ">
-      <div class="col-lg-12">
-        <span class="spinner-grow spinner-grow-sm"></span>
-        <a href="/grafic" class="btn btn-outline-success" role="button" aria-disabled="true">Estatus Tickets {{$tk_por_area_1}}</a>
-      </div>
-    </div>
-<br>
+    
 
-
-
-
-<div class="card   mb-3 shadow-lg p-3 mb-5 bg-white rounded  " style="max-width: 100rem;">
-    <div class="row">
+<div class="card   mb-3 shadow-lg p-3 mb-5 bg-white rounded  " style="max-width: 100rem;">  
+  <div class="row ">
       <div class="col-lg-12">
         <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
-
             <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
-                style="min-height: 400px; background-image: url(./assets/media//products/product4.jpg)">
+                style="min-height: 400px; ">
                   <div id="chartContainer"  > </div>
             </div>
-
           </div>
         </div>
       </div>
     </div>
 
+    <div class="card   mb-3 shadow-lg p-3 mb-5 bg-white rounded  " style="max-width: 100rem;">
+    <div class="row">
+    <div class="col-xl-12">
+      <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+        
+        <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
+        style="min-height: 500px; ">
+                  <div id="gporarea"> </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    
+</div>
+
+    <!--Grafica por Area-->
+
+    
+    <!--Fin Grafica por Area-->
 
     <div class="row shadow-lg p-3 mb-5 bg-white rounded">
       <div class="col-lg-12">
@@ -131,12 +155,6 @@
 </div>
 
 
-
-
-
-
-
-
 @section('scripts')
 <script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
 <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
@@ -148,26 +166,7 @@
 <script type="text/javascript">
 
 window.onload = function (){
-              var dataLength = 0;
-                var data = [];
-                var updateInterval = 500;
-                updateChart();
-                function updateChart() {
-                    $.getJSON("data.php", function (result) {
-                        if (dataLength !== result.length) {
-                            for (var i = dataLength; i < result.length; i++) {
-                                data.push({
-                                    x: parseInt(result[i].valorx),
-                                    y: parseInt(result[i].valory)
-                                });
-                            }
-                            dataLength = result.length;
-                            chart.render();
-                        }
-                    });
-                }
-
-
+              var dataLength = 0;             
               CanvasJS.addCultureInfo("es",
                 {
                     decimalSeparator: ".",
@@ -176,17 +175,18 @@ window.onload = function (){
                     months:["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Nobiembre","Diciembre",]
                });
 
+  
+  
+  
 
-
-
-
-
-
-      								var chart = new CanvasJS.Chart("chartContainer",{
+  
+  
+  	var chart = new CanvasJS.Chart("chartContainer",{
       									animationEnabled: true,
       									animationDuration: 1000,
       									interactivityEnabled: true,
                         exportEnabled: true,
+                        
 
       									title:{
       										text: "  Tickets {{$ticket}}  "
@@ -194,7 +194,11 @@ window.onload = function (){
 
       									legend:{
                       		horizontalAlign: "right",
-                      		verticalAlign: "center"
+                      		verticalAlign: "center",
+                          cursor: "pointer",
+                          itemclick: explodePie,
+                          
+                          
       	                 },
       									data: [//array of dataSeries
       										{ //dataSeries object
@@ -232,8 +236,128 @@ window.onload = function (){
       									 ]
       								 });
                        chart.render();
+                       chart.options.title.text += ": Updated";                  
+// SEPARADOR
 
-                          // SEPARADOR
+//Grafica por Area 
+
+  var chart = new CanvasJS.Chart("gporarea",{
+                                              animationEnabled: true,
+                                              animationDuration: 1000,
+                                              interactivityEnabled: true,
+                                              exportEnabled: true,
+                                              height:500,
+                                              width:1000,
+                                              horizontalAlign:"center",
+                                              
+    
+                                              title:{
+                                                 
+                                                  text: "Tickets Por Area ",
+                                                  fontSize: 30
+                                              },
+    
+                             legend:{
+                              fontSize: 12,
+                              horizontalAlign: "left", // left, center ,right 
+                              verticalAlign: "center",  // top, center, botto
+                              itemWrap: false,
+                              itemWidth: 100,
+                              cursor: "pointer",
+                              itemclick: explodePie,
+                                  
+                               },
+
+                              
+                             data: [//array of dataSeries
+                                   { //dataSeries object
+                                   /*** Change type "column" to "bar", "area", "line" or "pie"***/
+                                     type: "pie",
+                                     showInLegend: true,
+                                     legendText: "{label}",
+                                     indexLabel: "{label} - #percent%",
+                                     
+                                     
+                                     
+    
+                            dataPoints: [
+                               
+                               { label: "PostMaster", y: {{$tk_por_area_1}}  },
+                               { label: "Mesa de Servicio Raw", y: {{$tk_por_area_2}}  },
+                               { label: "Junk", y: {{$tk_por_area_3}}  },
+                               { label: "Misc", y: {{$tk_por_area_4}}  },  
+                               //junk sistemas 32 no se agrego en espera
+                               { label: "Cuentas de Email", y: {{$tk_por_area_6}}  },
+                               { label: "Mesa de Servicio CDA", y: {{$tk_por_area_7}}  },
+                               { label: "ST", y: {{$tk_por_area_8}}  },
+                               { label: "ST::ST-Zocalo", y: {{$tk_por_area_9}}  },
+                               { label: "Junk::Sistemas6", y: {{$tk_por_area_10}}  },
+                               { label: "ST::ST-Lavista", y: {{$tk_por_area_11}}  },
+                               { label: "ST::CS-Tlatelolco", y: {{$tk_por_area_12}}  },
+                               { label: "ST::ST-Viaducto", y: {{$tk_por_area_13}}  },
+                               { label: "ST::ST-Tlaxcoaque", y: {{$tk_por_area_14}}  },
+                               { label: "Normatividad", y: {{$tk_por_area_15}}  },
+                               { label: "ST::TE-Express Pemex", y: {{$tk_por_area_16}}  },
+                               { label: "DASI", y: {{$tk_por_area_17}}  },
+                               { label: "ST::TE-Express Norte", y: {{$tk_por_area_18}}  },
+                               { label: "Cancelaciones", y: {{$tk_por_area_19}}  },
+                               { label: "DECSI", y: {{$tk_por_area_20}}  },
+                               { label: "ST::ST-DGPI", y: {{$tk_por_area_21}}  },
+                               { label: "DECSI::Infraestructura", y: {{$tk_por_area_22}}  },
+                               { label: "Seguridad Informática", y: {{$tk_por_area_23}}  },
+                               { label: "DASI::Impresión", y: {{$tk_por_area_24}}  },
+                               { label: "ST::ST-Procuraduría Fiscal", y: {{$tk_por_area_25}}  },
+                               { label: "DECSI::Servidores", y: {{$tk_por_area_26}}  },
+                               { label: "ST::ST-Fiscalización", y: {{$tk_por_area_27}}  },
+                               { label: "DECSI::Redes", y: {{$tk_por_area_28}}  },
+                               { label: "ST::ST-SAT", y: {{$tk_por_area_29}}  },
+                               { label: "DASI::Incidentes Informáticos", y: {{$tk_por_area_30}}  },
+                               { label: "Mesa de Servicio", y: {{$tk_por_area_31}}  },
+                               { label: "Sistemas::SSP", y: {{$tk_por_area_32}}  },
+                               { label: "ST::ST-Egresos", y: {{$tk_por_area_33}}  },
+                               { label: "Junk::Sistemas7", y: {{$tk_por_area_34}}  },
+                               { label: "Sistemas", y: {{$tk_por_area_35}}  },
+                               { label: "Capital-Humano", y: {{$tk_por_area_36}}  },
+                               { label: "Sistemas::CDA", y: {{$tk_por_area_37}}  },
+                               { label: "ST::ST-KATS", y: {{$tk_por_area_38}}  },
+                               { label: "ST::ST-Fray Servando", y: {{$tk_por_area_40}}  },
+                               { label: "Junk::Sistemas9", y: {{$tk_por_area_41}}  },
+                               { label: "Junk::Sistemas13", y: {{$tk_por_area_42}}  },
+                               { label: "Sistemas::CDSI", y: {{$tk_por_area_43}}  },
+                               { label: "Junk::Sistemas3", y: {{$tk_por_area_44}}  },
+                               { label: "Junk::Sistemas5", y: {{$tk_por_area_45}}  },
+                               { label: "Mesa de Servicio CDSI", y: {{$tk_por_area_46}}  },
+                               { label: "Junk::Sistemas4", y: {{$tk_por_area_47}}  },
+                               { label: "Junk::Sistemas8", y: {{$tk_por_area_48}}  },
+                               { label: "Sistemas::Rcubica IT", y: {{$tk_por_area_49}}  },
+                               { label: "Sistemas::Consultoría SAP-GRP", y: {{$tk_por_area_50}}  },
+                               { label: "Sistemas::SPAS", y: {{$tk_por_area_51}}  },
+                               { label: "Sistemas::DECSI", y: {{$tk_por_area_52}}  },
+                               { label: "Sistemas::DGTIC", y: {{$tk_por_area_53}}  },
+                               { label: "DASI::Email", y: {{$tk_por_area_54}}  }, 
+                            ]
+                         }]
+  });
+      chart.render();
+
+
+
+function explodePie (e) {
+	if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+		e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+	} else {
+		e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+	}
+
+  for(var i = 0; i < e.dataSeries.dataPoints.length; i++) {
+		e.dataSeries.dataPoints[i].color = (e.dataSeries.dataPoints[i].exploded) ? "#242424" : null;
+	}
+	e.chart.render();
+}
+    
+
+  // Fin Grafica por mes
+
 
 var chart = new CanvasJS.Chart("chartContainer4",{
                 aanimationEnabled: true,
@@ -243,6 +367,7 @@ var chart = new CanvasJS.Chart("chartContainer4",{
                 culture:"es",
                 theme:"light1",
                 title:{text: " Tickets Por Mes"},
+                
 
 
     axisX:{
@@ -262,29 +387,48 @@ var chart = new CanvasJS.Chart("chartContainer4",{
 
 
   data: [{
-  		type: "line",
-  		name: "2020",
+      name: "2020",
+  		type: "area",
   		color: "#369EAD",
   		showInLegend: true,
   		axisYIndex: 1,
+      dataPoints: [
+        //imprecion de php 
+
+              {x:new Date(2020,00,00), y: {{$mes_enero2}} },
+              {x:new Date(2020,01,00), y: {{$mes_febrero2}} },
+              {x:new Date(2020,02,00), y: {{$mes_marzo2}} },
+              {x:new Date(2020,03,00), y: {{$mes_abril2}} },
+              {x:new Date(2020,04,00), y: {{$mes_mayo2}} },
+              {x:new Date(2020,05,00), y: {{$mes_junio2}} },
+              {x:new Date(2020,06,00), y: {{$mes_julio2}} },
+              {x:new Date(2020,07,00), y: {{$mes_agosto2}} },
+              {x:new Date(2020,08,00), y: {{$mes_septiembre2}} },
+              {x:new Date(2020,09,00), y: {{$mes_octubre2}} },
+              {x:new Date(2020,10,00), y: {{$mes_noviembre2}} },
+              {x:new Date(2020,11,00), y: {{$mes_diciembre2}} },
+      ]
+  	},
+  	{
+      name: "2021",
+  		type: "area",  		
+  		color: "#C24642",
+  		axisYIndex: 1,
+  		showInLegend: true,
       dataPoints: [
               {x:new Date(2021,00,00), y: {{$mes_enero}} },
               {x:new Date(2021,01,00), y: {{$mes_febrero}} },
               {x:new Date(2021,02,00), y: {{$mes_marzo}} },
               {x:new Date(2021,03,00), y: {{$mes_abril}} },
-      ]
-  	},
-  	{
-  		type: "line",
-  		name: "2021",
-  		color: "#C24642",
-  		axisYIndex: 1,
-  		showInLegend: true,
-      dataPoints: [
-              {x:new Date(2020,00,00), y: {{$mes_enero2}} },
-              {x:new Date(2020,01,00), y: {{$mes_febrero2}} },
-              {x:new Date(2020,02,00), y: {{$mes_marzo2}} },
-              {x:new Date(2020,03,00), y: {{$mes_abril2}} },
+              {x:new Date(2021,04,00), y: {{$mes_mayo}} },
+              {x:new Date(2021,05,00), y: {{$mes_junio}} },
+              {x:new Date(2021,06,00), y: {{$mes_julio}} },
+              {x:new Date(2021,07,00), y: {{$mes_agosto}} },
+              {x:new Date(2021,08,00), y: {{$mes_septiembre}} },
+              {x:new Date(2021,09,00), y: {{$mes_octubre}} },
+              {x:new Date(2021,10,00), y: {{$mes_noviembre}} },
+              {x:new Date(2021,11,00), y: {{$mes_diciembre}} },
+
       ]
   	}
   ]
@@ -297,6 +441,7 @@ var chart = new CanvasJS.Chart("chartContainer4",{
 });
 chart.render();
 
+
 function toggleDataSeries(e) {
 if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
   e.dataSeries.visible = false;
@@ -304,6 +449,7 @@ if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
   e.dataSeries.visible = true;
 }
 e.chart.render();
+
 }
 
   // separador 2
@@ -322,6 +468,9 @@ e.chart.render();
                ilegendText: "{label}",
 
                dataPoints: [
+
+
+
                  { label: "Tikets Totales", y: {{ $ticket}}  },
                  { label: "Tickets Resueltos", y: {{$rticket}} },
                  { label: "Tickets Asignados", y: {{$asignado}} },
@@ -331,13 +480,14 @@ e.chart.render();
              ]
          });
      chart.render();
+     
 
      // Separador 3 construccion
 
   var chart = new CanvasJS.Chart("sales-doughnut-chart-us",
        {
          animationEnabled: true,
-          backgroundColor: "white",
+          
 
           title: {
             fontColor: "#848484",
@@ -368,12 +518,13 @@ e.chart.render();
            ]
        });
    chart.render();
+  
 
 
    var chart = new CanvasJS.Chart("sales-doughnut-chart-nl",
         {
           animationEnabled: true,
-           backgroundColor: "white",
+          
 
            title: {
              fontColor: "#848484",
@@ -406,12 +557,13 @@ e.chart.render();
             ]
         });
     chart.render();
+   
 
 
     var chart = new CanvasJS.Chart("sales-doughnut-chart-de",
          {
            animationEnabled: true,
-            backgroundColor: "white",
+            
 
             title: {
               fontColor: "#848484",
@@ -440,10 +592,11 @@ e.chart.render();
              }
              ]
          });
+     chart.options.title.text += ": Updated";    
      chart.render();
+     
+};
 
-;}
 </script>
-
 @endsection
 @endsection

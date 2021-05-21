@@ -2,28 +2,28 @@
 @section('content')
     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
 
-      <div class="row">
+      <div class="row mb-3 shadow-lg p-3 mb-5 bg-white rounded fondo1">
         <div class="col-xl-12">
           <div class="card-deck mt-3">
 
-            <div class="card text-center  mb-3 bg-white style="max-width: 18rem  "">
-              <div class="card-header"><h3>Tickets Totales</h3> </div>
+            <div class="card text-center"  mb-3 bg-white style="max-width: 100rem">
+              <div class="card-header h1t"><h3>Tickets Totales</h3> </div>
                 <div class="card-body">
                     <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $ticket}} </i> </div>
                 </div>
                 <a href="/grafic" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>
             </div>
 
-            <div class="card text-center  mb-3 bg-white style="max-width: 18rem"">
-              <div class="card-header"><h3>Tickets Estatus Asignados</h3> </div>
+            <div class="card text-center"  mb-3 bg-white style="max-width: 100rem">
+              <div class="card-header h1t"><h3>Tickets Estatus Asignados</h3> </div>
               <div class="card-body">
                   <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px " id="btAsignados"> {{ $asignado}} </i> </div>
               </div>
               <a href="/tks_asignados" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>
             </div>
 
-            <div class="card text-center  mb-3 bg-white style="max-width: 18rem"">
-              <div class="card-header"><h3>Tickets Estatus Atendidos</h3> </div>
+            <div class="card text-center"  mb-3 bg-white style="max-width: 100rem">
+              <div class="card-header h1t"><h3>Tickets Estatus Atendidos</h3> </div>
               <div class="card-body">
                   <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $atendido}} </i> </div>
               </div>
@@ -32,24 +32,24 @@
           </div>
 
           <div class="card-deck mt-3">
-            <div class="card text-center  mb-3 bg-white style="max-width: 18rem"">
-              <div class="card-header"><h3>Tickets  Estatus Pendientes</h3> </div>
+            <div class="card text-center"  mb-3 bg-white style="max-width: 100rem">
+              <div class="card-header h1t"><h3>Tickets  Estatus Pendientes</h3> </div>
               <div class="card-body">
                   <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $pendienteatc}} </i> </div>
               </div>
               <a href="/tickets_pendiente" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>
 
             </div>
-            <div class="card text-center  mb-3 bg-white style="max-width: 18rem"">
-              <div class="card-header"><h3>Tickets  Solicitud de Toner</h3> </div>
+            <div class="card text-center"  mb-3 bg-white style="max-width: 100rem">
+              <div class="card-header h1t"><h3>Tickets  Solicitud de Toner</h3> </div>
               <div class="card-body">
                   <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $solicitudroner}} </i> </div>
               </div>
               <a href="/tickets_sol_toner" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>
 
             </div>
-            <div class="card text-center  mb-3 bg-white style="max-width: 18rem"">
-              <div class="card-header"><h3>Tickets  Estatus En Espera de Informaicon</h3> </div>
+            <div class="card text-center"  mb-3 bg-white style="max-width: 100rem">
+              <div class="card-header h1t"><h3>Tickets  Estatus En Espera de Informaicon</h3> </div>
               <div class="card-body">
                   <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $espinformacion}} </i> </div>
               </div>
@@ -64,8 +64,8 @@
         </div>
 <!-- Creacion de graica tickets asignados -->
 
-          <div class="row">
-            <div class="col-lg-12">
+          <div class="row mb-3 shadow-lg p-3 mb-5 bg-white rounded">
+            
               <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
                 <div class="kt-portlet__body kt-portlet__body--fit kt-portlet__body--unfill">
                     <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
@@ -73,7 +73,7 @@
                           <div id="chartContainer"  > </div>
                     </div>
                 </div>
-              </div>
+              
             </div>
           </div>
 
@@ -83,14 +83,14 @@
 
       <div class="row">
         <div class="col-xl-12">
-          <div class="card">
+          <div class="card ">
             <div class="card text-center"  >
-            <div class="card-header"><h2> Tickets Asignados </h2> </div>
+            <div class="card-header titulo_card"><h2> Tickets Asignados </h2> </div>
             </div>
             <div class="card-body" >
-              <div class="card mb-4 border-0" >
+              
   <!--begin: Datatable -->
-                <table id="tablatk"  class="table table-striped table-bordered" style="width:100%" >
+                <table id="tablatk"  class="table table-striped table-bordered " >
                     <thead >
                       <tr>
                         <th>Numero de Ticfket</th>
@@ -115,7 +115,7 @@
                     </tbody>
                 </table>
               <!--end: Datatable -->
-              </div>
+             
               </div>
               </div>
 
@@ -123,7 +123,7 @@
       </div>
 
       </div>
-      @include('layouts/scripts/scripts')
+@include('layouts/scripts/scripts')
       <script>
 
       var idioma=
@@ -201,7 +201,7 @@
                            {
                                extend:    'pdfHtml5',
                                text:      '<i class="fa fa-file-pdf-o"></i>PDF',
-                               title:'Titulo de tabla en pdf',
+                               title:'Tickets Totales',
                                titleAttr: 'PDF',
                                className: 'btn btn-app export pdf',
                                orientation: 'landscape',
@@ -212,7 +212,7 @@
                                customize:function(doc) {
 
                                    doc.styles.title = {
-                                       color: '#4c8aa0',
+                                       color: '#114627',
                                        fontSize: '30',
                                        alignment: 'center'
                                    }
@@ -222,7 +222,7 @@
                                         margin: [ 0, 0, 0, 12 ],
                                    },
                                    doc.styles.tableHeader = {
-                                       fillColor:'#4c8aa0',
+                                       fillColor:'#114627',
                                        color:'white',
                                        alignment:'center',
 
