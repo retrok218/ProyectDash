@@ -1,4 +1,5 @@
 <!-- begin:: Header -->
+
 <div id="kt_header" class="kt-header kt-grid__item  kt-header--fixed ">
     <!-- begin:: Header Menu -->
     <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn"><i
@@ -7,12 +8,16 @@
     <div class="kt-header-menu-wrapper" id="kt_header_menu_wrapper">
         <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile  kt-header-menu--layout-default ">
 
+         
+
             <div class="kt-aside__brand-logo">
                 <a href="{{ url('/dash') }}">
                     <img alt="Logo" src="{{ URL::asset('assets/media/company-logos/SAF_logo_header.svg')}}" width="350"
                         style="padding-top: 8px">
                        
                 </a>
+
+                
                 
             </div>
 
@@ -40,15 +45,19 @@
                      </ul>
                   </div>
                   </li>
-               </ul>
-               
-               
-
+               </ul>                                                                        
+                     
         </div>
-    </div>
-    <!-- end:: Header Menu -->
-    <!-- begin:: Header Topbar -->
-
-    <!-- end:: Header Topbar -->
+    </div> 
 </div>
-<!-- end:: Header -->
+
+
+
+
+
+
+
+
+
+
+

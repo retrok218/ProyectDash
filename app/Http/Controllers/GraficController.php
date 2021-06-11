@@ -31,8 +31,9 @@ class GraficController extends Controller
       $fecha_añop= $fecha_año-1;
       $fecha_diap= $fecha_dia-1;
 
-      $ultimoTK=DB::connection('pgsql2')->table('ticket')->first();
-
+      //prueva creacion de funcion de auto update
+      $ultimoTK=DB::connection('pgsql2')->table('ticket')->orderBy('create_time','DESC')->first();
+      //prueva creacion de funcion de auto update
 
 
       $tickte = DB::connection('pgsql2')->table('ticket')->count();
@@ -199,13 +200,42 @@ class GraficController extends Controller
       $tk_por_area_52=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',52)->count();
       $tk_por_area_53=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',53)->count();
       $tk_por_area_54=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',54)->count();
-      
+
+
+      // consulta por mes
+// variables para  generar la grafica lineal de  mes año 
+  $inicioaño=2019;      
+  $iniciomes = 1;
+  $n=0;
+  $totalmes= array ();    
+  for ( $iniciomes ; $iniciomes <= 12 ; $iniciomes++) {$totalmes[$n] =DB::connection('pgsql2')->table('ticket')
+     ->whereMonth('create_time','=', $iniciomes)
+     ->whereYear('create_time','=', $inicioaño)
+     ->count();         
+     $n++;
+     if ($iniciomes == 12) {   
+       if ($inicioaño <= $fecha_año ) {
+         $inicioaño++;
+         $iniciomes=1;
+       }                          
+     };      
+ };
+$totalMesJson = json_encode($totalmes); 
+// Fin consulta por mes
+
+
+     
           
     if($perfil == true){
       return view('dash' )
+      //prueva creacion de funcion de auto update
       ->with('ultimoTK',$ultimoTK)
+      //prueva creacion de funcion de auto update
 
-      
+      ->with('totalmes',$totalmes)
+      ->with('totalMesJson',$totalMesJson)
+
+
       ->with('ticket', $tickte)
       ->with('asignado',$asignado)
       ->with('atendido',$atendido)

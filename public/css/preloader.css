@@ -46,8 +46,24 @@
   width:150px;
   height:150px;
   margin:-75px 0 0 -75px;
-  border:8px solid transparent;
-  border-top-color:rgb(7, 32, 1);
+  border:14px solid #237206;
+  border-right-color:transparent ;
+  border-left-color: transparent;
+  box-shadow:
+  -75px -125px 0 -50px #6cce74,
+   
+  150px    0px 0 -50px #23f146,
+   
+  -75px  125px 0 -50px #023509;
+ 
+
+
+
+  
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(/assets/media/logos/cdmx.ico) ;
+  background-size: 75px;
 
   border-radius:100%;
   -webkit-animation: spin 2s linear infinite;
@@ -63,7 +79,7 @@
   bottom:5px;
   border:10px solid transparent;
   border-top-color: rgb(34, 109, 15);
-  border-radius:100%;
+  border-radius:50%;
   -webkit-animation: spin 3s linear infinite;
           animation: spin 4s linear infinite;
 }
@@ -77,7 +93,7 @@
   border:20px solid transparent;
   border-top-color:rgb(8, 48, 6);
   border-radius:100%;
-
+  
   -webkit-animation: spin 1s linear infinite;
           animation: spin 1s linear infinite;
 
@@ -156,3 +172,4 @@
   border:8px solid transparent;
   border-top-color:#069d44;
 }
+

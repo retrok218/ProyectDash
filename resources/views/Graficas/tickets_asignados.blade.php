@@ -348,8 +348,6 @@
 
 ;}
 
-setInterval (funtion(),updateInterval);
-
 </script>
 
 @endsection

@@ -54,8 +54,7 @@
                                                     <input type="checkbox" name="remember"> Recordarme
                                                     <span></span>
                                                 </label>
-                                                <a href="javascript:;" id="kt_login_forgot"> ¿Olvidaste tu Contraseña
-                                                    ?</a>
+                                                
                                             </div>
                                             <div class="kt-login__actions">
                                                 <button id="kt_login_signin_submit"
@@ -142,13 +141,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="kt-login__account">
-                            <span class="kt-login__account-msg">
-                                ¿Aún no tienes una cuenta?
-                            </span>&nbsp;&nbsp;
-                            <a href="javascript:;" id="kt_login_signup" class="kt-login__account-link">Regístrate!</a>
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}" id="_token">
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="kt-grid__item kt-grid__item--fluid kt-grid__item--center kt-grid kt-grid--ver kt-login__content"

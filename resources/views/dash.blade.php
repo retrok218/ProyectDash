@@ -16,9 +16,8 @@
 
     <div class=" card-deck text-center  col-lg-12 " >
         <div class="col-lg-4 shadow p-3 mb-5 bg-white rounded" style="background: transparent ">
-          <div class="card-header titulo_card"><h2>Tickets Totales </h2></div>
-              
-              <div class="card-body "> <i class="fa fa-address-card logocard"> {{ $ticket }} </i> </div>
+          <div class="card-header titulo_card"><h2>Tickets Totales </h2></div>             
+              <div class="card-body  "> <i class="fa fa-address-card logocard"> {{ $ticket }} </i> </div>
         </div>
 
         <div class="  col-lg-4 shadow p-3 mb-5 bg-white rounded" >
@@ -30,7 +29,7 @@
                </span>
               </button>
               <ul class="dropdown-menu" role="menu">
-                <li><a>{{$mesp}}</a></li>
+                <li ><a>{{$mesp}}</a></li>
               </ul>
             <i class="bi bi-arrow-down-square-fill"></i>
         </div>
@@ -92,7 +91,7 @@
 
 <div class="card   mb-3 shadow-lg p-3 mb-5 bg-white rounded  " style="max-width: 100rem;">  
   <div class="row ">
-      <div class="col-lg-12">
+      <div class="col-lg-6">
         <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
             <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
                 style="min-height: 400px; ">
@@ -100,6 +99,15 @@
             </div>
           </div>
         </div>
+        <div class="col-lg-6">
+          <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+              <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
+                  style="min-height: 400px; ">
+                    <div id="graflineal"  > </div>
+              </div>
+            </div>
+          </div>
+        
       </div>
     </div>
 
@@ -109,7 +117,7 @@
       <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
         
         <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
-        style="min-height: 500px; ">
+        style="min-height: 480px; ">
                   <div id="gporarea"> </div>
             </div>
         </div>
@@ -152,20 +160,32 @@
         </div>
       </div>
     </div>
+
+
+    
+
+
+   
+
+
+    
 </div>
 
 
 @section('scripts')
-<script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
-<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.stock.min.js"></script>
-<script type="text/javascript"> </script>
-<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js" ></script>
 
 <!-- scrip grafica -->
 <script type="text/javascript">
 
+//variables para la creacion de la grafica lineal 
+          var totalMesJson = {{$totalMesJson}};
+          var mesinicio = 0; //mes de inicio
+          var año_x =2019;
+//variables para la creacion de la grafica lineal 
+
 window.onload = function (){
+
+
               var dataLength = 0;             
               CanvasJS.addCultureInfo("es",
                 {
@@ -174,12 +194,6 @@ window.onload = function (){
                     days: ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"],
                     months:["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Nobiembre","Diciembre",]
                });
-
-  
-  
-  
-
-  
   
   	var chart = new CanvasJS.Chart("chartContainer",{
       									animationEnabled: true,
@@ -189,7 +203,8 @@ window.onload = function (){
                         
 
       									title:{
-      										text: "  Tickets {{$ticket}}  "
+      										text: "  Tickets {{$ticket}}  ",
+                          
       									},
 
       									legend:{
@@ -227,16 +242,12 @@ window.onload = function (){
                            { label: "Tikets falta Documentar - {{$FaltaDocumentar}} ", y: {{$FaltaDocumentar }}  },
                            { label: "Tikets Falta Acta Res - {{$FalteActaRES}} ", y: {{$FalteActaRES }}  },
 
-
-
-
-
       										 ]
       									 }
       									 ]
       								 });
                        chart.render();
-                       chart.options.title.text += ": Updated";                  
+                                         
 // SEPARADOR
 
 //Grafica por Area 
@@ -247,14 +258,17 @@ window.onload = function (){
                                               interactivityEnabled: true,
                                               exportEnabled: true,
                                               height:500,
-                                              width:1000,
+                                              width:1050,
                                               horizontalAlign:"center",
+                                              
                                               
     
                                               title:{
                                                  
                                                   text: "Tickets Por Area ",
-                                                  fontSize: 30
+                                                  fontSize: 30,
+                                                  
+
                                               },
     
                              legend:{
@@ -360,7 +374,7 @@ function explodePie (e) {
 
 
 var chart = new CanvasJS.Chart("chartContainer4",{
-                aanimationEnabled: true,
+                animationEnabled: true,
                 animationDuration: 1000,
                 interactivityEnabled: true,
                 exportEnabled: true,
@@ -432,11 +446,6 @@ var chart = new CanvasJS.Chart("chartContainer4",{
       ]
   	}
   ]
-
-
-
-
-
 
 });
 chart.render();
@@ -592,8 +601,75 @@ e.chart.render();
              }
              ]
          });
-     chart.options.title.text += ": Updated";    
+         
      chart.render();
+
+
+
+
+
+//Grafica Lineal AÑo - Mes cada segundo  
+
+var dataPoints = [{x: new Date(año_x, mesinicio), y: totalMesJson[ndia]}];
+var chart = new CanvasJS.Chart("graflineal", {
+        zoomEnabled: true,
+        
+         // theme: "dark2", // cambi el tema de la  grafica 
+         width:620,
+        title : {
+          text : "Dynamic Data"
+        }, 
+        data : [{
+            type : "splineArea",
+            color: "rgba(40,175,101,0.6)",
+            dataPoints : dataPoints
+          }
+        ]
+      });
+  
+    chart.render();
+    
+    var updateCount = 0;
+    var ndia =0;
+
+// Actualizando y agregando atos  
+var updateChart = function () {
+ 
+  var cantidadmes=
+// dato  que se va a ir ingresando 
+      dataPoints.push({
+        x: new Date(año_x, mesinicio), 
+        y: totalMesJson[ndia], 
+      });
+      updateCount++;
+      ndia++;
+//dato  que se va a ir ingresando  en el eje x 
+
+if (año_x=={{$año}} & mesinicio=={{$mes}}) {
+  mesinicio=6;
+}else if (mesinicio<=12 ) {
+  mesinicio++;
+  chart.options.title.text = "Grafica Mes - Año " + año_x;
+
+}
+if (mesinicio==12) {
+    mesinicio=0; 
+    if (año_x < {{$año}}){
+      año_x++;
+    }   
+  }
+chart.render();             
+};
+
+// Fin Actualizando y agregando Datos  
+
+
+
+
+// se carga la grafica cada segundo
+setInterval(function(){updateChart()}, 1000); 
+// Fin se carga la grafica cada segundo  
+//Fin Grafica Lineal AÑo - Mes cada segundo 
      
 };
 

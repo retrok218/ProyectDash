@@ -93,6 +93,8 @@ class Tks_DT_controlle extends Controller
     $solicitudToner = DB::connection('pgsql2')-> table('ticket')->where('service_id','=',79)->count();
     $espinformacion = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 15)->count();
 
+    
+
     return view('graficas/tickets_pendientes')
     ->with('tickets_pendiente',$tickets_pendiente)
     ->with('tickets_registro',$tickets_registro)
@@ -108,7 +110,15 @@ class Tks_DT_controlle extends Controller
 
     
 
+  public function velocimetrog(){
+    $tkstotales = DB::connection('pgsql2')->table('ticket')->count();
+    $rticket = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 2)->count();
 
+
+    return view('graficas/grafvelocimetro')
+    ->with('tkstotales',$tkstotales)
+    ->with('rticket',$rticket)
+    ;}
 
    
 

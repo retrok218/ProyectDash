@@ -64,6 +64,10 @@ Route::get ('/tickets_espera_inf', 'Tks_DT_controlle@tickets_esp_info');
 Route::get ('/tickets_pendiente', 'Tks_DT_controlle@tickets_pendiente');
 
 
+//Grafica velocimetro prueva 1
+Route::get('/grafvelo','Tks_DT_controlle@velocimetrog');
+
+
 
 
 
