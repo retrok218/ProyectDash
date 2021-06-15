@@ -187,8 +187,7 @@
           buttons: {
                 dom: {
                   container:{
-                    tag:'div',
-                    className:'flexcontent'
+                    
                   },
                   buttonLiner: {
                     tag: null
@@ -205,7 +204,7 @@
                            {
                                extend:    'pdfHtml5',
                                text:      '<i class="fa fa-file-pdf-o"></i>PDF',
-                               title:'Titulo de tabla en pdf',
+                               title:'Tickets Espera de Informacion',
                                titleAttr: 'PDF',
                                className: 'btn btn-app export pdf',
                                orientation: 'landscape',
@@ -243,7 +242,7 @@
                            {
                                extend:    'excelHtml5',
                                text:      '<i class="fa fa-file-excel-o"></i>Excel',
-                               title:'Titulo de tabla en excel',
+                               title:'Tickets Espera de Informacion',
                                titleAttr: 'Excel',
                                className: 'btn btn-app export excel',
                                exportOptions: {
@@ -254,7 +253,7 @@
                            {
                                extend:    'print',
                                text:      '<i class="fa fa-print"></i>Imprimir',
-                               title:'Titulo de tabla en impresion',
+                               title:'Tickets Espera de Informacion',
                                titleAttr: 'Imprimir',
                                className: 'btn btn-app export imprimir',
                                exportOptions: {

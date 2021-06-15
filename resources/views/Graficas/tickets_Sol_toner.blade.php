@@ -86,7 +86,7 @@
         <div class="col-xl-12">
           <div class="card ">
             <div class="card text-center"  >
-            <div class="card-header titulo_card"><h2> Tickets Atendido </h2> </div>
+            <div class="card-header titulo_card"><h2> Tickets Estatus Solicitud Toner </h2> </div>
             </div>
             <div class="card-body" >
               
@@ -185,8 +185,7 @@
           buttons: {
                 dom: {
                   container:{
-                    tag:'div',
-                    className:'flexcontent'
+                    
                   },
                   buttonLiner: {
                     tag: null
@@ -203,7 +202,7 @@
                            {
                                extend:    'pdfHtml5',
                                text:      '<i class="fa fa-file-pdf-o"></i>PDF',
-                               title:'Titulo de tabla en pdf',
+                               title:'Tickets Estatus Solicitud Toner',
                                titleAttr: 'PDF',
                                className: 'btn btn-app export pdf',
                                orientation: 'landscape',
@@ -239,9 +238,9 @@
                            },
 
                            {
-                               extend:    'excelHtml5',
-                               text:      '<i class="fa fa-file-excel-o"></i>Excel',
-                               title:'Titulo de tabla en excel',
+                               extend:'excelHtml5',
+                               text:'<i class="fa fa-file-excel-o"></i>Excel',
+                               title:'Tickets Estatus Solicitud Toner',
                                titleAttr: 'Excel',
                                className: 'btn btn-app export excel',
                                exportOptions: {
@@ -252,7 +251,7 @@
                            {
                                extend:    'print',
                                text:      '<i class="fa fa-print"></i>Imprimir',
-                               title:'Titulo de tabla en impresion',
+                               title:'Tickets Estatus Solicitud Toner',
                                titleAttr: 'Imprimir',
                                className: 'btn btn-app export imprimir',
                                exportOptions: {

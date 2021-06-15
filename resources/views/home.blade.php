@@ -12,6 +12,7 @@
     <!-- Refresca la pagina cada 5 segundos
     <meta http-equiv="refresh" content="5">
     -->
+    
 
     <title>Sistema | General</title>
 

@@ -182,8 +182,7 @@
           buttons: {
                 dom: {
                   container:{
-                    tag:'div',
-                    className:'flexcontent'
+                    
                   },
                   buttonLiner: {
                     tag: null

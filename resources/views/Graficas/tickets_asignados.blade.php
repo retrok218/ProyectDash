@@ -90,7 +90,7 @@
             <div class="card-body" >
               
   <!--begin: Datatable -->
-                <table id="tablatk"  class="table table-striped table-bordered " >
+                <table id="tablatk"  class="table table-striped table-bordered "  >
                     <thead >
                       <tr>
                         <th>Numero de Ticfket</th>
@@ -143,7 +143,7 @@
                       "sLoadingRecords": "Cargando...",
                       "oPaginate": {
                           "sFirst":    "Primero",
-                          "sLast":     "Ãšltimo",
+                          "sLast":     "Ultimo",
                           "sNext":     "Siguiente",
                           "sPrevious": "Anterior"
                       },
@@ -175,7 +175,6 @@
           "autoWidth": true,
           "language": idioma,
           "lengthMenu": [[10,20, -1],[10,20,30,"Mostrar Todo"]],
-
           "order":[1 ,'desc'],
           dom: 'Bfrt<"col-md-6 inline"i> <"col-md-6 inline"p>',
 
@@ -184,7 +183,7 @@
                 dom: {
                   container:{
                     tag:'div',
-                    className:'flexcontent'
+     
                   },
                   buttonLiner: {
                     tag: null
@@ -201,7 +200,7 @@
                            {
                                extend:    'pdfHtml5',
                                text:      '<i class="fa fa-file-pdf-o"></i>PDF',
-                               title:'Tickets Totales',
+                               title:'Tickets Asignados',
                                titleAttr: 'PDF',
                                className: 'btn btn-app export pdf',
                                orientation: 'landscape',
@@ -239,7 +238,7 @@
                            {
                                extend:    'excelHtml5',
                                text:      '<i class="fa fa-file-excel-o"></i>Excel',
-                               title:'Titulo de tabla en excel',
+                               title:'Tickets Asignados',
                                titleAttr: 'Excel',
                                className: 'btn btn-app export excel',
                                exportOptions: {
@@ -250,7 +249,7 @@
                            {
                                extend:    'print',
                                text:      '<i class="fa fa-print"></i>Imprimir',
-                               title:'Titulo de tabla en impresion',
+                               title:'Tickets Asignados',
                                titleAttr: 'Imprimir',
                                className: 'btn btn-app export imprimir',
                                exportOptions: {
