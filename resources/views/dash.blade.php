@@ -10,35 +10,40 @@
     <div class=" card-header shadow-sm p-3 mb-5 rounded " style="background: transparent ">
       <div class="col-lg-12 ">
          <h1 class="h1t">Monitoreo de Tickets  </h1>
-          <div class="card" style="position: ">
-            <h3>Ultimo ticket ingresado  </h3>
-            <h3>°{{$ultimoTK->tn}}/{{$ultimoTK->create_time}}</h3>
-            
+         
+          <div class="nav2">
+          <div class="new2"> New </div>
+          <div id="news2"></div>
+          <div class="clear2"></div>
           </div>
+
+          
       </div>
     </div>
 
     <div  class=" card-deck text-center  col-lg-12 " >
-        <div class="col-lg-4 shadow p-3 mb-5 bg-white rounded" style="background: transparent ">
+      <div class="card">
+        
           <div class="card-header titulo_card"><h2>Tickets Totales </h2></div>             
               <div class="card-body  "> <i class="fa fa-address-card logocard"> {{ $ticket }} </i> </div>
-        </div>
-
-        <div class="  col-lg-4 shadow p-3 mb-5 bg-white rounded" >
+       
+      </div>
+      <div class="card">
+        
             <div class="card-header titulo_card"><h2 >Tickets del Mes</h2> </div>    
-          
               <div class="card-body"> <i class="fa fa-address-card logocard"> {{ $tickets_por_mes }} </i> </div>
               <button type="button" class="btn btn-default dropdown-toggle"
-                 data-toggle="dropdown" style="align-content: center"  > Ticket del Mes Pasado <span class="">
+                 data-toggle="dropdown"  > Ticket del Mes Pasado <span class="">
                </span>
               </button>
               <ul class="dropdown-menu" role="menu">
                 <li><h4 style="align-items: center"> {{$mesp}} </h4> </li>
               </ul>
             <i class="bi bi-arrow-down-square-fill"></i>
+         
         </div>
-
-        <div class="  col-lg-4 shadow p-3 mb-5 bg-white rounded" >
+      <div class="card">
+        
           <div class="card-header titulo_card"><h2>Tickets del dia</h2></div>
           <div class="card-body"> <i class="fa fa-address-card logocard"> {{ $tickets_por_dia }} </i> </div>
           <button type="button" class="btn btn-default dropdown-toggle"
@@ -48,12 +53,14 @@
           <ul class="dropdown-menu" role="menu">
             <li><h4> {{$diap}} </h4></li>
           </ul>
-        <i class="bi bi-arrow-down-square-fill"></i>
-    </div>
+          <i class="bi bi-arrow-down-square-fill"></i>
+       
+      </div>
 
     </div>
-
-    <div class="row ">
+    <br>
+  
+    <div class="row" >
       <div class="col-lg-12">
         <span class="spinner-grow spinner-grow-sm"></span>
         <a href="/grafic" class="btn btn-success" role="button" aria-disabled ="true">Estatus Tickets</a>
@@ -67,7 +74,7 @@
         <div class="card-deck mb-3 ">
 
   				<div class="col-md-4">
-            <div class="card ">
+            <div class="container ">
               <div  class="card-header  text-center border-dark  mb-3 h1t  "><h3>Tickets Totales</h3> </div>
   					  
               <div  class="inview" id="sales-doughnut-chart-us"></div>
@@ -76,7 +83,7 @@
           </div>
 
   				<div class="col-md-4">
-            <div class="card">
+            <div class="container">
               <div class="card-header text-center border-dark  mb-3 h1t "><h3>Tickets Resueltos </h3> </div>
               
               <div class="inview" id="sales-doughnut-chart-nl"></div>
@@ -85,7 +92,7 @@
   				</div>
 
   				<div class="col-md-4">
-            <div class="card">
+            <div class="container">
               <div class="card-header text-center border-dark  mb-3 h1t "> <h3>Tickets Asignados</h3> </div>
               
               <div class="inview" id="sales-doughnut-chart-de"></div>
@@ -99,9 +106,9 @@
 
     
 
-<div class="card   mb-3 shadow-lg p-3 mb-5 bg-white rounded  " style="max-width: 100rem;">  
+<div class="container   mb-3 shadow-lg p-3 mb-5 bg-white rounded  " style="max-width: 100rem;">  
   <div class="row ">
-      <div class="col-lg-6">
+      <div class="col-xl-6">
         <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
             <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
                 style="min-height: 400px; ">
@@ -109,7 +116,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-xl-6">
           <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
               <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
                   style="min-height: 400px; ">
@@ -120,7 +127,7 @@
         
       </div>
     </div>
-
+<!--Grafica por Area-->
     <div class="card   mb-3 shadow-lg p-3 mb-5 bg-white rounded  " style="max-width: 100rem;">
     <div class="row">
     <div class="col-xl-12">
@@ -137,7 +144,7 @@
     
 </div>
 
-    <!--Grafica por Area-->
+    
 
     
     <!--Fin Grafica por Area-->
@@ -489,7 +496,9 @@ e.chart.render();
                  { label: "Tikets Totales", y: {{ $ticket}}  },
                  { label: "Tickets Resueltos", y: {{$rticket}} },
                  { label: "Tickets Asignados", y: {{$asignado}} },
-                 { label: "Tickets Cerrados por Tiempo", y: {{$cerradoPT}} }
+                 { label: "Tickets Cerrados por Tiempo", y: {{$cerradoPT}} },
+                 { label:  "Tickets Notificados", y: {{$notificadoalU}} },
+                 {label: "Tickets en Tramite" , y:{{$Entramite}}  }
                  ]
              }
              ]
@@ -619,9 +628,10 @@ e.chart.render();
 var dataPoints = [{x: new Date(año_x, mesinicio), y: totalMesJson[ndia]}];
 var chart = new CanvasJS.Chart("graflineal", {
         zoomEnabled: true,
-        
+        exportEnabled: true,
+
          // theme: "dark2", // cambi el tema de la  grafica 
-         width:620,
+        
         title : {
           text : "Dynamic Data"
         }, 
@@ -679,17 +689,37 @@ setInterval(function(){updateChart()}, 1000);
      
 };
 
+
+var nuevotk = [
+  "Ultimo Ticket ingresado {{$ultimoTK->tn}}  /  {{$ultimoTK->create_time}}  .  .  ." 
+],
+  x = 0,
+  y = 0,
+  news = document.getElementById("news2"),
+  
+  last = setInterval(function() {
+  news.textContent += nuevotk[y][x++] ; 
+  if(x > nuevotk[y].length) { 
+    x = 0;
+    news.textContent = "";               
+    }    
+  },500 )
+
+  
+
+  
+  ;
+  
+
+
+
+
+
+
 </script>
 
-<script>
-//  $(document).ready(function(){
- // setInterval(function(){
 
-   //     $("#here").load(window.location.href + " #here" );
-  //}, 3000);
-  //});
-  
-  </script>
+
 
 @endsection
 @endsection

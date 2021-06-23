@@ -32,7 +32,8 @@ class GraficController extends Controller
       $fecha_diap= $fecha_dia-1;
 
       //prueva creacion de funcion de auto update
-      $ultimoTK=DB::connection('pgsql2')->table('ticket')->orderBy('create_time','DESC')->first();
+      $ultimoTK =DB::connection('pgsql2')->table('ticket')->orderBy('create_time','DESC')->first();
+      
       //prueva creacion de funcion de auto update
 
 
@@ -221,6 +222,10 @@ class GraficController extends Controller
      };      
  };
 $totalMesJson = json_encode($totalmes); 
+
+
+
+
 // Fin consulta por mes
 
 
@@ -370,7 +375,11 @@ $totalMesJson = json_encode($totalmes);
 
 
 
-
+public function ultmtk(){
+  $ultimoTK =DB::connection('pgsql2')->table('ticket')->orderBy('create_time','DESC')->first();
+  return header(header)
+  ->with('ultimoTK',$ultimoTK)
+;}
 
 
 

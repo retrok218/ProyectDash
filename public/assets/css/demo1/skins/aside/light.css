@@ -50,7 +50,11 @@
         color: #5d78ff; }
 
 .kt-aside-menu {
-  background-color: #ffffff ; }
+  background-image: url(/assets/media/bg/bg-cdmx_bn.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  
+   }
   .kt-aside-menu .kt-menu__nav > .kt-menu__item > .kt-menu__heading .kt-menu__link-text,
   .kt-aside-menu .kt-menu__nav > .kt-menu__item > .kt-menu__link .kt-menu__link-text {
     color: #313752 ; }
@@ -198,7 +202,8 @@
   .kt-aside-menu .kt-menu__nav > .kt-menu__item > .kt-menu__arrow {
     color: #ffffff; }
   .kt-aside-menu .kt-menu__nav > .kt-menu__section .kt-menu__section-text {
-    color: #a1a8c3 ; }
+    color: #a1a8c3 ;
+  }
   .kt-aside-menu .kt-menu__nav > .kt-menu__section .kt-menu__section-icon {
     color: #a1a8c3 ; }
   .kt-aside-menu .kt-menu__nav > .kt-menu__separator {

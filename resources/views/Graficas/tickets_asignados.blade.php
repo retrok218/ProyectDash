@@ -1,5 +1,7 @@
 @extends('home')
 @section('content')
+
+
     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
 
       <div class="row mb-3 shadow-lg p-3 mb-5 bg-white rounded fondo1">
@@ -69,8 +71,8 @@
               <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
                 <div class="kt-portlet__body kt-portlet__body--fit kt-portlet__body--unfill">
                     <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
-                        style="min-height: 400px; background-image: url(./assets/media//products/product4.jpg)">
-                          <div id="chartContainer"  > </div>
+                        style="min-height: 400px; )">
+                          <div id="chartContainerta"  > </div>
                     </div>
                 </div>
               
@@ -123,6 +125,7 @@
       </div>
 
       </div>
+<!--se agrega el includ para creacion de datatable -->
 @include('layouts/scripts/scripts')
       <script>
 
@@ -182,7 +185,7 @@
           buttons: {
                 dom: {
                   container:{
-                    tag:'div',
+                    
      
                   },
                   buttonLiner: {
@@ -206,7 +209,7 @@
                                orientation: 'landscape',
                                pageSize: 'TABLOID',
                                exportOptions: {
-                              columns: [ 0,1,2,3,4]
+                              columns: ':visible'
                                },
                                customize:function(doc) {
 
@@ -242,7 +245,7 @@
                                titleAttr: 'Excel',
                                className: 'btn btn-app export excel',
                                exportOptions: {
-                                   columns: [ 0,1,2,3,4 ]
+                                   columns: ':visible'
                                },
                            },
 
@@ -253,18 +256,21 @@
                                titleAttr: 'Imprimir',
                                className: 'btn btn-app export imprimir',
                                exportOptions: {
-                                   columns: [ 0,1,2,3,4]
+                                   columns: ':visible'
                                }
                            },
                            {
                                extend:    'pageLength',
                                titleAttr: 'Registros a mostrar',
                                className: 'selectTable'
-                           }
-                       ]
-
-
-               }
+                           },
+                           'colvis'
+                       ]         
+               },
+               columnDefs:[{
+                        targets: -1,
+                        visible: false
+                        }]  
 
 
 
@@ -273,7 +279,7 @@
 </script>
 
 @section('scripts')
-<script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
+
 <script type="text/javascript">
 
             window.onload = function (){
@@ -307,7 +313,7 @@
 
 
 
-                      var chart = new CanvasJS.Chart("chartContainer",{
+                      var chart = new CanvasJS.Chart("chartContainerta",{
                         animationEnabled: true,
                         animationDuration: 1000,
                         interactivityEnabled: true,
@@ -342,12 +348,13 @@
                        });
 
                        chart.render();
-                       updateInterval = 1000;
+                       
 
 
 ;}
 
 </script>
+
 
 @endsection
 @endsection

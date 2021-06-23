@@ -36,5 +36,4 @@
 <link rel="stylesheet" href="{{ asset('/css/eje.css') }}" />
 
 
-
 <!-- stilos card -->

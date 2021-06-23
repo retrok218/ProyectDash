@@ -182,7 +182,7 @@
           buttons: {
                 dom: {
                   container:{
-                    
+                    tag:'div',
                   },
                   buttonLiner: {
                     tag: null
@@ -205,7 +205,7 @@
                                orientation: 'landscape',
                                pageSize: 'TABLOID',
                                exportOptions: {
-                              columns: [ 0,1,2,3,4]
+                              columns: ':visible'
                                },
                                customize:function(doc) {
 
@@ -241,7 +241,7 @@
                                titleAttr: 'Excel',
                                className: 'btn btn-app export excel',
                                exportOptions: {
-                                   columns: [ 0,1,2,3,4 ]
+                                   columns: ':visible'
                                },
                            },
 
@@ -252,21 +252,23 @@
                                titleAttr: 'Imprimir',
                                className: 'btn btn-app export imprimir',
                                exportOptions: {
-                                   columns: [ 0,1,2,3,4]
+                                   columns: ':visible'
                                }
                            },
                            {
                                extend:    'pageLength',
                                titleAttr: 'Registros a mostrar',
                                className: 'selectTable'
-                           }
+                           },
+                           'colvis'
                        ]
 
 
-               }
-
-
-
+               },
+               columnDefs:[{
+                        targets: -1,
+                        visible: false
+                        }] 
          } );
         } );
 </script>

@@ -169,7 +169,7 @@ sup {
 }
 
 a {
-    color: #5867dd;
+    color: #060607;
     text-decoration: none;
     background-color: transparent
 }
@@ -1650,7 +1650,7 @@ pre code {
 
 .table-bordered td,
 .table-bordered th {
-    border: 1px solid #ebedf2
+    border: 1px solid #266d214f
 }
 
 .table-bordered thead td,
@@ -3272,7 +3272,7 @@ input[type=submit].btn-block {
     color: #212529;
     text-align: left;
     list-style: none;
-    background-color: #fff;
+    background-color: #d1ffba;
     background-clip: padding-box;
     border: 1px solid rgba(0, 0, 0, .15);
     border-radius: .25rem
@@ -3443,7 +3443,7 @@ input[type=submit].btn-block {
     padding: .25rem 1.5rem;
     clear: both;
     font-weight: 400;
-    color: #74788d;
+    color: #101010;
     text-align: inherit;
     white-space: nowrap;
     background-color: transparent;
@@ -3461,7 +3461,7 @@ input[type=submit].btn-block {
 .dropdown-item:active {
     color: #fff;
     text-decoration: none;
-    background-color: #5d78ff
+    background-color: #113a0c
 }
 
 .dropdown-item.disabled,
@@ -4750,9 +4750,9 @@ input[type=submit].btn-block {
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
-    background-color: #fff;
+    background-color: #e6eae5e6;
     background-clip: border-box;
-    border: 1px solid #ebedf2;
+    border: 1px solid #0f4006;
     border-radius: .25rem
 }
 
@@ -11601,7 +11601,7 @@ a.text-dark:hover {
 
 .btn-secondary {
     background-color: transparent;
-    border: 1px solid #e2e5ec;
+    border: 1px solid #113d14;
     color: #595d6e
 }
 
@@ -11610,9 +11610,11 @@ a.text-dark:hover {
 .btn-secondary:focus,
 .btn-secondary:hover,
 .show>.btn-secondary.dropdown-toggle {
-    color: #595d6e;
-    border-color: #e2e5ec;
-    background-color: #f4f5f8
+    color: #fff;
+    border-color: #144205;
+    background-color: #2d8230;
+    
+    
 }
 
 .btn-brand {
@@ -11866,8 +11868,8 @@ a.text-dark:hover {
 
 .btn-success {
     color: #fff;
-    background-color: #0abb87;
-    border-color: #0abb87;
+    background-color: #0a5507;
+    border-color: #048f10;
     color: #fff
 }
 
@@ -35514,7 +35516,7 @@ body.swal2-height-auto {
 
 .dataTables_wrapper .dataTable td,
 .dataTables_wrapper .dataTable th {
-    color: #595d6e
+    color: #000000
 }
 
 .dataTables_wrapper .dataTable .selected td,
@@ -48217,7 +48219,7 @@ body {
     align-items: center;
     flex-direction: row;
     padding: 0 25px;
-    height: 65px
+    height: 30px
 }
 
 .kt-aside__brand .kt-aside__brand-logo {

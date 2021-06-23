@@ -50,7 +50,12 @@ background: linear-gradient(170deg, #0DA50A 0%, #ADF1AC 80%);
 
 
 .h1t{
-	color:#114627;
+	font-size: 3em;
+	font-weight: bold;
+	padding: 0;
+	color:rgb(8, 71, 35) ;
+	size: 10px;
+	
 }
 
 
@@ -64,8 +69,6 @@ background: linear-gradient(170deg, #0DA50A 0%, #ADF1AC 80%);
 .titulo_card{
 	background: rgb(5, 65, 31);
 	color: seashell;
-	
-	
 
 }
 
@@ -74,6 +77,28 @@ background: linear-gradient(170deg, #0DA50A 0%, #ADF1AC 80%);
 
 }
 
+.nav2 {
+  background-color: #0d4108d3;
+  color: #fff;
+  padding: 1px;
+  font-family: tahoma;
+}
+
+.new2 {
+  background-color: #ffffff;
+  padding: 10px;
+  float: left;
+  color: #fa0000;
+}
+
+#news2 {
+  padding: 10px;
+  float: left;
+}
+
+.clear2 {
+  clear: both;
+}
 
 
 

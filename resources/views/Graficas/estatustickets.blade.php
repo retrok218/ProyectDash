@@ -2,6 +2,8 @@
 @section('content')
 
 
+
+
 <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
 
   <div class="row shadow-lg p-3 mb-5  rounded ">
@@ -117,11 +119,13 @@
 
 
 <script>
+  
 
 var idioma=
 
           {
               "sProcessing":     "Procesando...",
+              
               "sLengthMenu":     "Mostrar _MENU_ registros",
               "sZeroRecords":    "No se encontraron resultados",
               "sEmptyTable":     "NingÃºn dato disponible en esta tabla",
@@ -159,7 +163,8 @@ var idioma=
 
 $(document).ready(function(){
  $('#tablatk').DataTable( {
-   "paging": true,
+   
+   
   "lengthChange": true,
   "searching": true,
   "ordering": true,
@@ -170,13 +175,13 @@ $(document).ready(function(){
 
   "order":[1,'desc'],
   dom: 'Bfrt<"col-md-6 inline"i> <"col-md-6 inline"p>',
-
+  dom: 'Bfrtip',
 
   buttons: {
         dom: {
           container:{
             tag:'div',
-            className:'flexcontent'
+           
           },
           buttonLiner: {
             tag: null
@@ -193,7 +198,7 @@ $(document).ready(function(){
                        orientation: 'landscape',
                        pageSize: 'TABLOID',
                        exportOptions: {
-                      columns: [ 0,1,2,3,4]
+                      columns: ':visible'
                        },
                        customize:function(doc) {
 
@@ -225,33 +230,38 @@ $(document).ready(function(){
                    {
                        extend:    'excelHtml5',
                        text:      '<i class="fa fa-file-excel-o"></i>Excel',
-                       title:'Titulo de tabla en excel',
+                       title:'Tickets Totales',
                        titleAttr: 'Excel',
                        className: 'btn btn-app export excel',
                        exportOptions: {
-                           columns: [ 0,1,2,3,4 ]
+                           columns: ':visible'
                        },
                    },
 
                    {
                        extend:    'print',
                        text:      '<i class="fa fa-print"></i>Imprimir',
-                       title:'Titulo de tabla en impresion',
+                       title:'Tickets Totales',
                        titleAttr: 'Imprimir',
                        className: 'btn btn-app export imprimir',
                        exportOptions: {
-                           columns: [ 0,1,2,3,4]
+                           columns: ':visible'
                        }
                    },
                    {
                        extend:    'pageLength',
                        titleAttr: 'Registros a mostrar',
                        className: 'selectTable'
-                   }
+                   },
+                   'colvis'
                ]
-
-
-       }
+                   
+       },
+       columnDefs:[{
+                targets: -1,
+                visible: false
+              }]  
+       
 
 
 

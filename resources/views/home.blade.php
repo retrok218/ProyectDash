@@ -9,10 +9,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="Updates and statistics">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Refresca la pagina cada 5 segundos
-    <meta http-equiv="refresh" content="5">
+    <!--
+    <meta http-equiv="refresh" content="10">
     -->
-    
+   
 
     <title>Sistema | General</title>
 
@@ -59,9 +59,7 @@
     </div>
     @include('layouts/scripts/scriptsGuest')
     <script src="{{ URL::asset('js/layout.js') }}" type="text/javascript"></script>
-    <script type="text/javascript">
-        var url = '{!! URL::asset('') !!}';
-        </script>
+    
     @yield('scripts')
 </body>
 @else
@@ -149,9 +147,6 @@
         });
     </script>
 <!-- scrip Spiner  -->
-
-
-
 
 
 
