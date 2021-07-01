@@ -88,7 +88,7 @@ Route::get('/', function ()  {
  //Usuarios
  //editar usuarios
     Route::group(['prefix' => 'users'], function() {
-        Route::get('/profile', 'UserController@profile');
+    Route::get('/profile', 'UserController@profile');
     Route::get('/index', 'UserController@index');
     Route::post('/updatePassword', 'UserController@updatePassword');
     Route::post('/validPassword', 'UserController@validPassword');
@@ -100,7 +100,7 @@ Route::get('/', function ()  {
  Route::group(['middleware' => ['role:SuperAdmin']], function() {
   //editar usuarios
      Route::group(['prefix' => 'admin'], function() {
-        Route::get('/', 'GraficController@index'); //se cambia el controlador por GraficController
+      Route::get('/', 'GraficController@index'); //se cambia el controlador por GraficController
       Route::get('/index', 'AdminController@index');
       Route::get('/listar_usuarios', 'AdminController@listar_usuarios');
      // Route::get('/listar_roles', 'AdminController@listar_roles');

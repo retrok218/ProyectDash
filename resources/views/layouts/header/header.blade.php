@@ -6,6 +6,9 @@
             class="la la-close"></i></button>
             
     <div class="kt-header-menu-wrapper" id="kt_header_menu_wrapper">
+
+
+      <!-- inicio del contenido de header -->
         <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile  kt-header-menu--layout-default ">
 
          
@@ -45,9 +48,15 @@
                      </ul>
                   </div>              
                   </li>
-               </ul>                                                                        
+               </ul>   
+               
+               <div></div>
                
         </div>
+
+        <!--fin del contenido del correo --> 
+
+       
     </div> 
 </div> 
 

@@ -271,7 +271,7 @@
 
                },
                columnDefs:[{
-                        targets: -1,
+                        targets: null,
                         visible: false
                         }] 
 
@@ -281,7 +281,7 @@
         } );
 </script>
 @section('scripts')
-<script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
+
 
 <script type="text/javascript">
 

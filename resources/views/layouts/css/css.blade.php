@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="{{ asset('css/card.css') }}" />
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
 <link rel="stylesheet" href="{{ asset('/css/preloader.css') }}" />
-<link rel="stylesheet" href="{{ asset('/css/eje.css') }}" />
+
 
 
 <!-- stilos card -->

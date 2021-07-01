@@ -266,8 +266,8 @@
 
                },
                columnDefs:[{
-                        targets: -1,
-                        visible: false
+                        targets: null,
+                        visible: true
                         }] 
          } );
         } );

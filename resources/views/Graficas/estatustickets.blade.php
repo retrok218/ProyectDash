@@ -100,7 +100,7 @@
                       <td>{{$tickets_totales->create_time}}</td>
                       <td>{{$tickets_totales->title}}</td>
                       <td>{{$tickets_totales->customer_user_id}}</td>
-                      <td>{{$tickets_totales-> name}}</td>
+                      <td>{{$tickets_totales->name}}</td>
                     </tr>
                     @endforeach
                   </tbody>
@@ -258,7 +258,7 @@ $(document).ready(function(){
                    
        },
        columnDefs:[{
-                targets: -1,
+                targets: null,
                 visible: false
               }]  
        

@@ -10,7 +10,7 @@
     <meta name="description" content="Updates and statistics">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!--
-    <meta http-equiv="refresh" content="10">
+    <meta http-equiv="refresh" content="30">
     -->
    
 
@@ -131,12 +131,10 @@
     </div>
     @include('layouts/scripts/scripts')
     <script src="{{ URL::asset('js/layout.js') }}" type="text/javascript"></script>
-
-
     <script type="text/javascript">
         // var global URL
         var url = '{!! URL::asset('') !!}';
-        </script>
+    </script>
     <!-- end:: Page -->
 
 

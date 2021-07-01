@@ -222,9 +222,7 @@ svg {
     vertical-align: middle
 }
 
-table {
-    border-collapse: collapse
-}
+
 
 caption {
     padding-top: .75rem;
@@ -240,7 +238,8 @@ th {
 
 label {
     display: inline-block;
-    margin-bottom: .5rem
+    margin-bottom: .5rem;
+    color: black;
 }
 
 button {
@@ -1619,20 +1618,22 @@ pre code {
 .table {
     width: 100%;
     margin-bottom: 1rem;
-    color: #212529;
-    background-color: transparent
+    color: #131313;
+    background-color: #22fa0660
 }
 
 .table td,
 .table th {
     padding: .75rem;
     vertical-align: top;
-    border-top: 1px solid #ebedf2
+    border-top: 1px solid #030407
 }
 
 .table thead th {
+    background-color:#03990054;
     vertical-align: bottom;
-    border-bottom: 2px solid #ebedf2
+    border-bottom: 3px solid #000000f5;
+    
 }
 
 .table tbody+tbody {
@@ -1964,6 +1965,21 @@ pre code {
     border: 0
 }
 
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    box-sizing: border-box;
+    display: inline-block;
+    min-width: 1.5em;
+    padding: .5em 1em;
+    margin-left: 2px;
+    text-align: center;
+    text-decoration: none !important;
+    cursor: pointer;
+    *cursor: hand;
+    color: #333 !important;
+    border: 1px solid transparent;
+    border-radius: 2px
+}
+
 .form-control {
     display: block;
     width: 100%;
@@ -1973,9 +1989,9 @@ pre code {
     font-weight: 400;
     line-height: 1.5;
     color: #495057;
-    background-color: #fff;
+    background-color: #04fd0014;
     background-clip: padding-box;
-    border: 1px solid #e2e5ec;
+    border: 1px solid #000000ab;
     border-radius: 4px;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
 }
@@ -35348,6 +35364,11 @@ body.swal2-height-auto {
 .dataTables_wrapper .dataTable .group th {
     font-size: 1.1rem;
     font-weight: 500
+}
+
+.dataTables_wrapper .dataTables_filter {
+    float: right;
+    text-align: right
 }
 
 .dataTables_wrapper .dataTables_scroll {

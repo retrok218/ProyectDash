@@ -89,11 +89,14 @@ background: linear-gradient(170deg, #0DA50A 0%, #ADF1AC 80%);
   padding: 10px;
   float: left;
   color: #fa0000;
+  font-size: 15px;
+  font-weight: bold;
 }
 
 #news2 {
   padding: 10px;
   float: left;
+  font-weight: bold;
 }
 
 .clear2 {

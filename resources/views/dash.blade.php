@@ -1,6 +1,6 @@
 @extends('home')
 @section('content')
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
 
 <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid ">
 
@@ -12,7 +12,7 @@
          <h1 class="h1t">Monitoreo de Tickets  </h1>
          
           <div class="nav2">
-          <div class="new2"> New </div>
+          <div class="new2" > New </div>
           <div id="news2"></div>
           <div class="clear2"></div>
           </div>
@@ -63,8 +63,7 @@
     <div class="row" >
       <div class="col-lg-12">
         <span class="spinner-grow spinner-grow-sm"></span>
-        <a href="/grafic" class="btn btn-success" role="button" aria-disabled ="true">Estatus Tickets</a>
-        
+        <a href="/grafic" class="btn btn-success" role="button" aria-disabled ="true">Estatus Tickets</a>        
       </div>
     </div>
 
@@ -93,10 +92,8 @@
 
   				<div class="col-md-4">
             <div class="container">
-              <div class="card-header text-center border-dark  mb-3 h1t "> <h3>Tickets Asignados</h3> </div>
-              
-              <div class="inview" id="sales-doughnut-chart-de"></div>
-            
+              <div class="card-header text-center border-dark  mb-3 h1t "> <h3>Tickets Asignados</h3> </div>             
+              <div class="inview" id="sales-doughnut-chart-de"></div>          
             </div>
   				</div>
         </div>
@@ -177,16 +174,10 @@
         </div>
       </div>
     </div>
-
-
-    
-
-
    
-
-
-    
 </div>
+
+
 @section('scripts')
 <!-- scrip grafica -->
 <script type="text/javascript">
@@ -486,6 +477,7 @@ e.chart.render();
              },
              data: [
              {
+               markerType:"circle",
                type: "column",
                ilegendText: "{label}",
 
@@ -695,20 +687,20 @@ var nuevotk = [
 ],
   x = 0,
   y = 0,
+ num = 100,
   news = document.getElementById("news2"),
-  
   last = setInterval(function() {
-  news.textContent += nuevotk[y][x++] ; 
-  if(x > nuevotk[y].length) { 
-    x = 0;
-    news.textContent = "";               
-    }    
-  },500 )
+    news.textContent += nuevotk[y][x++] ; 
+      if(x > nuevotk[y].length) { 
+        x = 0;
+        news.textContent = "";              
+      }  
+  },num );
 
-  
-
-  
-  ;
+  function oneClick(e) {
+    
+    
+  }
   
 
 

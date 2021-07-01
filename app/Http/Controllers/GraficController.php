@@ -232,7 +232,7 @@ $totalMesJson = json_encode($totalmes);
      
           
     if($perfil == true){
-      return view('dash' )
+      return view('dash')
       //prueva creacion de funcion de auto update
       ->with('ultimoTK',$ultimoTK)
       //prueva creacion de funcion de auto update
@@ -369,7 +369,9 @@ $totalMesJson = json_encode($totalmes);
       ->with('tk_por_area_54',$tk_por_area_54)   
             
 
-    ;}
+    ;}else {
+      return view('login');
+    }
  ;}
 
 
@@ -382,17 +384,6 @@ public function ultmtk(){
 ;}
 
 
-
-// controlador para datatable de los tickets totales
-    // public function tickett(){
-    //   $tickets_totales =DB::table('ticket')
-    //   ->join('queue','queue.id','=','ticket.id')
-    //   ->select('*')
-    //   ->get();
-    //   return view('graficas/tablatickets')
-    //   ->with('tickets_totales',$tickets_totales)
-    //
-    // ;}
 
 
     // controlador para tickets asignados

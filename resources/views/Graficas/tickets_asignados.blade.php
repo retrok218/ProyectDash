@@ -84,8 +84,8 @@
 <!-- Creacion de graica tickets asignados -->
 
       <div class="row">
-        <div class="col-xl-12">
-          <div class="card ">
+        <div class="col-lg-12">
+          
             <div class="card text-center"  >
             <div class="card-header titulo_card"><h2> Tickets Asignados </h2> </div>
             </div>
@@ -95,11 +95,12 @@
                 <table id="tablatk"  class="table table-striped table-bordered "  >
                     <thead >
                       <tr>
-                        <th>Numero de Ticfket</th>
+                        <th>N Ticket</th>
                         <th> Creado </th>
                         <th> Asunto </th>
-                        <th> Area </th>
                         <th> Usuario </th>
+                        <th> Area </th>
+                        
 
                       </tr>
                     </thead>
@@ -109,8 +110,8 @@
                         <td>{{$tkasignado->tn}}</td>
                         <td>{{$tkasignado->create_time}}</td>
                         <td>{{$tkasignado->title}}</td>
-                        <td>{{$tkasignado->name}}</td>
                         <td>{{$tkasignado->customer_user_id}}</td>
+                        <td>{{$tkasignado->name}}</td>
 
                       </tr>
                       @endforeach
@@ -119,7 +120,7 @@
               <!--end: Datatable -->
              
               </div>
-              </div>
+              
 
           </div>
       </div>
@@ -168,9 +169,11 @@
                       }
                   };
 
-        $(document).ready(function(){
+  $(document).ready(function(){
+
+                   
          $('#tablatk').DataTable( {
-           "paging": true,
+           
           "lengthChange": true,
           "searching": true,
           "ordering": true,
@@ -180,12 +183,12 @@
           "lengthMenu": [[10,20, -1],[10,20,30,"Mostrar Todo"]],
           "order":[1 ,'desc'],
           dom: 'Bfrt<"col-md-6 inline"i> <"col-md-6 inline"p>',
-
+          dom: 'Bfrtip',
 
           buttons: {
                 dom: {
                   container:{
-                    
+                    tag:'div',
      
                   },
                   buttonLiner: {
@@ -268,7 +271,7 @@
                        ]         
                },
                columnDefs:[{
-                        targets: -1,
+                        targets: false,
                         visible: false
                         }]  
 
@@ -279,7 +282,7 @@
 </script>
 
 @section('scripts')
-
+<script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
 
             window.onload = function (){
@@ -336,7 +339,7 @@
                            indexLabel: "{label} - #percent%",
 
                            dataPoints: [
-                           {label: "Tikets Totales " , y: {{ $ticket}}  },
+                           {label: "Tikets Totales " , y: {{$ticket}}-{{$asignado}}  },
                            {label: "Tickets Asignados" , y:{{$asignado}} },
 
 

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <meta content="Sistema de Facturaccion" name="description" />
+    <meta content="sistema de tkts" name="description" />
     <meta content="" name="author" />
     <link rel="icon" type="image/vnd.microsoft.icon" href="{{ asset('assets/media/logos/favicon.ico') }}" sizes="48X16">
     @include('layouts/css/css_header_login')

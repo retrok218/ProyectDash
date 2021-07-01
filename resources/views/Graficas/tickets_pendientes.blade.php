@@ -271,7 +271,7 @@
 
                },
                columnDefs:[{
-                        targets: -1,
+                        targets: null,
                         visible: false
                         }] 
 
