@@ -33,13 +33,12 @@
             <div class="card-header titulo_card"><h2 >Tickets del Mes</h2> </div>    
               <div class="card-body"> <i class="fa fa-address-card logocard"> {{ $tickets_por_mes }} </i> </div>
               <button type="button" class="btn btn-default dropdown-toggle"
-                 data-toggle="dropdown"  > Ticket del Mes Pasado <span class="">
-               </span>
+                 data-toggle="dropdown"  > Ticket del Mes Pasado 
               </button>
               <ul class="dropdown-menu" role="menu">
                 <li><h4 style="align-items: center"> {{$mesp}} </h4> </li>
               </ul>
-            <i class="bi bi-arrow-down-square-fill"></i>
+            
          
         </div>
       <div class="card">
@@ -63,7 +62,7 @@
     <div class="row" >
       <div class="col-lg-12">
         <span class="spinner-grow spinner-grow-sm"></span>
-        <a href="/grafic" class="btn btn-success" role="button" aria-disabled ="true">Estatus Tickets</a>        
+        <a href="{{url('users/grafic')}}" class="btn btn-success" role="button" aria-disabled ="true">Estatus Tickets</a>        
       </div>
     </div>
 
@@ -84,9 +83,7 @@
   				<div class="col-md-4">
             <div class="container">
               <div class="card-header text-center border-dark  mb-3 h1t "><h3>Tickets Resueltos </h3> </div>
-              
               <div class="inview" id="sales-doughnut-chart-nl"></div>
-            
             </div>
   				</div>
 
@@ -125,22 +122,18 @@
       </div>
     </div>
 <!--Grafica por Area-->
-    <div class="card   mb-3 shadow-lg p-3 mb-5 bg-white rounded  " style="max-width: 100rem;">
+<div class="container   mb-3 shadow-lg p-3 mb-5 bg-white rounded  " style="max-width: 100rem;">
     <div class="row">
-    <div class="col-xl-12">
+    <div class="col-lg-12">
       <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
-        
         <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
         style="min-height: 480px; ">
                   <div id="gporarea"> </div>
             </div>
-        </div>
       </div>
-    </div>
-
-    
-</div>
-
+    </div>    
+  </div>
+</div> 
     
 
     
@@ -158,9 +151,6 @@
         </div>
       </div>
     </div>
-
-
-
 
     <div class="row shadow-lg p-3 mb-5 bg-white rounded">
       <div class="col-lg-12">

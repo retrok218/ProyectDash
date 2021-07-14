@@ -79,7 +79,7 @@ class GraficController extends Controller
 
 
 
-
+      
 
                                       // datos segun el mes
       $mes_enero=DB::connection('pgsql2')->table('ticket')->whereMonth('create_time','=', 1)

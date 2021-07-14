@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Sistema | General</title>
 
-    <link rel="icon" type="image/vnd.microsoft.icon" href="{{ asset('assets/media/logos/favicon.ico') }}" sizes="48X16">
+    
     <!--begin::Fonts -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,600,700">
@@ -43,12 +43,12 @@
     <div class="kt-grid kt-grid--ver kt-grid--root">
         <div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v3 kt-login--signin" id="kt_login">
             <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor"
-                style="background-image: url( {{ asset('assets/media/bg/bg-3.jpg')}});">
+                style="background-image: url( {{ asset('..assets/media/bg/bg-3.jpg')}});">
                 <div class="kt-grid__item kt-grid__item--fluid kt-login__wrapper">
                     <div class="kt-login__container">
                         <div class="kt-login__logo">
                             <a href="#">
-                                <img src="{{env('APP_URL').'storage/app/'.Auth::user()->avatar}}">
+                                
                             </a>
                         </div>
                         <div class="kt-login__signin">
@@ -65,9 +65,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="kt-login__account">
-                            <a href="{{ route('logout') }}" id="kt_login_signup" class="kt-login__account-link">¿No eres {{Auth::user()->name}}?</a>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

@@ -101,13 +101,13 @@
 <!-- Spiner  -->
                 <div id="glass">
                     <div id="loader-wrapper">
-                    <div id="loader"> </div>
+                    <div id="loader"></div>
 
                         <div class="loader-section section-left" >
-                            <img src="assets/media/bg/bg-cdmx.png" width="100%" height="80%"> 
+                            <img src="public/assets/media/bg/bg-cdmx.png" width="100%" height="80%"> 
                         </div>
                         <div class="loader-section section-right"> 
-                            <img src="assets/media/bg/bg-cdmx.png" width="100%" height="80%"> 
+                            <img src="public/assets/media/bg/bg-cdmx.png" width="100%" height="80%"> 
                         </div>
 
                     </div>
@@ -117,6 +117,7 @@
                 <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
                     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
                         @yield('content')
+                        
                     </div>
                     <!-- end:: Content -->
                 </div>
@@ -141,10 +142,14 @@
 <!-- scrip Spiner  -->
     <script>
         window.addEventListener('load',function(){
-        document.querySelector('body').classList.add("loaded")
+        document.querySelector('body').classList.add("loaded") 
         });
     </script>
 <!-- scrip Spiner  -->
+
+<!--vuejs-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+<!-- fin vuejs-->
 
 
 

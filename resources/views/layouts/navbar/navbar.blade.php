@@ -1,9 +1,9 @@
-<div class="kt-aside  kt-aside--fixed  kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop" id="kt_aside">
+<div class="kt-aside  kt-aside--fixed  kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop" id="kt_aside" >
    <!-- begin:: Aside -->
    <div class="kt-aside__brand kt-grid__item " id="kt_aside_brand">
       <div class="kt-aside__brand-logo">
          <a href="{{ url('/') }}">
-            <!--<img alt="Logo" src="{{ URL::asset('assets/media/logos/'.env('APP_LOGO_ASIDE') ) }}" > -->
+            <img alt="Logo" src="{{ URL::asset('assets/media/logos/'.env('APP_LOGO_ASIDE') ) }}" > 
          </a>
       </div>
       <div class="kt-aside__brand-tools">
@@ -27,9 +27,8 @@
    </div>
    <!-- end:: Aside -->
    <!-- begin:: Aside Menu -->
-   <div class="kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_aside_menu_wrapper">
-
-      <div id="kt_aside_menu" class="kt-aside-menu " data-ktmenu-vertical="1" data-ktmenu-scroll="1" data-ktmenu-dropdown-timeout="500">
+   <div class="kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid fondolateral" id="kt_aside_menu_wrapper">
+      <div id="kt_aside_menu" class="kt-aside-menu" data-ktmenu-vertical="1" data-ktmenu-scroll="1" data-ktmenu-dropdown-timeout="500">
 
          <ul class="kt-menu__nav ">
             @can('SuperAdmin')
@@ -67,34 +66,34 @@
             <div class="sidebar-submenu">
               <ul>
                 <li>
-                  <a href="/dash">Dash</a>
+                  <a href="{{url('users/dash')}}">Dash</a>
                 </li>
-                <hr size="2px" width="80%" noshade="noshade" align="left" />
+                <hr size="2px" noshade="noshade"  />
                 <li>
-                  <a href="/grafic">Tickets Totales</a>
+                  <a href="{{url('users/grafic')}}">Tickets Totales</a>
                 </li>
-                <hr size="2px" width="80%" noshade="noshade" align="left" />
+                <hr size="2px"  noshade="noshade"  />
 
                 <li>
-                  <a href="/tks_asignados">Tickets Estatus Asignados</a>
+                  <a href="{{url('users/tks_asignados')}}">Tickets Estatus Asignados</a>
                 </li>
-                <hr size="2px" width="80%" noshade="noshade" align="left" />
+                <hr size="2px"  noshade="noshade"  />
                 <li>
-                  <a href="/tks_atendidos">Tickets Estatus Atendidos</a>
+                  <a href="{{url('users/tks_atendidos')}}">Tickets Estatus Atendidos</a>
                 </li>
-                <hr size="2px" width="80%" noshade="noshade" align="left" />
+                <hr size="2px"  noshade="noshade"  />
                 <li>
-                  <a href="/tickets_pendiente">Tickets  Estatus Pendientes</a>
+                  <a href=" {{url('users/tickets_pendiente')}}">Tickets  Estatus Pendientes</a>
                 </li>
-                <hr size="2px" width="80%" noshade="noshade" align="left" />
+                <hr size="2px"  noshade="noshade"  />
                 <li>
-                  <a href="/tickets_sol_toner">Tickets  Solicitud de Toner</a>
+                  <a href=" {{url('users/tickets_sol_toner')}}">Tickets  Solicitud de Toner</a>
                 </li>
-                <hr size="2px" width="80%" noshade="noshade" align="left" />
+                <hr size="2px"  noshade="noshade"  />
                 <li>
-                  <a href="/tickets_espera_inf">Tickets  Estatus En Espera de Informaicon</a>
+                  <a href="{{url('users/tickets_espera_inf')}}">Tickets  Estatus En Espera de Informaicon</a>
                 </li>
-                <hr size="2px" width="80%" noshade="noshade" align="left" />
+                <hr size="2px"  noshade="noshade"  />
               </ul>
             </div>
           </li>

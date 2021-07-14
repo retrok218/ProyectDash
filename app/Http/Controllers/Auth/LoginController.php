@@ -36,15 +36,15 @@ class LoginController extends Controller {
      */
     public function __construct() {}
 
-    public function login() {
-
-        $datos=request();
+    public function login(Request $request) {
+        
+        $datos=$request->all();
         $usuario=$datos['username'];
         $validator=Auth::attempt(['usuario'=> $datos['username'], 'password'=> $datos['password'], 'estatus'=> '1']);
 
         if($validator==true) {
             $datosUsuario=DB::table('users')->where('usuario', '=', $usuario)->first();
-            $id=$datosUsuario->id_rol; //id se cambia por id_rol
+            $id=$datosUsuario->id; //id se cambia por id_rol , se regresa a id 
             $modelHasRol=DB::table('model_has_roles')->where('model_id', '=', $id)->first();
 
             $idRol=$modelHasRol->role_id; //id del rol

@@ -1,7 +1,8 @@
 .kt-aside {
   background-color: #ffffff;
   -webkit-box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.08);
-  box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.08); }
+  box-shadow: 0px 0px 28px 0px rgb(7 88 24); }
+
   .kt-aside .ps > .ps__rail-x {
     background: transparent; }
     .kt-aside .ps > .ps__rail-x:hover, .kt-aside .ps > .ps__rail-x:focus {
@@ -50,9 +51,10 @@
         color: #5d78ff; }
 
 .kt-aside-menu {
-  background-image: url(/assets/media/bg/bg-cdmx_bn.png);
   background-position: center;
   background-repeat: no-repeat;
+  
+  
   
    }
   .kt-aside-menu .kt-menu__nav > .kt-menu__item > .kt-menu__heading .kt-menu__link-text,

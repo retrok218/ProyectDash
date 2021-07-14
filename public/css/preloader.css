@@ -62,9 +62,9 @@
   
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url(/assets/media/logos/cdmx.ico) ;
+  background-image: url(../assets/media/logos/cdmx.ico) ;
   background-size: 75px;
-
+  
   border-radius:100%;
   -webkit-animation: spin 2s linear infinite;
           animation: spin 2s linear infinite;

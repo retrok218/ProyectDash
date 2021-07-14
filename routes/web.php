@@ -13,12 +13,12 @@
 Auth::routes();
 Route::resource('roles', 'RoleController');
 
-Route::get('/', 'PostController@index')->name('home');
+//Route::get('/', 'PostController@index')->name('home');
 
-Route::resource('users', 'UserController');
+/*Route::resource('users', 'UserController');
 Route::resource('roles', 'RoleController');
 Route::resource('permissions', 'PermissionController');
-Route::resource('posts', 'PostController');
+Route::resource('posts', 'PostController');*/
 
   //Roles y Permisos
   Route::group(['prefix'=>'admin'],function ()
@@ -46,29 +46,6 @@ Route::post('/passUpdate', 'Auth\ForgotPasswordController@updatePass')->name('up
 Route::get('/forgot/verify/{id}', 'Auth\ForgotPasswordController@validateTokenPassReset')->name('forgotPassW');
 Route::get('/passModal', 'Auth\ForgotPasswordController@');
 
-// controladores dash
-Route::get('/dash','GraficController@index');
-Route::get('/grafic','GraficController@graficas');
-
-// tikes totales tabla
-Route::get('/dash2','GraficController@tickett');
-//  Tickets asignados
-Route::get('/tks_asignados','GraficController@ticketa');
-//  Tickets Atendidos
-Route::get ('/tks_atendidos','GraficController@tickets_atendidos');
-// Tickets estatus Solicitud de Toner
-Route::get ('/tickets_sol_toner', 'Tks_DT_controlle@tickets_sol_toner');
-// Tickets estatus en espera de Informacion
-Route::get ('/tickets_espera_inf', 'Tks_DT_controlle@tickets_esp_info');
-// ticket Estatus pendiente
-Route::get ('/tickets_pendiente', 'Tks_DT_controlle@tickets_pendiente');
-
-
-//Grafica velocimetro prueva 1
-Route::get('/grafvelo','Tks_DT_controlle@velocimetrog');
-
-
-
 
 
 Route::get('/', function ()  {
@@ -95,12 +72,33 @@ Route::get('/', function ()  {
     Route::post('/validUser', 'Auth\RegisterController@validUser');
     Route::post('/validEmail', 'Auth\RegisterController@validEmail');
     Route::post('/editUser', 'UserController@editUser');
+
+
+    // controladores dash
+Route::get('/dash','GraficController@index');
+Route::get('/grafic','GraficController@graficas');
+// tikes totales tabla
+Route::get('/dash2','GraficController@tickett');
+//  Tickets asignados
+Route::get('/tks_asignados','GraficController@ticketa');
+//  Tickets Atendidos
+Route::get ('/tks_atendidos','GraficController@tickets_atendidos');
+// Tickets estatus Solicitud de Toner
+Route::get ('/tickets_sol_toner', 'Tks_DT_controlle@tickets_sol_toner');
+// Tickets estatus en espera de Informacion
+Route::get ('/tickets_espera_inf', 'Tks_DT_controlle@tickets_esp_info');
+// ticket Estatus pendiente
+Route::get ('/tickets_pendiente', 'Tks_DT_controlle@tickets_pendiente');
+//Grafica velocimetro prueva 1
+Route::get('/grafvelo','Tks_DT_controlle@velocimetrog');
+
+    
     });
  //Administrador
  Route::group(['middleware' => ['role:SuperAdmin']], function() {
   //editar usuarios
      Route::group(['prefix' => 'admin'], function() {
-      Route::get('/', 'GraficController@index'); //se cambia el controlador por GraficController
+      Route::get('/','GraficController@index'); //se cambia el controlador por GraficController
       Route::get('/index', 'AdminController@index');
       Route::get('/listar_usuarios', 'AdminController@listar_usuarios');
      // Route::get('/listar_roles', 'AdminController@listar_roles');
@@ -129,3 +127,22 @@ Route::post('/block_screen', function () {
     ->json(['status' => 'true']);
 });
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+
+
+// controladores dash
+Route::get('/dash','GraficController@index');
+Route::get('/grafic','GraficController@graficas');
+// tikes totales tabla
+Route::get('/dash2','GraficController@tickett');
+//  Tickets asignados
+Route::get('/tks_asignados','GraficController@ticketa');
+//  Tickets Atendidos
+Route::get ('/tks_atendidos','GraficController@tickets_atendidos');
+// Tickets estatus Solicitud de Toner
+Route::get ('/tickets_sol_toner', 'Tks_DT_controlle@tickets_sol_toner');
+// Tickets estatus en espera de Informacion
+Route::get ('/tickets_espera_inf', 'Tks_DT_controlle@tickets_esp_info');
+// ticket Estatus pendiente
+Route::get ('/tickets_pendiente', 'Tks_DT_controlle@tickets_pendiente');
+//Grafica velocimetro prueva 1
+Route::get('/grafvelo','Tks_DT_controlle@velocimetrog');

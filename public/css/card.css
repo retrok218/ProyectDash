@@ -60,11 +60,13 @@ background: linear-gradient(170deg, #0DA50A 0%, #ADF1AC 80%);
 
 
 .fondo1{
-	background-image:url("/assets/media/bg/bg-cdmx.png") ;
+	
+	background-image: url(../assets/media/bg/bg-cdmx.png);
 	background-repeat: no-repeat;
 	background-position:center ;
 
 }
+
 
 .titulo_card{
 	background: rgb(5, 65, 31);
@@ -102,7 +104,12 @@ background: linear-gradient(170deg, #0DA50A 0%, #ADF1AC 80%);
 .clear2 {
   clear: both;
 }
+.fondolateral{
+	background-image: url(../assets/media/bg/bg-cdmx_bn.png);
+	background-repeat: no-repeat;
+	background-position:center ;
 
+}
 
 
 
