@@ -74,6 +74,7 @@ class GraficController extends Controller
                                            ->count();
      
       $ticket_diap=DB::connection('pgsql2')->table('ticket')->whereDay('create_time','=',$fecha_diap)
+                                      ->whereMonth('create_time','=',$fecha_mes)
                                       ->whereYear('create_time','=',$fecha_año)
                                       ->count();
 
