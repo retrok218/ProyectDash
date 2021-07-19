@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dash');
+        return view('/home');
     }
 
     public function condTerminos(){

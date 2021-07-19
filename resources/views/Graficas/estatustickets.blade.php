@@ -77,8 +77,8 @@
           <div class="card text-center"  >
             <div class="card-header titulo_card"><h2> Tickets Totales </h2> </div>
           </div>
-          <div class="card-body">
   <!--begin: Datatable -->
+          <div class="card-body">
                 <table id="tablatk"  class="table table-striped table-bordered" >
                     <thead>
                       <tr>
@@ -87,6 +87,7 @@
                         <th> Asunto </th>
                         <th> Usuario </th>
                         <th> Area </th>
+                        <th> Status TK</th>
 
                       </tr>
                     </thead>
@@ -97,14 +98,21 @@
                         <td>{{$tickets_totales->create_time}}</td>
                         <td>{{$tickets_totales->title}}</td>
                         <td>{{$tickets_totales->customer_user_id}}</td>
-                        <td>{{$tickets_totales->name}}</td>
+                        <td>{{$tickets_totales->qname}}</td>
+                        
+                        <!--se cambia tecto de closed successful a Cerrado Exitosamente -->
+                          @if($tickets_totales->name == 'closed successful' )
+                            <td>Cerrado Exitosamente</td> 
+                          @else
+                          <td>{{$tickets_totales->name}}</td>
+                          @endif
+                      <!-- Fin del cambio de texto-->
                       </tr>
                       @endforeach
                     </tbody>
-                </table>
-              <!--end: Datatable -->
+                </table>      
           </div>
-    
+    <!--end: Datatable -->
     </div>
 
 

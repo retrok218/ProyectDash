@@ -26,8 +26,9 @@ class Tks_DT_controlle extends Controller
     $tksolicitudToner =DB::connection('pgsql2')->table('ticket')
     ->where('service_id','=', 79)
     ->join('queue','queue.id','queue_id')
-    ->select('ticket.tn','ticket.create_time','ticket.title','queue.name','ticket.customer_user_id')
-    ->get();
+      ->join('ticket_state','ticket_state.id','ticket_state_id')
+      ->select('ticket.tn','ticket.create_time','ticket.title','ticket.customer_user_id','queue.name as qname','ticket_state.name')
+      ->get();
     $tickets_registro =DB::connection('pgsql2')->table('ticket') ->get();
     $tickte = DB::connection('pgsql2')->table('ticket')->count();
     $asignado =DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 12)->count();
@@ -54,8 +55,9 @@ class Tks_DT_controlle extends Controller
     $tickets_esp_info =DB::connection('pgsql2')->table('ticket')
     ->where('ticket_state_id','=', 15)
     ->join('queue','queue.id','queue_id')
-    ->select('ticket.tn','ticket.create_time','ticket.title','queue.name','ticket.customer_user_id')
-    ->get();
+      ->join('ticket_state','ticket_state.id','ticket_state_id')
+      ->select('ticket.tn','ticket.create_time','ticket.title','ticket.customer_user_id','queue.name as qname','ticket_state.name')
+      ->get();
     $tickets_registro =DB::connection('pgsql2')->table('ticket') ->get();
     $tickte = DB::connection('pgsql2')->table('ticket')->count();
     $asignado =DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 12)->count();
@@ -83,8 +85,9 @@ class Tks_DT_controlle extends Controller
     $tickets_pendiente =DB::connection('pgsql2')->table('ticket')
     ->where('ticket_state_id','=', 6)
     ->join('queue','queue.id','queue_id')
-    ->select('ticket.tn','ticket.create_time','ticket.title','queue.name','ticket.customer_user_id')
-    ->get();
+      ->join('ticket_state','ticket_state.id','ticket_state_id')
+      ->select('ticket.tn','ticket.create_time','ticket.title','ticket.customer_user_id','queue.name as qname','ticket_state.name')
+      ->get();
     $tickets_registro =DB::connection('pgsql2')->table('ticket') ->get();
     $tickte = DB::connection('pgsql2')->table('ticket')->count();
     $asignado =DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 12)->count();
@@ -102,7 +105,6 @@ class Tks_DT_controlle extends Controller
     ->with('asignado',$asignado)
     ->with('atendido',$atendido)
     ->with('espinformacion',$espinformacion)
-
     ->with('pendienteatc',$pendienteatc)
     ->with('solicitudroner',$solicitudToner)
 
@@ -113,8 +115,6 @@ class Tks_DT_controlle extends Controller
   public function velocimetrog(){
     $tkstotales = DB::connection('pgsql2')->table('ticket')->count();
     $rticket = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 2)->count();
-
-
     return view('graficas/grafvelocimetro')
     ->with('tkstotales',$tkstotales)
     ->with('rticket',$rticket)

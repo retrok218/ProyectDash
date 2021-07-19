@@ -103,11 +103,12 @@
                   <table id="tablatk"  class="table table-striped table-bordered " >
                       <thead >
                         <tr>
-                          <th>Numero de Ticfket</th>
-                          <th> Creado </th>
-                          <th> Asunto </th>
-                          <th> Area </th>
-                          <th> Usuario </th>
+                        <th>N Ticket</th>
+                        <th> Creado </th>
+                        <th> Asunto </th>
+                        <th> Usuario </th>
+                        <th> Area </th>
+                        <th> Status TK</th>
   
                         </tr>
                       </thead>
@@ -117,8 +118,16 @@
                           <td>{{$tickets_pendiente->tn}}</td>
                           <td>{{$tickets_pendiente->create_time}}</td>
                           <td>{{$tickets_pendiente->title}}</td>
-                          <td>{{$tickets_pendiente->name}}</td>
                           <td>{{$tickets_pendiente->customer_user_id}}</td>
+                          <td>{{$tickets_pendiente->qname}}</td>
+                          <!--se cambia tecto de closed successful a Cerrado Exitosamente -->
+                          @if($tickets_pendiente->name == 'closed successful' )
+                            <td>Cerrado Exitosamente</td> 
+                          @else
+                          <td>{{$tickets_pendiente->name}}</td>
+                          @endif
+                      <!-- Fin del cambio de texto-->
+                          
   
                         </tr>
                         @endforeach

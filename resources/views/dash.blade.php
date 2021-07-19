@@ -82,7 +82,7 @@
 
   				<div class="col-md-4">
             <div class="container">
-              <div class="card-header text-center border-dark  mb-3 h1t "><h3>Tickets Resueltos </h3> </div>
+              <div class="card-header text-center border-dark  mb-3 h1t "><h3>Tickets Cerrados Exitosamente </h3> </div>
               <div class="inview" id="sales-doughnut-chart-nl"></div>
             </div>
   				</div>
@@ -219,19 +219,16 @@ window.onload = function (){
 
       										 dataPoints: [
       										 { label: "Tikets Nuevos - {{$nuevo}} ", y: {{$nuevo }}  },
-                           { label: "Tikets resuelto-{{$rticket }} ", y: {{$rticket }}  },
+                           { label: "Tickets Cerrados Exitosamente-{{$rticket }} ", y: {{$rticket }}  },
                            { label: "Tikets cerradoinex-{{$cerradocinEX }} ", y: {{$cerradocinEX }}  },
                            { label: "Tikets Abierto-{{ $open}} ", y: {{ $open}}  },
-                           { label: "Tikets removed-{{$removed }} ", y: {{$removed }}  },
-                           { label: "Tikets Pendiente Reminder-{{$pendienteRE }}  ", y: {{$pendienteRE }}  },
-                           { label: "Tikets Pendiente Auto Cerrado-{{$pendienteatc }}", y: {{$pendienteatc }}  },
+                           
                            { label: "Tikets Cerrado por Tiempo-{{$cerradoPT }} ", y: {{$cerradoPT }}  },
                            { label: "Tikets Notificado-{{$notificadoalU }} ", y: {{$notificadoalU }}  },
                            { label: "Tikets Asignado- {{$asignado }}", y: {{$asignado }}  },
                            { label: "Tikets Atendido-{{$atendido }} ", y: {{$atendido }}  },
                            { label: "Tikets espera de informacion-{{$espinformacion }} ", y: {{$espinformacion }}  },
-                           { label: "Tikets merged - {{$merged}} ", y: {{$merged }}  },
-                           { label: "Tikets Doc Firmado - {{$Documentofirmado}} ", y: {{$Documentofirmado }}  },
+                           
                            { label: "Tikets En Tramite - {{$Entramite}} ", y: {{$Entramite }}  },
                            { label: "Tikets falta Documentar - {{$FaltaDocumentar}} ", y: {{$FaltaDocumentar }}  },
                            { label: "Tikets Falta Acta Res - {{$FalteActaRES}} ", y: {{$FalteActaRES }}  },
@@ -476,7 +473,7 @@ e.chart.render();
 
 
                  { label: "Tikets Totales", y: {{ $ticket}}  },
-                 { label: "Tickets Resueltos", y: {{$rticket}} },
+                 { label: "Tickets Cerrados Exitosamente", y: {{$rticket}} },
                  { label: "Tickets Asignados", y: {{$asignado}} },
                  { label: "Tickets Cerrados por Tiempo", y: {{$cerradoPT}} },
                  { label:  "Tickets Notificados", y: {{$notificadoalU}} },
@@ -557,7 +554,7 @@ e.chart.render();
               dataPoints: [
 
                 { y: {{$ticket-$rticket}}, name: "Diferente Estatus", color:  "#F11B1B", exploded: true  },
-                { y:  {{$rticket}} , name: "Ticket Resueltos", color: "#1F842F" ,toolTipContent:null}
+                { y:  {{$rticket}} , name: "Tickets Cerrados Exitosamente", color: "#1F842F" ,toolTipContent:null}
                 ]
             }
             ]

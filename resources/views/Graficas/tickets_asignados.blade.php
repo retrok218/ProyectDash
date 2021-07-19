@@ -99,6 +99,7 @@
                         <th> Asunto </th>
                         <th> Usuario </th>
                         <th> Area </th>
+                        <th> Status TK</th>
                         
 
                       </tr>
@@ -110,7 +111,14 @@
                         <td>{{$tkasignado->create_time}}</td>
                         <td>{{$tkasignado->title}}</td>
                         <td>{{$tkasignado->customer_user_id}}</td>
-                        <td>{{$tkasignado->name}}</td>
+                        <td>{{$tkasignado->qname}}</td>
+                        <!--se cambia tecto de closed successful a Cerrado Exitosamente -->
+                        @if($tkasignado->name == 'closed successful' )
+                        <td>Cerrado Exitosamente</td> 
+                      @else
+                      <td>{{$tkasignado->name}}</td>
+                      @endif
+                  <!-- Fin del cambio de texto-->
 
                       </tr>
                       @endforeach

@@ -65,14 +65,7 @@
 
         </div>
     
-
-
-
-
-
-
-
-        <!-- Grafica Tickets Solicitud de Toner -->
+       <!-- Grafica Tickets Solicitud de Toner -->
 
                 <div class="row">
                   <div class="col-lg-12">
@@ -100,11 +93,12 @@
                 <table id="tablatk"  class="table table-striped table-bordered " >
                     <thead >
                       <tr>
-                        <th>Numero de Ticfket</th>
+                        <th>N Ticket</th>
                         <th> Creado </th>
                         <th> Asunto </th>
-                        <th> Area </th>
                         <th> Usuario </th>
+                        <th> Area </th>
+                        <th> Status TK</th>
 
                       </tr>
                     </thead>
@@ -113,9 +107,16 @@
                       <tr>
                         <td>{{$tksolicitudToner->tn}}</td>
                         <td>{{$tksolicitudToner->create_time}}</td>
-                        <td>{{$tksolicitudToner->title}}</td>
-                        <td>{{$tksolicitudToner->name}}</td>
+                        <td>{{$tksolicitudToner->title}}</td>     
                         <td>{{$tksolicitudToner->customer_user_id}}</td>
+                        <td>{{$tksolicitudToner->qname}}</td>
+                        <!--se cambia tecto de closed successful a Cerrado Exitosamente -->
+                        @if($tksolicitudToner->name == 'closed successful' )
+                        <td>Cerrado Exitosamente</td> 
+                      @else
+                      <td>{{$tksolicitudToner->name}}</td>
+                      @endif
+                  <!-- Fin del cambio de texto-->
 
                       </tr>
                       @endforeach

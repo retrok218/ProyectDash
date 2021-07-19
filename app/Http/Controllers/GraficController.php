@@ -19,6 +19,8 @@ use App\ConexionBD2;
 
 class GraficController extends Controller
 {
+
+  
     public function index()
     {
       $perfil = Auth::user()->hasAnyRole(['SuperAdmin', 'Admin']);
@@ -43,19 +45,19 @@ class GraficController extends Controller
       $rticket = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 2)->count();
       $cerradocinEX = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',3)->count();
       $open = DB:: connection('pgsql2')->table('ticket')->where('ticket_state_id','=',4)->count();
-      $removed = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',5)->count();
-      $pendienteRE = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',6)->count();
-      $pendienteatc = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',7)->count();
-      $pendienteAC = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',8)->count();
-      $merged = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',9)->count();
+      //$removed = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',5)->count();
+      //$pendienteRE = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',6)->count();
+      //$pendienteatc = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',7)->count();
+      //$pendienteAC = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',8)->count();
+      //$merged = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',9)->count();
       $cerradoPT = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',10)->count();  // crear grafica y tabla
       $notificadoalU = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',11)->count();
       $asignado =DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 12)->count();
       $atendido = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 13)->count(); // crear tabla para visualizar
       $CerradoPT2 = DB:: connection('pgsql2')->table('ticket')->where('ticket_state_id','=',14)->count();
       $espinformacion = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 15)->count();
-      $merged = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',16)->count();
-      $Documentofirmado = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',17)->count();
+      //$merged = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',16)->count();
+      //$Documentofirmado = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',17)->count();
       $Entramite = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',18)->count();
       $FaltaDocumentar = DB:: connection('pgsql2')->table('ticket')->where('ticket_state_id','=',19)->count();
       $FalteActaRES = DB:: connection('pgsql2')->table('ticket')->where('ticket_state_id','=',21)->count();
@@ -250,19 +252,19 @@ $totalMesJson = json_encode($totalmes);
       //->with('pendiente', $pendiente)
       //->with('abierto' , $abierto)
       //seleccionados
-      ->with('pendienteatc',$pendienteatc)
+      //->with('pendienteatc',$pendienteatc)
       ->with('nuevo',$nuevo)
       ->with('cerradocinEX',$cerradocinEX)
       ->with('open',$open)
-      ->with('removed',$removed)
-      ->with('pendienteRE',$pendienteRE)
-      ->with('pendienteAC',$pendienteAC)
-      ->with('merged',$merged)
+      //->with('removed',$removed)
+      //->with('pendienteRE',$pendienteRE)
+      //->with('pendienteAC',$pendienteAC)
+      //->with('merged',$merged)
       ->with('cerradoPT',$cerradoPT)
       ->with('notificadoalU',$notificadoalU)
       ->with('CerradoPT2',$CerradoPT2)
-      ->with('merged',$merged)
-      ->with('Documentofirmado',$Documentofirmado)
+      //->with('merged',$merged)
+      //->with('Documentofirmado',$Documentofirmado)
       ->with('Entramite',$Entramite)
       ->with('FaltaDocumentar',$FaltaDocumentar)
       ->with('FalteActaRES',$FalteActaRES)
@@ -392,7 +394,8 @@ public function ultmtk(){
       $tkasignado =DB::connection('pgsql2')->table('ticket')
       ->where('ticket_state_id','=', 12)
       ->join('queue','queue.id','queue_id')
-      ->select('ticket.tn','ticket.create_time','ticket.title','queue.name','ticket.customer_user_id')
+      ->join('ticket_state','ticket_state.id','ticket_state_id')
+      ->select('ticket.tn','ticket.create_time','ticket.title','ticket.customer_user_id','queue.name as qname','ticket_state.name')
       ->get();
       $tickets_registro =DB::connection('pgsql2')->table('ticket') ->get();
       $tickte = DB::connection('pgsql2')->table('ticket')->count();
@@ -422,8 +425,13 @@ public function ultmtk(){
     {
       $tickets_totales =DB::connection('pgsql2')->table('ticket')
       ->join('queue','queue.id','queue_id')
-      ->select('ticket.tn','ticket.create_time','ticket.title','queue.name','ticket.customer_user_id')
+      ->join('ticket_state','ticket_state.id','ticket_state_id')
+      ->select('ticket.tn','ticket.create_time','ticket.title','ticket.customer_user_id','queue.name as qname','ticket_state.name')
       ->get();
+      
+
+
+
 
       $tickets_registro =DB::connection('pgsql2')->table('ticket') ->get();
       $tickte = DB::connection('pgsql2')->table('ticket')->count();
@@ -444,6 +452,7 @@ public function ultmtk(){
       ->with('solicitudroner',$solicitudToner)
       ->with('tickets_registro',$tickets_registro)
       ->with('tickets_totales',$tickets_totales)
+      
 
     ;}
 
@@ -454,9 +463,11 @@ public function ultmtk(){
     $tkatendidos =DB::connection('pgsql2')->table('ticket')
     ->where('ticket_state_id','=', 13)
     ->join('queue','queue.id','queue_id')
-    ->select('ticket.tn','ticket.create_time','ticket.title','queue.name','ticket.customer_user_id')
-    ->get();
+      ->join('ticket_state','ticket_state.id','ticket_state_id')
+      ->select('ticket.tn','ticket.create_time','ticket.title','ticket.customer_user_id','queue.name as qname','ticket_state.name')
+      ->get();
 
+    
     $tickets_registro =DB::connection('pgsql2')->table('ticket') ->get();
     $tickte = DB::connection('pgsql2')->table('ticket')->count();
     $asignado =DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 12)->count();
