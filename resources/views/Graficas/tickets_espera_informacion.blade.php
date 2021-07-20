@@ -113,15 +113,16 @@
                                   <td>{{$tickets_esp_info->tn}}</td>
                                   <td>{{$tickets_esp_info->create_time}}</td>
                                   <td>{{$tickets_esp_info->title}}</td>
-                                  <td>{{$tickets_esp_info->customer_user_id}}</td>
-                                  <td>{{$tickets_esp_info->name}}</td>
-                                  <!--se cambia tecto de closed successful a Cerrado Exitosamente -->
-                          @if($tickets_esp_info->name == 'closed successful' )
-                          <td>Cerrado Exitosamente</td> 
-                        @else
-                        <td>{{$tickets_esp_info->name}}</td>
-                        @endif
-                    <!-- Fin del cambio de texto-->
+                                  <td>{{$tickets_esp_info->nombre .' '. $tickets_esp_info->apellido}}</td>
+                                  <td>{{$tickets_esp_info->qname}}</td>
+                        
+                        <!--se cambia tecto de closed successful a Cerrado Exitosamente -->
+                                     @if($tickets_esp_info->name == 'closed successful' )
+                                    <td>Cerrado Exitosamente</td> 
+                                    @else
+                                    <td>{{$tickets_esp_info->name}}</td>
+                                    @endif
+                      <!-- Fin del cambio de texto-->
           
                                 </tr>
                                 @endforeach

@@ -118,9 +118,10 @@
                           <td>{{$tickets_pendiente->tn}}</td>
                           <td>{{$tickets_pendiente->create_time}}</td>
                           <td>{{$tickets_pendiente->title}}</td>
-                          <td>{{$tickets_pendiente->customer_user_id}}</td>
-                          <td>{{$tickets_pendiente->qname}}</td>
-                          <!--se cambia tecto de closed successful a Cerrado Exitosamente -->
+                          <td>{{$tickets_pendiente->nombre .' '. $tickets_pendiente->apellido}}</td>
+                        <td>{{$tickets_pendiente->qname}}</td>
+                        
+                        <!--se cambia tecto de closed successful a Cerrado Exitosamente -->
                           @if($tickets_pendiente->name == 'closed successful' )
                             <td>Cerrado Exitosamente</td> 
                           @else

@@ -108,15 +108,16 @@
                         <td>{{$tksolicitudToner->tn}}</td>
                         <td>{{$tksolicitudToner->create_time}}</td>
                         <td>{{$tksolicitudToner->title}}</td>     
-                        <td>{{$tksolicitudToner->customer_user_id}}</td>
+                        <td>{{$tksolicitudToner->nombre .' '. $tksolicitudToner->apellido}}</td>
                         <td>{{$tksolicitudToner->qname}}</td>
+                        
                         <!--se cambia tecto de closed successful a Cerrado Exitosamente -->
-                        @if($tksolicitudToner->name == 'closed successful' )
-                        <td>Cerrado Exitosamente</td> 
-                      @else
-                      <td>{{$tksolicitudToner->name}}</td>
-                      @endif
-                  <!-- Fin del cambio de texto-->
+                          @if($tksolicitudToner->name == 'closed successful' )
+                            <td>Cerrado Exitosamente</td> 
+                          @else
+                          <td>{{$tksolicitudToner->name}}</td>
+                          @endif
+                      <!-- Fin del cambio de texto-->
 
                       </tr>
                       @endforeach

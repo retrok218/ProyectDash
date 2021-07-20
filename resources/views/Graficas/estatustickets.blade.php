@@ -97,7 +97,7 @@
                         <td>{{$tickets_totales->tn}}</td>
                         <td>{{$tickets_totales->create_time}}</td>
                         <td>{{$tickets_totales->title}}</td>
-                        <td>{{$tickets_totales->customer_user_id}}</td>
+                        <td>{{$tickets_totales->nombre .' '. $tickets_totales->apellido}}</td>
                         <td>{{$tickets_totales->qname}}</td>
                         
                         <!--se cambia tecto de closed successful a Cerrado Exitosamente -->
@@ -110,7 +110,8 @@
                       </tr>
                       @endforeach
                     </tbody>
-                </table>      
+                </table>
+      
           </div>
     <!--end: Datatable -->
     </div>
@@ -176,7 +177,7 @@
     "info": true,
     "autoWidth": true,
     "language": idioma,
-    "lengthMenu": [[10,20,-1],[10,20,30,"Mostrar Todo"]],
+    "lengthMenu": [[10,20,-1],[10,20,20,30,"Mostrar Todo"]],
 
     "order":[1,'desc'],
     dom: 'Bfrt<"col-md-6 inline"i> <"col-md-6 inline"p>',

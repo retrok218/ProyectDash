@@ -390,12 +390,13 @@ public function ultmtk(){
 
 
     // controlador para tickets asignados
-    public function ticketa(){
-      $tkasignado =DB::connection('pgsql2')->table('ticket')
-      ->where('ticket_state_id','=', 12)
-      ->join('queue','queue.id','queue_id')
-      ->join('ticket_state','ticket_state.id','ticket_state_id')
-      ->select('ticket.tn','ticket.create_time','ticket.title','ticket.customer_user_id','queue.name as qname','ticket_state.name')
+  public function ticketa(){
+    $tkasignado =DB::connection('pgsql2')->table('ticket')
+    ->where('ticket_state_id','=', 12)
+    ->join('queue','queue.id','queue_id')
+    ->join('ticket_state','ticket_state.id','ticket_state_id')
+    ->join('customer_user','ticket.customer_id', 'customer_user.customer_id')
+    ->select('ticket.tn','ticket.create_time','ticket.title','ticket.user_id','queue.name as qname',      'ticket_state.name','customer_user.first_name as nombre','customer_user.last_name as apellido')
       ->get();
       $tickets_registro =DB::connection('pgsql2')->table('ticket') ->get();
       $tickte = DB::connection('pgsql2')->table('ticket')->count();
@@ -423,13 +424,14 @@ public function ultmtk(){
 // controlador tickets totales
     public function graficas()
     {
-      $tickets_totales =DB::connection('pgsql2')->table('ticket')
+      $tickets_totales = DB::connection('pgsql2')->table('ticket')
       ->join('queue','queue.id','queue_id')
       ->join('ticket_state','ticket_state.id','ticket_state_id')
-      ->select('ticket.tn','ticket.create_time','ticket.title','ticket.customer_user_id','queue.name as qname','ticket_state.name')
+      ->join('customer_user','ticket.customer_id', 'customer_user.customer_id')
+      ->select('ticket.tn','ticket.create_time','ticket.title','ticket.user_id','queue.name as qname','ticket_state.name','customer_user.first_name as nombre','customer_user.last_name as apellido')
       ->get();
       
-
+      
 
 
 
@@ -463,9 +465,10 @@ public function ultmtk(){
     $tkatendidos =DB::connection('pgsql2')->table('ticket')
     ->where('ticket_state_id','=', 13)
     ->join('queue','queue.id','queue_id')
-      ->join('ticket_state','ticket_state.id','ticket_state_id')
-      ->select('ticket.tn','ticket.create_time','ticket.title','ticket.customer_user_id','queue.name as qname','ticket_state.name')
-      ->get();
+    ->join('ticket_state','ticket_state.id','ticket_state_id')
+    ->join('customer_user','ticket.customer_id', 'customer_user.customer_id')
+    ->select('ticket.tn','ticket.create_time','ticket.title','ticket.user_id','queue.name as qname',      'ticket_state.name','customer_user.first_name as nombre','customer_user.last_name as apellido')
+    ->get();
 
     
     $tickets_registro =DB::connection('pgsql2')->table('ticket') ->get();

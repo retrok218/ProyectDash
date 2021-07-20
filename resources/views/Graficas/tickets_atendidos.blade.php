@@ -109,7 +109,7 @@
                         <td>{{$tkatendidos->tn}}</td>
                         <td>{{$tkatendidos->create_time}}</td>
                         <td>{{$tkatendidos->title}}</td>
-                        <td>{{$tkatendidos->customer_user_id}}</td>
+                        <td>{{$tkatendidos->nombre .' '. $tkatendidos->apellido}}</td>
                         <td>{{$tkatendidos->qname}}</td>
                         <!--se cambia tecto de closed successful a Cerrado Exitosamente -->
                         @if($tkatendidos->name == 'closed successful' )
