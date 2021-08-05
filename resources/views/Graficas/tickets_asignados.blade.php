@@ -4,63 +4,120 @@
 
     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
       <div class="row shadow-lg p-3 mb-5  rounded ">
+
+        <!--Carts de estatus de tks -->
         <div class="col-xl-12 fondo1">
           <div class="card-deck mt-3 " >
             <div class="card text-center  mb-3 bg-white" >
-              <div class="card-header"><h3>Tickets Totales</h3> </div>
+              <div class="card-header" ><h4>Tickets Totales</h4> </div>
                 <div class="card-body">
                     <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $ticket}} </i> </div>
                 </div>
-                <a href="{{url('users/grafic')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>
+                <!--<a href="{{url('users/grafic')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
             </div>
 
             <div class="card text-center  mb-3 bg-white" >
-              <div class="card-header"><h3>Tickets Estatus Asignados</h3> </div>
-              <div class="card-body">
+              <div class="card-header " ><h4>Tickets Estatus Asignados</h4> </div>
+              <div class="card-body ">
                   <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px " id="btAsignados"> {{ $asignado}} </i> </div>
               </div>
-              <a href="{{url('users/tks_asignados')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>
+              <!--<a href="{{url('users/tks_asignados')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>-->
             </div>
 
             <div class="card text-center  mb-3 bg-white" >
-              <div class="card-header"><h3>Tickets Estatus Atendidos</h3> </div>
+              <div class="card-header"><h4>Tickets Estatus Atendidos</h4> </div>
               <div class="card-body">
                   <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $atendido}} </i> </div>
               </div>
-              <a href="{{url('users/tks_atendidos')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>
+            <!--  <a href="{{url('users/tks_atendidos')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
             </div>
+          </div>
+          <div class="card-deck mt-3">
+            <div class="card text-center  mb-3 bg-white" >
+              <div class="card-header"><h4>Tickets Falta de Acta Responsiva</h4> </div>
+              <div class="card-body">
+                  <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $FalteActaRES}} </i> </div>
+              </div>
+              <!--<a href=" {{url('users/tickets_sol_toner')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
+            </div>
+            <div class="card text-center  mb-3 bg-white" >
+              <div class="card-header"><h4>Tickets  Estatus Pendientes</h4> </div>
+              <div class="card-body">
+                  <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $pendienteatc}} </i> </div>
+              </div>
+             <!-- <a href=" {{url('users/tickets_pendiente')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
+            </div>
+            
+            <div class="card text-center  mb-3 bg-white" >
+
+              <div class="card-header"><h4>Tickets  Estatus En Espera de Informaicon</h4> </div>
+              <div class="card-body">
+                  <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $espinformacion}} </i> </div>
+              </div>
+             <!-- <a href="{{url('users/tickets_espera_inf')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
+            </div>    
+          </div>
+
+          <!--Nuevos Status-->
+          <div class="card-deck mt-3">
+            <div class="card text-center  mb-3 bg-white" >
+              <div class="card-header"><h4>Tickets Cerrados Sin Exito</h4> </div>
+              <div class="card-body">
+                  <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $cerradosinEX }} </i> </div>
+              </div>
+             <!-- <a href=" {{url('users/tickets_pendiente')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
+
+            </div>
+            
+
+            <div class="card text-center  mb-3 bg-white" >
+              <div class="card-header"><h4>Tickets Abierto</h4> </div>
+              <div class="card-body">
+                  <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $abierto}} </i> </div>
+              </div>
+             <!-- <a href="{{url('users/tickets_espera_inf')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
+            </div> 
+            
+            <div class="card text-center  mb-3 bg-white" >
+              <div class="card-header"><h4>Cerrado exitosamente</h4> </div>
+              <div class="card-body">
+                  <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $cerradoexitosamente}} </i> </div>
+              </div>
+             <!-- <a href="{{url('users/tickets_espera_inf')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
+            </div>
+            
+               
           </div>
 
           <div class="card-deck mt-3">
             <div class="card text-center  mb-3 bg-white" >
-              <div class="card-header"><h3>Tickets  Estatus Pendientes</h3> </div>
+              <div class="card-header"><h4>Cerrado por Tiempo</h4> </div>
               <div class="card-body">
-                  <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $pendienteatc}} </i> </div>
+                   <i class="fa fa-address-card" style="font-size:36px "> {{ $cerradoPT}} </i> 
               </div>
-              <a href=" {{url('users/tickets_pendiente')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>
-
-            </div>
+              <!--<a href="{{url('users/tickets_espera_inf')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>-->
+            </div> 
             <div class="card text-center  mb-3 bg-white" >
-              <div class="card-header"><h3>Tickets  Solicitud de Toner</h3> </div>
+              <div class="card-header"><h4>En Tramite</h4> </div>
               <div class="card-body">
-                  <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $solicitudroner}} </i> </div>
+                   <i class="fa fa-address-card" style="font-size:36px "> {{$Entramite}} </i> 
               </div>
-              <a href=" {{url('users/tickets_sol_toner')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>
-
-            </div>
+              <!--<a href="{{url('users/tickets_espera_inf')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>-->
+            </div>  
             <div class="card text-center  mb-3 bg-white" >
-
-              <div class="card-header"><h3>Tickets  Estatus En Espera de Informaicon</h3> </div>
+              <div class="card-header"><h4>Notificado al Usuario</h4> </div>
               <div class="card-body">
-                  <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $espinformacion}} </i> </div>
+                   <i class="fa fa-address-card" style="font-size:36px "> {{ $NotificadoAlUsuario}} </i> 
               </div>
-              <a href="{{url('users/tickets_espera_inf')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>
-
-            </div>
-
+              <!--<a href="{{url('users/tickets_espera_inf')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>-->
+            </div>      
           </div>
+          <!-- Fin nuevos status-->
+
 
         </div>
+
+        <!-- FinCarts de estatus de tks -->
 
         </div>
 <!-- Creacion de graica tickets asignados -->
@@ -86,7 +143,7 @@
         <div class="col-lg-12">
           
             <div class="card text-center"  >
-            <div class="card-header titulo_card"><h2> Tickets Asignados </h2> </div>
+            <div class="card-header titulo_card"><h4> Tickets Asignados </h4> </div>
             </div>
             <div class="card-body" >
               
@@ -123,6 +180,16 @@
                       </tr>
                       @endforeach
                     </tbody>
+                    <tfoot>
+                      <tr>
+                        <th>N Ticket</th>
+                        <th> Creado </th>
+                        <th> Asunto </th>
+                        <th> Usuario </th>
+                        <th> Area </th>
+                        <th> Status TK</th>
+                      </tr>
+                    </tfoot>
                 </table>
               <!--end: Datatable -->
              
@@ -135,8 +202,7 @@
       
 <!--se agrega el includ para creacion de datatable -->
 @include('layouts/scripts/scripts')
-      <script>
-
+<script>
       var idioma=
 
                   {
@@ -176,11 +242,9 @@
                       }
                   };
 
-  $(document).ready(function(){
+  $(document).ready(function(){              
+    $('#tablatk').DataTable( {
 
-                   
-         $('#tablatk').DataTable( {
-           
           "lengthChange": true,
           "searching": true,
           "ordering": true,
@@ -191,6 +255,9 @@
           "order":[1 ,'desc'],
           dom: 'Bfrt<"col-md-6 inline"i> <"col-md-6 inline"p>',
           dom: 'Bfrtip',
+
+
+
 
           buttons: {
                 dom: {
@@ -203,14 +270,11 @@
                   }
                 },
 
-
-
-
+                
                 buttons: [
-
-
-
+                  
                            {
+
                                extend:    'pdfHtml5',
                                text:      '<i class="fa fa-file-pdf-o"></i>PDF',
                                title:'Tickets Asignados',
@@ -221,9 +285,8 @@
                                exportOptions: {
                               columns: ':visible'
                                },
-                               customize:function(doc) {
-
-                                   doc.styles.title = {
+                                customize:function(doc) {
+                               doc.styles.title = {
                                        color: '#114627',
                                        fontSize: '30',
                                        alignment: 'center'
@@ -245,6 +308,7 @@
 
 
                                }
+                               
 
                            },
 
@@ -279,15 +343,37 @@
                },
                columnDefs:[{
                         targets: false,
-                        visible: false
+                        visible: false,
+                        initComplete: function () {
+            this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+ 
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+ 
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        }
+
+
                         }]  
 
+                             
 
-
-         } );
-        } );
+    } );
+  } );
 </script>
-
+<!-- fin de la datatable-->
 @section('scripts')
 <script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
 <script type="text/javascript">

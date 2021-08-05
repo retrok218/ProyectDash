@@ -124,9 +124,7 @@
   @include('layouts/scripts/scripts')
 
 
-  <script>
-    
-
+  <script> 
   var idioma=
 
             {
@@ -168,9 +166,10 @@
             };
 
   $(document).ready(function(){
-  $('#tablatk').DataTable( {
+    $('#tablatk').DataTable( {
     
-    
+      
+    "bProcessing": true,
     "lengthChange": true,
     "searching": true,
     "ordering": true,

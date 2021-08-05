@@ -24,27 +24,29 @@
     <div  class=" card-deck text-center  col-lg-12 " >
       <div class="card">
         
-          <div class="card-header titulo_card"><h2>Tickets Totales </h2></div>             
-              <div class="card-body  "> <i class="fa fa-address-card logocard"> {{ $ticket }} </i> </div>
+          <div class="card-header titulo_card"><h2>Tickets del Año {{$año}}</h2></div>             
+              <div class="card-body  "> <i class="fa fa-address-card logocard"> {{ $ticket_por_año }} </i> </div>
        
       </div>
       <div class="card">
         
-            <div class="card-header titulo_card"><h2 >Tickets del Mes</h2> </div>    
+            <div class="card-header titulo_card"><h2 >Tickets del Mes {{$año}}/{{$mes}}</h2> </div>    
               <div class="card-body"> <i class="fa fa-address-card logocard"> {{ $tickets_por_mes }} </i> </div>
+              <!--
               <button type="button" class="btn btn-default dropdown-toggle"
                  data-toggle="dropdown"  > Ticket del Mes Pasado 
               </button>
               <ul class="dropdown-menu" role="menu">
                 <li><h4 style="align-items: center"> {{$mesp}} </h4> </li>
-              </ul>
+              </ul> -->
             
          
         </div>
       <div class="card">
         
-          <div class="card-header titulo_card"><h2>Tickets del dia</h2></div>
+          <div class="card-header titulo_card"><h2>Tickets del dia {{$año}}/{{$mes}}/{{$dia}}</h2></div>
           <div class="card-body"> <i class="fa fa-address-card logocard"> {{ $tickets_por_dia }} </i> </div>
+          <!--
           <button type="button" class="btn btn-default dropdown-toggle"
              data-toggle="dropdown"> Ticket del Dia Pasado <span class="">
            </span>
@@ -52,34 +54,28 @@
           <ul class="dropdown-menu" role="menu">
             <li><h4> {{$diap}} </h4></li>
           </ul>
-          <i class="bi bi-arrow-down-square-fill"></i>
+        -->
+        <!-- <i class="bi bi-arrow-down-square-fill"></i>-->
        
       </div>
 
     </div>
     <br>
   
-    <div class="row" >
-      <div class="col-lg-12">
-        <span class="spinner-grow spinner-grow-sm"></span>
-        <a href="{{url('users/grafic')}}" class="btn btn-success" role="button" aria-disabled ="true">Estatus Tickets</a>        
-      </div>
-    </div>
+    
 
 </div >
-    <div  class="row shadow-lg p-3 mb-5  rounded fondo  fondo1" >
-      <div class="col-lg-12 ">
-        <div class="card-deck mb-3 ">
-
-  				<div class="col-md-4">
-            <div class="container ">
-              <div  class="card-header  text-center border-dark  mb-3 h1t  "><h3>Tickets Totales</h3> </div>
-  					  
-              <div  class="inview" id="sales-doughnut-chart-us"></div>
-            
-  				  </div>
+    <div  class="row shadow-lg p-3   rounded fondo  fondo1" >
+      
+          <div class="col-md-12">
+            <div  class="card-header  text-center border-dark  mb-3 h1t  "><h3>Tickets Totales</h3> 
+            </div>
+            <div  class="inview" id="sales-doughnut-chart-us"></div>		  
           </div>
+          
 
+          
+<!--
   				<div class="col-md-4">
             <div class="container">
               <div class="card-header text-center border-dark  mb-3 h1t "><h3>Tickets Cerrados Exitosamente </h3> </div>
@@ -92,24 +88,25 @@
               <div class="card-header text-center border-dark  mb-3 h1t "> <h3>Tickets Asignados</h3> </div>             
               <div class="inview" id="sales-doughnut-chart-de"></div>          
             </div>
-  				</div>
-        </div>
-      </div>
+  				</div> --> 
+             
+       
       
     </div>
 
     
 
-<div class="container   mb-3 shadow-lg p-3 mb-5 bg-white rounded  " style="max-width: 100rem;">  
-  <div class="row ">
-      <div class="col-xl-6">
-        <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
-            <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
-                style="min-height: 400px; ">
-                  <div id="chartContainer"  > </div>
-            </div>
+
+  <div class="row shadow-lg p-3 mb-5 bg-white rounded">
+    <div class="col-xl-6">
+      <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+          <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
+              style="min-height: 400px; ">
+                <div id="chartContainer"  > </div>
           </div>
         </div>
+      </div> 
+     
         <div class="col-xl-6">
           <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
               <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
@@ -119,11 +116,12 @@
             </div>
           </div>
         
-      </div>
+      
     </div>
+
 <!--Grafica por Area-->
-<div class="container   mb-3 shadow-lg p-3 mb-5 bg-white rounded  " style="max-width: 100rem;">
-    <div class="row">
+
+    <div class="row shadow-lg p-3 mb-5 bg-white rounded">
     <div class="col-lg-12">
       <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
         <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
@@ -133,7 +131,7 @@
       </div>
     </div>    
   </div>
-</div> 
+ 
     
 
     
@@ -144,7 +142,7 @@
         <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
           <div class="kt-portlet__body kt-portlet__body--fit kt-portlet__body--unfill">
               <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
-                  style="min-height: 400px; background-image: url(./assets/media//products/product4.jpg)">
+                  style="min-height: 400px; ">
                     <div id="chartContainer4"  > </div>
               </div>
           </div>
@@ -157,7 +155,7 @@
         <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
           <div class="kt-portlet__body kt-portlet__body--fit kt-portlet__body--unfill">
               <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
-                  style="min-height: 400px; background-image: url(./assets/media//products/product4.jpg)">
+                  style="min-height: 400px; ">
                     <div id="chartContainer1"  > </div>
               </div>
           </div>
@@ -189,7 +187,8 @@ window.onload = function (){
                     months:["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Nobiembre","Diciembre",]
                });
   
-  	var chart = new CanvasJS.Chart("chartContainer",{
+ //grafica Tickets 	
+           var chart = new CanvasJS.Chart("chartContainer",{
       									animationEnabled: true,
       									animationDuration: 1000,
       									interactivityEnabled: true,
@@ -230,7 +229,7 @@ window.onload = function (){
                            { label: "Tikets espera de informacion-{{$espinformacion }} ", y: {{$espinformacion }}  },
                            
                            { label: "Tikets En Tramite - {{$Entramite}} ", y: {{$Entramite }}  },
-                           { label: "Tikets falta Documentar - {{$FaltaDocumentar}} ", y: {{$FaltaDocumentar }}  },
+                           
                            { label: "Tikets Falta Acta Res - {{$FalteActaRES}} ", y: {{$FalteActaRES }}  },
 
       										 ]
@@ -238,8 +237,14 @@ window.onload = function (){
       									 ]
       								 });
                        chart.render();
-                                         
-// SEPARADOR
+  //Fin grafica Tickets                                      
+  // Grafica año/mes/dia
+  
+
+
+
+
+  //Fin  Grafica año/mes/dia
 
 //Grafica por Area 
 
@@ -460,7 +465,7 @@ e.chart.render();
            interactivityEnabled: true,
            exportEnabled: true,
              title: {
-                 text: "Tickets Estatus "
+                 text: "Tickets Año-Mes-Dia "
              },
              data: [
              {
@@ -469,15 +474,9 @@ e.chart.render();
                ilegendText: "{label}",
 
                dataPoints: [
-
-
-
-                 { label: "Tikets Totales", y: {{ $ticket}}  },
-                 { label: "Tickets Cerrados Exitosamente", y: {{$rticket}} },
-                 { label: "Tickets Asignados", y: {{$asignado}} },
-                 { label: "Tickets Cerrados por Tiempo", y: {{$cerradoPT}} },
-                 { label:  "Tickets Notificados", y: {{$notificadoalU}} },
-                 {label: "Tickets en Tramite" , y:{{$Entramite}}  }
+                 { label: "Tickets Por Año", y: {{$ticket_por_año}}  },
+                 { label: "Tickets Por Mes", y: {{$tickets_por_mes}}  },
+                 { label: "Tickets Por Dia", y: {{$tickets_por_dia}} },
                  ]
              }
              ]
@@ -489,11 +488,12 @@ e.chart.render();
 
   var chart = new CanvasJS.Chart("sales-doughnut-chart-us",
        {
+        
          animationEnabled: true,
           
 
           title: {
-            fontColor: "#848484",
+            fontColor: "#000000",
             fontSize: 70,
             horizontalAlign: "center",
             text: "{{$ticket}}",
@@ -523,7 +523,8 @@ e.chart.render();
    chart.render();
   
 
-
+   //grafica de dona tickets cerrados
+/*
    var chart = new CanvasJS.Chart("sales-doughnut-chart-nl",
         {
           animationEnabled: true,
@@ -563,6 +564,9 @@ e.chart.render();
    
 
 
+
+
+
     var chart = new CanvasJS.Chart("sales-doughnut-chart-de",
          {
            animationEnabled: true,
@@ -597,8 +601,8 @@ e.chart.render();
          });
          
      chart.render();
-
-
+*/
+// fin grafica de dona tickets cerrados
 
 
 
@@ -696,6 +700,8 @@ var nuevotk = [
 
 
 </script>
+
+
 
 
 

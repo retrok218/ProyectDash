@@ -23,6 +23,7 @@ class GraficController extends Controller
   
     public function index()
     {
+      
       $perfil = Auth::user()->hasAnyRole(['SuperAdmin', 'Admin']);
 // regresa la vista admin.dashboard
       $fecha_actual = Carbon::now()->toDateString(); //fecha ->toDateString da el formato que maneja la bd
@@ -50,7 +51,7 @@ class GraficController extends Controller
       //$pendienteatc = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',7)->count();
       //$pendienteAC = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',8)->count();
       //$merged = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',9)->count();
-      $cerradoPT = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',10)->count();  // crear grafica y tabla
+      $cerradoPT = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',10)->count();  
       $notificadoalU = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',11)->count();
       $asignado =DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 12)->count();
       $atendido = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 13)->count(); // crear tabla para visualizar
@@ -274,7 +275,7 @@ $totalMesJson = json_encode($totalmes);
       ->with('impresorasintt',$impresorasintt)
       ->with('tickets_por_mes',$tickets_por_mes)
       ->with('tickets_por_dia',$tickets_por_dia)
-      ->with('ticket_pot_año',$tickets_por_año)
+      ->with('ticket_por_año',$tickets_por_año)
 
       // ->with('pmes',$tickets_prueva_mes)
       // ->with('ticket_por_mes',$ticket_por_mes)
@@ -373,23 +374,11 @@ $totalMesJson = json_encode($totalmes);
             
 
     ;}else {
-      return view('login');
+      return view('auth/login');
     }
  ;}
 
-
-
-
-public function ultmtk(){
-  $ultimoTK =DB::connection('pgsql2')->table('ticket')->orderBy('create_time','DESC')->first();
-  return header(header)
-  ->with('ultimoTK',$ultimoTK)
-;}
-
-
-
-
-    // controlador para tickets asignados
+// controlador para tickets asignados
   public function ticketa(){
     $tkasignado =DB::connection('pgsql2')->table('ticket')
     ->where('ticket_state_id','=', 12)
@@ -404,10 +393,21 @@ public function ultmtk(){
       $atendido = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 13)->count();
       $pendienteatc = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',7)->count();
       $solicitudToner = DB::connection('pgsql2')-> table('ticket')->where('service_id','=',79)->count();
-      $espinformacion = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 15)->count();
+      $espinformacion = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 15)->count(); 
+      $abierto = DB:: connection('pgsql2')->table('ticket')->where('ticket_state_id','=',4)->count();
+      $cerradosinEX = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',3)->count();
+      $FalteActaRES = DB:: connection('pgsql2')->table('ticket')->where('ticket_state_id','=',21)->count();
+      $NotificadoAlUsuario = DB:: connection('pgsql2')->table('ticket')->where('ticket_state_id','=',11)->count();
+      $Entramite = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',18)->count();
+      $cerradoPT = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',10)->count(); 
+      $rticket = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 2)->count();
+
+      // fin nuevos asignados 
 
 
+    
       return view('Graficas/tickets_asignados')
+
       ->with('tkasignado',$tkasignado)
       ->with('tickets_registro',$tickets_registro)
       ->with('ticket', $tickte)
@@ -416,6 +416,13 @@ public function ultmtk(){
       ->with('espinformacion',$espinformacion)
       ->with('pendienteatc',$pendienteatc)
       ->with('solicitudroner',$solicitudToner)
+      ->with('abierto',$abierto)
+      ->with('FalteActaRES',$FalteActaRES)
+      ->with('cerradosinEX',$cerradosinEX)
+      ->with('NotificadoAlUsuario',$NotificadoAlUsuario)
+      ->with('Entramite',$Entramite)
+      ->with('cerradoPT',$cerradoPT)
+      ->with('cerradoexitosamente',$rticket)
 
     ;}
 // Fin Controlador tickets asignados

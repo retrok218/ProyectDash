@@ -121,6 +121,7 @@ class Tks_DT_controlle extends Controller
     ;}
 
     
+/*  lo Ellimino ?¡?¡¡?¡?¡?
 
   public function velocimetrog(){
     $tkstotales = DB::connection('pgsql2')->table('ticket')->count();
@@ -132,6 +133,30 @@ class Tks_DT_controlle extends Controller
     ->with('rticket',$rticket)
     ;}
 
-   
+  */ 
+
+  public function cars_status_tickets(){  
+
+    $tickte = DB::connection('pgsql2')->table('ticket')->count();
+    $open = DB:: connection('pgsql2')->table('ticket')->where('ticket_state_id','=',4)->count();
+    $asignado =DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 12)->count();
+    $atendido = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 13)->count();
+    $pendienteatc = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',6)->count();
+    $solicitudToner = DB::connection('pgsql2')-> table('ticket')->where('service_id','=',79)->count();
+    $espinformacion = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 15)->count();
+    $FalteActaRES = DB:: connection('pgsql2')->table('ticket')->where('ticket_state_id','=',21)->count();
+    $cerradocinEX = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',3)->count();
+
+    return view('estatus_tk')
+    ->with('tickte',$tickte)
+    ->with('open',$open)
+    ->with('asignado',$asignado)
+    ->with('atendido',$atendido)
+    ->with('pendienteatc',$pendienteatc)
+    ->with('solicitudToner',$solicitudToner)
+    ->with('espinformacion',$espinformacion)
+    ->with('FalteActaRES',$FalteActaRES)
+    ->with('cerradocinEX',$cerradocinEX)
+  ;}
 
 }

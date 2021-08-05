@@ -10,11 +10,11 @@
     <meta name="description" content="Updates and statistics">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!--
-    <meta http-equiv="refresh" content="30">
+    <meta http-equiv="refresh" content="15">
     -->
    
 
-    <title>Sistema | General</title>
+    <title>Sistema Gestion de Tickets</title>
 
     <link rel="icon" type="image/vnd.microsoft.icon" href="{{ asset('assets/media/logos/favicon.ico') }}" sizes="48X16">
     <!--begin::Fonts -->
@@ -104,10 +104,10 @@
                     <div id="loader"></div>
 
                         <div class="loader-section section-left" >
-                            <img src="public/assets/media/bg/bg-cdmx.png" width="100%" height="80%"> 
+                            <img src="../public/assets/media/bg/bg-cdmx.png" width="100%" height="110%"> 
                         </div>
                         <div class="loader-section section-right"> 
-                            <img src="public/assets/media/bg/bg-cdmx.png" width="100%" height="80%"> 
+                            <img src="../public/assets/media/bg/bg-cdmx.png" width="100%" height="110%"> 
                         </div>
 
                     </div>
@@ -145,10 +145,21 @@
         document.querySelector('body').classList.add("loaded") 
         });
     </script>
-<!-- scrip Spiner  -->
+<!-- fin scrip Spiner  -->
+<!-- scrip para seleccion en el menu lateal-->
+<script>
+    $(document).ready(function(){
+    var URLactual = window.location.pathname; //utilizada para detemrinar que tab del menu activar
 
+    URLactual = URLactual.split('/').pop();
+    URLactual = URLactual.split('.');
 
+    $('.' + URLactual[0] ).addClass('active');
 
+});
+
+</script>
+<!--Fin scrip para seleccion en el menu lateal-->
 
 
 
