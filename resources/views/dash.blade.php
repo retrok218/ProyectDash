@@ -123,12 +123,12 @@
 
     <div class="row shadow-lg p-3 mb-5 bg-white rounded">
     <div class="col-lg-12">
-      <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+      
         <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
-        style="min-height: 480px; ">
+        style="min-height: 500px; ">
                   <div id="gporarea"> </div>
             </div>
-      </div>
+      
     </div>    
   </div>
  
@@ -254,7 +254,7 @@ window.onload = function (){
                                               interactivityEnabled: true,
                                               exportEnabled: true,
                                               height:500,
-                                              width:1050,
+                                              
                                               horizontalAlign:"center",
                                               
                                               
@@ -457,7 +457,7 @@ e.chart.render();
 
 }
 
-  // separador 2
+  // conteo de tickets por año me y dia fecha actual 
     var chart = new CanvasJS.Chart("chartContainer1",
          {
            animationEnabled: true,
@@ -465,7 +465,7 @@ e.chart.render();
            interactivityEnabled: true,
            exportEnabled: true,
              title: {
-                 text: "Tickets Año-Mes-Dia "
+                 text: "Tickets Año-{{$año}}/ Mes-{{$mes}}/ Dia-{{$dia}}"
              },
              data: [
              {

@@ -4,76 +4,9 @@
 
 
     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+    @include('Graficas/card_estatus_tk')
 
-      <div class="row shadow-lg p-3 mb-5  rounded ">
-        <div class="col-xl-12 fondo1">
-          <div class="card-deck mt-3 " >
-            <div class="card text-center  mb-3 bg-white" >
-              <div class="card-header"><h3>Tickets Totales</h3> </div>
-                <div class="card-body">
-                    <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $ticket}} </i> </div>
-                </div>
-                <a href="{{url('users/grafic')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>
-            </div>
-
-            <div class="card text-center  mb-3 bg-white" >
-              <div class="card-header"><h3>Tickets Estatus Asignados</h3> </div>
-              <div class="card-body">
-                  <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px " id="btAsignados"> {{ $asignado}} </i> </div>
-              </div>
-              <a href="{{url('users/tks_asignados')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>
-            </div>
-
-            <div class="card text-center  mb-3 bg-white" >
-              <div class="card-header"><h3>Tickets Estatus Atendidos</h3> </div>
-              <div class="card-body">
-                  <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $atendido}} </i> </div>
-              </div>
-              <a href="{{url('users/tks_atendidos')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>
-            </div>
-          </div>
-
-          <div class="card-deck mt-3">
-            <div class="card text-center  mb-3 bg-white" >
-              <div class="card-header"><h3>Tickets  Estatus Pendientes</h3> </div>
-              <div class="card-body">
-                  <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $pendienteatc}} </i> </div>
-              </div>
-              <a href=" {{url('users/tickets_pendiente')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>
-
-            </div>
-            <div class="card text-center  mb-3 bg-white" >
-              <div class="card-header"><h3>Tickets  Solicitud de Toner</h3> </div>
-              <div class="card-body">
-                  <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $solicitudroner}} </i> </div>
-              </div>
-              <a href=" {{url('users/tickets_sol_toner')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>
-
-            </div>
-            <div class="card text-center  mb-3 bg-white" >
-
-              <div class="card-header"><h3>Tickets  Estatus En Espera de Informaicon</h3> </div>
-              <div class="card-body">
-                  <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $espinformacion}} </i> </div>
-              </div>
-              <a href="{{url('users/tickets_espera_inf')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        </div>
-    
-
-
-
-
-
-
-        <!-- Grafica Tickets Pendientes -->
-
+      <!-- Grafica Tickets Pendientes -->
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
@@ -86,11 +19,7 @@
                     </div>
                   </div>
                 </div>
-        <!-- Grafica Tickets Pendientes -->
-
-
-
-
+        <!-- Fin Grafica Tickets Pendientes -->
         <div class="row">
           <div class="col-xl-12">
             <div class="card ">
@@ -99,7 +28,7 @@
               </div>
               <div class="card-body" >
                 
-    <!--begin: Datatable -->
+    <!--Comienza : Datatable -->
                   <table id="tablatk"  class="table table-striped table-bordered " >
                       <thead >
                         <tr>
@@ -219,7 +148,7 @@
                            {
                                extend:    'pdfHtml5',
                                text:      '<i class="fa fa-file-pdf-o"></i>PDF',
-                               title:'Tickets Estatus Pendiente',
+                               title:'Tickets Pendiente',
                                titleAttr: 'PDF',
                                className: 'btn btn-app export pdf',
                                orientation: 'landscape',
@@ -258,7 +187,7 @@
                            {
                                extend:    'excelHtml5',
                                text:      '<i class="fa fa-file-excel-o"></i>Excel',
-                               title:'Tickets Estatus Pendiente',
+                               title:'Tickets Pendiente',
                                titleAttr: 'Excel',
                                className: 'btn btn-app export excel',
                                exportOptions: {
@@ -269,7 +198,7 @@
                            {
                                extend:    'print',
                                text:      '<i class="fa fa-print"></i>Imprimir',
-                               title:'Tickets Estatus Pendiente',
+                               title:'Tickets Pendiente',
                                titleAttr: 'Imprimir',
                                className: 'btn btn-app export imprimir',
                                exportOptions: {
@@ -339,7 +268,7 @@
                         exportEnabled: true,
 
                         title:{
-                          text: "  Tickets Estatus Pendientes "
+                          text: "  Tickets  Pendientes "
                         },
 
                         legend:{

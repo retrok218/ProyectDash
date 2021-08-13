@@ -455,10 +455,10 @@ h6 {
 }
 
 hr {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    /*margin-top: 1rem;*/
+    /*margin-bottom: 1rem;*/
     border: 0;
-    border-top: 1px solid rgba(0, 0, 0, .1)
+    border-top: 2px solid rgba(0, 0, 0, .1)
 }
 
 .small,
@@ -49806,14 +49806,14 @@ body {
 .mcd-menu li a {
   display: block;
   text-decoration: none;
-  padding: 12px 20px;
+  padding: 10px 10px;
   color: rgb(119, 119, 119);
   /*text-align: center;
   border-right: 1px solid #E7E7E7;*/
   
   /* == */
   text-align: left;
-  height: 36px;
+  
   position: relative;
   border-bottom: 1px solid #EEE;
   /* == */
@@ -49895,9 +49895,10 @@ body {
   -webkit-box-shadow: 0 0 5px #DDD;
   
   /* == */
-  border-left: 4px solid #e67e22;
-  border-right: 4px solid #e67e22;
+  border-left: 5px solid #008805f0;
+  border-right: 10px solid #00b056;
   margin: 0 -4px;
+  background-color: #99ff923b;
   /* == */
 }
 .mcd-menu li a.active:before {
@@ -49912,7 +49913,7 @@ body {
   /* == */
   top: 42%;
   left: 0;
-  border-left: 5px solid #e67e22;
+  border-left: 5px solid #027d00;
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
   /* == */
@@ -49924,7 +49925,7 @@ body {
   position: absolute;
   top: 42%;
   right: 0;
-  border-right: 5px solid #e67e22;
+  border-right: 5px solid #00b056;
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
 }

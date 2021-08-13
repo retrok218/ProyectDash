@@ -74,7 +74,7 @@ Route::get('/', function ()  {
     Route::post('/editUser', 'UserController@editUser');
 
 
-    // controladores dash
+    // Rutas para Gestor de tickets
 Route::get('/dash','GraficController@index');
 Route::get('/grafic','GraficController@graficas');
 // tikes totales tabla
@@ -89,9 +89,18 @@ Route::get ('/tickets_sol_toner', 'Tks_DT_controlle@tickets_sol_toner');
 Route::get ('/tickets_espera_inf', 'Tks_DT_controlle@tickets_esp_info');
 // ticket Estatus pendiente
 Route::get ('/tickets_pendiente', 'Tks_DT_controlle@tickets_pendiente');
-//Grafica velocimetro prueva 1
-Route::get('/grafvelo','Tks_DT_controlle@velocimetrog');
+// ticket falta acta responsiva 
+Route::get ('/tickets_falta_acta_responsiva', 'Tks_DT_controlle@tickets_falta_acta_responsiva');
+// tickets Abiertos
+Route::get ('/tickets_abiertos','Tks_DT_controlle@tickets_abiertos' );
+//Tickets Cerrados Exitosamente
+Route::get('/tickets_cerradosEX','Tks_DT_controlle@tickets_cerrados_exitosamente');
+//tickets cerrados por tiempo
+Route::get ('/tickets_cerradosPT','Tks_DT_controlle@tickets_cerradosPT');
+//tickets notificado al ususario
+Route::get('/tickets_notificado_al_Usuario','Tks_DT_controlle@notificadosalusuario');
 
+//Fin Rutas para Gestor de tickets
     
     });
  //Administrador

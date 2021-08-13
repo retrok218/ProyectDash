@@ -2,87 +2,98 @@
 @section('content')
 
 
-
     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
       @include('Graficas/card_estatus_tk')
-      <!-- Grafica Tickets Espera de informacion -->
+<!-- Creacion de graica tickets asignados -->
 
-                        <div class="row">
-                          <div class="col-lg-12">
-                            <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
-                              <div class="kt-portlet__body kt-portlet__body--fit kt-portlet__body--unfill">
-                                  <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
-                                      style="min-height: 400px; background-image: url(./assets/media//products/product4.jpg)">
-                                        <div id="chartContainer"  > </div>
-                                  </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                <!-- Grafica Tickets Esspera de informacion  -->
-
-
-
-                <div class="row">
-                  <div class="col-xl-12">
-                    <div class="card ">
-                      <div class="card text-center"  >
-                      <div class="card-header titulo_card"><h2> Tickets Espera de Informacion </h2> </div>
-                      </div>
-                      <div class="card-body" >
-                        
-            <!--begin: Datatable -->
-                          <table id="tablatk"  class="table table-striped table-bordered " >
-                              <thead >
-                                <tr>
-                                  <th>N Ticket</th>
-                                  <th> Creado </th>
-                                  <th> Asunto </th>
-                                  <th> Usuario </th>
-                                  <th> Area </th>
-                                  <th> Status TK</th>
-          
-                                </tr>
-                              </thead>
-                              <tbody>
-                                @foreach($tickets_esp_info as $tickets_esp_info)
-                                <tr>
-                                  <td>{{$tickets_esp_info->tn}}</td>
-                                  <td>{{$tickets_esp_info->create_time}}</td>
-                                  <td>{{$tickets_esp_info->title}}</td>
-                                  <td>{{$tickets_esp_info->nombre .' '. $tickets_esp_info->apellido}}</td>
-                                  <td>{{$tickets_esp_info->qname}}</td>
-                        
-                        <!--se cambia tecto de closed successful a Cerrado Exitosamente -->
-                                     @if($tickets_esp_info->name == 'closed successful' )
-                                    <td>Cerrado Exitosamente</td> 
-                                    @else
-                                    <td>{{$tickets_esp_info->name}}</td>
-                                    @endif
-                      <!-- Fin del cambio de texto-->
-          
-                                </tr>
-                                @endforeach
-                              </tbody>
-                          </table>
-                        <!--end: Datatable -->
-                       
-                        </div>
-                        </div>
-          
+          <div class="row mb-3 shadow-lg p-3 mb-5 bg-white rounded">
+            
+              <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+                <div class="kt-portlet__body kt-portlet__body--fit kt-portlet__body--unfill">
+                    <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
+                        style="min-height: 400px; )">
+                          <div id="chartContainerta"  > </div>
                     </div>
                 </div>
-                </div>
-      @include('layouts/scripts/scripts')
-      <script>
+              
+            </div>
+          </div>
 
+
+
+<!-- Creacion de graica tickets asignados -->
+
+      <div class="row">
+        <div class="col-lg-12">
+          
+            <div class="card text-center"  >
+            <div class="card-header titulo_card"><h4> Tickets Abiertos </h4> </div>
+            </div>
+            <div class="card-body" >
+              
+  <!--begin: Datatable -->
+                <table id="tablatk"  class="table table-striped table-bordered "  >
+                    <thead >
+                      <tr>
+                        <th>N Ticket</th>
+                        <th> Creado </th>
+                        <th> Asunto </th>
+                        <th> Usuario </th>
+                        <th> Area </th>
+                        <th> Status TK</th>
+                        
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach($tickets_abiertos as $tickets_abiertos)
+                      <tr>
+                        <td>{{$tickets_abiertos->tn}}</td>
+                        <td>{{$tickets_abiertos->create_time}}</td>
+                        <td>{{$tickets_abiertos->title}}</td>
+                        <td>{{$tickets_abiertos->nombre .' '. $tickets_abiertos->apellido}}</td>
+                        <td>{{$tickets_abiertos->qname}}</td>
+                      <!--se cambia tecto de closed successful a Cerrado Exitosamente -->
+                        @if($tickets_abiertos->name == 'closed successful' )
+                        <td>Cerrado Exitosamente</td> 
+                      @else
+                      <td>{{$tickets_abiertos->name}}</td>
+                      @endif
+                      <!-- Fin del cambio de texto-->
+
+                      </tr>
+                      @endforeach
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th>N Ticket</th>
+                        <th> Creado </th>
+                        <th> Asunto </th>
+                        <th> Usuario </th>
+                        <th> Area </th>
+                        <th> Status TK</th>
+                      </tr>
+                    </tfoot>
+                </table>
+              <!--end: Datatable -->
+             
+              </div>
+              
+
+          </div>
+      </div>
+
+      
+<!--se agrega el includ para creacion de datatable -->
+@include('layouts/scripts/scripts')
+<script>
       var idioma=
 
                   {
                       "sProcessing":     "Procesando...",
                       "sLengthMenu":     "Mostrar _MENU_ registros",
                       "sZeroRecords":    "No se encontraron resultados",
-                      "sEmptyTable":     "sin tickets por el momento ",
+                      "sEmptyTable":     "Ningun dato disponible en esta tabla",
                       "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
                       "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
                       "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
@@ -93,7 +104,7 @@
                       "sLoadingRecords": "Cargando...",
                       "oPaginate": {
                           "sFirst":    "Primero",
-                          "sLast":     "Ãšltimo",
+                          "sLast":     "Ultimo",
                           "sNext":     "Siguiente",
                           "sPrevious": "Anterior"
                       },
@@ -103,7 +114,7 @@
                       },
                       "buttons": {
                           "copyTitle": 'Informacion copiada',
-                          "copyKeys": 'Use your keyboard or menu to select the copy command',
+                          
                           "copySuccess": {
                               "_": '%d filas copiadas al portapapeles',
                               "1": '1 fila copiada al portapapeles'
@@ -115,9 +126,9 @@
                       }
                   };
 
-        $(document).ready(function(){
-         $('#tablatk').DataTable( {
-           "paging": true,
+  $(document).ready(function(){              
+    $('#tablatk').DataTable( {
+
           "lengthChange": true,
           "searching": true,
           "ordering": true,
@@ -125,32 +136,32 @@
           "autoWidth": true,
           "language": idioma,
           "lengthMenu": [[10,20, -1],[10,20,30,"Mostrar Todo"]],
-
           "order":[1 ,'desc'],
           dom: 'Bfrt<"col-md-6 inline"i> <"col-md-6 inline"p>',
+          dom: 'Bfrtip',
+
+
 
 
           buttons: {
                 dom: {
                   container:{
-                    
+                    tag:'div',
+     
                   },
                   buttonLiner: {
                     tag: null
                   }
                 },
 
-
-
-
+                
                 buttons: [
-
-
-
+                  
                            {
+
                                extend:    'pdfHtml5',
                                text:      '<i class="fa fa-file-pdf-o"></i>PDF',
-                               title:'Tickets Espera de Informacion',
+                               title:'Tickets Abiertos ',
                                titleAttr: 'PDF',
                                className: 'btn btn-app export pdf',
                                orientation: 'landscape',
@@ -158,10 +169,9 @@
                                exportOptions: {
                               columns: ':visible'
                                },
-                               customize:function(doc) {
-
-                                   doc.styles.title = {
-                                       color: '#4c8aa0',
+                                customize:function(doc) {
+                               doc.styles.title = {
+                                       color: '#114627',
                                        fontSize: '30',
                                        alignment: 'center'
                                    }
@@ -171,7 +181,7 @@
                                         margin: [ 0, 0, 0, 12 ],
                                    },
                                    doc.styles.tableHeader = {
-                                       fillColor:'#4c8aa0',
+                                       fillColor:'#114627',
                                        color:'white',
                                        alignment:'center',
 
@@ -182,13 +192,14 @@
 
 
                                }
+                               
 
                            },
 
                            {
                                extend:    'excelHtml5',
                                text:      '<i class="fa fa-file-excel-o"></i>Excel',
-                               title:'Tickets Espera de Informacion',
+                               title:'Tickets Abiertos',
                                titleAttr: 'Excel',
                                className: 'btn btn-app export excel',
                                exportOptions: {
@@ -199,7 +210,7 @@
                            {
                                extend:    'print',
                                text:      '<i class="fa fa-print"></i>Imprimir',
-                               title:'Tickets Espera de Informacion',
+                               title:'Tickets Abiertos',
                                titleAttr: 'Imprimir',
                                className: 'btn btn-app export imprimir',
                                exportOptions: {
@@ -212,23 +223,43 @@
                                className: 'selectTable'
                            },
                            'colvis'
-                       ]
-
-
+                       ]         
                },
                columnDefs:[{
-                        targets: null,
-                        visible: false
-                        }] 
+                        targets: false,
+                        visible: false,
+                        initComplete: function () {
+            this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+ 
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+ 
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        }
 
 
+                        }]  
 
-         } );
-        } );
+                             
+
+    } );
+  } );
 </script>
+<!-- fin de la datatable-->
 @section('scripts')
-
-
+<script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
 
             window.onload = function (){
@@ -262,14 +293,14 @@
 
 
 
-                      var chart = new CanvasJS.Chart("chartContainer",{
+                      var chart = new CanvasJS.Chart("chartContainerta",{
                         animationEnabled: true,
                         animationDuration: 1000,
                         interactivityEnabled: true,
                         exportEnabled: true,
 
                         title:{
-                          text: "  Tickets Espera de Informacion  "
+                          text: "Tickets Abiertos "
                         },
 
                         legend:{
@@ -285,8 +316,8 @@
                            indexLabel: "{label} - #percent%",
 
                            dataPoints: [
-                           { label: "Tikets Totales: {{ $ticket}} ", y: {{ $ticket}}  },
-                           {label: "Tickets Espera de informacion:{{$espinformacion}} " , y:{{$espinformacion}} },
+                           {label: "Tikets Totales " , y: {{$ticket}}-{{$abierto}}  },
+                           {label: "Tickets Abiertos" , y:{{$abierto}} },
 
 
                            ]
@@ -295,7 +326,11 @@
                          }
                          ]
                        });
+
                        chart.render();
+                       
+
+
 ;}
 
 </script>

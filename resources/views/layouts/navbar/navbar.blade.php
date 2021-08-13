@@ -49,14 +49,14 @@
                 <hr size="2px"  noshade="noshade"/>
 
                 <li>
-                  <a class=" nav-link grafic" href="{{url('#')}}" class="">
+                  <a class=" nav-link tickets_falta_acta_responsiva" href="{{url('users/tickets_falta_acta_responsiva')}}" class="">
                      <strong>Falta Acta Responsiva</strong> 
                   </a>
                 </li>
                 <hr size="2px"  noshade="noshade"/>
 
                 <li>
-                  <a class=" nav-link grafic" href="{{url('#')}}" class="">
+                  <a class=" nav-link tickets_abiertos" href="{{url('users/tickets_abiertos')}}" class="">
                      <strong>Tickets Abierto </strong> 
                   </a>
                 </li>
@@ -74,7 +74,7 @@
                 <hr size="2px"  noshade="noshade"  />
 
                 <li>
-                  <a class=" nav-link grafic" href="{{url('#')}}" class="">
+                  <a class=" nav-link tickets_cerradosEX" href="{{url('users/tickets_cerradosEX')}}" class="">
                      <strong>Tickets Cerrados Exitosamente</strong> 
                   </a>
                 </li>
@@ -82,14 +82,14 @@
                 
 
                 <li>
-                  <a class=" nav-link grafic" href="{{url('#')}}" class="">
+                  <a class=" nav-link tickets_cerradosPT" href="{{url('users/tickets_cerradosPT')}}" class="">
                      <strong>Tickets Cerrado por Tiempo</strong> 
                   </a>
                 </li>
                 <hr size="2px"  noshade="noshade"  />
 
                 <li>
-                  <a class=" nav-link grafic" href="{{url('#')}}" class="">
+                  <a class=" nav-link tickets_notificado_al_Usuario" href="{{url('users/tickets_notificado_al_Usuario')}}" class="">
                      <strong>Tickets Notificado al Usuario </strong> 
                   </a>
                 </li>
@@ -113,28 +113,45 @@
                 
               </ul>
             </div>
+            
 
-            <div class="container">
-               <ul class="mcd-menu"s>
-                  <li>
-                     <a class=" nav-link tickets_sol_toner" href=" {{url('users/tickets_sol_toner')}}" class=""> <strong>Tickets Solicitud de Toner</strong> </a>
-                   </li>
-                   
-               </ul>
-            </div>
+            
             
             
       </div>
+      
           </li>
+
+          <div class="container">
+            <ul class="mcd-menu"s>
+               <li>
+                  <hr size="2px"  noshade="noshade"  />
+                  <a class=" nav-link tickets_sol_toner" href=" {{url('users/tickets_sol_toner')}}" class=""> <strong>Tickets Solicitud de Toner</strong> </a>
+                  <hr size="2px"  noshade="noshade"  />
+                </li>
+                
+            </ul>
+         </div>
+          
 
                   </ul>
                </div>
             
          
       </div>
+      
    </div>
 
 
+
+
+
+
+
+
+
+
+   
 
 
 
