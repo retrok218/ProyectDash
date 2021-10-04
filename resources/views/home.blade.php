@@ -104,10 +104,10 @@
                     <div id="loader"></div>
 
                         <div class="loader-section section-left" >
-                            <img src="../public/assets/media/bg/bg-cdmx.png" width="100%" height="110%"> 
+                            <img src="../public/assets/media/bg/bg-cdmx.png" width="100%" height="100%"> 
                         </div>
                         <div class="loader-section section-right"> 
-                            <img src="../public/assets/media/bg/bg-cdmx.png" width="100%" height="110%"> 
+                            <img src="../public/assets/media/bg/bg-cdmx.png" width="100%" height="100%"> 
                         </div>
 
                     </div>
@@ -150,12 +150,14 @@
 <script>
     $(document).ready(function(){
     var URLactual = window.location.pathname; //utilizada para detemrinar que tab del menu activar
-
+    
+        
+    
     URLactual = URLactual.split('/').pop();
-    URLactual = URLactual.split('.');
-
+    URLactual = URLactual.split('.');    
+    $('.active').removeClass('active');
     $('.' + URLactual[0] ).addClass('active');
-
+    
 });
 
 </script>

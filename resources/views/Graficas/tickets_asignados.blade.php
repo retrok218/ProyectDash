@@ -3,10 +3,28 @@
 
 
     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
-      @include('Graficas/card_estatus_tk')
+
+      <div class="card-deck mt-3">
+        <div class="card text-center  mb-3 bg-white" >
+          <div class="card-header" ><h4>Tickets Totales</h4> </div>
+            <div class="card-body">
+                <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $ticket}} </i> </div>
+            </div>
+            <!--<a href="{{url('users/grafic')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
+        </div>
+       
+        <div class="card text-center  mb-3 bg-white" >
+          <div class="card-header"><h4>Tickets Asignados </h4> </div>
+          <div class="card-body">
+              <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{$asignado}} </i> </div>
+          </div>
+          <!--<a href=" {{url('users/tickets_sol_toner')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
+        </div>
+      </div>
+     
 <!-- Creacion de graica tickets asignados -->
 
-          <div class="row mb-3 shadow-lg p-3 mb-5 bg-white rounded">
+        <!--  <div class="row mb-3 shadow-lg p-3 mb-5 bg-white rounded">
             
               <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
                 <div class="kt-portlet__body kt-portlet__body--fit kt-portlet__body--unfill">
@@ -18,7 +36,7 @@
               
             </div>
           </div>
-
+        -->
 
 
 <!-- Creacion de graica tickets asignados -->
@@ -66,14 +84,15 @@
                     </tbody>
                     <tfoot>
                       <tr>
-                        <th>N Ticket</th>
-                        <th> Creado </th>
-                        <th> Asunto </th>
-                        <th> Usuario </th>
-                        <th> Area </th>
-                        <th> Status TK</th>
+                        <td></td>
+                        <td></td>
+                        <td><input type="text" class="form-control filtro-por-col" placeholder="Buscar por Titulo" data-column="2"></td>
+                        <td><input type="text" class="form-control filtro-por-col" placeholder="Buscar por Nombre" data-column="3"></td>                     
+                        <td></td>
                       </tr>
+                      
                     </tfoot>
+                    
                 </table>
               <!--end: Datatable -->
              
@@ -126,8 +145,29 @@
                       }
                   };
 
-  $(document).ready(function(){              
-    $('#tablatk').DataTable( {
+ /*
+Filtro por colubnas con nombre
+
+    $('#tablatk thead tr').clone(true).appendTo( '#tablatk thead' );
+    $('#tablatk thead tr:eq(1) th').each( function (i) {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Filtro'+title+'" />' );
+ 
+        $( 'input', this ).on( 'keyup change', function () {
+            if ( table.column(i).search() !== this.value ) {
+                table
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );
+    */
+
+$(document).ready(function(){ 
+  var table = $('#tablatk').DataTable({
+
+     
 
           "lengthChange": true,
           "searching": true,
@@ -171,7 +211,7 @@
                                },
                                 customize:function(doc) {
                                doc.styles.title = {
-                                       color: '#114627',
+                                color: '#114627',
                                        fontSize: '30',
                                        alignment: 'center'
                                    }
@@ -254,8 +294,23 @@
 
                              
 
-    } );
-  } );
+    });
+   // text search
+   $('.filtro-por-col').keyup(function(){
+     table.column($(this).data('column'))
+     .search($(this).val())
+     .draw();
+   });
+
+   //filtro por lista
+   $('.filtro-por-lista').change(function(){
+     table.column($(this).data('column'))
+     .search($(this).val())
+     .draw();
+   });
+
+
+  });
 </script>
 <!-- fin de la datatable-->
 @section('scripts')

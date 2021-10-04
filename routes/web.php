@@ -57,7 +57,7 @@ Route::get('/', function ()  {
                 return redirect('/home');
                 }
 
-        }else{
+          }else{
     return redirect('/login');
     }
     });
@@ -138,20 +138,4 @@ Route::post('/block_screen', function () {
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 
-// controladores dash
-Route::get('/dash','GraficController@index');
-Route::get('/grafic','GraficController@graficas');
-// tikes totales tabla
-Route::get('/dash2','GraficController@tickett');
-//  Tickets asignados
-Route::get('/tks_asignados','GraficController@ticketa');
-//  Tickets Atendidos
-Route::get ('/tks_atendidos','GraficController@tickets_atendidos');
-// Tickets estatus Solicitud de Toner
-Route::get ('/tickets_sol_toner', 'Tks_DT_controlle@tickets_sol_toner');
-// Tickets estatus en espera de Informacion
-Route::get ('/tickets_espera_inf', 'Tks_DT_controlle@tickets_esp_info');
-// ticket Estatus pendiente
-Route::get ('/tickets_pendiente', 'Tks_DT_controlle@tickets_pendiente');
-//Grafica velocimetro prueva 1
-Route::get('/grafvelo','Tks_DT_controlle@velocimetrog');
+

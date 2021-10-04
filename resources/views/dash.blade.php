@@ -24,13 +24,13 @@
     <div  class=" card-deck text-center  col-lg-12 " >
       <div class="card">
         
-          <div class="card-header titulo_card"><h2>Tickets del Año {{$año}}</h2></div>             
+          <div class="card-header titulo_card"><h2>Tickets del Año - {{$año}}</h2></div>             
               <div class="card-body  "> <i class="fa fa-address-card logocard"> {{ $ticket_por_año }} </i> </div>
        
       </div>
       <div class="card">
         
-            <div class="card-header titulo_card"><h2 >Tickets del Mes {{$año}}/{{$mes}}</h2> </div>    
+            <div class="card-header titulo_card"><h2 >Tickets del Mes - {{$mes}}</h2> </div>    
               <div class="card-body"> <i class="fa fa-address-card logocard"> {{ $tickets_por_mes }} </i> </div>
               <!--
               <button type="button" class="btn btn-default dropdown-toggle"
@@ -44,7 +44,7 @@
         </div>
       <div class="card">
         
-          <div class="card-header titulo_card"><h2>Tickets del dia {{$año}}/{{$mes}}/{{$dia}}</h2></div>
+          <div class="card-header titulo_card"><h2>Tickets del dia - {{$dia}}</h2></div>
           <div class="card-body"> <i class="fa fa-address-card logocard"> {{ $tickets_por_dia }} </i> </div>
           <!--
           <button type="button" class="btn btn-default dropdown-toggle"
@@ -68,7 +68,7 @@
     <div  class="row shadow-lg p-3   rounded fondo  fondo1" >
       
           <div class="col-md-12">
-            <div  class="card-header  text-center border-dark  mb-3 h1t  "><h3>Tickets Totales</h3> 
+            <div  class="card-header  text-center border-dark  mb-3  "><h3>Tickets Totales</h3> 
             </div>
             <div  class="inview" id="sales-doughnut-chart-us"></div>		  
           </div>
@@ -196,7 +196,7 @@ window.onload = function (){
                         
 
       									title:{
-      										text: "  Tickets {{$ticket}}  ",
+      										text: "  Tickets Totales {{$ticket}}  ",
                           
       									},
 

@@ -34,10 +34,10 @@ class GraficController extends Controller
       $fecha_añop= $fecha_año-1;
       $fecha_diap= $fecha_dia-1;
 
-      //prueva creacion de funcion de auto update
+      // creacion de funcion de auto update
       $ultimoTK =DB::connection('pgsql2')->table('ticket')->orderBy('create_time','DESC')->first();
       
-      //prueva creacion de funcion de auto update
+      // creacion de funcion de auto update
 
 
       $tickte = DB::connection('pgsql2')->table('ticket')->count();
@@ -222,7 +222,7 @@ class GraficController extends Controller
      };      
  };
 $totalMesJson = json_encode($totalmes); 
-
+$ticket_allJson = json_encode($ticket_all);
 
 
 
@@ -397,10 +397,15 @@ $totalMesJson = json_encode($totalmes);
       $Entramite = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',18)->count();
       $cerradoPT = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',10)->count(); 
       $rticket = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 2)->count();
+     
+      $titulotks =DB::connection('pgsql2')->table('ticket')->select('title')->distinct('title')->get();
 
+      $titulotksJson = json_encode($titulotks);
+      
+      
       // fin nuevos asignados 
-
-
+    
+      
     
       return view('graficas/tickets_asignados')
 
@@ -419,6 +424,7 @@ $totalMesJson = json_encode($totalmes);
         ->with('Entramite',$Entramite)
         ->with('cerradoPT',$cerradoPT)
         ->with('cerradoexitosamente',$rticket)
+        ->with('titulotksJson',$titulotksJson)
       
 
     ;}

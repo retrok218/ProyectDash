@@ -175,7 +175,7 @@ var KTLayout = function() {
 		var scroll;
 		if (KTUtil.attr(menu, 'data-ktmenu-scroll') === '1') {
 			scroll = {
-				rememberPosition: true, // remember position on page reload
+				rememberPosition: false, // remember position on page reload
 				height: function() { // calculate available scrollable area height
 					var height;
 

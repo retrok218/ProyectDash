@@ -1622,7 +1622,7 @@ pre code {
     width: 100%;
     margin-bottom: 1rem;
     color: #131313;
-    background-color: #22ef0938
+    background-color: #75293d43
 }
 
 .table td,
@@ -1633,7 +1633,7 @@ pre code {
 }
 
 .table thead th {
-    background-color:#1a9218b8;
+    background-color:#75293db9;
     vertical-align: bottom;
     border-bottom: 3px solid #000000f5;
     
@@ -4773,7 +4773,8 @@ input[type=submit].btn-block {
     background-color: #e6eae5e6;
     background-clip: border-box;
     border: 1px solid #0f4006;
-    border-radius: .25rem
+    border-radius: .25rem;
+    color: #217205
 }
 
 .card>hr {
@@ -4793,7 +4794,7 @@ input[type=submit].btn-block {
 
 .card-body {
     flex: 1 1 auto;
-    padding: 1.25rem
+    padding: 1rem
 }
 
 .card-title {
@@ -4820,8 +4821,10 @@ input[type=submit].btn-block {
 .card-header {
     padding: .75rem 1.25rem;
     margin-bottom: 0;
-    background-color: #f7f8fa;
-    border-bottom: 1px solid #ebedf2
+    background-color: #75293d;
+    border-bottom: 1px solid #ebedf2;
+    color: white;
+    
 }
 
 .card-header:first-child {
@@ -11632,7 +11635,7 @@ a.text-dark:hover {
 .show>.btn-secondary.dropdown-toggle {
     color: #fff;
     border-color: #144205;
-    background-color: #2d8230;
+    background-color: #75293d;
     
     
 }
@@ -48646,8 +48649,8 @@ body {
 
 .kt-aside-menu .kt-menu__nav>.kt-menu__item>.kt-menu__heading .kt-menu__link-text,
 .kt-aside-menu .kt-menu__nav>.kt-menu__item>.kt-menu__link .kt-menu__link-text {
-    font-weight: 400;
-    font-size: 1.2rem;
+    font-weight: 600;
+    font-size: 19px;
     text-transform: initial
 }
 
@@ -48698,7 +48701,7 @@ body {
 .kt-aside-menu .kt-menu__nav>.kt-menu__item>.kt-menu__heading .kt-menu__ver-arrow,
 .kt-aside-menu .kt-menu__nav>.kt-menu__item>.kt-menu__link .kt-menu__ver-arrow {
     flex: 0 0 20px;
-    font-size: 2rem
+    font-size: 28px
 }
 
 .kt-aside-menu .kt-menu__nav>.kt-menu__item>.kt-menu__heading .kt-menu__ver-arrow:before,
@@ -48840,7 +48843,7 @@ body {
 }
 
 .kt-aside-menu .kt-menu__nav>.kt-menu__section .kt-menu__section-text {
-    font-size: .9rem;
+    font-size: 12px;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: .3px
@@ -49692,26 +49695,26 @@ body {
     display: block;
     width: 10px;
     height: 10px;
-    border-bottom: 2px solid #19f53e;
-    border-right: 2px solid #19f53e;
+    border-bottom: 2px solid #ccb292;
+    border-right: 2px solid #ccb292;
     transform: rotate(45deg);
     margin: -10px;
     animation: animate 2s infinite;
 }
 .arrow span:nth-child(2){
     animation-delay: -0.8s;
-    border-bottom: 2px solid #4ff14a;
-    border-right: 2px solid #4ff14a;
+    border-bottom: 2px solid #75293d;
+    border-right: 2px solid #75293d;
 }
 .arrow span:nth-child(3){
     animation-delay: -0.4s;
-    border-bottom: 2px solid #175a06;
-    border-right: 2px solid #175a06;
+    border-bottom: 2px solid #75293d;
+    border-right: 2px solid #75293d;
 }
 .arrow span:nth-child(4){
     animation-delay: -0.2s;
-    border-bottom: 2px solid #175a06;
-    border-right: 2px solid #175a06;
+    border-bottom: 2px solid #ccb292;
+    border-right: 2px solid #ccb292;
 }
 
 @keyframes animate {
@@ -49748,7 +49751,7 @@ body {
 .container {
     position: relative;
     margin: 0px auto;
-    padding: 50px 0;
+    padding: 1px 0;
     clear: both;
 }
 @media only screen and (min-width: 1200px) {
@@ -49807,7 +49810,7 @@ body {
   display: block;
   text-decoration: none;
   padding: 10px 10px;
-  color: rgb(119, 119, 119);
+  color: rgb(202 176 143);
   /*text-align: center;
   border-right: 1px solid #E7E7E7;*/
   
@@ -49881,11 +49884,11 @@ body {
 }
 
 .mcd-menu li:hover > a {
-  color: #2acf14;
+  color:#75293d;
 }
 .mcd-menu li a.active {
   position: relative;
-  color: #2acf14;
+  color: #75293d;
   border:0;
   /*border-top: 4px solid #e67e22;
   border-bottom: 4px solid #e67e22;
@@ -49896,7 +49899,7 @@ body {
   
   /* == */
   border-left: 5px solid #008805f0;
-  border-right: 10px solid #00b056;
+  border-right: 10px solid #75293d;
   margin: 0 -4px;
   background-color: #99ff923b;
   /* == */
@@ -49913,7 +49916,7 @@ body {
   /* == */
   top: 42%;
   left: 0;
-  border-left: 5px solid #027d00;
+  border-left: 5px solid #75293d;
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
   /* == */
@@ -49925,7 +49928,7 @@ body {
   position: absolute;
   top: 42%;
   right: 0;
-  border-right: 5px solid #00b056;
+  border-right: 5px solid #75293d;
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
 }
@@ -50348,4 +50351,7 @@ body {
 
 
 }
+
+
+
 /* fin clase para la nav bar  */ 

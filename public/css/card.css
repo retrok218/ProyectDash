@@ -53,7 +53,7 @@ background: linear-gradient(170deg, #0DA50A 0%, #ADF1AC 80%);
 	font-size: 3em;
 	font-weight: bold;
 	padding: 0;
-	color:rgb(8, 71, 35) ;
+	color:#75293d ;
 	size: 10px;
 	
 }
@@ -70,9 +70,9 @@ background: linear-gradient(170deg, #0DA50A 0%, #ADF1AC 80%);
 
 
 .titulo_card{
-	background: rgb(5, 65, 31);
+	background: #75293d;
 	color: seashell;
-
+S
 }
 
 .h2{
@@ -81,7 +81,7 @@ background: linear-gradient(170deg, #0DA50A 0%, #ADF1AC 80%);
 }
 
 .nav2 {
-  background-color: #0d4108d3;
+  background-color: #75293d;
   color: #fff;
   padding: 1px;
   font-family: tahoma;

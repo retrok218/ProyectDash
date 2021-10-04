@@ -28,7 +28,7 @@ class Tks_DT_controlle extends Controller
     ->join('queue','queue.id','queue_id')
     ->join('ticket_state','ticket_state.id','ticket_state_id')
     ->join('customer_user','ticket.customer_id', 'customer_user.customer_id')
-    ->select('ticket.tn','ticket.create_time','ticket.title','ticket.user_id','queue.name as qname',      'ticket_state.name','customer_user.first_name as nombre','customer_user.last_name as apellido')
+    ->select('ticket.tn','ticket.create_time','ticket.title','ticket.user_id','queue.name as qname','ticket_state.name','customer_user.first_name as nombre','customer_user.last_name as apellido')
     ->get();
 
 
@@ -339,6 +339,7 @@ class Tks_DT_controlle extends Controller
           ->select('ticket.tn','ticket.create_time','ticket.title','ticket.user_id','queue.name as qname','ticket_state.name','customer_user.first_name as nombre','customer_user.last_name as apellido')
           ->get();
           $tickets_registro =DB::connection('pgsql2')->table('ticket') ->get();
+          
           
           $tickte = DB::connection('pgsql2')->table('ticket')->count();
             $asignado =DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 12)->count();
