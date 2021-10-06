@@ -55,8 +55,8 @@
                         <td>{{$tickets_abiertos->nombre .' '. $tickets_abiertos->apellido}}</td>
                         <td>{{$tickets_abiertos->qname}}</td>
                       <!--se cambia tecto de closed successful a Cerrado Exitosamente -->
-                        @if($tickets_abiertos->name == 'closed successful' )
-                        <td>Cerrado Exitosamente</td> 
+                        @if($tickets_abiertos->name == 'open' )
+                        <td>abierto</td> 
                       @else
                       <td>{{$tickets_abiertos->name}}</td>
                       @endif
@@ -99,7 +99,7 @@
                       "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
                       "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
                       "sInfoPostFix":    "",
-                      "sSearch":         "Buscar:",
+                      "sSearch":         "Buscar Ticket:",
                       "sUrl":            "",
                       "sInfoThousands":  ",",
                       "sLoadingRecords": "Cargando...",
@@ -226,10 +226,11 @@
                            'colvis'
                        ]         
                },
-               columnDefs:[{
+              // si se quita el columnDefs aparecen los filtros por pestaña
+               
                         targets: false,
                         visible: false,
-                        initComplete: function () {
+          initComplete: function () {
             this.api().columns().every( function () {
                 var column = this;
                 var select = $('<select><option value=""></option></select>')
@@ -251,7 +252,7 @@
         }
 
 
-                        }]  
+                        
 
                              
 

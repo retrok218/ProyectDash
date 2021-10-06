@@ -620,7 +620,7 @@ var chart = new CanvasJS.Chart("graflineal", {
         }, 
         data : [{
             type : "splineArea",
-            color: "rgba(40,175,101,0.6)",
+            color: "rgb(161 28 74)",
             dataPoints : dataPoints
           }
         ]

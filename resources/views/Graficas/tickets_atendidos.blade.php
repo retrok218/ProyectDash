@@ -82,6 +82,20 @@
                       </tr>
                       @endforeach
                     </tbody>
+                    <tfoot>
+                      
+                      <tr>
+                        
+                        <th>N Ticket</th>
+                        <th> Creado </th>
+                        <th> Asunto </th>
+                        <th> Usuario </th>
+                        <th> Area </th>
+                        <th> Status TK</th>
+                        
+                      </tr>
+                      
+                    </tfoot>
                 </table>
               <!--end: Datatable -->
              
@@ -134,7 +148,7 @@
                   };
 
         $(document).ready(function(){
-         $('#tablatk').DataTable( {
+    var table= $('#tablatk').DataTable( {
            "paging": true,
           "lengthChange": true,
           "searching": true,
@@ -234,12 +248,33 @@
 
 
                },
-               columnDefs:[{
-                        targets: null,
-                        visible: true
-                        }] 
-         } );
+        targets: false,
+        visible: false,
+          initComplete: function () {
+            this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+ 
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+ 
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        }
+ 
+        
+           
         } );
+      } );
 </script>
 @section('scripts')
 <script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>

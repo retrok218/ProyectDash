@@ -59,8 +59,6 @@
                         <th> Usuario </th>
                         <th> Area </th>
                         <th> Status TK</th>
-                        
-
                       </tr>
                     </thead>
                     <tbody>
@@ -83,12 +81,16 @@
                       @endforeach
                     </tbody>
                     <tfoot>
+                      
                       <tr>
+                        
+                        <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="NTicket" data-column="0"></td>
+                        <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="Fecha" data-column="1"></td>
+                        <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="Titulo" data-column="2"></td>
+                        <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="Usuario" data-column="3"></td>                     
+                        <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="Area" data-column="4"></td>
                         <td></td>
-                        <td></td>
-                        <td><input type="text" class="form-control filtro-por-col" placeholder="Buscar por Titulo" data-column="2"></td>
-                        <td><input type="text" class="form-control filtro-por-col" placeholder="Buscar por Nombre" data-column="3"></td>                     
-                        <td></td>
+                        
                       </tr>
                       
                     </tfoot>

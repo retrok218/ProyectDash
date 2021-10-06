@@ -40,7 +40,7 @@ class Tks_DT_controlle extends Controller
     $solicitudToner = DB::connection('pgsql2')-> table('ticket')->where('service_id','=',79)->count();
     $espinformacion = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 15)->count();
 
-    return view('graficas/tickets_Sol_toner')
+    return view('Consumibles/tickets_Sol_toner')
     ->with('tksolicitudToner',$tksolicitudToner)
     ->with('tickets_registro',$tickets_registro)
     ->with('ticket', $tickte)

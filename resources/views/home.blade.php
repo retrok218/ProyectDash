@@ -146,7 +146,7 @@
         });
     </script>
 <!-- fin scrip Spiner  -->
-<!-- scrip para seleccion en el menu lateal-->
+<!-- scrip para seleccion en el menu lateral-->
 <script>
     $(document).ready(function(){
     var URLactual = window.location.pathname; //utilizada para detemrinar que tab del menu activar

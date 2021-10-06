@@ -81,6 +81,20 @@
 
                       </tr>
                       @endforeach
+                      <tfoot>
+                      
+                        <tr>
+                          
+                          <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="NTicket" data-column="0"></td>
+                          <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="Fecha" data-column="1"></td>
+                          <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="Titulo" data-column="2"></td>
+                          <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="Usuario" data-column="3"></td>                     
+                          <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="Area" data-column="4"></td>
+                          <td></td>
+                          
+                        </tr>
+                        
+                      </tfoot>
                     </tbody>
                     
                 </table>
@@ -136,7 +150,7 @@
                   };
 
   $(document).ready(function(){              
-    $('#tablatk').DataTable( {
+   var table= $('#tablatk').DataTable( {
 
           "lengthChange": true,
           "searching": true,
@@ -234,7 +248,7 @@
                            'colvis'
                        ]         
                },
-               columnDefs:[{
+              // columnDefs:[{
                         targets: false,
                         visible: false,
                         initComplete: function () {
@@ -259,11 +273,25 @@
         }
 
 
-                        }]  
+                       // }]  
 
                              
 
     } );
+    // text search
+   $('.filtro-por-col').keyup(function(){
+     table.column($(this).data('column'))
+     .search($(this).val())
+     .draw();
+   });
+
+   //filtro por lista
+   $('.filtro-por-lista').change(function(){
+     table.column($(this).data('column'))
+     .search($(this).val())
+     .draw();
+   });
+// fin de la datatable 
   } );
 </script>
 <!-- fin de la datatable-->
