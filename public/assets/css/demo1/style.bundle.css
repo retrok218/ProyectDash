@@ -4774,7 +4774,7 @@ input[type=submit].btn-block {
     background-clip: border-box;
     border: 1px solid #0f4006;
     border-radius: .25rem;
-    color: #217205
+    color: #000000
 }
 
 .card>hr {
@@ -48650,13 +48650,13 @@ body {
 .kt-aside-menu .kt-menu__nav>.kt-menu__item>.kt-menu__heading .kt-menu__link-text,
 .kt-aside-menu .kt-menu__nav>.kt-menu__item>.kt-menu__link .kt-menu__link-text {
     font-weight: 600;
-    font-size: 19px;
+    font-size: 18px;
     text-transform: initial
 }
 
 .kt-aside-menu .kt-menu__nav>.kt-menu__item>.kt-menu__heading .kt-menu__link-icon,
 .kt-aside-menu .kt-menu__nav>.kt-menu__item>.kt-menu__link .kt-menu__link-icon {
-    flex: 0 0 35px;
+    flex: 0 0 20px;
     font-size: 1.3rem
 }
 
@@ -48858,7 +48858,7 @@ body {
 }
 
 .kt-aside-menu .kt-menu__nav>.kt-menu__item>.kt-menu__link {
-    padding: 9px 25px
+    padding: 2px 2px
 }
 
 .kt-aside-menu .kt-menu__nav>.kt-menu__item>.kt-menu__submenu .kt-menu__subnav .kt-menu__content .kt-menu__heading {
@@ -49901,7 +49901,7 @@ body {
   border-left: 5px solid #008805f0;
   border-right: 10px solid #75293d;
   margin: 0 -4px;
-  background-color: #99ff923b;
+  background-color: #a0214c29;
   /* == */
 }
 .mcd-menu li a.active:before {

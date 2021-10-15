@@ -23,7 +23,7 @@
             <div class="card text-center  mb-3 bg-white" >
               <div class="card-header" ><h4>Tickets Totales</h4> </div>
                 <div class="card-body">
-                    <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $ticket}} </i> </div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fal fa-ticket-alt" style="font-size:36px "> {{ $ticket}} </i>  </div>
                 </div>
                 <!--<a href="{{url('users/grafic')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
             </div>
@@ -104,7 +104,7 @@
 
           </div>
       </div>
-
+</div>
       
 <!--se agrega el includ para creacion de datatable -->
 @include('layouts/scripts/scripts')
@@ -295,81 +295,7 @@
 </script>
 <!-- fin de la datatable-->
 @section('scripts')
-<script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
-<script type="text/javascript">
 
-            window.onload = function (){
-              var dataLength = 0;
-                var data = [];
-                var updateInterval = 500;
-                updateChart();
-                function updateChart() {
-                    $.getJSON("data.php", function (result) {
-                        if (dataLength !== result.length) {
-                            for (var i = dataLength; i < result.length; i++) {
-                                data.push({
-                                    x: parseInt(result[i].valorx),
-                                    y: parseInt(result[i].valory)
-                                });
-                            }
-                            dataLength = result.length;
-                            chart.render();
-                        }
-                    });
-                }
-
-
-              CanvasJS.addCultureInfo("es",
-                {
-                    decimalSeparator: ".",
-                    digitGroupSeparator: ",",
-                    days: ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"],
-                    months:["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Nobiembre","Diciembre",]
-               });
-
-
-
-                      var chart = new CanvasJS.Chart("chartContainerta",{
-                        animationEnabled: true,
-                        animationDuration: 1000,
-                        interactivityEnabled: true,
-                        exportEnabled: true,
-
-                        title:{
-                          text: "Tickets Cerrados Por Tiempo "
-                        },
-
-                        legend:{
-                          horizontalAlign: "right",
-                          verticalAlign: "center"
-                         },
-                        data: [//array of dataSeries
-                          { //dataSeries object
-                           /*** Change type "column" to "bar", "area", "line" or "pie"***/
-                           type: "pie",
-                           showInLegend: true,
-                           legendText: "{label}",
-                           indexLabel: "{label} - #percent%",
-
-                           dataPoints: [
-                           {label: "Tikets Totales " , y: {{$ticket}}-{{$cerradoPT}}  },
-                           {label: "Tickets Cerrador por Tiempo" , y:{{$cerradoPT}} },
-
-
-                           ]
-
-
-                         }
-                         ]
-                       });
-
-                       chart.render();
-                       
-
-
-;}
-
-</script>
 
 
 @endsection

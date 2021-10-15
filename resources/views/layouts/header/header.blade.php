@@ -9,7 +9,7 @@
 
            <div class="kt-aside__brand-logo">
                <a href="{{url('users/dash')}}">
-                   <img alt="Logo" src="{{ URL::asset('assets/media/company-logos/Logo_saf_2.png')}}" width="290"
+                   <img alt="Logo" src="{{ URL::asset('assets/media/company-logos/logotipo_SAF-01.svg')}}" width="350"
                        style="padding-top: 1px">
                </a>
            </div>

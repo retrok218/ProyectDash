@@ -10,7 +10,7 @@
     <meta name="description" content="Updates and statistics">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!--
-    <meta http-equiv="refresh" content="15">
+    <meta http-equiv="refresh" content="30">
     -->
    
 

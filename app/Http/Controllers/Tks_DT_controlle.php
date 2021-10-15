@@ -374,6 +374,35 @@ class Tks_DT_controlle extends Controller
               ->with('cerradoexitosamente',$rticket)  
           ;}
 
+          public function monitoreo_tks (){
+            $tickte = DB::connection('pgsql2')->table('ticket')->count();
+            $asignado =DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 12)->count();
+            $atendido = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 13)->count();
+            $pendienteatc = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',7)->count();
+            $solicitudToner = DB::connection('pgsql2')-> table('ticket')->where('service_id','=',79)->count();
+            $espinformacion = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 15)->count(); 
+            $abierto = DB:: connection('pgsql2')->table('ticket')->where('ticket_state_id','=',4)->count();
+            $cerradosinEX = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',3)->count();
+            $FaltaActaRES = DB:: connection('pgsql2')->table('ticket')->where('ticket_state_id','=',21)->count();
+            $NotificadoAlUsuario = DB:: connection('pgsql2')->table('ticket')->where('ticket_state_id','=',11)->count();
+            $Entramite = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',18)->count();
+            $cerradoPT = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',10)->count(); 
+            $rticket = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 2)->count();
+            return view('graficas/monitoreo_tks')
+            ->with('ticket', $tickte)
+              ->with('asignado',$asignado)
+              ->with('atendido',$atendido)
+              ->with('espinformacion',$espinformacion)
+              ->with('pendienteatc',$pendienteatc)
+              ->with('solicitudroner',$solicitudToner)
+              ->with('abierto',$abierto)
+              ->with('FaltaActaRES',$FaltaActaRES)
+              ->with('cerradosinEX',$cerradosinEX)
+              ->with('NotificadoAlUsuario',$NotificadoAlUsuario)
+              ->with('Entramite',$Entramite)
+              ->with('cerradoPT',$cerradoPT)
+              ->with('cerradoexitosamente',$rticket) 
+          ;}
 
 
 }

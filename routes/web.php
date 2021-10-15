@@ -99,6 +99,8 @@ Route::get('/tickets_cerradosEX','Tks_DT_controlle@tickets_cerrados_exitosamente
 Route::get ('/tickets_cerradosPT','Tks_DT_controlle@tickets_cerradosPT');
 //tickets notificado al ususario
 Route::get('/tickets_notificado_al_Usuario','Tks_DT_controlle@notificadosalusuario');
+//Monitoreo de Tickets por medio de Cards 
+Route::get('/monitoreotks','Tks_DT_controlle@monitoreo_tks');
 
 //Fin Rutas para Gestor de tickets
     

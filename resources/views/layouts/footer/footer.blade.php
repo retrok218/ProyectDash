@@ -7,10 +7,12 @@
                 <a href="javascript:void(0)" class="kt-link">DGTC</a>
             </div>
             <div class="kt-aside__brand-logo kt-hidden-mobile center_img_foot" >
+                <button type="button" class="btn btn-outline-danger" ><a href="javascript:window.print()" >Imprimir</a> </button>
                <a href="{{ url('/dash') }}">
-               <img alt="Logo" src="{{ URL::asset('assets/media/company-logos/Logo_saf_2.svg')}}" class="kt-footer__brand-logo-default" width="320px">
+               <img alt="Logo" src="{{ URL::asset('assets/media/company-logos/logotipo_SAF-01.svg')}}" class="kt-footer__brand-logo-default" width="320px">
                </a>
             </div>
+            
 
          <div class="kt-footer__menu">
              
