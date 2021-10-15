@@ -11,7 +11,15 @@
                     
             </div>
             <div class="card-header text-center">
-                <h3>Monitoreo De Tickets</h3>
+              <div class="phrase">
+                <span class="words">
+                  <i>Mesa de Sercivio</i>
+                  <i> Monitoreo De Tickets</i>
+                  
+
+                </span>
+              </div>
+                
             </div>
           <div class="card-deck mt-3 " >
               
@@ -31,6 +39,9 @@
               <!--<a href="{{url('users/tks_asignados')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>-->
             </div>
       
+            
+          </div>
+          <div class="card-deck mt-3">
             <div class="card text-center  mb-3 bg-white" >
               <div class="card-header"><h4>Tickets Atendidos</h4> </div>
               <div class="card-body">
@@ -38,8 +49,6 @@
               </div>
             <!--  <a href="{{url('users/tks_atendidos')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
             </div>
-          </div>
-          <div class="card-deck mt-3">
             <div class="card text-center  mb-3 bg-white" >
               <div class="card-header"><h4>Tickets Falta de Acta Responsiva</h4> </div>
               <div class="card-body">
@@ -55,6 +64,11 @@
              <!-- <a href=" {{url('users/tickets_pendiente')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
             </div>
             
+              
+          </div>
+      
+          <!--Nuevos Status-->
+          <div class="card-deck mt-3">
             <div class="card text-center  mb-3 bg-white" >
       
               <div class="card-header"><h4>Tickets En Espera de Informaicon</h4> </div>
@@ -62,19 +76,7 @@
                   <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fas fa-ticket-alt" style="font-size:36px "> {{ $espinformacion}} </i> </div>
               </div>
              <!-- <a href="{{url('users/tickets_espera_inf')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
-            </div>    
-          </div>
-      
-          <!--Nuevos Status-->
-          <div class="card-deck mt-3">
-            <div class="card text-center  mb-3 bg-white" >
-              <div class="card-header"><h4>Tickets Cerrados Sin Exito</h4> </div>
-              <div class="card-body">
-                  <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fas fa-ticket-alt" style="font-size:36px "> {{ $cerradosinEX }} </i> </div>
-              </div>
-             <!-- <a href=" {{url('users/tickets_pendiente')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
-      
-            </div>
+            </div>  
             
       
             <div class="card text-center  mb-3 bg-white" >

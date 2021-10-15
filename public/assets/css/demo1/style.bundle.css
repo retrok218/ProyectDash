@@ -50348,8 +50348,49 @@ body {
 		font-size:14px;
 	}
 
+    
 
 
+
+}
+
+.phrase {
+    display: flex;
+    color: #ffffff;
+    font-size: 30px;
+    flex-direction: column;
+}
+.words{
+    overflow: hidden;
+    height: 40px;
+    margin-left: 0.35em;
+
+}
+
+.words i{
+    display: block;
+    font-style: normal;
+    color: #ffffff;
+    font-weight: 600;
+    
+
+    animation: 
+    textRotate
+    20000ms
+    400ms
+    infinite;
+}
+@keyframes textRotate {
+    0%{
+        transform: translateY(0%);
+    }
+    55%{
+        transform: translateY(-110%);
+    }
+    
+
+
+    
 }
 
 

@@ -163,7 +163,7 @@
             <ul class="mcd-menu">
                <li>
                   
-                  <a class=" nav-link tickets_sol_toner" href=" {{url('users/monitoreotks')}}"> <strong>Monitoreo de TIKETS </strong>  (operadores)</a>
+                  <a class=" nav-link monitoreotks" href=" {{url('users/monitoreotks')}}"> <strong>Monitoreo de TIKETS </strong>  (operadores)</a>
                   
                 </li>
             </ul>
