@@ -67,12 +67,12 @@
                     </tbody>
                     <tfoot>
                       <tr>
-                        <th>N Ticket</th>
-                        <th> Creado </th>
-                        <th> Asunto </th>
-                        <th> Usuario </th>
-                        <th> Area </th>
-                        <th> Status TK</th>
+                        <th></th>
+                        <th> </th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                       </tr>
                     </tfoot>
                 </table>
@@ -227,7 +227,7 @@
                        ]         
                },
               // si se quita el columnDefs aparecen los filtros por pestaña
-               
+               /*
                         targets: false,
                         visible: false,
           initComplete: function () {
@@ -250,7 +250,7 @@
                 } );
             } );
         }
-
+*/
 
                         
 

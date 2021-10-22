@@ -376,6 +376,7 @@ $ticket_allJson = json_encode($ticket_all);
 
 // controlador para tickets asignados
   public function ticketa(){
+    $perfil = Auth::user()->hasAnyRole(['SuperAdmin', 'Admin']);
     $tkasignado =DB::connection('pgsql2')->table('ticket')
       ->where('ticket_state_id','=', 12)
       ->join('queue','queue.id','queue_id')
@@ -405,7 +406,7 @@ $ticket_allJson = json_encode($ticket_all);
       
       // fin nuevos asignados 
     
-      
+      if($perfil == true){
     
       return view('graficas/tickets_asignados')
 
@@ -425,7 +426,9 @@ $ticket_allJson = json_encode($ticket_all);
         ->with('cerradoPT',$cerradoPT)
         ->with('cerradoexitosamente',$rticket)
         ->with('titulotksJson',$titulotksJson)
-      
+        ;}else {
+          return view('auth/login');
+        }
 
     ;}
 // Fin Controlador tickets asignados

@@ -1,6 +1,8 @@
 @extends('home')
 @section('content')
 
+<link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.1/css/dataTables.dateTime.min.css">
+
 
     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
 
@@ -49,6 +51,17 @@
             </div>
             <div class="card-body" >
               
+              <table border="0" cellspacing="5" cellpadding="5">
+                <tbody><tr>
+                    <td>Minimum date:</td>
+                    <td><input type="text" id="min" name="min"></td>
+                </tr>
+                <tr>
+                    <td>Maximum date:</td>
+                    <td><input type="text" id="max" name="max"></td>
+                </tr>
+            </tbody></table>
+              
   <!--begin: Datatable -->
                 <table id="tablatk"  class="table table-striped table-bordered "  >
                     <thead >
@@ -80,20 +93,7 @@
                       </tr>
                       @endforeach
                     </tbody>
-                    <tfoot>
-                      
-                      <tr>
-                        
-                        <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="NTicket" data-column="0"></td>
-                        <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="Fecha" data-column="1"></td>
-                        <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="Titulo" data-column="2"></td>
-                        <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="Usuario" data-column="3"></td>                     
-                        <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="Area" data-column="4"></td>
-                        <td></td>
-                        
-                      </tr>
-                      
-                    </tfoot>
+               >
                     
                 </table>
               <!--end: Datatable -->
@@ -107,6 +107,10 @@
       
 <!--se agrega el includ para creacion de datatable -->
 @include('layouts/scripts/scripts')
+@section('scripts')
+<script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script>
 <script>
       var idioma=
 
@@ -146,6 +150,7 @@
                           }
                       }
                   };
+      var minDate, maxDate;
 
  /*
 Filtro por colubnas con nombre
@@ -166,7 +171,33 @@ Filtro por colubnas con nombre
     } );
     */
 
+    $.fn.dataTable.ext.search.push(
+    function( settings, data, dataIndex ) {
+        var min = minDate.val();
+        var max = maxDate.val();
+        var date = new Date( data[1] );
+ 
+        if (
+            ( min === null && max === null ) ||
+            ( min === null && date <= max ) ||
+            ( min <= date   && max === null ) ||
+            ( min <= date   && date <= max )
+        ) {
+            return true;
+        }
+        return false;
+    }
+);
+
 $(document).ready(function(){ 
+  minDate = new DateTime($('#min'), {
+        format: 'MMMM Do YYYY'
+    });
+    maxDate = new DateTime($('#max'), {
+        format: 'MMMM Do YYYY'
+    });
+ 
+    // DataTables initialisation
   var table = $('#tablatk').DataTable({
 
      
@@ -297,6 +328,9 @@ $(document).ready(function(){
                              
 
     });
+    $('#min, #max').on('change', function () {
+        table.draw();
+    });
    // text search
    $('.filtro-por-col').keyup(function(){
      table.column($(this).data('column'))
@@ -315,82 +349,8 @@ $(document).ready(function(){
   });
 </script>
 <!-- fin de la datatable-->
-@section('scripts')
-<script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
-<script type="text/javascript">
-
-            window.onload = function (){
-              var dataLength = 0;
-                var data = [];
-                var updateInterval = 500;
-                updateChart();
-                function updateChart() {
-                    $.getJSON("data.php", function (result) {
-                        if (dataLength !== result.length) {
-                            for (var i = dataLength; i < result.length; i++) {
-                                data.push({
-                                    x: parseInt(result[i].valorx),
-                                    y: parseInt(result[i].valory)
-                                });
-                            }
-                            dataLength = result.length;
-                            chart.render();
-                        }
-                    });
-                }
 
 
-              CanvasJS.addCultureInfo("es",
-                {
-                    decimalSeparator: ".",
-                    digitGroupSeparator: ",",
-                    days: ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"],
-                    months:["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Nobiembre","Diciembre",]
-               });
-
-
-
-                      var chart = new CanvasJS.Chart("chartContainerta",{
-                        animationEnabled: true,
-                        animationDuration: 1000,
-                        interactivityEnabled: true,
-                        exportEnabled: true,
-
-                        title:{
-                          text: "  Tickets Asignados "
-                        },
-
-                        legend:{
-                          horizontalAlign: "right",
-                          verticalAlign: "center"
-                         },
-                        data: [//array of dataSeries
-                          { //dataSeries object
-                           /*** Change type "column" to "bar", "area", "line" or "pie"***/
-                           type: "pie",
-                           showInLegend: true,
-                           legendText: "{label}",
-                           indexLabel: "{label} - #percent%",
-
-                           dataPoints: [
-                           {label: "Tikets Totales " , y: {{$ticket}}-{{$asignado}}  },
-                           {label: "Tickets Asignados" , y:{{$asignado}} },
-
-
-                           ]
-
-
-                         }
-                         ]
-                       });
-
-                       chart.render();
-                       
-
-
-;}
-
-</script>
 
 
 @endsection

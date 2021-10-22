@@ -14,7 +14,7 @@
               <div class="phrase">
                 <span class="words">
                   <i>Mesa de Sercivio</i>
-                  <i> Monitoreo De Tickets</i>
+                  <i> Monitoreo de Tickets</i>
                   
 
                 </span>
