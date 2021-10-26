@@ -82,20 +82,7 @@
                       </tr>
                       @endforeach
                     </tbody>
-                    <tfoot>
-                      
-                      <tr>
-                        
-                        <th>N Ticket</th>
-                        <th> Creado </th>
-                        <th> Asunto </th>
-                        <th> Usuario </th>
-                        <th> Area </th>
-                        <th> Status TK</th>
-                        
-                      </tr>
-                      
-                    </tfoot>
+                    
                 </table>
               <!--end: Datatable -->
              

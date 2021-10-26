@@ -51,13 +51,17 @@
             </div>
             <div class="card-body" >
               
-              <table border="0" cellspacing="5" cellpadding="5">
+              <table  cellspacing="5" cellpadding="5">
+                <td>Filtrar</td>
                 <tbody><tr>
-                    <td>Minimum date:</td>
+                    
+                    <td>De la Fecha :</td>
                     <td><input type="text" id="min" name="min"></td>
+                    <td>a</td>
                 </tr>
+                
                 <tr>
-                    <td>Maximum date:</td>
+                    <td>La Fecha :</td>
                     <td><input type="text" id="max" name="max"></td>
                 </tr>
             </tbody></table>
@@ -93,7 +97,7 @@
                       </tr>
                       @endforeach
                     </tbody>
-               >
+               
                     
                 </table>
               <!--end: Datatable -->
