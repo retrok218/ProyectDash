@@ -1,7 +1,7 @@
 @extends('home')
 @section('content')
 
-<link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.1/css/dataTables.dateTime.min.css">
+
 
 
     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
@@ -52,19 +52,20 @@
             <div class="card-body" >
               
               <table  cellspacing="5" cellpadding="5">
-                <td>Filtrar</td>
-                <tbody><tr>
-                    
-                    <td>De la Fecha :</td>
-                    <td><input type="text" id="min" name="min"></td>
-                    <td>a</td>
-                </tr>
+                <button id="resetFilter">Limpiar Filtrado</button>
                 
-                <tr>
-                    <td>La Fecha :</td>
-                    <td><input type="text" id="max" name="max"></td>
-                </tr>
-            </tbody></table>
+                <tbody>
+                    <tr>
+                        <td> Filtrar de la Fecha :</td>
+                        <td><input type="text" id="min" name="min"> a</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>La Fecha :</td>
+                        <td><input type="text" id="max" name="max"></td>
+                    </tr>
+                </tbody>
+            </table>
               
   <!--begin: Datatable -->
                 <table id="tablatk"  class="table table-striped table-bordered "  >
@@ -204,7 +205,9 @@ $(document).ready(function(){
     // DataTables initialisation
   var table = $('#tablatk').DataTable({
 
-     
+         
+        
+        
 
           "lengthChange": true,
           "searching": true,
@@ -348,9 +351,20 @@ $(document).ready(function(){
      .search($(this).val())
      .draw();
    });
-
-
   });
+
+  $('button#resetFilter').click(function (e) {
+    e.preventDefault();
+    var table = $('#tablatk').DataTable();
+    console.log("reset table");
+    table
+        .search('')
+        .columns().search('')
+        .draw()
+        ;
+
+    $('#gradeFilter').prop("selectedIndex", 0);
+});
 </script>
 <!-- fin de la datatable-->
 

@@ -1,6 +1,6 @@
 @extends('home')
   @section('content')
-    
+  <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.1/css/dataTables.dateTime.min.css">
 
     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
     @include('Graficas/card_estatus_tk')
@@ -14,6 +14,21 @@
           </div>
   <!--begin: Datatable -->
           <div class="card-body">
+            <table  cellspacing="5" cellpadding="5">
+              <td>Filtrar</td>
+              <tbody>
+                  <tr>
+                      <td>De la Fecha :</td>
+                      <td><input type="text" id="min" name="min"></td>
+                      <td>a</td>
+                  </tr>
+                  <tr>
+                      <td>La Fecha :</td>
+                      <td><input type="text" id="max" name="max"></td>
+                  </tr>
+              </tbody>
+          </table>
+
                 <table id="tablatk"  class="table table-striped table-bordered" >
                     <thead>
                       <tr>
@@ -47,19 +62,7 @@
                       </tr>
                       @endforeach
                     </tbody>
-                    <tfoot>
-                      
-                      <tr>
-                        
-                        <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="NTicket" data-column="0"></td>
-                        <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="Fecha" data-column="1"></td>
-                        <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="Titulo" data-column="2"></td>
-                        <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="Usuario" data-column="3"></td>                     
-                        <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="Area" data-column="4"></td>
-                        <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="Area" data-column="5"></td>
-                        
-                      </tr>   
-                    </tfoot>
+                    
                 </table>     
           </div>
     <!--end: Datatable -->
@@ -68,7 +71,11 @@
 
   </div>
 
-  @include('layouts/scripts/scripts')
+@include('layouts/scripts/scripts')
+@section('scripts')
+<script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script>
 
 
   <script> 
@@ -111,12 +118,42 @@
                     }
                 }
             };
+  var minDate, maxDate;
+  $.fn.dataTable.ext.search.push(
+    function( settings, data, dataIndex ) {
+        var min = minDate.val();
+        var max = maxDate.val();
+        var date = new Date( data[1] );
+ 
+        if (
+            ( min === null && max === null ) ||
+            ( min === null && date <= max ) ||
+            ( min <= date   && max === null ) ||
+            ( min <= date   && date <= max )
+        ) {
+            return true;
+        }
+        return false;
+    }
+);
             
 
   $(document).ready(function(){
-  var table = $('#tablatk').DataTable( {
+
+    minDate = new DateTime($('#min'), {
+        format: 'MMMM Do YYYY'
+    });
+    maxDate = new DateTime($('#max'), {
+        format: 'MMMM Do YYYY'
+    });
+
+
+  var table = $('#tablatk').DataTable( 
     
-      
+    
+    {
+     
+         
     "bProcessing": true,
     "lengthChange": true,
     "searching": true,
@@ -210,7 +247,7 @@
                 ]
                     
         },
-        // columnDefs:[{
+         columnDefs:[{
           targets: false,
           visible: false,
         initComplete: function () {
@@ -235,12 +272,16 @@
         }
 
 
-                       // }] 
+                        }] 
         
 
 
 
-  } );
+  });
+
+  $('#min, #max').on('change', function () {
+        table.draw();
+      });
   // text search
   $('.filtro-por-col').keyup(function(){
      table.column($(this).data('column'))
@@ -254,12 +295,10 @@
      .search($(this).val())
      .draw();
    });
-// fin de la datatable 
-  } );
+  });
   </script>
   <!-- fin de Tabla ticket totales  -->
-  @section('scripts')
-  <script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
+  
   @endsection
 @endsection
 

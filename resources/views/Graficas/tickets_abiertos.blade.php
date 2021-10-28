@@ -31,6 +31,22 @@
             <div class="card-header titulo_card"><h4> Tickets Abiertos </h4> </div>
             </div>
             <div class="card-body" >
+
+              <table  cellspacing="5" cellpadding="5">
+                <button id="resetFilter">Limpiar Filtrado</button>
+                
+                <tbody>
+                    <tr>
+                        <td> Filtrar de la Fecha :</td>
+                        <td><input type="text" id="min" name="min"> a</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>La Fecha :</td>
+                        <td><input type="text" id="max" name="max"></td>
+                    </tr>
+                </tbody>
+            </table>
               
   <!--begin: Datatable -->
                 <table id="tablatk"  class="table table-striped table-bordered "  >
@@ -87,6 +103,11 @@
       
 <!--se agrega el includ para creacion de datatable -->
 @include('layouts/scripts/scripts')
+@section('scripts')
+<script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script>
+
 <script>
       var idioma=
 
@@ -126,9 +147,34 @@
                           }
                       }
                   };
+                  var minDate, maxDate;
+                  $.fn.dataTable.ext.search.push(
+    function( settings, data, dataIndex ) {
+        var min = minDate.val();
+        var max = maxDate.val();
+        var date = new Date( data[1] );
+ 
+        if (
+            ( min === null && max === null ) ||
+            ( min === null && date <= max ) ||
+            ( min <= date   && max === null ) ||
+            ( min <= date   && date <= max )
+        ) {
+            return true;
+        }
+        return false;
+    }
+);
 
-  $(document).ready(function(){              
-    $('#tablatk').DataTable( {
+  $(document).ready(function(){ 
+    minDate = new DateTime($('#min'), {
+        format: 'MMMM Do YYYY'
+    });
+    maxDate = new DateTime($('#max'), {
+        format: 'MMMM Do YYYY'
+    });
+
+    var table = $('#tablatk').DataTable({
 
           "lengthChange": true,
           "searching": true,
@@ -226,6 +272,33 @@
                            'colvis'
                        ]         
                },
+               columnDefs:[{
+                        targets: false,
+                        visible: false,
+                        initComplete: function () {
+            this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+ 
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+ 
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        }
+
+
+                        }] 
+               
               // si se quita el columnDefs aparecen los filtros por pestaña
                /*
                         targets: false,
@@ -256,86 +329,50 @@
 
                              
 
-    } );
-  } );
+    });
+    table.fnFilterClear();
+    $('#min, #max').on('change', function () {
+        table.draw();
+    });
+   // text search
+   $('.filtro-por-col').keyup(function(){
+     table.column($(this).data('column'))
+     .search($(this).val())
+     .draw();
+   });
+
+   //filtro por lista
+   $('.filtro-por-lista').change(function(){
+     table.column($(this).data('column'))
+     .search($(this).val())
+     .draw();
+   });
+  });
+
+  $('button#resetFilter').click(function (e) {
+    e.preventDefault();
+    var table = $('#tablatk').DataTable();
+    console.log("Filtro reseteado");
+    
+    
+    table
+        .search('')
+        .columns().search('')
+        .draw() ;
+        
+
+    
+   
+    
+    
+    
+  });
+
+
+ 
 </script>
 <!-- fin de la datatable-->
-@section('scripts')
-<script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
-<script type="text/javascript">
 
-            window.onload = function (){
-              var dataLength = 0;
-                var data = [];
-                var updateInterval = 500;
-                updateChart();
-                function updateChart() {
-                    $.getJSON("data.php", function (result) {
-                        if (dataLength !== result.length) {
-                            for (var i = dataLength; i < result.length; i++) {
-                                data.push({
-                                    x: parseInt(result[i].valorx),
-                                    y: parseInt(result[i].valory)
-                                });
-                            }
-                            dataLength = result.length;
-                            chart.render();
-                        }
-                    });
-                }
-
-
-              CanvasJS.addCultureInfo("es",
-                {
-                    decimalSeparator: ".",
-                    digitGroupSeparator: ",",
-                    days: ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"],
-                    months:["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Nobiembre","Diciembre",]
-               });
-
-
-
-                      var chart = new CanvasJS.Chart("chartContainerta",{
-                        animationEnabled: true,
-                        animationDuration: 1000,
-                        interactivityEnabled: true,
-                        exportEnabled: true,
-
-                        title:{
-                          text: "Tickets Abiertos "
-                        },
-
-                        legend:{
-                          horizontalAlign: "right",
-                          verticalAlign: "center"
-                         },
-                        data: [//array of dataSeries
-                          { //dataSeries object
-                           /*** Change type "column" to "bar", "area", "line" or "pie"***/
-                           type: "pie",
-                           showInLegend: true,
-                           legendText: "{label}",
-                           indexLabel: "{label} - #percent%",
-
-                           dataPoints: [
-                           {label: "Tikets Totales " , y: {{$ticket}}-{{$abierto}}  },
-                           {label: "Tickets Abiertos" , y:{{$abierto}} },
-
-
-                           ]
-
-
-                         }
-                         ]
-                       });
-
-                       chart.render();
-                       
-
-
-;}
-
-</script>
 
 
 @endsection
