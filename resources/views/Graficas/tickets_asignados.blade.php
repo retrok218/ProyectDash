@@ -52,7 +52,7 @@
             <div class="card-body" >
               
               <table  cellspacing="5" cellpadding="5">
-                <button id="resetFilter">Limpiar Filtrado</button>
+                
                 
                 <tbody>
                     <tr>
@@ -79,6 +79,14 @@
                         <th> Status TK</th>
                       </tr>
                     </thead>
+                    <tfoot>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tfoot>
                     <tbody>
                       @foreach($tkasignado as $tkasignado)
                       <tr>
@@ -116,254 +124,35 @@
 <script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script>
+
+
 <script>
-      var idioma=
+$(document).ready(function() {
+  $('#tablatk').DataTable({
+    initComplete: function() {
+      this.api().columns([4]).every(function() {
+        var column = this;
+        //added class "mymsel"
+        var select = $('<select class="mymsel" multiple="multiple"><option value=""></option></select>')
+          .appendTo($(column.footer()).empty())
+          .on('change', function() {
+            var vals = $('option:selected', this).map(function(index, element) {
+              return $.fn.dataTable.util.escapeRegex($(element).val());
+            }).toArray().join('|');
 
-                  {
-                      "sProcessing":     "Procesando...",
-                      "sLengthMenu":     "Mostrar _MENU_ registros",
-                      "sZeroRecords":    "No se encontraron resultados",
-                      "sEmptyTable":     "Ningun dato disponible en esta tabla",
-                      "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                      "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-                      "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                      "sInfoPostFix":    "",
-                      "sSearch":         "Buscar:",
-                      "sUrl":            "",
-                      "sInfoThousands":  ",",
-                      "sLoadingRecords": "Cargando...",
-                      "oPaginate": {
-                          "sFirst":    "Primero",
-                          "sLast":     "Ultimo",
-                          "sNext":     "Siguiente",
-                          "sPrevious": "Anterior"
-                      },
-                      "oAria": {
-                          "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                          "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                      },
-                      "buttons": {
-                          "copyTitle": 'Informacion copiada',
-                          "copyKeys": 'Use your keyboard or menu to select the copy command',
-                          "copySuccess": {
-                              "_": '%d filas copiadas al portapapeles',
-                              "1": '1 fila copiada al portapapeles'
-                          },
-                          "pageLength": {
-                          "_": "Mostrar %d filas",
-                          "-1": "Mostrar Todo"
-                          }
-                      }
-                  };
-      var minDate, maxDate;
+            column
+              .search(vals.length > 0 ? '^(' + vals + ')$' : '', true, false)
+              .draw();
+          });
 
- /*
-Filtro por colubnas con nombre
-
-    $('#tablatk thead tr').clone(true).appendTo( '#tablatk thead' );
-    $('#tablatk thead tr:eq(1) th').each( function (i) {
-        var title = $(this).text();
-        $(this).html( '<input type="text" placeholder="Filtro'+title+'" />' );
- 
-        $( 'input', this ).on( 'keyup change', function () {
-            if ( table.column(i).search() !== this.value ) {
-                table
-                    .column(i)
-                    .search( this.value )
-                    .draw();
-            }
-        } );
-    } );
-    */
-
-    $.fn.dataTable.ext.search.push(
-    function( settings, data, dataIndex ) {
-        var min = minDate.val();
-        var max = maxDate.val();
-        var date = new Date( data[1] );
- 
-        if (
-            ( min === null && max === null ) ||
-            ( min === null && date <= max ) ||
-            ( min <= date   && max === null ) ||
-            ( min <= date   && date <= max )
-        ) {
-            return true;
-        }
-        return false;
+        column.data().unique().sort().each(function(d, j) {
+          select.append('<option value="' + d + '">' + d + '</option>')
+        });
+      });
+      //select2 init for .mymsel class
+      $(".mymsel").select2();
     }
-);
-
-$(document).ready(function(){ 
-  minDate = new DateTime($('#min'), {
-        format: 'MMMM Do YYYY'
-    });
-    maxDate = new DateTime($('#max'), {
-        format: 'MMMM Do YYYY'
-    });
- 
-    // DataTables initialisation
-  var table = $('#tablatk').DataTable({
-
-         
-        
-        
-
-          "lengthChange": true,
-          "searching": true,
-          "ordering": true,
-          "info": true,
-          "autoWidth": true,
-          "language": idioma,
-          "lengthMenu": [[10,20, -1],[10,20,30,"Mostrar Todo"]],
-          "order":[1 ,'desc'],
-          dom: 'Bfrt<"col-md-6 inline"i> <"col-md-6 inline"p>',
-          dom: 'Bfrtip',
-
-
-
-
-          buttons: {
-                dom: {
-                  container:{
-                    tag:'div',
-     
-                  },
-                  buttonLiner: {
-                    tag: null
-                  }
-                },
-
-                
-                buttons: [
-                  
-                           {
-
-                               extend:    'pdfHtml5',
-                               text:      '<i class="fa fa-file-pdf-o"></i>PDF',
-                               title:'Tickets Asignados',
-                               titleAttr: 'PDF',
-                               className: 'btn btn-app export pdf',
-                               orientation: 'landscape',
-                               pageSize: 'TABLOID',
-                               exportOptions: {
-                              columns: ':visible'
-                               },
-                                customize:function(doc) {
-                               doc.styles.title = {
-                                color: '#114627',
-                                       fontSize: '30',
-                                       alignment: 'center'
-                                   }
-                                   doc.styles['td:nth-child(2)'] = {
-                                       width: '100px',
-                                       'max-width': '100px',
-                                        margin: [ 0, 0, 0, 12 ],
-                                   },
-                                   doc.styles.tableHeader = {
-                                       fillColor:'#114627',
-                                       color:'white',
-                                       alignment:'center',
-
-                                   }
-
-
-                                   doc.content[0].margin = [ 0, 0, 0, 12 ]
-
-
-                               }
-                               
-
-                           },
-
-                           {
-                               extend:    'excelHtml5',
-                               text:      '<i class="fa fa-file-excel-o"></i>Excel',
-                               title:'Tickets Asignados',
-                               titleAttr: 'Excel',
-                               className: 'btn btn-app export excel',
-                               exportOptions: {
-                                   columns: ':visible'
-                               },
-                           },
-
-                           {
-                               extend:    'print',
-                               text:      '<i class="fa fa-print"></i>Imprimir',
-                               title:'Tickets Asignados',
-                               titleAttr: 'Imprimir',
-                               className: 'btn btn-app export imprimir',
-                               exportOptions: {
-                                   columns: ':visible'
-                               }
-                           },
-                           {
-                               extend:    'pageLength',
-                               titleAttr: 'Registros a mostrar',
-                               className: 'selectTable'
-                           },
-                           'colvis'
-                       ]         
-               },
-               columnDefs:[{
-                        targets: false,
-                        visible: false,
-                        initComplete: function () {
-            this.api().columns().every( function () {
-                var column = this;
-                var select = $('<select><option value=""></option></select>')
-                    .appendTo( $(column.footer()).empty() )
-                    .on( 'change', function () {
-                        var val = $.fn.dataTable.util.escapeRegex(
-                            $(this).val()
-                        );
- 
-                        column
-                            .search( val ? '^'+val+'$' : '', true, false )
-                            .draw();
-                    } );
- 
-                column.data().unique().sort().each( function ( d, j ) {
-                    select.append( '<option value="'+d+'">'+d+'</option>' )
-                } );
-            } );
-        }
-
-
-                        }]  
-
-                             
-
-    });
-    $('#min, #max').on('change', function () {
-        table.draw();
-    });
-   // text search
-   $('.filtro-por-col').keyup(function(){
-     table.column($(this).data('column'))
-     .search($(this).val())
-     .draw();
-   });
-
-   //filtro por lista
-   $('.filtro-por-lista').change(function(){
-     table.column($(this).data('column'))
-     .search($(this).val())
-     .draw();
-   });
   });
-
-  $('button#resetFilter').click(function (e) {
-    e.preventDefault();
-    var table = $('#tablatk').DataTable();
-    console.log("reset table");
-    table
-        .search('')
-        .columns().search('')
-        .draw()
-        ;
-
-    $('#gradeFilter').prop("selectedIndex", 0);
 });
 </script>
 <!-- fin de la datatable-->

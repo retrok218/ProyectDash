@@ -9,6 +9,7 @@
           <div class="card-header" ><h4>Tickets Totales</h4> </div>
             <div class="card-body">
               
+              
                 <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $ticket}} </i> </div>
               
             </div>
@@ -33,18 +34,17 @@
             <div class="card-body" >
 
               <table  cellspacing="5" cellpadding="5">
-                <button id="resetFilter">Limpiar Filtrado</button>
+               <!-- <button id="resetFilter">Limpiar Filtrado</button>-->
                 
                 <tbody>
                     <tr>
-                        <td> Filtrar de la Fecha :</td>
-                        <td><input type="text" id="min" name="min"> a</td>
+                        <td style="color: rgb(17, 17, 17)"> Filtro por la Fecha:</td>
+                        <td><input type="text" id="min" name="min"></td>
+                        <td style="color: rgb(17, 17, 17)"> a la Fecha :</td>
+                        <td><input type="text" id="max" name="max"></td>
                         
                     </tr>
-                    <tr>
-                        <td>La Fecha :</td>
-                        <td><input type="text" id="max" name="max"></td>
-                    </tr>
+                   
                 </tbody>
             </table>
               
@@ -56,9 +56,8 @@
                         <th> Creado </th>
                         <th> Asunto </th>
                         <th> Usuario </th>
-                        <th> Area </th>
+                        <th> Area/Fila </th>
                         <th> Status TK</th>
-                        
 
                       </tr>
                     </thead>
@@ -87,7 +86,7 @@
                         <th> </th>
                         <th></th>
                         <th></th>
-                        <th></th>
+                        <th>Seleccione el area</th>
                         <th></th>
                       </tr>
                     </tfoot>
@@ -167,6 +166,16 @@
 );
 
   $(document).ready(function(){ 
+ //Filtro de seleccion por colubna   
+    function cbDropdown(column) {
+    return $('<ul>', {
+      'class': 'cb-dropdown'
+    }).appendTo($('<div>', {
+      'class': 'cb-dropdown-wrap'
+    }).appendTo(column));
+  }
+  // fin del filtro por colubna
+
     minDate = new DateTime($('#min'), {
         format: 'MMMM Do YYYY'
     });
@@ -174,7 +183,10 @@
         format: 'MMMM Do YYYY'
     });
 
-    var table = $('#tablatk').DataTable({
+    
+var table = $('#tablatk').DataTable({
+
+        
 
           "lengthChange": true,
           "searching": true,
@@ -261,7 +273,7 @@
                                titleAttr: 'Imprimir',
                                className: 'btn btn-app export imprimir',
                                exportOptions: {
-                                   columns: ':visible'
+                                columns: ':visible'
                                }
                            },
                            {
@@ -272,102 +284,61 @@
                            'colvis'
                        ]         
                },
-               columnDefs:[{
-                        targets: false,
-                        visible: false,
-                        initComplete: function () {
-            this.api().columns().every( function () {
-                var column = this;
-                var select = $('<select><option value=""></option></select>')
-                    .appendTo( $(column.footer()).empty() )
-                    .on( 'change', function () {
-                        var val = $.fn.dataTable.util.escapeRegex(
-                            $(this).val()
-                        );
- 
-                        column
-                            .search( val ? '^'+val+'$' : '', true, false )
-                            .draw();
-                    } );
- 
-                column.data().unique().sort().each( function ( d, j ) {
-                    select.append( '<option value="'+d+'">'+d+'</option>' )
-                } );
-            } );
-        }
+               initComplete: function() {
+      this.api().columns([4]).every(function() {
+        var column = this;
+        var ddmenu = cbDropdown($(column.footer()))
+          .on('change', ':checkbox', function() {
+            var active;
+            var vals = $(':checked', ddmenu).map(function(index, element) {
+              active = true;
+              return $.fn.dataTable.util.escapeRegex($(element).val());
+            }).toArray().join('|');
 
+            column
+              .search(vals.length > 0 ? '^(' + vals + ')$' : '', true, false)
+              .draw();
 
-                        }] 
+            // Highlight the current item if selected.
+            if (this.checked) {
+              $(this).closest('li').addClass('active');
+            } else {
+              $(this).closest('li').removeClass('active');
+             
+            }
+
+            // Highlight the current filter if selected.
+            var active2 = ddmenu.parent().is('.active');
+            if (active && !active2) {
+              ddmenu.parent().addClass('active');
+            } else if (!active && active2) {
+              ddmenu.parent().removeClass('active');
+            }
+          });
+
+        column.data().unique().sort().each(function(d, j) {
+          var // wrapped
+            $label = $('<label>'),
+            $text = $('<span>', {
+              text: d
+            }),
+            $cb = $('<input>', {
+              type: 'checkbox',
+              value: d
+            });
+
+          $text.appendTo($label);
+          $cb.appendTo($label);
+
+          ddmenu.append($('<li>').append($label));
+        });
+      });
+    }
+              
                
-              // si se quita el columnDefs aparecen los filtros por pestaña
-               /*
-                        targets: false,
-                        visible: false,
-          initComplete: function () {
-            this.api().columns().every( function () {
-                var column = this;
-                var select = $('<select><option value=""></option></select>')
-                    .appendTo( $(column.footer()).empty() )
-                    .on( 'change', function () {
-                        var val = $.fn.dataTable.util.escapeRegex(
-                            $(this).val()
-                        );
- 
-                        column
-                            .search( val ? '^'+val+'$' : '', true, false )
-                            .draw();
-                    } );
- 
-                column.data().unique().sort().each( function ( d, j ) {
-                    select.append( '<option value="'+d+'">'+d+'</option>' )
-                } );
-            } );
-        }
-*/
-
-                        
-
-                             
-
+              
     });
-    table.fnFilterClear();
-    $('#min, #max').on('change', function () {
-        table.draw();
-    });
-   // text search
-   $('.filtro-por-col').keyup(function(){
-     table.column($(this).data('column'))
-     .search($(this).val())
-     .draw();
-   });
-
-   //filtro por lista
-   $('.filtro-por-lista').change(function(){
-     table.column($(this).data('column'))
-     .search($(this).val())
-     .draw();
-   });
   });
-
-  $('button#resetFilter').click(function (e) {
-    e.preventDefault();
-    var table = $('#tablatk').DataTable();
-    console.log("Filtro reseteado");
-    
-    
-    table
-        .search('')
-        .columns().search('')
-        .draw() ;
-        
-
-    
-   
-    
-    
-    
-  });
-
 
  
 </script>
