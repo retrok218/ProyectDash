@@ -101,17 +101,17 @@
 }
 
 .dataTables_wrapper .pagination .page-item.active>.page-link {
-    background: #00B056;
+    background: #a73058;
     color: #fff;
 }
 
 .dataTables_wrapper .pagination .page-item:hover>.page-link {
-    background: #00B056;
+    background: #9e1e49;
     color: #fff;
 }
 
 .dataTables_wrapper .pagination .page-item.first>.page-link:hover, .dataTables_wrapper .pagination .page-item.last>.page-link:hover, .dataTables_wrapper .pagination .page-item.next>.page-link:hover, .dataTables_wrapper .pagination .page-item.previous>.page-link:hover {
-    background: #00B056;
+    background: #a94063;
     color: #fff;
 }
 

@@ -3291,7 +3291,7 @@ input[type=submit].btn-block {
     color: #212529;
     text-align: left;
     list-style: none;
-    background-color: #d9f7ca;
+    background-color: #e2d4c3;
     
     background-clip: padding-box;
     border: 1px solid rgba(0, 0, 0, .15);
@@ -3474,14 +3474,14 @@ input[type=submit].btn-block {
 .dropdown-item:hover {
     color: #595d6e;
     text-decoration: none;
-    background-color: #f7f8fa
+    background-color: #c9b08f
 }
 
 .dropdown-item.active,
 .dropdown-item:active {
     color: #fff;
     text-decoration: none;
-    background-color: #113a0c
+    background-color: #8e5263
 }
 
 .dropdown-item.disabled,
@@ -12746,9 +12746,10 @@ a.text-dark:hover {
     border-color: #fd397a
 }
 
+/* Boton de imprecion Color*/
 .btn-outline-danger:hover {
     color: #fff;
-    background-color: #fd397a;
+    background-color: #d1bec7;
     border-color: #fd397a
 }
 
@@ -12767,7 +12768,7 @@ a.text-dark:hover {
 .btn-outline-danger:not(:disabled):not(.disabled):active,
 .show>.btn-outline-danger.dropdown-toggle {
     color: #fff;
-    background-color: #fd397a;
+    background-color: #a73058;
     border-color: #fd397a
 }
 
@@ -14388,7 +14389,7 @@ code {
     min-width: 14rem;
     padding: 0;
     box-shadow: 0 0 50px 0 rgba(82, 63, 105, .15);
-    padding: 1rem 0;
+    padding: 0rem 0;
     border-radius: 4px;
     left: 0
 }
@@ -16218,7 +16219,7 @@ html {
     margin: 0;
     padding: 0;
     font-size: 13px;
-    font-weight: 300;
+    
     font-family: Poppins;
     -ms-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
@@ -16244,7 +16245,7 @@ html button {
 body {
     display: flex;
     flex-direction: column;
-    color: #646c9a
+    color: #000000
 }
 
 router-outlet {

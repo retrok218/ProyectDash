@@ -15,17 +15,15 @@
   <!--begin: Datatable -->
           <div class="card-body">
             <table  cellspacing="5" cellpadding="5">
-              <td>Filtrar</td>
+            
               <tbody>
-                  <tr>
-                      <td>De la Fecha :</td>
-                      <td><input type="text" id="min" name="min"></td>
-                      <td>a</td>
-                  </tr>
-                  <tr>
-                      <td>La Fecha :</td>
-                      <td><input type="text" id="max" name="max"></td>
-                  </tr>
+                <tr>
+                  <td style="color: rgb(17, 17, 17)"> Buscar de la Fecha:</td>
+                  <td><input type="text" id="min" name="min"></td>
+                  <td style="color: rgb(17, 17, 17)"> a la Fecha :</td>
+                  <td><input type="text" id="max" name="max"></td>
+                    
+                </tr>
               </tbody>
           </table>
 
@@ -73,7 +71,6 @@
 
 @include('layouts/scripts/scripts')
 @section('scripts')
-<script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script>
 
@@ -118,8 +115,8 @@
                     }
                 }
             };
-  var minDate, maxDate;
-  $.fn.dataTable.ext.search.push(
+var minDate, maxDate;
+$.fn.dataTable.ext.search.push(
     function( settings, data, dataIndex ) {
         var min = minDate.val();
         var max = maxDate.val();
@@ -138,35 +135,19 @@
 );
             
 
-  $(document).ready(function(){
-
+ $(document).ready(function(){
     minDate = new DateTime($('#min'), {
         format: 'MMMM Do YYYY'
     });
     maxDate = new DateTime($('#max'), {
         format: 'MMMM Do YYYY'
     });
-
-
-  var table = $('#tablatk').DataTable( 
-    
-    
-    {
-     
-         
-    "bProcessing": true,
-    "lengthChange": true,
-    "searching": true,
-    "ordering": true,
-    "info": true,
-    "autoWidth": true,
+var table = $('#tablatk').DataTable({
+  
+    "pageLength": 10,    
     "language": idioma,
-    "lengthMenu": [[10,20,-1],[10,20,20,30,"Mostrar Todo"]],
-
     "order":[1,'desc'],
-    dom: 'Bfrt<"col-md-6 inline"i> <"col-md-6 inline"p>',
-    dom: 'Bfrtip',
-
+    dom: 'Bfrtp',
     buttons: {
           dom: {
             container:{

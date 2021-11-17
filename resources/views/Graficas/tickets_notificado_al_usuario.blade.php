@@ -248,7 +248,7 @@
                            'colvis'
                        ]         
                },
-              // columnDefs:[{
+               columnDefs:[{
                         targets: false,
                         visible: false,
                         initComplete: function () {
@@ -273,7 +273,7 @@
         }
 
 
-                       // }]  
+                       }]  
 
                              
 

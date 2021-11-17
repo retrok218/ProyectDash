@@ -8,7 +8,7 @@
        <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile  kt-header-menu--layout-default ">
 
            <div class="kt-aside__brand-logo">
-               <a href="{{url('users/dash')}}">
+               <a href="{{url('/admin')}}">
                    <img alt="Logo" src="{{ URL::asset('assets/media/company-logos/logotipo_SAF-01.svg')}}" width="350"
                        style="padding-top: 1px">
                </a>

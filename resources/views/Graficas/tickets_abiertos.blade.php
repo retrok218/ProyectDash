@@ -38,10 +38,10 @@
                 
                 <tbody>
                     <tr>
-                        <td style="color: rgb(17, 17, 17)"> Filtro por la Fecha:</td>
-                        <td><input type="text" id="min" name="min"></td>
-                        <td style="color: rgb(17, 17, 17)"> a la Fecha :</td>
-                        <td><input type="text" id="max" name="max"></td>
+                      <td style="color: rgb(17, 17, 17)"> Buscar de la Fecha:</td>
+                      <td><input type="text" id="min" name="min"></td>
+                      <td style="color: rgb(17, 17, 17)"> a la Fecha :</td>
+                      <td><input type="text" id="max" name="max"></td>
                         
                     </tr>
                    
@@ -165,7 +165,7 @@
     }
 );
 
-  $(document).ready(function(){ 
+$(document).ready(function(){ 
  //Filtro de seleccion por colubna   
     function cbDropdown(column) {
     return $('<ul>', {
@@ -184,10 +184,7 @@
     });
 
     
-var table = $('#tablatk').DataTable({
-
-        
-
+var table = $('#tablatk').DataTable({      
           "lengthChange": true,
           "searching": true,
           "ordering": true,
@@ -218,9 +215,10 @@ var table = $('#tablatk').DataTable({
                   
                            {
 
-                               extend:    'pdfHtml5',
-                               text:      '<i class="fa fa-file-pdf-o"></i>PDF',
+                               extend:'pdfHtml5',
+                               text:'<i class="fa fa-file-pdf-o"></i>PDF',
                                title:'Tickets Abiertos ',
+                               titlealignment:'center',
                                titleAttr: 'PDF',
                                className: 'btn btn-app export pdf',
                                orientation: 'landscape',
@@ -230,9 +228,9 @@ var table = $('#tablatk').DataTable({
                                },
                                 customize:function(doc) {
                                doc.styles.title = {
-                                       color: '#114627',
+                                       color: '#75293d',
                                        fontSize: '30',
-                                       alignment: 'center'
+                                       alignment: 'rigt'
                                    }
                                    doc.styles['td:nth-child(2)'] = {
                                        width: '100px',
@@ -240,7 +238,7 @@ var table = $('#tablatk').DataTable({
                                         margin: [ 0, 0, 0, 12 ],
                                    },
                                    doc.styles.tableHeader = {
-                                       fillColor:'#114627',
+                                       fillColor:'#75293d',
                                        color:'white',
                                        alignment:'center',
 
@@ -287,54 +285,26 @@ var table = $('#tablatk').DataTable({
                initComplete: function() {
       this.api().columns([4]).every(function() {
         var column = this;
-        var ddmenu = cbDropdown($(column.footer()))
-          .on('change', ':checkbox', function() {
-            var active;
-            var vals = $(':checked', ddmenu).map(function(index, element) {
-              active = true;
+        //added class "mymsel"
+        var select = $('<select class="mymsel" multiple="multiple"><option value=""></option></select>')
+          .appendTo($(column.footer()).empty())
+          .on('change', function() {
+            var vals = $('option:selected', this).map(function(index, element) {
               return $.fn.dataTable.util.escapeRegex($(element).val());
             }).toArray().join('|');
 
             column
               .search(vals.length > 0 ? '^(' + vals + ')$' : '', true, false)
               .draw();
-
-            // Highlight the current item if selected.
-            if (this.checked) {
-              $(this).closest('li').addClass('active');
-            } else {
-              $(this).closest('li').removeClass('active');
-             
-            }
-
-            // Highlight the current filter if selected.
-            var active2 = ddmenu.parent().is('.active');
-            if (active && !active2) {
-              ddmenu.parent().addClass('active');
-            } else if (!active && active2) {
-              ddmenu.parent().removeClass('active');
-            }
           });
 
         column.data().unique().sort().each(function(d, j) {
-          var // wrapped
-            $label = $('<label>'),
-            $text = $('<span>', {
-              text: d
-            }),
-            $cb = $('<input>', {
-              type: 'checkbox',
-              value: d
-            });
-
-          $text.appendTo($label);
-          $cb.appendTo($label);
-
-          ddmenu.append($('<li>').append($label));
+          select.append('<option value="' + d + '">' + d + '</option>')
         });
       });
+      //select2 init for .mymsel class
+      $(".mymsel").select2();
     }
-              
                
               
     });

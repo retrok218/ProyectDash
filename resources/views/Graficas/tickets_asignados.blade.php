@@ -55,15 +55,13 @@
                 
                 
                 <tbody>
-                    <tr>
-                        <td> Filtrar de la Fecha :</td>
-                        <td><input type="text" id="min" name="min"> a</td>
-                        
-                    </tr>
-                    <tr>
-                        <td>La Fecha :</td>
-                        <td><input type="text" id="max" name="max"></td>
-                    </tr>
+                  <tr>
+                    <td style="color: rgb(17, 17, 17)"> Buscar de la Fecha:</td>
+                    <td><input type="text" id="min" name="min"></td>
+                    <td style="color: rgb(17, 17, 17)"> a la Fecha :</td>
+                    <td><input type="text" id="max" name="max"></td>
+                    
+                </tr>
                 </tbody>
             </table>
               
@@ -75,7 +73,7 @@
                         <th> Creado </th>
                         <th> Asunto </th>
                         <th> Usuario </th>
-                        <th> Area </th>
+                        <th> Area/Fila </th>
                         <th> Status TK</th>
                       </tr>
                     </thead>
@@ -127,33 +125,209 @@
 
 
 <script>
-$(document).ready(function() {
-  $('#tablatk').DataTable({
-    initComplete: function() {
-      this.api().columns([4]).every(function() {
-        var column = this;
-        //added class "mymsel"
-        var select = $('<select class="mymsel" multiple="multiple"><option value=""></option></select>')
-          .appendTo($(column.footer()).empty())
-          .on('change', function() {
-            var vals = $('option:selected', this).map(function(index, element) {
-              return $.fn.dataTable.util.escapeRegex($(element).val());
-            }).toArray().join('|');
+  var idioma=
 
-            column
-              .search(vals.length > 0 ? '^(' + vals + ')$' : '', true, false)
-              .draw();
-          });
+              {
+                  "sProcessing":     "Procesando...",
+                  "sLengthMenu":     "Mostrar _MENU_ registros",
+                  "sZeroRecords":    "No se encontraron resultados",
+                  "sEmptyTable":     "Ningun dato disponible en esta tabla",
+                  "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                  "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                  "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                  "sInfoPostFix":    "",
+                  "sSearch":         "Buscar Ticket:",
+                  "sUrl":            "",
+                  "sInfoThousands":  ",",
+                  "sLoadingRecords": "Cargando...",
+                  "oPaginate": {
+                      "sFirst":    "Primero",
+                      "sLast":     "Ultimo",
+                      "sNext":     "Siguiente",
+                      "sPrevious": "Anterior"
+                  },
+                  "oAria": {
+                      "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                      "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                  },
+                  "buttons": {
+                      "copyTitle": 'Informacion copiada',
+                      
+                      "copySuccess": {
+                          "_": '%d filas copiadas al portapapeles',
+                          "1": '1 fila copiada al portapapeles'
+                      },
+                      "pageLength": {
+                      "_": "Mostrar %d filas",
+                      "-1": "Mostrar Todo"
+                      }
+                  }
+              };
+              var minDate, maxDate;
+              $.fn.dataTable.ext.search.push(
+function( settings, data, dataIndex ) {
+    var min = minDate.val();
+    var max = maxDate.val();
+    var date = new Date( data[1] );
 
-        column.data().unique().sort().each(function(d, j) {
-          select.append('<option value="' + d + '">' + d + '</option>')
-        });
-      });
-      //select2 init for .mymsel class
-      $(".mymsel").select2();
+    if (
+        ( min === null && max === null ) ||
+        ( min === null && date <= max ) ||
+        ( min <= date   && max === null ) ||
+        ( min <= date   && date <= max )
+    ) {
+        return true;
     }
-  });
+    return false;
+}
+);
+
+$(document).ready(function(){ 
+//Filtro de seleccion por colubna   
+function cbDropdown(column) {
+return $('<ul>', {
+  'class': 'cb-dropdown'
+}).appendTo($('<div>', {
+  'class': 'cb-dropdown-wrap'
+}).appendTo(column));
+}
+// fin del filtro por colubna
+
+minDate = new DateTime($('#min'), {
+    format: 'MMMM Do YYYY'
 });
+maxDate = new DateTime($('#max'), {
+    format: 'MMMM Do YYYY'
+});
+
+
+var table = $('#tablatk').DataTable({   
+      "pageLength": 10,   
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": true,
+      "language": idioma,
+      "lengthMenu": [[10,20, -1],[10,20,30,"Mostrar Todo"]],
+      "order":[1 ,'desc'],
+      dom: 'Bfrt<"col-md-6 inline"i> <"col-md-6 inline"p>',
+      dom: 'Bfrtip',
+
+
+
+
+      buttons: {
+            dom: {
+              container:{
+                tag:'div',
+ 
+              },
+              buttonLiner: {
+                tag: null
+              }
+            },
+
+            
+            buttons: [
+              
+                       {
+
+                           extend:    'pdfHtml5',
+                           text:      '<i class="fa fa-file-pdf-o"></i>PDF',
+                           title:'Tickets Asignados ',
+                           titleAttr: 'PDF',
+                           className: 'btn btn-app export pdf',
+                           orientation: 'landscape',
+                           pageSize: 'TABLOID',
+                           exportOptions: {
+                          columns: ':visible'
+                           },
+                            customize:function(doc) {
+                           doc.styles.title = {
+                                   color: '#114627',
+                                   fontSize: '30',
+                                   alignment: 'center'
+                               }
+                               doc.styles['td:nth-child(2)'] = {
+                                   width: '100px',
+                                   'max-width': '100px',
+                                    margin: [ 0, 0, 0, 12 ],
+                               },
+                               doc.styles.tableHeader = {
+                                   fillColor:'#114627',
+                                   color:'white',
+                                   alignment:'center',
+
+                               }
+
+
+                               doc.content[0].margin = [ 0, 0, 0, 12 ]
+
+
+                           }
+                           
+
+                       },
+
+                       {
+                           extend:    'excelHtml5',
+                           text:      '<i class="fa fa-file-excel-o"></i>Excel',
+                           title:'Tickets Asignados',
+                           titleAttr: 'Excel',
+                           className: 'btn btn-app export excel',
+                           exportOptions: {
+                               columns: ':visible'
+                           },
+                       },
+
+                       {
+                           extend:    'print',
+                           text:      '<i class="fa fa-print"></i>Imprimir',
+                           title:'Tickets Asignados',
+                           titleAttr: 'Imprimir',
+                           className: 'btn btn-app export imprimir',
+                           exportOptions: {
+                            columns: ':visible'
+                           }
+                       },
+                       {
+                           extend:    'pageLength',
+                           titleAttr: 'Registros a mostrar',
+                           className: 'selectTable'
+                       },
+                       'colvis'
+                   ]         
+           },
+           initComplete: function() {
+  this.api().columns([4]).every(function() {
+    var column = this;
+    //added class "mymsel"
+    var select = $('<select class="mymsel" multiple="multiple"><option value=""></option></select>')
+      .appendTo($(column.footer()).empty())
+      .on('change', function() {
+        var vals = $('option:selected', this).map(function(index, element) {
+          return $.fn.dataTable.util.escapeRegex($(element).val());
+        }).toArray().join('|');
+
+        column
+          .search(vals.length > 0 ? '^(' + vals + ')$' : '', true, false)
+          .draw();
+      });
+
+    column.data().unique().sort().each(function(d, j) {
+      select.append('<option value="' + d + '">' + d + '</option>')
+    });
+  });
+  //select2 init for .mymsel class
+  $(".mymsel").select2();
+}
+           
+          
+});
+});
+
+
 </script>
 <!-- fin de la datatable-->
 

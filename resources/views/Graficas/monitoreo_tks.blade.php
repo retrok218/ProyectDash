@@ -6,8 +6,8 @@
 
         <!--Carts de estatus de tks -->
         <div class="col-xl-12 ">
-            <div class="container" style="border: 1px">   
-                    <img src="{{ URL::asset('assets/media/company-logos/logotipo_SAF-01.svg'.env('APP_LOGO_ASIDE') ) }}" alt="Logo" width="500px" height="90">
+            <div class="card" style="border: 1px; background: white;">   
+                    <img src="{{ URL::asset('assets/media/company-logos/logotipo_SAF-01.svg'.env('APP_LOGO_ASIDE') ) }}" alt="Logo" width="850px" height="90" background="white">
                     
             </div>
             <div class="card-header text-center">
