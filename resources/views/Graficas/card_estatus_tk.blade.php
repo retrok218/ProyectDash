@@ -46,7 +46,7 @@
       
       <div class="card text-center  mb-3 bg-white" >
 
-        <div class="card-header"><h4>Tickets En Espera de Informaicon</h4> </div>
+        <div class="card-header"><h4>Tickets En Espera de Informción</h4> </div>
         <div class="card-body">
             <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $espinformacion}} </i> </div>
         </div>
