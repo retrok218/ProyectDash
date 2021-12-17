@@ -45,6 +45,9 @@ Route::post('/passForgot', 'Auth\ForgotPasswordController@validateEmail')->name(
 Route::post('/passUpdate', 'Auth\ForgotPasswordController@updatePass')->name('updatePass');
 Route::get('/forgot/verify/{id}', 'Auth\ForgotPasswordController@validateTokenPassReset')->name('forgotPassW');
 Route::get('/passModal', 'Auth\ForgotPasswordController@');
+//Ruta prueba para la solicitud de toners
+Route::get('/tkt_pru_toner','Tks_DT_controlle@pr_sol_toner');
+
 
 
 
@@ -101,6 +104,7 @@ Route::get ('/tickets_cerradosPT','Tks_DT_controlle@tickets_cerradosPT');
 Route::get('/tickets_notificado_al_Usuario','Tks_DT_controlle@notificadosalusuario');
 //Monitoreo de Tickets por medio de Cards 
 Route::get('/monitoreotks','Tks_DT_controlle@monitoreo_tks');
+
 
 //Fin Rutas para Gestor de tickets
     

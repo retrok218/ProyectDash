@@ -140,13 +140,7 @@
     <!-- end:: Page -->
 
 
-<!-- scrip Spiner  -->
-    <script>
-        window.addEventListener('load',function(){
-        document.querySelector('body').classList.add("loaded") 
-        });
-    </script>
-<!-- fin scrip Spiner  -->
+
 <!-- scrip para seleccion en el menu lateral-->
 <script>
     $(document).ready(function(){
@@ -163,7 +157,13 @@
 
 </script>
 <!--Fin scrip para seleccion en el menu lateal-->
-
+<!-- scrip Spiner  -->
+<script>
+        window.addEventListener('load',function(){
+        document.querySelector('body').classList.add("loaded") 
+        });
+</script>
+<!-- fin scrip Spiner  -->
 
 
  @yield('scripts')

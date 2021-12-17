@@ -25,13 +25,12 @@ class Tks_DT_controlle extends Controller
   {
     $tksolicitudToner =DB::connection('pgsql2')->table('ticket')
     ->where('service_id','=', 79)
+    ->orwhere('service_id','=',78 )
     ->join('queue','queue.id','queue_id')
     ->join('ticket_state','ticket_state.id','ticket_state_id')
     ->join('customer_user','ticket.customer_id', 'customer_user.customer_id')
     ->select('ticket.tn','ticket.create_time','ticket.title','ticket.user_id','queue.name as qname','ticket_state.name','customer_user.first_name as nombre','customer_user.last_name as apellido')
     ->get();
-
-
     $tickets_registro =DB::connection('pgsql2')->table('ticket') ->get();
     $tickte = DB::connection('pgsql2')->table('ticket')->count();
     $asignado =DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 12)->count();
@@ -39,6 +38,8 @@ class Tks_DT_controlle extends Controller
     $pendienteatc = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',7)->count();
     $solicitudToner = DB::connection('pgsql2')-> table('ticket')->where('service_id','=',79)->count();
     $espinformacion = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 15)->count();
+    //$dependecia = DB:: conection('psql2')->table(); *** Creando
+    //$consumible = DB::conection('psql2')->table();  *** Creando 
 
     return view('Consumibles/tickets_Sol_toner')
     ->with('tksolicitudToner',$tksolicitudToner)
@@ -47,13 +48,44 @@ class Tks_DT_controlle extends Controller
     ->with('asignado',$asignado)
     ->with('atendido',$atendido)
     ->with('espinformacion',$espinformacion)
-
     ->with('pendienteatc',$pendienteatc)
     ->with('solicitudroner',$solicitudToner)
 
   ;}
 
+  public function pr_sol_toner(){
+    $perfil = Auth::user()->hasAnyRole(['SuperAdmin', 'Admin']);
 
+
+      $tk_id = DB::connection('pgsql2')
+        ->table('ticket_history')
+        ->where('history_type_id', '=', 28)
+        ->where('state_id','=', 13 )
+        ->where('name','LIKE','%Value%%Toner%')
+        ->orwhere('name','LIKE','%ITSMReviewRequired64%')
+        ->orwhere('name','LIKE','%ITSMReviewRequired65%')
+        ->orwhere('name','LIKE','%ITSMReviewRequired7%')
+        ->orderBy('ticket_id','DESC')
+        ->join('ticket','ticket_history.ticket_id','ticket.id')
+        //->SELECT('ticket_id','ARRAY_AGG (name)' )
+
+        //->select('ticket.tn as tktnumetoor','ticket_history.name', 'ticket_history.ticket_id','ticket_history.create_time')
+        ->get();
+
+//----------------------------------------------------------------------------------------------------
+    //dd($perfil);
+  if($perfil === true){
+
+    return view('Consumibles/pr_solToner')
+    ->with('tk_id',$tk_id );
+  } else {
+    return view('auth/login');
+    }
+  ;}
+
+
+
+  //SELECT * FROM "public"."ticket_history" WHERE "public"."ticket_history"."name" LIKE '%toner%'
   public function tickets_esp_info(){
     $tickets_esp_info =DB::connection('pgsql2')->table('ticket')
     ->where('ticket_state_id','=', 15)

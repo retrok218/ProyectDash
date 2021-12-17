@@ -13,7 +13,7 @@
             <div class="card-header text-center">
               <div class="phrase">
                 <span class="words">
-                  <i>Mesa de Sercivio</i>
+                  <i>Mesa de Servicio</i>
                   <i> Monitoreo de Tickets</i>
                   
 
@@ -71,7 +71,7 @@
           <div class="card-deck mt-3">
             <div class="card text-center  mb-3 bg-white" >
       
-              <div class="card-header"><h4>Tickets En Espera de Informaicon</h4> </div>
+              <div class="card-header"><h4>Tickets En Espera de Información</h4> </div>
               <div class="card-body">
                   <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fas fa-ticket-alt" style="font-size:36px "> {{ $espinformacion}} </i> </div>
               </div>
