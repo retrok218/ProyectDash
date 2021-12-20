@@ -83,7 +83,7 @@
                 </li>
                 <hr size="2px"  noshade="noshade"  />
                 <li>
-                  <a  class=" nav-link tickets_espera_inf" href="{{url('users/tickets_espera_inf')}}" > <strong>Tickets Espera de Informaicon </strong> </a>
+                  <a  class=" nav-link tickets_espera_inf" href="{{url('users/tickets_espera_inf')}}" > <strong>Tickets Espera de Información</strong> </a>
                 </li>
                 <hr size="2px"  noshade="noshade"  />
                 <li>

@@ -20,7 +20,7 @@
            @php
             function eliminasimbolos($texto){
                             $ttkt_a_eliminar= "";
-                            $eliminados = preg_replace('/[@\%\#\&\$\" "]+/',' ',$texto);
+                            $eliminados = preg_replace('/[@\%\#\&\$\FieldName ITSMReviewRequired\" "]+/',' ',$texto);
                             return $eliminados;
                         }
            
