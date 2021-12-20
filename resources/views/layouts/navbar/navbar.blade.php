@@ -138,6 +138,15 @@
                               <a class=" nav-link tickets_sol_toner" href=" {{url('users/tickets_sol_toner')}}"> <strong>Tickets Solicitud de Toner</strong> </a>
                               
                             </li>
+                            <li>
+                               <a class=" nav-link tickets_sol_toner" href="#"><strong>Asignados</strong>(Tickets Solicitud de Toner )</a>
+                            </li>
+                            <li>
+                               <a class=" nav-link tickets_sol_toner" href="#"><strong>Cerrados Exitosamente </strong>(Tickets Solicitud de Toner )</a>
+                            </li>
+                            <li>
+                               <a class=" nav-link tickets_sol_toner" href="#"><strong>Notificado al Usuario</strong>(Tickets Solicitud de Toner )</a>
+                            </li>
                         </ul>
                      </div>
 

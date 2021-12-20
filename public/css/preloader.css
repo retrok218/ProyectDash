@@ -173,7 +173,18 @@
   font-size:35px;
   color: #069d44;
 }
-
+.tkts_del_año{
+  font-size: 35px;
+  color: rgba(4, 109, 4, 0.507);
+}
+.tkts_del_mes{
+  font-size:35px;
+  color: #090c5894;
+}
+.tkts_del_dia{
+  font-size: 35px;
+  color: rgba(247, 152, 10, 0.548);
+}
 
 .fondo{
   border:8px solid transparent;
