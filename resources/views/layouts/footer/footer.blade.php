@@ -3,7 +3,7 @@
      <div class="kt-container  kt-container--fluid ">
             <div class="kt-footer__copyright">
 
-                2019&nbsp;©&nbsp;
+                2021&nbsp;©&nbsp;
                 
                 <a href="javascript:void(0)" class="kt-link">DGTC</a>
             </div>
