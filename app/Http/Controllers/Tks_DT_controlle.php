@@ -67,20 +67,35 @@ class Tks_DT_controlle extends Controller
         ->orwhere('name','LIKE','%ITSMReviewRequired7%')
         ->orderBy('ticket_id','DESC')
         ->join('ticket','ticket_history.ticket_id','ticket.id')
-        //->SELECT('ticket_id','ARRAY_AGG (name)' )
-
-        //->select('ticket.tn as tktnumetoor','ticket_history.name', 'ticket_history.ticket_id','ticket_history.create_time')
         ->get();
 
+        //select ingresa codigo sql puro 
+    $ticketfusion =DB::connection('pgsql2')
+    //->select("SELECT * FROM ticket");
+    ->select("SELECT
+    ticket.tn,
+    ARRAY_AGG (
+      name
+    )ticket_compuesto,
+    
+    ticket_history.create_time,
+    ticket_history.change_time
+  FROM 
+    ticket_history INNER JOIN ticket ON ticket.id = ticket_id
+  WHERE (history_type_id = 28 and state_id= 13 and name LIKE '%Value%%Toner%' and name LIKE '%ITSMReviewRequired64%')	 
+  OR name LIKE '%ITSMReviewRequired65%%Value%'
+  OR name LIKE '%ITSMReviewRequired64%%Value%'
+  OR name LIKE '%ITSMReviewRequired7%%Value%'
+  GROUP BY 
+    ticket_id,
+    ticket.tn,
+    ticket_history.create_time,
+    ticket_history.change_time
+  ORDER BY ticket.tn DESC");
 //----------------------------------------------------------------------------------------------------
-    //dd($perfil);
-  if($perfil === true){
-
+    //dd($ticketfusion);
     return view('Consumibles/pr_solToner')
-    ->with('tk_id',$tk_id );
-  } else {
-    return view('auth/login');
-    }
+    ->with('tk_id',$ticketfusion );
   ;}
 
 

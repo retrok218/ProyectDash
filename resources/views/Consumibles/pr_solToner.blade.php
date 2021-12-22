@@ -13,14 +13,17 @@
                     
                     <th> Contenido </th>
                     
-                    <th>Fecha de creacion </th>
+                    
                 </tr>
             </thead>
             <tbody>
            @php
             function eliminasimbolos($texto){
                             $ttkt_a_eliminar= "";
-                            $eliminados = preg_replace('/[@\%\#\&\$\FieldName ITSMReviewRequired\" "]+/',' ',$texto);
+                            $eliminados1 = preg_replace('/FieldName/',' ',$texto);
+                            $eliminados2 = preg_replace('/[@\%\#\&\$\{\}\" "]+/',' ',$eliminados1);
+                            $eliminados =  preg_replace('/ITSMReview/',' ',$eliminados2);
+
                             return $eliminados;
                         }
            
@@ -28,17 +31,17 @@
 
                 @foreach($tk_id as $tk_id)
                     @php 
-                        $texto = $tk_id->name ;
+                        $texto = $tk_id->ticket_compuesto ;
                         $modificado = eliminasimbolos($texto);
-                        $num_tkt = $tk_id->ticket_id;
+                        
                         
                         
                     @endphp
                 
                      <tr>
-                        <td>{{$tk_id ->ticket_id }}</td>                          
+                        <td>{{$tk_id ->tn }}</td>                          
                         <td>{{$modificado}}</td>                         
-                        <td>{{$tk_id->create_time}}</td>
+                        
 
                     </tr>  
                     
