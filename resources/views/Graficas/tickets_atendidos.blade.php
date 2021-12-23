@@ -50,7 +50,7 @@
 
             <div class="card-body" >  
               
-            Date: <input id="Date_search" type="text" placeholder="Search by Date" /><br>
+            Filtrar de la Fecha : <input id="Date_search" type="text" placeholder="Escoge las Fechas " /><br>
 
                 <table id="tablatk"  class="table table-striped table-bordered " >
                     <thead >
@@ -97,12 +97,16 @@
       </div>
       @include('layouts/scripts/scripts')
       @section('scripts')
+
       
+
+    <script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     
-      <script>
+<script>
 minDateFilter = "";
 maxDateFilter = "";
 $.fn.dataTableExt.afnFiltering.push(
@@ -126,7 +130,7 @@ $.fn.dataTableExt.afnFiltering.push(
     return true;
   }
 );
-$(document).ready(function() {
+$(document).ready(function(){
   $("#Date_search").val("");
 });
 
@@ -141,10 +145,10 @@ var table = $('#tablatk').DataTable( {
 $("#Date_search").daterangepicker({
   "locale": {
     "format": "YYYY-MM-DD",
-    "separator": " to ",
-    "applyLabel": "Apply",
-    "cancelLabel": "Cancel",
-    "fromLabel": "From",
+    "separator": " a ",
+    "applyLabel": "Filtrar",
+    "cancelLabel": "Cancelar",
+    "fromLabel": "De",
     "toLabel": "To",
     "customRangeLabel": "Custom",
     "weekLabel": "W",

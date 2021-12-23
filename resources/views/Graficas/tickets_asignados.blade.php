@@ -49,21 +49,11 @@
             <div class="card text-center"  >
             <div class="card-header titulo_card"><h4> Tickets Asignados </h4> </div>
             </div>
+            <br>
+            <h5>Filtrar de la Fecha : <input id="Date_search" type="text" placeholder="Escoge las Fechas " /></h5> 
             <div class="card-body" >
               
-              <table  cellspacing="5" cellpadding="5">
-                
-                
-                <tbody>
-                  <tr>
-                    <td style="color: rgb(17, 17, 17)"> Buscar de la Fecha:</td>
-                    <td><input type="text" id="min" name="min"></td>
-                    <td style="color: rgb(17, 17, 17)"> a la Fecha :</td>
-                    <td><input type="text" id="max" name="max"></td>
-                    
-                </tr>
-                </tbody>
-            </table>
+            
               
   <!--begin: Datatable -->
                 <table id="tablatk"  class="table table-striped table-bordered "  >
@@ -122,9 +112,33 @@
 <script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
 
 <script>
+  minDateFilter = "";
+  maxDateFilter = "";
+  $.fn.dataTableExt.afnFiltering.push(
+  function(oSettings, aData, iDataIndex) {
+    if (typeof aData._date == 'undefined') {
+      aData._date = new Date(aData[1]).getTime();
+    }
+
+    if (minDateFilter && !isNaN(minDateFilter)) {
+      if (aData._date < minDateFilter) {
+        return false;
+      }
+    }
+
+    if (maxDateFilter && !isNaN(maxDateFilter)) {
+      if (aData._date > maxDateFilter) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+);
   var idioma=
 
               {
@@ -163,48 +177,11 @@
                       }
                   }
               };
-              var minDate, maxDate;
-              $.fn.dataTable.ext.search.push(
-function( settings, data, dataIndex ) {
-    var min = minDate.val();
-    var max = maxDate.val();
-    var date = new Date( data[1] );
-
-    if (
-        ( min === null && max === null ) ||
-        ( min === null && date <= max ) ||
-        ( min <= date   && max === null ) ||
-        ( min <= date   && date <= max )
-    ) {
-        return true;
-    }
-    return false;
-}
-);
+              
 
 $(document).ready(function(){ 
-
-  
-
-
-
-//Filtro de seleccion por colubna   
-function cbDropdown(column) {
-return $('<ul>', {
-  'class': 'cb-dropdown'
-}).appendTo($('<div>', {
-  'class': 'cb-dropdown-wrap'
-}).appendTo(column));
-}
-// fin del filtro por colubna
-
-minDate = new DateTime($('#min'), {
-    format: 'MMMM Do YYYY'
+  $("#Date_search").val("");
 });
-maxDate = new DateTime($('#max'), {
-    format: 'MMMM Do YYYY'
-});
-
 
 var table = $('#tablatk').DataTable({   
       "pageLength": 10,   
@@ -218,7 +195,11 @@ var table = $('#tablatk').DataTable({
       "order":[1 ,'desc'],
       dom: 'Bfrt<"col-md-6 inline"i> <"col-md-6 inline"p>',
       dom: 'Bfrtip',
-
+      deferRender:    true, 
+      "search": {
+        "regex": true,
+        "caseInsensitive": false,
+      },
 
 
 
@@ -304,7 +285,7 @@ var table = $('#tablatk').DataTable({
                        'colvis'
                    ]         
            },
-// Filtor por seleccion 
+// Filtro por seleccion multiple
 initComplete: function() {            
   this.api().columns([4]).every(function() {
     var column = this;
@@ -330,11 +311,52 @@ initComplete: function() {
   //select2 init for .mymsel class
   $(".mymsel").select2();
 }
+//fin de la seleccion multiple 
            
+
           
 });
+$("#Date_search").daterangepicker({
+  "locale": {
+    "format": "YYYY-MM-DD",
+    "separator": " a ",
+    "applyLabel": "Filtrar",
+    "cancelLabel": "Cancelar",
+    "fromLabel": "De",
+    "toLabel": "To",
+    "customRangeLabel": "Custom",
+    "weekLabel": "W",
+    "daysOfWeek": [
+      "Su",
+      "Mo",
+      "Tu",
+      "We",
+      "Th",
+      "Fr",
+      "Sa"
+    ],
+    "monthNames": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "firstDay": 1
+  },
+  "opens": "center",
+}, function(start, end, label) {
+  maxDateFilter = end;
+  minDateFilter = start;
+  table.draw();  
 });
-
 
 </script>
 <!-- fin de la datatable-->
