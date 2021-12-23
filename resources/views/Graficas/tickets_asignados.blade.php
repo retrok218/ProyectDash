@@ -81,8 +81,8 @@
                         <th></th>
                         <th></th>
                         <th></th>
-                        <th></th>
-                        <th></th>
+                        <th ></th>
+                        <th>Filtro/Filas </th>
                         <th></th>
                     </tfoot>
                     <tbody>
@@ -183,6 +183,11 @@ function( settings, data, dataIndex ) {
 );
 
 $(document).ready(function(){ 
+
+  
+
+
+
 //Filtro de seleccion por colubna   
 function cbDropdown(column) {
 return $('<ul>', {
@@ -299,12 +304,13 @@ var table = $('#tablatk').DataTable({
                        'colvis'
                    ]         
            },
-           initComplete: function() {
+// Filtor por seleccion 
+initComplete: function() {            
   this.api().columns([4]).every(function() {
     var column = this;
     //added class "mymsel"
-    var select = $('<select class="mymsel" multiple="multiple"><option value=""></option></select>')
-      .appendTo($(column.footer()).empty())
+    var select = $('<select class="mymsel" multiple="multiple" ><h3>Filtrar </h3><option value=""></option></select>')
+      .appendTo($(column.footer()))
       .on('change', function() {
         var vals = $('option:selected', this).map(function(index, element) {
           return $.fn.dataTable.util.escapeRegex($(element).val());
@@ -318,6 +324,8 @@ var table = $('#tablatk').DataTable({
     column.data().unique().sort().each(function(d, j) {
       select.append('<option value="' + d + '">' + d + '</option>')
     });
+    var title = $(this).text();
+       
   });
   //select2 init for .mymsel class
   $(".mymsel").select2();

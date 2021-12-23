@@ -2149,7 +2149,7 @@ S2.define('select2/selection/search',[
     } else {
       var minimumWidth = this.$search.val().length + 1;
 
-      width = (minimumWidth * 0.75) + 'em';
+      width = (minimumWidth * 10) + 'em';
     }
 
     this.$search.css('width', width);

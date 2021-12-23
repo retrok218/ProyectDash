@@ -23,8 +23,7 @@
                             $eliminados1 = preg_replace('/FieldName/',' ',$texto);
                             $eliminados2 = preg_replace('/[@\%\#\&\$\{\}\" "]+/',' ',$eliminados1);
                             $eliminados =  preg_replace('/ITSMReview/',' ',$eliminados2);
-
-                            return $eliminados;
+                           return $eliminados;
                         }
            
             @endphp
@@ -41,8 +40,6 @@
                      <tr>
                         <td>{{$tk_id ->tn }}</td>                          
                         <td>{{$modificado}}</td>                         
-                        
-
                     </tr>  
                     
                    
