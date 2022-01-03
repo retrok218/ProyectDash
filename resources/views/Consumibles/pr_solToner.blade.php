@@ -3,7 +3,7 @@
 <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
     <div>
     <h1>Prueva de pagina </h1>
-     <h2>Creacion de prueva tabla con texto </h2>
+     
 
 
         <table id="tablatk"  class="table table-striped table-bordered ">
@@ -101,7 +101,7 @@
            dom: 'Bfrtip',
           "lengthChange": true,
           "searching": true,
-          "ordering": true,
+          "ordering": false,
           "info": true,
           "autoWidth": false,
           "language": idioma,

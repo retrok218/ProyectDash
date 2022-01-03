@@ -25,7 +25,7 @@
       <div class="card">
         
           <div class="card-header titulo_card"><h2>Tickets del Año - {{$año}}</h2></div>             
-              <div class="card-body  "> <i class="fa fa-address-card tkts_del_año "> {{ $ticket_por_año }} </i> </div>
+              <div class="card-body  "> <i class="fa fa-address-card tkts_del_ano "> {{ $ticket_por_año }} </i> </div>
        
       </div>
       <div class="card">
