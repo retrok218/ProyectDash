@@ -50,7 +50,7 @@
             <div class="card-header titulo_card"><h4> Tickets Asignados </h4> </div>
             </div>
             <br>
-            <h5>Filtrar de la Fecha : <input id="Date_search" type="text" placeholder="Escoge la Fecha " /> </h5> 
+            <h5>Filtrar por rango de Fecha : <input id="Date_search" type="text" placeholder="Selecciona el Rango " /> </h5> 
             
 
             <div class="card-body" >

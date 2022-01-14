@@ -73,29 +73,33 @@ class Tks_DT_controlle extends Controller
     $ticketfusion =DB::connection('pgsql2')
     //->select("SELECT * FROM ticket");
     ->select("SELECT
-    ticket.tn,
-    ARRAY_AGG (
-      name
-    )ticket_compuesto,
+    ticket.tn,ticket_history.ticket_id,ticket.title,
     
-    ticket_history.create_time,
-    ticket_history.change_time
+    ARRAY_AGG (
+      ticket_history.name
+    )ticket_compuesto
+    
   FROM 
-    ticket_history INNER JOIN ticket ON ticket.id = ticket_id
-  WHERE (history_type_id = 28 and state_id= 13 and name LIKE '%Value%%Toner%' and name LIKE '%ITSMReviewRequired64%')	 
-  OR name LIKE '%ITSMReviewRequired65%%Value%'
-  OR name LIKE '%ITSMReviewRequired64%%Value%'
-  OR name LIKE '%ITSMReviewRequired7%%Value%'
+    ticket_history INNER JOIN ticket ON ticket_history.ticket_id = ticket.id
+    
+    
+  WHERE (ticket.service_id = 79 or ticket.service_id = 78)
+  and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIKE '%ITSMReviewRequired65%')
+  
+   
   GROUP BY 
     ticket_id,
+    ticket.title,
     ticket.tn,
-    ticket_history.create_time,
-    ticket_history.change_time
+    ticket_history.ticket_id
+    
   ORDER BY ticket.tn DESC");
+
 //----------------------------------------------------------------------------------------------------
     //dd($ticketfusion);
     return view('Consumibles/pr_solToner')
     ->with('tk_id',$ticketfusion );
+  
   ;}
 
 

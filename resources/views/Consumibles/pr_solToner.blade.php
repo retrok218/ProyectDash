@@ -10,41 +10,48 @@
             <thead>
                 <tr>
                     <th> Numero del TKT</th>
-                    
+                    <th>Descripcion de TKT</th>
                     <th> Contenido </th>
+                    
                     
                     
                 </tr>
             </thead>
             <tbody>
            @php
-            function eliminasimbolos($texto){
-                            $ttkt_a_eliminar= "";
+            function eliminasimbolos($texto){                           
                             $eliminados1 = preg_replace('/FieldName/',' ',$texto);
                             $eliminados2 = preg_replace('/[@\%\#\&\$\{\}\" "]+/',' ',$eliminados1);
-                            $eliminados =  preg_replace('/ITSMReview/',' ',$eliminados2);
-                           return $eliminados;
+                            $eliminados  = preg_replace('/ITSMReview/',' ',$eliminados2);
+                            $eliminados3 = preg_replace('/OldValue/',' ',$eliminados);
+                            $eliminados4 = preg_replace('/Value/',' ',$eliminados3);
+                            $cambio1 = preg_replace('/Required7/','Dependencia: ' ,$eliminados4);
+                            $cambio2 = preg_replace('/Required65/','Tipo de Toner: ' ,$cambio1 );
+                            $cambio3 = preg_replace ('/Required64/','Cantidad Solicitada:',$cambio2);
+                            $cambio4 = preg_replace('/a-Vacio/','Sin Datos',$cambio3);
+                            return $cambio4;
                         }
            
             @endphp
 
-                @foreach($tk_id as $tk_id)
+            @foreach($tk_id as $tk_id)
                     @php 
                         $texto = $tk_id->ticket_compuesto ;
                         $modificado = eliminasimbolos($texto);
                         
                         
                         
-                    @endphp
+                    @endphp 
                 
                      <tr>
-                        <td>{{$tk_id ->tn }}</td>                          
+                        <td>{{$tk_id ->tn }}</td> 
+                        <td>{{$tk_id->title}}</td>                         
                         <td>{{$modificado}}</td>                         
                     </tr>  
                     
                    
                    
-                @endforeach
+            @endforeach
                 
             </tbody>
         </table>
