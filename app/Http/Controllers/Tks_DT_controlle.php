@@ -77,28 +77,41 @@ class Tks_DT_controlle extends Controller
     
     ARRAY_AGG (
       ticket_history.name
-    )ticket_compuesto
+    )ticket_compuesto,
+    ticket_state.name,
+    ticket.create_time
     
   FROM 
-    ticket_history INNER JOIN ticket ON ticket_history.ticket_id = ticket.id
+    (ticket_history INNER JOIN ticket ON ticket_history.ticket_id = ticket.id)
+    INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
     
     
-  WHERE (ticket.service_id = 79 or ticket.service_id = 78)
-  and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIKE '%ITSMReviewRequired65%')
+    WHERE (ticket.service_id = 79 or ticket.service_id = 78)
+  and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIKE '%ITSMReviewRequired65%' or ticket_history.name LIKE '%ITSMReviewRequired7%' 
+	  or ticket_history.name LIKE '%ITSMReviewRequired66%' or ticket_history.name LIKE '%ITSMReviewRequired67%' or ticket_history.name LIKE '%ITSMReviewRequired63%'
+		or ticket_history.name LIKE '%ITSMReviewRequired62%'or ticket_history.name LIKE '%ITSMReviewRequired61%'or ticket_history.name LIKE '%ITSMReviewRequired60%'
+	   or ticket_history.name LIKE '%ITSMReviewRequired59%'or ticket_history.name LIKE '%ITSMReviewRequired58%'
+	  )
   
    
   GROUP BY 
     ticket_id,
+    ticket.create_time,
     ticket.title,
     ticket.tn,
-    ticket_history.ticket_id
+    ticket_history.ticket_id,
+    ticket_state.name
     
   ORDER BY ticket.tn DESC");
+  $solicitudToner = DB::connection('pgsql2')-> table('ticket')->where('service_id','=',79)->count();
+  $tickte = DB::connection('pgsql2')->table('ticket')->count();
 
 //----------------------------------------------------------------------------------------------------
     //dd($ticketfusion);
     return view('Consumibles/pr_solToner')
-    ->with('tk_id',$ticketfusion );
+    ->with('tk_id',$ticketfusion )
+    ->with('solicitudToner',$solicitudToner)
+    ->with('ticket',$tickte)
   
   ;}
 

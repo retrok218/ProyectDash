@@ -1,8 +1,27 @@
 @extends('home')
 @section('content')
 <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+<div class="card-deck mt-3">
+        <div class="card text-center  mb-3 bg-white" >
+          <div class="card-header" ><h4>Tickets Totales</h4> </div>
+            <div class="card-body">
+                <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $ticket}} </i> </div>
+            </div>
+            <!--<a href="{{url('users/grafic')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
+        </div>
+       
+        <div class="card text-center  mb-3 bg-white" >
+          <div class="card-header"><h4>Tickets Solicitud de Toner  </h4> </div>
+          <div class="card-body">
+              <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{$solicitudToner}} </i> </div>
+          </div>
+          <!--<a href=" {{url('users/tickets_sol_toner')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
+        </div>
+      </div>
+
     <div>
-    <h1>Prueva de pagina </h1>
+    
      
 
 
@@ -10,8 +29,10 @@
             <thead>
                 <tr>
                     <th> Numero del TKT</th>
+                    <th>Fecha Creacion TK</th>
                     <th>Descripcion de TKT</th>
                     <th> Contenido </th>
+                    <th>Status TKT</th>
                     
                     
                     
@@ -29,6 +50,8 @@
                             $cambio2 = preg_replace('/Required65/','Tipo de Toner: ' ,$cambio1 );
                             $cambio3 = preg_replace ('/Required64/','Cantidad Solicitada:',$cambio2);
                             $cambio4 = preg_replace('/a-Vacio/','Sin Datos',$cambio3);
+                            $cambio3 = preg_replace ('/Required66/','Cantidad Solicitada2:',$cambio2);
+                            $cambio3 = preg_replace ('/Required67/','Tipo de Toner2:',$cambio2);
                             return $cambio4;
                         }
            
@@ -45,8 +68,10 @@
                 
                      <tr>
                         <td>{{$tk_id ->tn }}</td> 
+                        <td>{{$tk_id->create_time}}</td>
                         <td>{{$tk_id->title}}</td>                         
-                        <td>{{$modificado}}</td>                         
+                        <td>{{$modificado}}</td>   
+                        <td>{{$tk_id->name}}</td>                      
                     </tr>  
                     
                    
