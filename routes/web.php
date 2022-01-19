@@ -25,7 +25,7 @@ Route::resource('posts', 'PostController');*/
   {
       Route::group(['middleware' => ['permission:MenuRoles']], function() {
           //Route::get('/listar_roles', 'RoleController@listar_roles');
-           Route::get('/listar_roles', 'AdminController@listar_roles');
+          Route::get('/listar_roles', 'AdminController@listar_roles');
           Route::get('/data_listar_roles', 'AdminController@data_listar_roles');
           Route::get('/roles/{id}/editar_roles_permisos', 'RoleController@editar_roles_permisos');
       });
@@ -105,7 +105,7 @@ Route::get('/tickets_notificado_al_Usuario','Tks_DT_controlle@notificadosalusuar
 //Monitoreo de Tickets por medio de Cards 
 Route::get('/monitoreotks','Tks_DT_controlle@monitoreo_tks');
 //Ruta prueba para la solicitud de toners
-Route::get('/tkt_pru_toner','Tks_DT_controlle@pr_sol_toner');
+Route::get('/tkt_pru_toner','Tks_DT_controlle@pr_sol_toner')->name('solicitudtoner');
 
 
 //Fin Rutas para Gestor de tickets
