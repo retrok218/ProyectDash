@@ -32,10 +32,9 @@
                     <th>Fecha Creacion TK</th>
                     <th>Descripcion de TKT</th>
                     <th>Dependencia</th>
-                    <th>Cantida Solicitada1</th>
-                    <th>Tipo de Toner1 </th>
-                    <th>Cantidad Solicitada2</th>
-                    <th>Tipo de Toner2</th>
+                    <th>Cantidad Solicitada1</th>
+                    <th>Tipo de Toner </th>
+                    
                     
                     
                     
@@ -54,8 +53,8 @@
                             $eliminados3 = preg_replace('/OldValue/',' ',$eliminados);
                             $eliminados4 = preg_replace('/Value/',' ',$eliminados3);
                             $cambio1 = preg_replace('/Required7/','Dependencia: ' ,$eliminados4);
-                            $cambio2 = preg_replace('/Required65/','Tipo de Toner: ' ,$cambio1 );
-                            $cambio3 = preg_replace ('/Required64/','Cantidad Solicitada:',$cambio2);
+                            $cambio2 = preg_replace('/Required65/','Tipo de Toner1: ' ,$cambio1 );
+                            $cambio3 = preg_replace ('/Required64/','Cantidad Solicitada1:',$cambio2);
                             $cambio4 = preg_replace('/a-Vacio/','Sin Datos',$cambio3);
                             $cambio5 = preg_replace ('/Required66/','Cantidad Solicitada2:',$cambio4);
                             $cambio6 = preg_replace ('/Required67/','Tipo de Toner2:',$cambio5);
@@ -76,9 +75,27 @@
                         $modificado = eliminasimbolos($texto);
                        
                         
-                        $esptoner= array_pad(explode(',',$modificado),5,null);
-
-
+                        $esptoner= array_pad(explode(',',$modificado),7,null);
+                        
+                        
+                        foreach($esptoner as $esptoner){
+                            
+                           $primercampo= $esptoner;
+                           if (strncasecmp($esptoner,'  Dependencia:',4) === 0){  
+                               $dependencia = $esptoner;
+                           }
+                           elseif(strncasecmp($esptoner,'  Cantidad Solicitada1:',23)==0){
+                                $cantidad1 = $esptoner;
+                           }
+                           elseif(strncasecmp($esptoner,'  Tipo de Toner1:',16)==0){
+                               $tipodetoner1=$esptoner;
+                           }
+                           
+                            
+      
+                        }
+                        
+                        
                         
                         
                     @endphp 
@@ -89,11 +106,10 @@
                         <td>{{$tk_id ->tn }}</td> 
                         <td>{{$tk_id->create_time}}</td>
                         <td>{{$tk_id->title}}</td>                         
-                        <td>{{$esptoner[0]}}</td>
-                        <td>{{$esptoner[1]}}</td>     
-                        <td>{{$esptoner[2]}}</td>
-                        <td>{{$esptoner[3]}}</td>
-                        <td>{{$esptoner[4]}}</td>
+                        <td>{{$dependencia}}</td>
+                        <td>{{$cantidad1}}</td>
+                        <td>{{$tipodetoner1}}</td>
+                        
                         <td>{{$tk_id->name}}</td>                      
                     </tr>  
                     
