@@ -133,11 +133,7 @@
                      
                      <div class="container">
                         <ul class="mcd-menu">
-                           <li>
-                              
-                              <a class=" nav-link tickets_sol_toner" href=" {{url('users/tickets_sol_toner')}}"> <strong>Tickets Solicitud de Toner</strong> </a>
-                              
-                            </li>
+                           
                             <li>
                                <a class=" nav-link tickets_sol_toner" href="{{url('users/tkt_pru_toner')}}"><strong>Tickets Solicitud De Toner </strong>(Tickets Solicitud de Toner )</a>
                             </li>
