@@ -90,12 +90,12 @@ class Tks_DT_controlle extends Controller
   and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIKE '%ITSMReviewRequired65%' or ticket_history.name LIKE '%ITSMReviewRequired7%' 
 	  or ticket_history.name LIKE '%ITSMReviewRequired66%' or ticket_history.name LIKE '%ITSMReviewRequired67%' or ticket_history.name LIKE '%ITSMReviewRequired63%'
 		or ticket_history.name LIKE '%ITSMReviewRequired62%'or ticket_history.name LIKE '%ITSMReviewRequired61%'or ticket_history.name LIKE '%ITSMReviewRequired60%'
-	   or ticket_history.name LIKE '%ITSMReviewRequired59%'or ticket_history.name LIKE '%ITSMReviewRequired58%'
-	   and ticket_history.name NOT LIKE '%ITSMReviewRequired71%'and ticket_history.name NOT LIKE '%ITSMReviewRequired70%'and ticket_history.name NOT LIKE '%ITSMReviewRequired72%'
+	   or ticket_history.name LIKE '%ITSMReviewRequired59%'or ticket_history.name LIKE '%ITSMReviewRequired58%')
+     
+	   and (ticket_history.name NOT LIKE '%ITSMReviewRequired71%'and ticket_history.name NOT LIKE '%ITSMReviewRequired70%'and ticket_history.name NOT LIKE '%ITSMReviewRequired72%'
 	   and ticket_history.name NOT LIKE '%ITSMReviewRequired73%'and ticket_history.name NOT LIKE '%ITSMReviewRequired74%'and ticket_history.name NOT LIKE '%ITSMReviewRequired75%'
 	   and ticket_history.name NOT LIKE '%ITSMReviewRequired76%'and ticket_history.name NOT LIKE '%ITSMReviewRequired77%'and ticket_history.name NOT LIKE '%ITSMReviewRequired78%'
-	   and ticket_history.name NOT LIKE '%ITSMReviewRequired79%'
-	  )
+	   and ticket_history.name NOT LIKE '%ITSMReviewRequired79%')
   
    
   GROUP BY 
