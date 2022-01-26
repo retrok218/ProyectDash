@@ -35329,7 +35329,8 @@ body.swal2-height-auto {
     width: 100% !important;
     border-collapse: initial !important;
     border-spacing: 0 !important;
-    margin: 1rem 0 !important
+    margin: 1rem 0 !important;
+    font-size: 10px;
 }
 
 .dataTables_wrapper .dataTable td,

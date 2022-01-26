@@ -143,7 +143,8 @@ $.fn.dataTable.ext.search.push(
         format: 'MMMM Do YYYY'
     });
 var table = $('#tablatk').DataTable({
-  
+  "paging": true,
+  "orderClasses": false,
     "pageLength": 10,    
     "language": idioma,
     "order":[1,'desc'],

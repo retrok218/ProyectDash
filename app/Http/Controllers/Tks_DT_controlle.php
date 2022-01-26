@@ -73,7 +73,7 @@ class Tks_DT_controlle extends Controller
     $ticketfusion =DB::connection('pgsql2')
     //->select("SELECT * FROM ticket");
     ->select("SELECT
-    ticket.tn,ticket_history.ticket_id,ticket.title,
+    ticket.tn,ticket_history.ticket_id,ticket.title,queue.name as fila,
     
     ARRAY_AGG (
       ticket_history.name
@@ -84,7 +84,7 @@ class Tks_DT_controlle extends Controller
   FROM 
     (ticket_history INNER JOIN ticket ON ticket_history.ticket_id = ticket.id)
     INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
-    
+	  INNER JOIN queue ON ticket.queue_id = queue.id
     
     WHERE (ticket.service_id = 79 or ticket.service_id = 78)
   and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIKE '%ITSMReviewRequired65%' or ticket_history.name LIKE '%ITSMReviewRequired7%' 
@@ -97,14 +97,14 @@ class Tks_DT_controlle extends Controller
 	   and ticket_history.name NOT LIKE '%ITSMReviewRequired76%'and ticket_history.name NOT LIKE '%ITSMReviewRequired77%'and ticket_history.name NOT LIKE '%ITSMReviewRequired78%'
 	   and ticket_history.name NOT LIKE '%ITSMReviewRequired79%')
   
-   
   GROUP BY 
     ticket_id,
     ticket.create_time,
     ticket.title,
     ticket.tn,
     ticket_history.ticket_id,
-    ticket_state.name
+    ticket_state.name,
+    queue.name
     
   ORDER BY ticket.tn DESC");
   $solicitudToner = DB::connection('pgsql2')-> table('ticket')->where('service_id','=',79)->count();
