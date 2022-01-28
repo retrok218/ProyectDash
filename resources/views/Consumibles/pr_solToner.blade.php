@@ -20,116 +20,132 @@
         </div>
       </div>
 
-    <div>
+      <div>
     
      
 
 
-        <table id="tablatk"  class="table table-striped table-bordered ">
-            <thead>
-                <tr>
-                    <th> Numero del TKT</th>
-                    <th>Fecha Creacion TK</th>
-                    <th>Descripcion de TKT</th>
-                    <th>Fila</th>
-                    <th>Dependencia</th>
-                    
-                    <th>Tipo de Toner </th>
-                    <th>Cantidad</th>
-                    <th>Tipo de Toner2 </th>
-                    <th>Cantidad</th>
-                    
-                    
-                    
-                    
-                    
-                    <th>Status TKT</th>
-                    
-                    
-                    
-                </tr>
-            </thead>
-            <tbody>
-           @php
-           // Funcion que limpia los datos traidos de la db dentro de la variable texto
-            function eliminasimbolos($texto){                           
-                            $eliminados1 = preg_replace('/FieldName/',' ',$texto);
-                            $eliminados2 = preg_replace('/[@\%\#\&\$\{\}\" "]+/',' ',$eliminados1);
-                            $eliminados  = preg_replace('/ITSMReview/',' ',$eliminados2);
-                            $eliminados3 = preg_replace('/OldValue/',' ',$eliminados);
-                            $eliminados4 = preg_replace('/Value/',' ',$eliminados3);
-                            //$cambio1 = preg_replace('/Required7/','Fila: ' ,$eliminados4);
-                            //$cambio2 = preg_replace('/Required65/','Tipo de Toner1: ' ,$eliminados4 );
-                            //$cambio3 = preg_replace ('/Required64/','Cantidad Solicitada1:',$cambio2);
-                            $cambio4 = preg_replace('/a-Vacio/','Sin Datos',$eliminados4);
-                            $cambio5 = preg_replace ('/Required66/','Cantidad Solicitada2:',$cambio4);
-                            $cambio6 = preg_replace ('/Required67/','Tipo de Toner2:',$cambio5);
-                            $cambio7 = preg_replace ('/Required63/','Consumible Entregado:',$cambio6);
-                            $cambio8 = preg_replace ('/Required62/','Cantidad de Consumible:',$cambio7);
-                            $cambio9 = preg_replace ('/Required61/','Consumible Entregado2:',$cambio8);
-                            $cambio10 = preg_replace ('/Required60/','Cantidad de Consumible2:',$cambio9);
-                            return $cambio10;
-                        }
-           
-            @endphp
+    <table id="tablatk"  class="table table-striped table-bordered " style="font-size: 11px;">
+        <thead >
+            <tr>
+                <th>Numero del TKT</th>
+                <th>Fecha Creacion TK</th>
+                <th>Descripcion de TKT</th>
+                <th>Fila</th>
+                <th>Dependencia</th>
+                <th>Tipo de Toner </th>
+                <th>Cantidad</th>
 
-            @foreach($tk_id as $tk_id)
-                    @php 
-                        $texto = $tk_id->ticket_compuesto ;
-                        $modificado = eliminasimbolos($texto);
-                       
-                        
-                        $esptoner= array_pad(explode(',',$modificado),7,null);
-                        
-                        
-                        foreach($esptoner as $esptoner){
-
-                           if(strncasecmp($esptoner,'  Required7',11)===0){
-                            $dependencia=preg_replace('/Required7/',' ' ,$esptoner);
-                           }                          
-                           // Required64 representa la cantidad de toner solicitada de toner 1
-
-                           elseif(strncasecmp($esptoner,'  Required64',12)===0){
-                                $cantidad1 = preg_replace ('/Required64/',' ',$esptoner);
-                           }
-                           elseif(strncasecmp($esptoner,'  Required65:',12)===0){
-                               $tipodetoner1=preg_replace('/Required65/',' ' ,$esptoner);
-                           }
-
-                           elseif(strncasecmp($esptoner,'  Cantidad Solicitada2:',23)==0){
-                                $cantidad2 = $esptoner;
-                           }
-                           elseif(strncasecmp($esptoner,'  Tipo de Toner2:',16)==0){
-                               $tipodetoner2=$esptoner;
-                           }
-                        }    
-                    @endphp 
-
-                    
-                     <tr>
-                     
-                        <td>{{$tk_id ->tn }}</td> 
-                        <td>{{$tk_id->create_time}}</td>
-                        <td>{{$tk_id->title}}</td>                         
-                        <td>{{$dependencia}}</td>
-                        <td>{{$tk_id->fila}}</td>
-                        
-                        <td>{{$tipodetoner1}}</td>
-                        <td>{{$cantidad1}}</td>
-                        <td>{{$tipodetoner2}}</td>
-                        <td>{{$cantidad2}}</td>
-                        
-                        
-                        <td>{{$tk_id->name}}</td>                      
-                    </tr>  
-                    
-                   
-                   
-            @endforeach
+                <th>Tipo de Toner2 </th>
+                <th>Cantidad</th>
+                <th>Cantidad entregada </th>
+                <th>Cometario de Entrega</th>
                 
-            </tbody>
-        </table>
-    </div>
+                                    
+
+                <th>Status TKT</th>      
+            </tr>
+        </thead>
+        <tbody>
+       @php
+       // Funcion que limpia los datos traidos de la db dentro de la variable texto
+        function eliminasimbolos($texto){                           
+                        $eliminados1 = preg_replace('/FieldName/',' ',$texto);
+                        $eliminados2 = preg_replace('/[@\%\#\&\$\{\}\" "]+/',' ',$eliminados1);
+                        $eliminados  = preg_replace('/ITSMReview/',' ',$eliminados2);
+                        $eliminados3 = preg_replace('/OldValue/',' ',$eliminados);
+                        $eliminados4 = preg_replace('/Value/',' ',$eliminados3);
+                        $eliminados5 = preg_replace('/a-Vacio/','Sin Datos',$eliminados4);
+                        return $eliminados5;
+                    }
+        @endphp
+        @foreach($tk_id as $tk_id)
+                @php 
+                    $texto = $tk_id->ticket_compuesto ;
+                    $modificado = eliminasimbolos($texto);
+                  
+                    
+                    $esptoner= array_pad(explode(',',$modificado),7,null);
+                    
+                    
+                    foreach($esptoner as $esptoner){
+
+if(strncasecmp($esptoner,'  Required7',11)===0){
+                        $dependencia=preg_replace('/Required7/',' ' ,$esptoner);
+                       }                          
+// Solicitado cantidad 1
+                       elseif(strncasecmp($esptoner,'  Required64',12)==0){
+                            $cantidad1 = preg_replace ('/Required64/',' ',$esptoner);
+                       }
+//tipo de toner1
+                       elseif(strncasecmp($esptoner,'  Required65',12)==0){
+                           $tipodetoner1= preg_replace('/Required65/',' ' ,$esptoner);
+                       }
+// solicitado cantidad 2                           
+                       elseif(strncasecmp($esptoner,'  Required66',12)==0){
+                            $cantidad2 = preg_replace ('/Required66/',' ',$esptoner);
+                       }
+// tipo de toner 2                           
+                       elseif(strncasecmp($esptoner,'  Required67',12)==0){
+                            $tipotoner2 = preg_replace ('/Required67/','',$esptoner);
+                       }
+
+
+
+// Entregado tipotoner1       
+                       
+                       if(strncasecmp($esptoner,'  Required34',12)===0){
+                            $ttonerentregado = preg_replace ('/Required34/','',$esptoner);
+                       }
+                       elseif($esptoner == null){
+                            $ttonerentregado = "Sin datos";
+                        }
+                       
+
+//Entregado cantidadtoner1                           
+                       if(strncasecmp($esptoner,'  Required35',12)===0){
+                            $cantidadtonerentregado1 = preg_replace ('/Required35/','',$esptoner);
+                       }
+                       elseif($esptoner == null){
+                            $cantidadtonerentregado1 = "Sin datos";
+                        }
+                       
+                       
+                    }    
+                @endphp 
+
+                
+                 <tr>
+                 
+                 <!--cuerpo principal de solicitu de toner -->
+                    <td>{{$tk_id ->tn }}</td> 
+                    <td>{{$tk_id->create_time}}</td>
+                    <td>{{$tk_id->title}}</td>                         
+                    <td>{{$dependencia}}</td>
+                    <td>{{$tk_id->fila}}</td>
+                    <td>{{$tipodetoner1}}</td>
+                    <td>{{$cantidad1}}</td>
+                <!--Campos extra en solicitud de toner  -->      
+                    <td>{{$tipotoner2}}</td>
+                    <td>{{$cantidad2}}</td> 
+                    <td>{{$cantidadtonerentregado1}}</td> 
+                    <td>{{$ttonerentregado}}</td> 
+                    
+                    
+                    
+                    
+                    
+                    <td>{{$tk_id->name}}</td>                      
+                </tr>  
+                
+               
+               
+        @endforeach
+            
+        </tbody>
+    </table>
+</div>
+</div>
 </div>
 
 
@@ -163,6 +179,7 @@
                           "sSortDescending": ": Activar para ordenar la columna de manera descendente"
                       },
                       "buttons": {
+                          "colvis":"Visibilidad de COL",
                           "copyTitle": 'Informacion copiada',
                           "copyKeys": 'Use your keyboard or menu to select the copy command',
                           "copySuccess": {
@@ -173,6 +190,7 @@
                           "_": "Mostrar %d filas",
                           "-1": "Mostrar Todo"
                           }
+                          
                       }
                   };
 
@@ -186,7 +204,7 @@
           "info": true,
           "autoWidth": false,
           "language": idioma,
-          "lengthMenu": [[10,20, -1],[10,20,30,"Mostrar Todo"]],
+          "lengthMenu": [[10,20, -1],[10,20,"Mostrar Todo"]],
 
           "order":[1 ,'desc'],
           dom: 'Bfrt<"col-md-6 inline"i> <"col-md-6 inline"p>',
@@ -263,13 +281,14 @@
                            {
                                extend:    'pageLength',
                                titleAttr: 'Registros a mostrar',
-                               className: 'selectTable'
-                           },
+                               className: 'selectTable'                               
+                            },
                            'colvis'
+                           
                        ]
                },
                columnDefs:[{
-                        targets: null,
+                        targets: [7,8], // null para no ocultar columnas [1,2,3 ... ] cuando se requiera bloquear colmn 
                         visible: false
                         }]  
 
