@@ -206,7 +206,7 @@ class GraficController extends Controller
       // consulta por mes
 // variables para  generar la grafica lineal de  mes año 
   $inicioaño=2019;      
-  $iniciomes = 1;
+  $iniciomes = 0;
   $n=0;
   $totalmes= array ();    
   for ( $iniciomes ; $iniciomes <= 12 ; $iniciomes++) {$totalmes[$n] =DB::connection('pgsql2')->table('ticket')
@@ -221,8 +221,11 @@ class GraficController extends Controller
        }                          
      };      
  };
+
 $totalMesJson = json_encode($totalmes); 
-$ticket_allJson = json_encode($ticket_all);
+
+
+//$ticket_allJson = json_encode($ticket_all);
 
 
 

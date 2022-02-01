@@ -1,5 +1,8 @@
 @extends('home')
 @section('content')
+
+<script src="https://cdn.datatables.net/plug-ins/1.10.19/api/sum().js"></script>
+
 <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
 
 <div class="card-deck mt-3">
@@ -18,12 +21,9 @@
           </div>
           <!--<a href=" {{url('users/tickets_sol_toner')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
         </div>
+        
       </div>
-
       <div>
-    
-     
-
 
     <table id="tablatk"  class="table table-striped table-bordered " style="font-size: 11px;">
         <thead >
@@ -58,25 +58,31 @@
                         $eliminados5 = preg_replace('/a-Vacio/','Sin Datos',$eliminados4);
                         return $eliminados5;
                     }
-        @endphp
-        @foreach($tk_id as $tk_id)
-                @php 
-                    $texto = $tk_id->ticket_compuesto ;
-                    $modificado = eliminasimbolos($texto);
-                  
+                          
+                    $acumuladorsolicitado = 0;
+                    $acumuladorentregado = 0;
                     
+
+        @endphp
+
+@foreach($tk_id as $tk_id)
+    @php 
+                    $texto = $tk_id->ticket_compuesto ;
+                    $modificado = eliminasimbolos($texto);                    
                     $esptoner= array_pad(explode(',',$modificado),7,null);
                     
-                    
-                    foreach($esptoner as $esptoner){
-
-if(strncasecmp($esptoner,'  Required7',11)===0){
+         foreach($esptoner as $esptoner){
+                if(strncasecmp($esptoner,'  Required7',11)===0){
                         $dependencia=preg_replace('/Required7/',' ' ,$esptoner);
                        }                          
 // Solicitado cantidad 1
                        elseif(strncasecmp($esptoner,'  Required64',12)==0){
-                            $cantidad1 = preg_replace ('/Required64/',' ',$esptoner);
-                       }
+                            $cantidad = preg_replace ('/Required64/','',$esptoner);
+                            $cantidad1 =str_replace(' ', '', $cantidad); 
+                            $trnsbar = (int)$cantidad1;
+                           $acumuladorsolicitado += $trnsbar ;
+
+                       }                          
 //tipo de toner1
                        elseif(strncasecmp($esptoner,'  Required65',12)==0){
                            $tipodetoner1= preg_replace('/Required65/',' ' ,$esptoner);
@@ -89,32 +95,31 @@ if(strncasecmp($esptoner,'  Required7',11)===0){
                        elseif(strncasecmp($esptoner,'  Required67',12)==0){
                             $tipotoner2 = preg_replace ('/Required67/','',$esptoner);
                        }
-
-
-
-// Entregado tipotoner1       
-                       
+// Entregado tipotoner1                              
                        if(strncasecmp($esptoner,'  Required34',12)===0){
                             $ttonerentregado = preg_replace ('/Required34/','',$esptoner);
+                            $cantidadentregado1 =str_replace(' ', '', $ttonerentregado); 
+                            $entregadoentero = (int)$cantidadentregado1;
+                            $acumuladorentregado += $entregadoentero ;
+                            
+
                        }
                        elseif($esptoner == null){
                             $ttonerentregado = "Sin datos";
-                        }
-                       
-
+                        }                       
 //Entregado cantidadtoner1                           
                        if(strncasecmp($esptoner,'  Required35',12)===0){
                             $cantidadtonerentregado1 = preg_replace ('/Required35/','',$esptoner);
                        }
                        elseif($esptoner == null){
                             $cantidadtonerentregado1 = "Sin datos";
-                        }
-                       
-                       
+                        }                              
                     }    
-                @endphp 
+                    
 
-                
+    @endphp 
+       
+            
                  <tr>
                  
                  <!--cuerpo principal de solicitu de toner -->
@@ -129,18 +134,20 @@ if(strncasecmp($esptoner,'  Required7',11)===0){
                     <td>{{$tipotoner2}}</td>
                     <td>{{$cantidad2}}</td> 
                     <td>{{$cantidadtonerentregado1}}</td> 
-                    <td>{{$ttonerentregado}}</td> 
-                    
-                    
-                    
-                    
-                    
+                    <td>{{$ttonerentregado}}</td>                                        
                     <td>{{$tk_id->name}}</td>                      
-                </tr>  
-                
-               
-               
+                </tr>                              
         @endforeach
+
+        <div class="card text-center  mb-3 bg-white" >
+          <div class="card-header" ><h4>Toner Solicitados</h4> </div>
+            <div class="card-body">
+                <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{$acumuladorsolicitado}} </i> </div>
+            </div>
+            <!--<a href="{{url('users/grafic')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
+        </div>
+         
+        
             
         </tbody>
     </table>
@@ -151,6 +158,7 @@ if(strncasecmp($esptoner,'  Required7',11)===0){
 
 
 @include('layouts/scripts/scripts')
+
       <script>
 
       var idioma=
@@ -195,7 +203,16 @@ if(strncasecmp($esptoner,'  Required7',11)===0){
                   };
 
         $(document).ready(function(){
-         $('#tablatk').DataTable( {
+       var  table  = $('#tablatk').DataTable( {
+             fooderCallback: function (row,data,start,end,display){
+                
+
+
+             },
+
+
+
+
            "paging": true,
            dom: 'Bfrtip',
           "lengthChange": true,
@@ -290,12 +307,18 @@ if(strncasecmp($esptoner,'  Required7',11)===0){
                columnDefs:[{
                         targets: [7,8], // null para no ocultar columnas [1,2,3 ... ] cuando se requiera bloquear colmn 
                         visible: false
-                        }]  
+                        }] 
+                        
+               
 
 
 
          } );
-        } );
+        }); //fin de la datatable 
+        
+
+
+
 </script>
 @section('scripts')
 <script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
