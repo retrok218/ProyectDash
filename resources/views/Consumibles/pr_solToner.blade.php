@@ -1,10 +1,8 @@
 @extends('home')
 @section('content')
 
-<script src="https://cdn.datatables.net/plug-ins/1.10.19/api/sum().js"></script>
 
 <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
-
 <div class="card-deck mt-3">
         <div class="card text-center  mb-3 bg-white" >
           <div class="card-header" ><h4>Tickets Totales</h4> </div>
@@ -21,11 +19,11 @@
           </div>
           <!--<a href=" {{url('users/tickets_sol_toner')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
         </div>
-        
       </div>
-      <div>
+      <div class="row">
+        <div class="col-lg-12">
 
-    <table id="tablatk"  class="table table-striped table-bordered " style="font-size: 11px;">
+    <table id="tablatk"  class="table table-striped table-bordered " >
         <thead >
             <tr>
                 <th>Numero del TKT</th>
@@ -150,15 +148,31 @@
         
             
         </tbody>
+        <tfoot>
+            <th>filtro</th>
+            <th></th>
+            <th></th>
+            <th>filtro</th>
+            <th >Filtro </th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tfoot>
     </table>
 </div>
 </div>
-</div>
+
 
 
 
 @include('layouts/scripts/scripts')
-
+<script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script>
       <script>
 
       var idioma=
@@ -202,16 +216,44 @@
                       }
                   };
 
+                  var minDate, maxDate;
+                  $.fn.dataTable.ext.search.push(
+    function( settings, data, dataIndex ) {
+        var min = minDate.val();
+        var max = maxDate.val();
+        var date = new Date( data[1] );
+ 
+        if (
+            ( min === null && max === null ) ||
+            ( min === null && date <= max ) ||
+            ( min <= date   && max === null ) ||
+            ( min <= date   && date <= max )
+        ) {
+            return true;
+        }
+        return false;
+    }
+);
+
         $(document).ready(function(){
+            function cbDropdown(column) {
+    return $('<ul>', {
+      'class': 'cb-dropdown'
+    }).appendTo($('<div>', {
+      'class': 'cb-dropdown-wrap'
+    }).appendTo(column));
+  }
+  // fin del filtro por colubna
+
+    minDate = new DateTime($('#min'), {
+        format: 'MMMM Do YYYY'
+    });
+    maxDate = new DateTime($('#max'), {
+        format: 'MMMM Do YYYY'
+    });
+
        var  table  = $('#tablatk').DataTable( {
-             fooderCallback: function (row,data,start,end,display){
-                
-
-
-             },
-
-
-
+             
 
            "paging": true,
            dom: 'Bfrtip',
@@ -225,12 +267,12 @@
 
           "order":[1 ,'desc'],
           dom: 'Bfrt<"col-md-6 inline"i> <"col-md-6 inline"p>',
-
+          dom: 'Bfrtip',
 
           buttons: {
                 dom: {
                   container:{
-                    
+                    tag:'div',
                   },
                   buttonLiner: {
                     tag: null
@@ -307,7 +349,31 @@
                columnDefs:[{
                         targets: [7,8], // null para no ocultar columnas [1,2,3 ... ] cuando se requiera bloquear colmn 
                         visible: false
-                        }] 
+                        }] ,
+               initComplete: function() {
+      this.api().columns([4,5]).every(function() {
+        var column = this;
+        //added class "mymsel"
+        var select = $('<select class="mymsel" multiple="multiple"><option value=""></option></select>')
+          .appendTo($(column.footer()).empty())
+          .on('change', function() {
+            var vals = $('option:selected', this).map(function(index, element) {
+              return $.fn.dataTable.util.escapeRegex($(element).val());
+            }).toArray().join('|');
+
+            column
+              .search(vals.length > 0 ? '^(' + vals + ')$' :'', true, false)
+              .draw();
+          });
+
+        column.data().unique().sort().each(function(d, j) {
+          select.append('<option value="' + d + '">' + d + '</option>')
+        });
+      });
+      //select2 init for .mymsel class
+      $(".mymsel").select2();
+    }
+              
                         
                
 

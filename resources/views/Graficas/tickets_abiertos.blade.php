@@ -4,19 +4,14 @@
 
     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
       <div class="card-deck mt-3">
-        
         <div class="card text-center  mb-3 bg-white" >
           <div class="card-header" ><h4>Tickets Totales</h4> </div>
-            <div class="card-body">
-              
-              
-                <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $ticket}} </i> </div>
-              
+            <div class="card-body">                         
+                <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{ $ticket}} </i> </div>            
             </div>
             <!--<a href="{{url('users/grafic')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
         </div>
-      
-       
+            
         <div class="card text-center  mb-3 bg-white" >
           <div class="card-header"><h4>Tickets Abiertos </h4> </div>
           <div class="card-body">
@@ -98,7 +93,7 @@
 
           </div>
       </div>
-
+      </div>
       
 <!--se agrega el includ para creacion de datatable -->
 @include('layouts/scripts/scripts')
