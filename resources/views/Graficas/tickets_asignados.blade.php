@@ -69,14 +69,7 @@
                         <th> Status TK</th>
                       </tr>
                     </thead>
-                    <tfoot>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th ></th>
-                        <th>Filtro/Filas </th>
-                        <th></th>
-                    </tfoot>
+                    
                     <tbody>
                       @foreach($tkasignado as $tkasignado)
                       <tr>
@@ -96,6 +89,14 @@
                       </tr>
                       @endforeach
                     </tbody>
+                    <tfoot>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>Filtro/Filas </th>
+                        <th></th>
+                    </tfoot>
                
                     
                 </table>
