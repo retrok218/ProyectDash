@@ -139,8 +139,8 @@
             <th></th>
             <th></th>
             <th></th>
-            <th>Filtro por dependecia</th>
-            <th>Filtro por tipo de toner</th>
+            <th >Filtro por dependecia</th>
+            <th title="Al no seleccionar ningun campo se muestran todos los tickets con solicitud de toner no importando la marca del mismo ">Filtro por tipo de toner</th>
             <th></th>
             <th></th>
             <th></th>
