@@ -413,11 +413,7 @@ initComplete: function() {
                     i.replace(/[\$,'']/g,'')*1 :
                     typeof i === 'number' ?
                         i : 0;
-                        
             };
-            
-          
-           
  
             pageTotal = api
                 .column( 6, { search: "applied" } )
@@ -426,7 +422,7 @@ initComplete: function() {
                     return intVal(a) + intVal(b);
                 }, 0 );
                 $( api.column( 6 ).footer() ).html(
-              'Toner solicitados: ' + '<h4 back ground="white" style="color: #0f98c1f0;"> '+pageTotal+' </h4>'    
+              'Toner solicitados: ' +  pageTotal 
             );
 
             pageTotal2 = api
@@ -436,7 +432,7 @@ initComplete: function() {
                     return intVal(a) + intVal(b);
                 }, 0 );
                 $( api.column(9).footer() ).html(
-                  'Toner Entregados: ' + '<h4 style="color: #0f98c1f0;"> '+pageTotal2+' </h4>'
+                  'Toner Entregados: ' + pageTotal2 
                 );
            
         }
@@ -487,6 +483,9 @@ $("#Date_search").daterangepicker({
 
 </script>
 <!-- fin de la datatable-->
+
+
+
 
 @endsection
 @endsection
