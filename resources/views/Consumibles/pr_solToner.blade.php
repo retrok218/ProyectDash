@@ -28,7 +28,7 @@
             </tr>
         </thead>
         <tbody>
-       @php
+    @php
        // Funcion que limpia los datos traidos de la db dentro de la variable texto
         function eliminasimbolos($texto){                           
                         $eliminados1 = preg_replace('/FieldName/',' ',$texto);
@@ -42,72 +42,78 @@
                           
                     $acumuladorsolicitado = 0;
                     $acumuladorentregado = 0;
+                   
                     
 
         @endphp
 
 @foreach($tk_id as $tk_id)
+
     @php 
-                    $texto = $tk_id->ticket_compuesto ;
-                    $modificado = eliminasimbolos($texto);                    
-                    $esptoner= array_pad(explode(',',$modificado),7,null);
-                  
-                    
-                    
-                       
-                    
-         foreach($esptoner as $esptoner){
-                if(strncasecmp($esptoner,'  Required7',11)===0){
-                        $dependencia=preg_replace('/Required7/',' ' ,$esptoner);
-                       }                          
-// Solicitado cantidad 1
-                       elseif(strncasecmp($esptoner,'  Required64',12)==0){
-                            $cantidad = preg_replace ('/Required64/','',$esptoner);
-                            $cantidad1 =str_replace(' ', '', $cantidad); 
-                            $trnsbar = (int)$cantidad1;
-                           $acumuladorsolicitado += $trnsbar ;
+            $texto = $tk_id->ticket_compuesto ;
+            $modificado = eliminasimbolos($texto);                    
+            $esptoner= array_pad(explode(',',$modificado),7,null);
+                                  
                         
-                       }                          
-//tipo de toner1
-                       elseif(strncasecmp($esptoner,'  Required65',12)==0){
-                           $tipodetoner1= preg_replace('/Required65/',' ' ,$esptoner);
-                       }
-// solicitado cantidad 2                           
-                       elseif(strncasecmp($esptoner,'  Required66',12)==0){
-                            $cantidad2 = preg_replace ('/Required66/',' ',$esptoner);
-                       }
-// tipo de toner 2                           
-                       elseif(strncasecmp($esptoner,'  Required67',12)==0){
-                            $tipotoner2 = preg_replace ('/Required67/','',$esptoner);
-                       }
-// Entregado tipotoner1                              
-                       if(strncasecmp($esptoner,'  Required34',12)===0){
-                            $ttonerentregado = preg_replace ('/Required34/','',$esptoner);
-                            $cantidadentregado1 =str_replace(' ', '', $ttonerentregado); 
-                            $entregadoentero = (int)$cantidadentregado1;
-                            $acumuladorentregado += $entregadoentero ;
-                            
+        foreach($esptoner as $esptoner){
+                                if(strncasecmp($esptoner,'  Required7',11)===0){
+                                        $dependencia=preg_replace('/Required7/',' ' ,$esptoner);
+                                    }                          
+                // Solicitado cantidad 1
+                                    elseif(strncasecmp($esptoner,'  Required64',12)==0){
+                                            $cantidad = preg_replace ('/Required64/','',$esptoner);
+                                            $cantidad1 =str_replace(' ', '', $cantidad); 
+                                            $trnsbar = (int)$cantidad1;
+                                        $acumuladorsolicitado += $trnsbar ;
+                                        
+                                    }                          
+                //tipo de toner1
+                                    elseif(strncasecmp($esptoner,'  Required65',12)==0){
+                                        $tipodetoner1= preg_replace('/Required65/',' ' ,$esptoner);
+                                    }
+                // solicitado cantidad 2                           
+                                    elseif(strncasecmp($esptoner,'  Required66',12)==0){
+                                            $cantidad2 = preg_replace ('/Required66/',' ',$esptoner);
+                                    }
+                // tipo de toner 2                           
+                                    elseif(strncasecmp($esptoner,'  Required67',12)==0){
+                                            $tipotoner2 = preg_replace ('/Required67/','',$esptoner);
+                                    }
+                // Entregado tipotoner1                              
+                                    if(strncasecmp($esptoner,'  Required34',12)===0){
+                                            $ttonerentregado = preg_replace ('/Required34/','',$esptoner);
+                                            $cantidadentregado1 =str_replace(' ', '', $ttonerentregado); 
+                                            $entregadoentero = (int)$cantidadentregado1;
+                                            $acumuladorentregado += $entregadoentero ;
+                                            
 
-                       }
-                       elseif($esptoner == null){
-                            $ttonerentregado = "Sin datos";
-                        }                       
-//Entregado cantidadtoner1                           
-                       if(strncasecmp($esptoner,'  Required35',12)===0){
-                            $cantidadtonerentregado1 = preg_replace ('/Required35/','',$esptoner);
-                       }
-                       elseif($esptoner == null){
-                            $cantidadtonerentregado1 =  " 0 "; 
-                        }     
-                        
-                        
-                    }    
-                    
+                                    }
+                                    elseif($esptoner == null){
+                                            $ttonerentregado = "Sin datos";
+                                        }                       
+                //Entregado cantidadtoner1                           
+                                    if(strncasecmp($esptoner,'  Required35',12)===0){
+                                            $cantidadtonerentregado1 = preg_replace ('/Required35/','',$esptoner);
+                                    }
+                                    elseif($esptoner == null){
+                                            $cantidadtonerentregado1 =  " 0 "; 
+                                        }                                                            
+        }    
+        $color= null;
 
-    @endphp 
+        @endphp 
        
-            
-                 <tr>
+                    @php
+                           
+                        switch($tk_id->name)  {
+                            case 'Asignado' : $color = '#fff7085e'; break;
+                            case 'Notificado al Usuario': $color = '#16ff1352'; break;
+                            case 'open' : $color = '#ff0d0d52'; $tk_id->name = preg_replace('/open/','Abierto',$tk_id->name); break;
+                           case 'closed successful' : $color = '#11ff018f' ; $tk_id->name = preg_replace('/closed successful/','Cerrado Exitosamente',$tk_id->name); break;
+
+                        }                   
+                    @endphp
+                 <tr style="background:<?php echo $color ?>;">
                  
                  <!--cuerpo principal de solicitu de toner -->
                     <td>{{$tk_id ->tn }}</td> 
@@ -121,13 +127,15 @@
                     <td>{{$tipotoner2}}</td>
                     <td>{{$cantidad2}}</td> 
                     <td>{{$cantidadtonerentregado1}}</td> 
-                    <td>{{$ttonerentregado}}</td>                                        
-                    <td>{{$tk_id->name}} 
-                        
-
-                    </td>                      
-                </tr>                              
-        @endforeach
+                    <td>{{$ttonerentregado}}</td> 
+                          
+                    <td > {{$tk_id->name}}</td>  
+                    
+                    
+                </tr>   
+                
+                
+    @endforeach
 
         
          
@@ -146,7 +154,7 @@
             <th></th>
             <th></th>
             <th></th>
-            <th></th>
+            <th>Filtro por estado de ticket</th> <!--11-->
         </tfoot>
 
         <div class="card-deck mt-3">
@@ -301,7 +309,7 @@ var table = $('#tablatk').DataTable({
 
                            extend:    'pdfHtml5',
                            text:      '<i class="fa fa-file-pdf-o"></i>PDF',
-                           title:'Tickets Asignados ',
+                           title:'Tickets Solicitud de Toner',
                            titleAttr: 'PDF',
                            className: 'btn btn-app export pdf',
                            orientation: 'landscape',
@@ -311,7 +319,7 @@ var table = $('#tablatk').DataTable({
                            },
                             customize:function(doc) {
                            doc.styles.title = {
-                                   color: '#114627',
+                                   color: '#75293db9',
                                    fontSize: '30',
                                    alignment: 'center'
                                }
@@ -321,7 +329,7 @@ var table = $('#tablatk').DataTable({
                                     margin: [ 0, 0, 0, 12 ],
                                },
                                doc.styles.tableHeader = {
-                                   fillColor:'#114627',
+                                   fillColor:'#75293db9',
                                    color:'white',
                                    alignment:'center',
 
@@ -339,7 +347,7 @@ var table = $('#tablatk').DataTable({
                        {
                            extend:    'excelHtml5',
                            text:      '<i class="fa fa-file-excel-o"></i>Excel',
-                           title:'Tickets Asignados',
+                           title:'Tickets Solicitud de Toner ',
                            titleAttr: 'Excel',
                            className: 'btn btn-app export excel',
                            exportOptions: {
@@ -350,7 +358,7 @@ var table = $('#tablatk').DataTable({
                        {
                            extend:    'print',
                            text:      '<i class="fa fa-print"></i>Imprimir',
-                           title:'Tickets Asignados',
+                           title:'Tickets Solicitud de Toner',
                            titleAttr: 'Imprimir',
                            className: 'btn btn-app export imprimir',
                            exportOptions: {
@@ -366,12 +374,12 @@ var table = $('#tablatk').DataTable({
                    ]         
            },
            columnDefs:[{
-                        targets: [7,8], // null para no ocultar columnas [1,2,3 ... ] cuando se requiera bloquear colmn 
+                        targets: [7,8,10], // null para no ocultar columnas [1,2,3 ... ] cuando se requiera bloquear colmn 
                         visible: false
                         }] ,
 // Filtro por seleccion multiple
 initComplete: function() {            
-  this.api().columns([4,5]).every(function() {
+  this.api().columns([4,5,11]).every(function() {
     var column = this;
     
     var select = $('<select class="mymsel" multiple="multiple" ><option value=""></option></select>')
