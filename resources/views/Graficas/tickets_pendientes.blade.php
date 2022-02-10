@@ -86,11 +86,11 @@
                       
                         <tr>
                           
-                          <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="NTicket" data-column="0"></td>
-                          <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="Fecha" data-column="1"></td>
-                          <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="Titulo" data-column="2"></td>
-                          <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="Usuario" data-column="3"></td>                     
-                          <td><h5>Filtrado</h5><input type="text" class="form-control filtro-por-col" placeholder="Area" data-column="4"></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>                     
+                          <td></td>
                           <td></td>
                           
                         </tr>
@@ -244,55 +244,17 @@
                                titleAttr: 'Registros a mostrar',
                                className: 'selectTable'
                            },
-                           'colvis'
+                           
                        ]
 
 
                },
-               // columnDefs:[{
-                targets: false,
-                        visible: false,
-                        initComplete: function () {
-            this.api().columns().every( function () {
-                var column = this;
-                var select = $('<select><option value=""></option></select>')
-                    .appendTo( $(column.footer()).empty() )
-                    .on( 'change', function () {
-                        var val = $.fn.dataTable.util.escapeRegex(
-                            $(this).val()
-                        );
- 
-                        column
-                            .search( val ? '^'+val+'$' : '', true, false )
-                            .draw();
-                    } );
- 
-                column.data().unique().sort().each( function ( d, j ) {
-                    select.append( '<option value="'+d+'">'+d+'</option>' )
-                } );
-            } );
-        }
-
-
-                       // }] 
+              
 
 
 
          } );
-         // text search
-   $('.filtro-por-col').keyup(function(){
-     table.column($(this).data('column'))
-     .search($(this).val())
-     .draw();
-   });
 
-   //filtro por lista
-   $('.filtro-por-lista').change(function(){
-     table.column($(this).data('column'))
-     .search($(this).val())
-     .draw();
-   });
-// fin de la datatable 
         } );
 </script>
 
@@ -300,72 +262,7 @@
 <script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
 
-            window.onload = function (){
-              var dataLength = 0;
-                var data = [];
-                var updateInterval = 500;
-                updateChart();
-                function updateChart() {
-                    $.getJSON("data.php", function (result) {
-                        if (dataLength !== result.length) {
-                            for (var i = dataLength; i < result.length; i++) {
-                                data.push({
-                                    x: parseInt(result[i].valorx),
-                                    y: parseInt(result[i].valory)
-                                });
-                            }
-                            dataLength = result.length;
-                            chart.render();
-                        }
-                    });
-                }
-
-
-              CanvasJS.addCultureInfo("es",
-                {
-                    decimalSeparator: ".",
-                    digitGroupSeparator: ",",
-                    days: ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"],
-                    months:["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Nobiembre","Diciembre",]
-               });
-
-
-
-                      var chart = new CanvasJS.Chart("chartContainer",{
-                        animationEnabled: true,
-                        animationDuration: 1000,
-                        interactivityEnabled: true,
-                        exportEnabled: true,
-
-                        title:{
-                          text: "  Tickets  Pendientes "
-                        },
-
-                        legend:{
-                          horizontalAlign: "right",
-                          verticalAlign: "center"
-                         },
-                        data: [//array of dataSeries
-                          { //dataSeries object
-                           /*** Change type "column" to "bar", "area", "line" or "pie"***/
-                           type: "pie",
-                           showInLegend: true,
-                           legendText: "{label}",
-                           indexLabel: "{label} - #percent%",
-
-                           dataPoints: [
-                           { label: "Tikets Totales:{{ $ticket}} ", y: {{ $ticket}}  },
-                           {label: "Tickets Pendientes :{{$pendienteatc}}" , y:{{$pendienteatc}} },
-
-
-                           ]
-
-
-                         }
-                         ]
-                       });
-                       chart.render();
-;}
+        
 
 </script>
 

@@ -128,16 +128,15 @@
                     <td>{{$cantidad2}}</td> 
                     <td>{{$cantidadtonerentregado1}}</td> 
                     <td>{{$ttonerentregado}}</td> 
-                          
-                    <td > {{$tk_id->name}}</td>  
+                    <td>{{$tk_id->name}}</td>  
                     
                     
                 </tr>   
                 
                 
     @endforeach
-
-        
+    
+      
          
         
             
@@ -197,10 +196,10 @@
 
 @include('layouts/scripts/scripts')
 @section('scripts')
-<script src="{{ URL::asset('js/users.js')}}" type="text/javascript"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
 
 <script>
@@ -402,12 +401,48 @@ initComplete: function() {
   });
   //select2 init for .mymsel class
   $(".mymsel").select2();
-}
+},
 //fin de la seleccion multiple 
            
+"footerCallback": function ( row, data, start, end, display ) {
+            var api = this.api();
+ 
+            // Remove the formatting to get integer data for summation
+            var intVal = function ( i ) {
+                return typeof i === 'string' ?
+                    i.replace(/[\$,'']/g,'')*1 :
+                    typeof i === 'number' ?
+                        i : 0;
+                        
+            };
+            
+          
+           
+ 
+            pageTotal = api
+                .column( 6, { search: "applied" } )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+                $( api.column( 6 ).footer() ).html(
+              'Toner solicitados: ' + '<h4 back ground="white" style="color: #0f98c1f0;"> '+pageTotal+' </h4>'    
+            );
 
+            pageTotal2 = api
+                .column( 9, { search: "applied" } )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+                $( api.column(9).footer() ).html(
+                  'Toner Entregados: ' + '<h4 style="color: #0f98c1f0;"> '+pageTotal2+' </h4>'
+                );
+           
+        }
           
 });
+
 $("#Date_search").daterangepicker({
   "locale": {
     "format": "YYYY-MM-DD",
@@ -452,9 +487,6 @@ $("#Date_search").daterangepicker({
 
 </script>
 <!-- fin de la datatable-->
-
-
-
 
 @endsection
 @endsection

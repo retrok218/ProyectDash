@@ -68,7 +68,7 @@ body {
     font-family: Poppins;
     font-size: 1rem;
     font-weight: 400;
-    line-height: 1.5;
+    line-height: 15px;
     color: #212529;
     text-align: left;
     background-color: #fff
@@ -25653,7 +25653,7 @@ strong {
 }
 
 .kt-grid.kt-grid--ver:not(.kt-grid--desktop):not(.kt-grid--desktop-and-tablet):not(.kt-grid--tablet):not(.kt-grid--tablet-and-mobile):not(.kt-grid--mobile)>.kt-grid__item.kt-grid__item--fluid {
-   /* flex: 1 auto;*/
+    flex: 1 auto;
     -ms-flex: 1 0 0px;
     min-width: 0
 }

@@ -155,16 +155,11 @@
     
 });
 
-</script>
-<!--Fin scrip para seleccion en el menu lateal-->
-<!-- scrip Spiner  -->
-<script>
-        window.addEventListener('load',function(){
+window.addEventListener('load',function(){
         document.querySelector('body').classList.add("loaded") 
         });
-</script>
-<!-- fin scrip Spiner  -->
 
+</script>
 
  @yield('scripts')
 </body>
