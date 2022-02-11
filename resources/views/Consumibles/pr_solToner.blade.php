@@ -110,6 +110,7 @@
                             case 'Notificado al Usuario': $color = '#16ff1352'; break;
                             case 'open' : $color = '#ff0d0d52'; $tk_id->name = preg_replace('/open/','Abierto',$tk_id->name); break;
                            case 'closed successful' : $color = '#11ff018f' ; $tk_id->name = preg_replace('/closed successful/','Cerrado Exitosamente',$tk_id->name); break;
+                           case 'Atendido': $color = '#01c4ff82'; break;
 
                         }                   
                     @endphp
@@ -198,7 +199,9 @@
 @section('scripts')
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-<script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script>
+<!-- <script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script> --> 
+ <script src="{{URL::asset('js/dateTime.min.js')}}" ></script> 
+
 <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
 
@@ -307,7 +310,8 @@ var table = $('#tablatk').DataTable({
                        {
 
                            extend:    'pdfHtml5',
-                           text:      '<i class="fa fa-file-pdf-o"></i>PDF',
+                           text:      '<i class="bi bi-filetype-pdf"></i>PDF',
+                           
                            title:'Tickets Solicitud de Toner',
                            titleAttr: 'PDF',
                            className: 'btn btn-app export pdf',
@@ -334,7 +338,6 @@ var table = $('#tablatk').DataTable({
 
                                }
 
-
                                doc.content[0].margin = [ 0, 0, 0, 12 ]
 
 
@@ -345,7 +348,7 @@ var table = $('#tablatk').DataTable({
 
                        {
                            extend:    'excelHtml5',
-                           text:      '<i class="fa fa-file-excel-o"></i>Excel',
+                           text:      '<i class="bi bi-filetype-exe"></i>Excel',
                            title:'Tickets Solicitud de Toner ',
                            titleAttr: 'Excel',
                            className: 'btn btn-app export excel',
