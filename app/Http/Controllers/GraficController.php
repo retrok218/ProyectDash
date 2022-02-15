@@ -206,38 +206,28 @@ class GraficController extends Controller
       // consulta por mes
 // variables para  generar la grafica lineal de  mes año 
   $inicioaño=2019;      
-  $iniciomes = 1;
+  $iniciomes = 0;
   $n=0;
   $totalmes= array ();    
   for ( $iniciomes ; $iniciomes <= 12 ; $iniciomes++) {
-
-    if ($iniciomes === 12) {   
-      if($inicioaño <= $fecha_año ) {
-        $inicioaño++;
-        $iniciomes=0;
-      }else 
     $totalmes[$n] =DB::connection('pgsql2')->table('ticket')
      ->whereMonth('create_time','=', $iniciomes)
      ->whereYear('create_time','=', $inicioaño)
-     ->count();
+     ->count();         
      $n++;
-    
-                             
-     };
-
+     if ($iniciomes == 12) {   
+       if ($inicioaño <= $fecha_año ) {
+         $inicioaño++;
+         $iniciomes=1;
+       }                          
+     };      
  };
-//dd($totalmes,$fecha_mes,$fecha_año,$fecha_dia);
-
-
-
-
-
 
 $totalMesJson = json_encode($totalmes); 
 //$ticket_allJson = json_encode($ticket_all);
 
 
-//dd($totalMesJson);
+
 // Fin consulta por mes
 
 
