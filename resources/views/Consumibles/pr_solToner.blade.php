@@ -91,8 +91,8 @@
                                             $ttonerentregado = "Sin datos";
                                         }                       
                 //Entregado cantidadtoner1                           
-                                    if(strncasecmp($esptoner,'  Required35',12)===0){
-                                      $cantidadtonerentregado1 = preg_replace ('/Required35/','',$esptoner);
+                                    if(strncasecmp($esptoner,'  Required35',12)==0){
+                                      $cantidadtonerentregado1 = preg_replace ('/Required35/',' ',$esptoner);
                                     }
                                     elseif($esptoner == null){
                                             $cantidadtonerentregado1 =  " 0 "; 
