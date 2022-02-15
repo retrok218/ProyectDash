@@ -32,11 +32,11 @@
        // Funcion que limpia los datos traidos de la db dentro de la variable texto
         function eliminasimbolos($texto){                           
                         $eliminados1 = preg_replace('/FieldName/',' ',$texto);
-                        $eliminados2 = preg_replace('/[@\%\#\&\$\{\}\" "]+/',' ',$eliminados1);
+                        $eliminados2 = preg_replace('/[@\%\#\&\$\{\}\" "]+/','',$eliminados1);
                         $eliminados  = preg_replace('/ITSMReview/',' ',$eliminados2);
                         $eliminados3 = preg_replace('/OldValue/',' ',$eliminados);
                         $eliminados4 = preg_replace('/Value/',' ',$eliminados3);
-                        $eliminados5 = preg_replace('/a-Vacio/','Sin Datos',$eliminados4);
+                        $eliminados5 = preg_replace('/a-Vacio/','',$eliminados4);
                         return $eliminados5;
                     }
                           
@@ -44,7 +44,7 @@
                     $acumuladorentregado = 0;
                    
                     
-
+                 
         @endphp
 
 @foreach($tk_id as $tk_id)
@@ -53,34 +53,34 @@
             $texto = $tk_id->ticket_compuesto ;
             $modificado = eliminasimbolos($texto);                    
             $esptoner= array_pad(explode(',',$modificado),7,null);
-                                  
-                        
+            
+                     
         foreach($esptoner as $esptoner){
-                                if(strncasecmp($esptoner,'  Required7',11)===0){
+                                if(strncasecmp($esptoner,' Required7',10)===0){
                                         $dependencia=preg_replace('/Required7/',' ' ,$esptoner);
                                     }                          
                 // Solicitado cantidad 1
-                                    elseif(strncasecmp($esptoner,'  Required64',12)==0){
-                                            $cantidad = preg_replace ('/Required64/','',$esptoner);
+                                    elseif(strncasecmp($esptoner,' Required64',11)==0){
+                                            $cantidad = preg_replace ('/Required64\" "/','',$esptoner);
                                             $cantidad1 =str_replace(' ', '', $cantidad); 
                                             $trnsbar = (int)$cantidad1;
                                         $acumuladorsolicitado += $trnsbar ;
                                         
                                     }                          
                 //tipo de toner1
-                                    elseif(strncasecmp($esptoner,'  Required65',12)==0){
+                                    elseif(strncasecmp($esptoner,' Required65',11)==0){
                                         $tipodetoner1= preg_replace('/Required65/',' ' ,$esptoner);
                                     }
                 // solicitado cantidad 2                           
-                                    elseif(strncasecmp($esptoner,'  Required66',12)==0){
+                                    elseif(strncasecmp($esptoner,' Required66',11)==0){
                                             $cantidad2 = preg_replace ('/Required66/',' ',$esptoner);
                                     }
                 // tipo de toner 2                           
-                                    elseif(strncasecmp($esptoner,'  Required67',12)==0){
+                                    elseif(strncasecmp($esptoner,' Required67',11)==0){
                                             $tipotoner2 = preg_replace ('/Required67/','',$esptoner);
                                     }
                 // Entregado tipotoner1                              
-                                    if(strncasecmp($esptoner,'  Required34',12)===0){
+                                    if(strncasecmp($esptoner,' Required34',11)===0){
                                             $ttonerentregado = preg_replace ('/Required34/','',$esptoner);
                                             $cantidadentregado1 =str_replace(' ', '', $ttonerentregado); 
                                             $entregadoentero = (int)$cantidadentregado1;
@@ -92,7 +92,7 @@
                                             $ttonerentregado = "Sin datos";
                                         }                       
                 //Entregado cantidadtoner1                           
-                                    if(strncasecmp($esptoner,'  Required35',12)===0){
+                                    if(strncasecmp($esptoner,' Required35',11)===0){
                                             $cantidadtonerentregado1 = preg_replace ('/Required35/','',$esptoner);
                                     }
                                     elseif($esptoner == null){
@@ -100,6 +100,8 @@
                                         }                                                            
         }    
         $color= null;
+
+        
 
         @endphp 
        

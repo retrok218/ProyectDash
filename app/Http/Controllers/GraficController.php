@@ -30,9 +30,9 @@ class GraficController extends Controller
       $fecha_mes = Carbon::now()->format('m');
       $fecha_dia = Carbon::now()->format('d');
       $fecha_año = Carbon::now()->format('Y');
-      $fecha_mesp= $fecha_mes-1;
-      $fecha_añop= $fecha_año-1;
-      $fecha_diap= $fecha_dia-1;
+      $fecha_mesp= $fecha_mes;
+      $fecha_añop= $fecha_año;
+      $fecha_diap= $fecha_dia;
 
       // creacion de funcion de auto update
       $ultimoTK =DB::connection('pgsql2')->table('ticket')->orderBy('create_time','DESC')->first();
@@ -206,29 +206,38 @@ class GraficController extends Controller
       // consulta por mes
 // variables para  generar la grafica lineal de  mes año 
   $inicioaño=2019;      
-  $iniciomes = 0;
+  $iniciomes = 1;
   $n=0;
   $totalmes= array ();    
-  for ( $iniciomes ; $iniciomes <= 12 ; $iniciomes++) {$totalmes[$n] =DB::connection('pgsql2')->table('ticket')
+  for ( $iniciomes ; $iniciomes <= 12 ; $iniciomes++) {
+
+    if ($iniciomes === 12) {   
+      if($inicioaño <= $fecha_año ) {
+        $inicioaño++;
+        $iniciomes=0;
+      }else 
+    $totalmes[$n] =DB::connection('pgsql2')->table('ticket')
      ->whereMonth('create_time','=', $iniciomes)
      ->whereYear('create_time','=', $inicioaño)
-     ->count();         
+     ->count();
      $n++;
-     if ($iniciomes == 12) {   
-       if ($inicioaño <= $fecha_año ) {
-         $inicioaño++;
-         $iniciomes=1;
-       }                          
-     };      
+    
+                             
+     };
+
  };
+//dd($totalmes,$fecha_mes,$fecha_año,$fecha_dia);
+
+
+
+
+
 
 $totalMesJson = json_encode($totalmes); 
-
-
 //$ticket_allJson = json_encode($ticket_all);
 
 
-
+//dd($totalMesJson);
 // Fin consulta por mes
 
 
