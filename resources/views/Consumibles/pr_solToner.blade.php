@@ -94,7 +94,7 @@
                                     if(strncasecmp($esptoner,'  Required35',12)==0){
                                       $cantidadtonerentregado1 = preg_replace ('/Required35/',' ',$esptoner);
                                     }
-                                    elseif($esptoner == null){
+                                    elseif(empty($esptoner)){
                                             $cantidadtonerentregado1 =  " 0 "; 
                                         }                                                            
         }    
