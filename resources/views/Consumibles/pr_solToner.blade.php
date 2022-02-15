@@ -61,7 +61,7 @@
                                     }                          
                 // Solicitado cantidad 1
                                     elseif(strncasecmp($esptoner,' Required64',11)==0){
-                                            $cantidad = preg_replace ('/Required64\" "/','',$esptoner);
+                                            $cantidad = preg_replace ('/Required64/','',$esptoner);
                                             $cantidad1 =str_replace(' ', '', $cantidad); 
                                             $trnsbar = (int)$cantidad1;
                                         $acumuladorsolicitado += $trnsbar ;
@@ -92,7 +92,7 @@
                                             $ttonerentregado = "Sin datos";
                                         }                       
                 //Entregado cantidadtoner1                           
-                                    if(strncasecmp($esptoner,' Required35',11)==0){
+                                    if(strncasecmp($esptoner,' Required35',11)===0){
                                             $cantidadtonerentregado1 = preg_replace ('/Required35/','',$esptoner);
                                     }
                                     elseif($esptoner == null){
