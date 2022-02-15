@@ -54,13 +54,13 @@
             $modificado = eliminasimbolos($texto);                    
             $esptoner= array_pad(explode(',',$modificado),7,null);
             
-                    
+                     
         foreach($esptoner as $esptoner){
                                 if(strncasecmp($esptoner,'  Required7',11)===0){
                                         $dependencia=preg_replace('/Required7/',' ' ,$esptoner);
                                     }                          
                 // Solicitado cantidad 1
-                                    if(strncasecmp($esptoner,'  Required64',12)===0){
+                                    elseif(strncasecmp($esptoner,'  Required64',12)===0){
                                             $cantidad = preg_replace ('/Required64/','',$esptoner);
                                             $cantidad1 =str_replace(' ', '', $cantidad); 
                                             $trnsbar = (int)$cantidad1;
@@ -68,15 +68,15 @@
                                         
                                     }                          
                 //tipo de toner1
-                                    if(strncasecmp($esptoner,'  Required65',12)==0){
+                                    elseif(strncasecmp($esptoner,'  Required65',12)===0){
                                         $tipodetoner1= preg_replace('/Required65/',' ' ,$esptoner);
                                     }
                 // solicitado cantidad 2                           
-                                    if(strncasecmp($esptoner,'  Required66',12)==0){
+                                    elseif(strncasecmp($esptoner,'  Required66',12)===0){
                                             $cantidad2 = preg_replace ('/Required66/',' ',$esptoner);
                                     }
                 // tipo de toner 2                           
-                                    if(strncasecmp($esptoner,'  Required67',12)===0){
+                                    elseif(strncasecmp($esptoner,'  Required67',12)===0){
                                             $tipotoner2 = preg_replace ('/Required67/','',$esptoner);
                                     }
                 // Entregado tipotoner1                              
@@ -87,16 +87,15 @@
                                             
 
                                     }
-                                    if($esptoner == null){
+                                    elseif($esptoner == null){
                                             $ttonerentregado = "Sin datos";
                                         }                       
                 //Entregado cantidadtoner1                           
                                     if(strncasecmp($esptoner,'  Required35',12)===0){
-                                      $cantidadtonerentregado0 = preg_replace ('/Required35/','',$esptoner);
-                                      $cantidadtonerentregado1 = preg_replace ('/0/','',$cantidadtonerentregado0);
+                                      $cantidadtonerentregado1 = preg_replace ('/Required35/','',$esptoner);
                                     }
-                                    if($esptoner == ''){                                             
-                                            $cantidadtonerentregado1 =  "0"; 
+                                    elseif($esptoner == null){
+                                            $cantidadtonerentregado1 =  " 0 "; 
                                         }                                                            
         }    
         $color= null;
