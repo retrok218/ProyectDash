@@ -31,15 +31,17 @@
     @php
        // Funcion que limpia los datos traidos de la db dentro de la variable texto
         function eliminasimbolos($texto){                           
-                        $eliminados1 = preg_replace('/FieldName/',' ',$texto);
-                        $eliminados2 = preg_replace('/[@\%\#\&\$\{\}\" "]+/',' ',$eliminados1);
-                        $eliminados  = preg_replace('/ITSMReview/',' ',$eliminados2);
-                        $eliminados3 = preg_replace('/OldValue/',' ',$eliminados);
-                        $eliminados4 = preg_replace('/Value/',' ',$eliminados3);
+                        $eliminados1 = preg_replace('/FieldName/','',$texto);
+                        $eliminados2 = preg_replace('/[\&\$\{\}""]+/','',$eliminados1);
+                        $eliminados  = preg_replace('/ITSMReview/','',$eliminados2);
+                        $eliminados3 = preg_replace('/@/','',$eliminados);
+                        $eliminados4 = preg_replace('/#/','',$eliminados3);
                         $eliminados5 = preg_replace('/a-Vacio/','',$eliminados4);
-                        return $eliminados5;
-                    }
-                          
+                        $eliminados6 = preg_replace('/%%Value%%/','',$eliminados5);
+                        $eliminados7 = preg_replace('/%%OldValue%%0/',' ',$eliminados6);
+                        $eliminados8 = preg_replace('/%%OldValue%%/','',$eliminados7);
+                        return $eliminados8;
+                    }                          
                     $acumuladorsolicitado = 0;
                     $acumuladorentregado = 0;
                    
@@ -52,57 +54,87 @@
     @php 
             $texto = $tk_id->ticket_compuesto ;
             $modificado = eliminasimbolos($texto);                    
-            $esptoner= array_pad(explode(',',$modificado),7,null);
-            
-                     
-        foreach($esptoner as $esptoner){
-                                if(strncasecmp($esptoner,'  Required7',11)===0){
-                                        $dependencia=preg_replace('/Required7/',' ' ,$esptoner);
-                                    }                          
-                // Solicitado cantidad 1
-                                    elseif(strncasecmp($esptoner,'  Required64',12)===0){
-                                            $cantidad = preg_replace ('/Required64/','',$esptoner);
-                                            $cantidad1 =str_replace(' ', '', $cantidad); 
-                                            $trnsbar = (int)$cantidad1;
-                                        $acumuladorsolicitado += $trnsbar ;
+            $esptoner= array_pad(explode(',',$modificado),11,null);
+            $ticketocmpleto = array();
+            $narreglo=0;
+          /* dd($esptoner); */            
+        foreach($esptoner as $datotoner){
+          
+                                if(strncasecmp($datotoner,'%%%%Required7',13)===0){
+                                        $dependencia=preg_replace('/%%%%Required7/','',$datotoner . "alajbada");
+                                        $ticketocmpleto[$narreglo] =$dependencia;
                                         
                                     }                          
+                // Solicitado cantidad 1
+                                    elseif(strncasecmp($datotoner,'%%%%Required64',14)===0){
+                                            $cantidad = preg_replace ('/%%%%Required64/','',$datotoner);
+                                            $cantidad1 =str_replace(' ', '', $cantidad); 
+                                            $trnsbar = (int)$cantidad1;
+                                        $acumuladorsolicitado += $trnsbar ;  
+                                        $ticketocmpleto[$narreglo] =$cantidad1;
+                                             
+                                    }                          
                 //tipo de toner1
-                                    elseif(strncasecmp($esptoner,'  Required65',12)===0){
-                                        $tipodetoner1= preg_replace('/Required65/',' ' ,$esptoner);
+                                    elseif(strncasecmp($datotoner,'%%%%Required65',14)===0){
+                                        $tipodetoner1= preg_replace('/%%%%Required65/',' ' ,$datotoner);
+                                        $ticketocmpleto[$narreglo] =$tipodetoner1;
                                     }
                 // solicitado cantidad 2                           
-                                    elseif(strncasecmp($esptoner,'  Required66',12)===0){
-                                            $cantidad2 = preg_replace ('/Required66/',' ',$esptoner);
+                                    elseif(strncasecmp($datotoner,'%%%%Required66',14)===0){
+                                            $cantidad2 = preg_replace ('/%%%%Required66/',' ',$datotoner);
+                                            $ticketocmpleto[$narreglo] =$cantidad2;
+                                             
                                     }
                 // tipo de toner 2                           
-                                    elseif(strncasecmp($esptoner,'  Required67',12)===0){
-                                            $tipotoner2 = preg_replace ('/Required67/','',$esptoner);
+                                    elseif(strncasecmp($datotoner,'%%%%Required67',14)===0){
+                                            $tipotoner2 = preg_replace ('/%%%%Required67/','',$datotoner);
+                                            $ticketocmpleto[$narreglo] =$cantidad2;
+                                            
                                     }
-                // Entregado tipotoner1                              
-                                    if(strncasecmp($esptoner,'  Required34',12)===0){
-                                            $ttonerentregado = preg_replace ('/Required34/','',$esptoner);
-                                            $cantidadentregado1 =str_replace(' ', '', $ttonerentregado); 
-                                            
-                                            
+                // Entregado tipotoner1         
 
+                                    if(strncasecmp($datotoner,'%%%%Required34',14)===0){
+                                            $ttonerentregado = preg_replace ('/%%%%Required34/','',$datotoner);
+                                            $ticketocmpleto[$narreglo]=$ttonerentregado;
+                                                        
                                     }
-                                    elseif($esptoner == null){
+                                    if(empty($datotoner) or isset($datotoner)){ 
+                                       
                                             $ttonerentregado = "Sin datos";
-                                        }                       
-                //Entregado cantidadtoner1                           
-                                    if(strncasecmp($esptoner,'  Required35',12)==0){
-                                      $cantidadtonerentregado1 = preg_replace ('/Required35/',' ',$esptoner);
+                                            $ticketocmpleto[$narreglo]=$ttonerentregado;
                                     }
-                                    elseif(empty($esptoner)){
-                                            $cantidadtonerentregado1 =  " 0 "; 
-                                        }                                                            
+                //Entregado cantidadtoner1                           
+                                    if(strncasecmp($datotoner,'%%%%Required35',14)==0){
+                                      $cantidadtonerentregado1 = preg_replace('/%%%%Required35/',' ',$datotoner);                                       
+                                      }
+                                    elseif(empty($datotoner) or !is_numeric($datotoner)){
+                                            $cantidadtonerentregado1 = 0; 
+                                        } 
+                                        $narreglo++;                                            
         }    
         $color= null;
 
+
+        /*se requiere que al no tener variable se entrege el mensaje de "Sin datos" 
+        el if que valida si el campo esta vacio o no cuenta con la bariable definida  cuando se valida la existencia de la bariable (al ser falso se regresa el texto "sin datos" al ser true se regresa el contenido de la variable en ese momento ....
+        
+        Problema:el arreglo cuenta con un contenido bariable 7,8,9 datos 
+        los datos se validan con un if asignado a lo requerido si un dato en particular eje (%%%%Required34)
+        este required puede existir o no existir 
+        )
+
+
+        1.- se eliminan las bariables qiue se asignaron , se genera un arreglo el cual cuente con los datos definidos por un numero indice, de esta dorma se acomodan en el resultado final
+        2.- 
+      
+        */
+        
+        
+        @endphp 
+
         
 
-        @endphp 
+       
        
                     @php
                            
@@ -191,6 +223,7 @@
     </table>
 </div>
 </div>
+</div>
 
 
 
@@ -274,7 +307,8 @@ $(document).ready(function(){
   $("#Date_search").val("");
 });
 
-var table = $('#tablatk').DataTable({   
+var table = $('#tablatk').DataTable({ 
+      select:true,  
       "pageLength": 10,   
       "lengthChange": true,
       "searching": true,
@@ -286,6 +320,9 @@ var table = $('#tablatk').DataTable({
       "order":[1 ,'desc'],
       dom: 'Bfrt<"col-md-6 inline"i> <"col-md-6 inline"p>',
       dom: 'Bfrtip',
+     
+
+
       deferRender:    true, 
       "search": {
         "regex": true,
