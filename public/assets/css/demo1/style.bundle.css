@@ -35559,8 +35559,8 @@ body.swal2-height-auto {
 
 .dataTables_wrapper .dataTable .selected td,
 .dataTables_wrapper .dataTable .selected th {
-    background-color: #f7f8fa;
-    color: #595d6e
+    background-color: #fffffffc;
+    color: #000000
 }
 
 .dataTables_wrapper .dataTable .group td,

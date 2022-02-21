@@ -85,7 +85,8 @@ class Tks_DT_controlle extends Controller
     (ticket_history INNER JOIN ticket ON ticket_history.ticket_id = ticket.id)
     INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
 	  INNER JOIN queue ON ticket.queue_id = queue.id
-    WHERE  (ticket.service_id = 79 or ticket.service_id = 78)
+    WHERE 
+    (ticket.service_id = 79 or ticket.service_id = 78)
   and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIKE '%ITSMReviewRequired65%' or ticket_history.name LIKE '%ITSMReviewRequired7%' 
 	  or ticket_history.name LIKE '%ITSMReviewRequired66%' or ticket_history.name LIKE '%ITSMReviewRequired67%' or ticket_history.name LIKE '%ITSMReviewRequired35%'
 		or ticket_history.name LIKE '%ITSMReviewRequired34%')

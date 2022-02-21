@@ -30,9 +30,9 @@ class GraficController extends Controller
       $fecha_mes = Carbon::now()->format('m');
       $fecha_dia = Carbon::now()->format('d');
       $fecha_año = Carbon::now()->format('Y');
-      $fecha_mesp= $fecha_mes;
-      $fecha_añop= $fecha_año;
-      $fecha_diap= $fecha_dia;
+      $fecha_mesp= $fecha_mes-1;
+      $fecha_añop= $fecha_año-1;
+      $fecha_diap= $fecha_dia-1;
 
       // creacion de funcion de auto update
       $ultimoTK =DB::connection('pgsql2')->table('ticket')->orderBy('create_time','DESC')->first();
@@ -75,13 +75,9 @@ class GraficController extends Controller
       $ticket_diap=DB::connection('pgsql2')->table('ticket')->whereDay('create_time','=',$fecha_diap)
                                       ->whereMonth('create_time','=',$fecha_mes)
                                       ->whereYear('create_time','=',$fecha_año)
-                                      ->count();
+                                      ->count();      
+// datos segun el mes
 
-
-
-      
-
-                                      // datos segun el mes
       $mes_enero=DB::connection('pgsql2')->table('ticket')->whereMonth('create_time','=', 1)
                                     ->whereYear('create_time','=', $fecha_año)
                                     ->count();

@@ -10,8 +10,7 @@
 
     <table id="tablatk"  class="table table-striped table-bordered " >
         
-        <thead >
-            
+        <thead >           
             <tr>
                 <th>Numero del TKT</th>
                 <th>Fecha </th>
@@ -29,7 +28,7 @@
         </thead>
         <tbody>
     @php
-       // Funcion que limpia los datos traidos de la db dentro de la variable texto
+// Funcion que limpia los datos traidos de la db dentro de la variable texto
         function eliminasimbolos($texto){                           
                         $eliminados1 = preg_replace('/FieldName/','',$texto);
                         $eliminados2 = preg_replace('/[\&\$\{\}""]+/','',$eliminados1);
@@ -43,21 +42,18 @@
                         return $eliminados8;
                     }                          
                     $acumuladorsolicitado = 0;
-                    $acumuladorentregado = 0;
-                   
-                    
-                 
+                    $acumuladorentregado = 0;                             
         @endphp
-
 @foreach($tk_id as $tk_id)
-
     @php 
             $texto = $tk_id->ticket_compuesto ;
             $modificado = eliminasimbolos($texto);                    
             $esptoner= array_pad(explode(',',$modificado),11,null);
-            $ticketocmpleto = array();
-            $narreglo=0;
-          /* dd($esptoner); */            
+
+             /* nuevo arreglo para quitar los require Repetidos*/
+             $narreglo=0;
+            
+      
         foreach($esptoner as $datotoner){
           
                                 if(strncasecmp($datotoner,'%%%%Required7',13)===0){
@@ -107,7 +103,7 @@
                                     if(strncasecmp($datotoner,'%%%%Required35',14)==0){
                                       $cantidadtonerentregado1 = preg_replace('/%%%%Required35/',' ',$datotoner);                                       
                                       }
-                                    elseif(empty($datotoner) or !is_numeric($datotoner)){
+                                    elseif(empty($datotoner) or null){
                                             $cantidadtonerentregado1 = 0; 
                                         } 
                                         $narreglo++;                                            
@@ -115,36 +111,16 @@
         $color= null;
 
 
-        /*se requiere que al no tener variable se entrege el mensaje de "Sin datos" 
-        el if que valida si el campo esta vacio o no cuenta con la bariable definida  cuando se valida la existencia de la bariable (al ser falso se regresa el texto "sin datos" al ser true se regresa el contenido de la variable en ese momento ....
         
-        Problema:el arreglo cuenta con un contenido bariable 7,8,9 datos 
-        los datos se validan con un if asignado a lo requerido si un dato en particular eje (%%%%Required34)
-        este required puede existir o no existir 
-        )
+    @endphp       
 
-
-        1.- se eliminan las bariables qiue se asignaron , se genera un arreglo el cual cuente con los datos definidos por un numero indice, de esta dorma se acomodan en el resultado final
-        2.- 
-      
-        */
-        
-        
-        @endphp 
-
-        
-
-       
-       
-                    @php
-                           
+                    @php    
                         switch($tk_id->name)  {
                             case 'Asignado' : $color = '#fff7085e'; break;
                             case 'Notificado al Usuario': $color = '#16ff1352'; break;
                             case 'open' : $color = '#ff0d0d52'; $tk_id->name = preg_replace('/open/','Abierto',$tk_id->name); break;
                            case 'closed successful' : $color = '#11ff018f' ; $tk_id->name = preg_replace('/closed successful/','Cerrado Exitosamente',$tk_id->name); break;
                            case 'Atendido': $color = '#01c4ff82'; break;
-
                         }                   
                     @endphp
                  <tr style="background:<?php echo $color ?>;">
@@ -170,10 +146,10 @@
                 
     @endforeach
     
+   
       
-         
         
-            
+     
         </tbody>
         <tfoot>
             <th></th>
@@ -417,6 +393,7 @@ var table = $('#tablatk').DataTable({
                         targets: [7,8,10], // null para no ocultar columnas [1,2,3 ... ] cuando se requiera bloquear colmn 
                         visible: false
                         }] ,
+            
 // Filtro por seleccion multiple
 initComplete: function() {            
   this.api().columns([4,5,11]).every(function() {

@@ -397,7 +397,7 @@ var chart = new CanvasJS.Chart("chartContainer4",{
 
 
   data: [{
-      name: "2020",
+      name: "2021",
   		type: "area",
   		color: "#369EAD",
   		showInLegend: true,
@@ -420,7 +420,7 @@ var chart = new CanvasJS.Chart("chartContainer4",{
       ]
   	},
   	{
-      name: "2021",
+      name: "2022",
   		type: "area",  		
   		color: "#C24642",
   		axisYIndex: 1,
