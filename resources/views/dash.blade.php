@@ -171,7 +171,7 @@
 <script type="text/javascript">
 //variables para la creacion de la grafica lineal 
           var totalMesJson = {{$totalMesJson}};
-          var mesinicio = 0; //mes de inicio
+          var mesinicio = 1; //mes de inicio
           var año_x =2019;
 //variables para la creacion de la grafica lineal 
 
@@ -617,7 +617,7 @@ var chart = new CanvasJS.Chart("graflineal", {
          // theme: "dark2", // cambi el tema de la  grafica 
         
         title : {
-          text : "Dynamic Data"
+          text : "Grafica Mes - Año"
         }, 
         data : [{
             type : "splineArea",
@@ -628,13 +628,12 @@ var chart = new CanvasJS.Chart("graflineal", {
       });
   
     chart.render();
-    
+
+
     var updateCount = 0;
     var ndia =0;
-
 // Actualizando y agregando atos  
 var updateChart = function () {
- 
   var cantidadmes=
 // dato  que se va a ir ingresando 
       dataPoints.push({
@@ -644,13 +643,12 @@ var updateChart = function () {
       updateCount++;
       ndia++;
 //dato  que se va a ir ingresando  en el eje x 
-
+chart.options.title.text = "Grafica Mes - Año " + año_x;
 if (año_x=={{$año}} & mesinicio=={{$mes}}) {
   mesinicio=6;
-}else if (mesinicio<=12 ) {
+}
+if (mesinicio<=12 ) {
   mesinicio++;
-  chart.options.title.text = "Grafica Mes - Año " + año_x;
-
 }
 if (mesinicio==12) {
     mesinicio=0; 
