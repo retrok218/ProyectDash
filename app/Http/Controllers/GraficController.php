@@ -283,6 +283,7 @@ $totalMesJson = json_encode($totalmes);
       ->with('mesp',$ticket_mespasado)
       ->with('diap',$ticket_diap)
       ->with('pruemesp',$ticket_mespasado)
+      ->with('añop',$fecha_añop)
 
       ->with('mes_enero',$mes_enero)
       ->with('mes_febrero',$mes_febrero)
