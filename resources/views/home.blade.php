@@ -10,6 +10,7 @@
     <meta name="description" content="Updates and statistics">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
+    <!--Recarga del sistema cada x-s -->
     <meta http-equiv="refresh" content="70">
     
    

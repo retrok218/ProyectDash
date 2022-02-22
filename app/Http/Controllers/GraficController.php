@@ -104,9 +104,7 @@ class GraficController extends Controller
                                                         
      $mes_noviembre=DB::connection('pgsql2')->table('ticket')->whereMonth('create_time','=', 11)->whereYear('create_time','=', $fecha_año)->count();
                                                         
-     $mes_diciembre=DB::connection('pgsql2')->table('ticket')->whereMonth('create_time','=', 12)->whereYear('create_time','=', $fecha_año)->count();
-
-                                                     
+     $mes_diciembre=DB::connection('pgsql2')->table('ticket')->whereMonth('create_time','=', 12)->whereYear('create_time','=', $fecha_año)->count();                                                
       
       
                                                               // Grafica lineal mes pasado
@@ -137,10 +135,36 @@ class GraficController extends Controller
       $mes_noviembre2=DB::connection('pgsql2')->table('ticket')->whereMonth('create_time','=', 11)->whereYear('create_time','=', $fecha_añop)->count();
 
       $mes_diciembre2=DB::connection('pgsql2')->table('ticket')->whereMonth('create_time','=', 12)->whereYear('create_time','=', $fecha_añop)->count();
+//fin datos segun el mes 
+
+/*Para automatizar la grafica mes año  falta agregar con with
+
+      $tksañop = array();
+      $mes_comienza=0;
+        for($mes_comienza; $mes_comienza<=12; $mes_comienza++){
+          $tksañop[]=DB::connection('pgsql2')->table('ticket')
+          ->whereMonth('create_time','=',$mes_comienza)
+          ->whereYear('create_time','=',$fecha_añop)
+          ->count();
+        };
+        $tksañoactual = array();
+        $mes_comienza=0;
+        for($mes_comienza; $mes_comienza<=12; $mes_comienza++){
+          $tksañoactual[]=DB::connection('pgsql2')->table('ticket')
+          ->whereMonth('create_time','=',$mes_comienza)
+          ->whereYear('create_time','=',$fecha_año)
+          ->count();
+        };
+        $tksañopJosn= json_encode($tksañop);
+        $tksañoactualJson= json_encode($tksañoactual);
+*/
+        
+
+       
 
 
-      
-   
+
+
                                                              
       // ticket por Area
       $tk_por_area_1=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',1)->count();
@@ -365,7 +389,9 @@ $totalMesJson = json_encode($totalmes);
       ->with('tk_por_area_51',$tk_por_area_51)
       ->with('tk_por_area_52',$tk_por_area_52)
       ->with('tk_por_area_53',$tk_por_area_53)
-      ->with('tk_por_area_54',$tk_por_area_54)   
+      ->with('tk_por_area_54',$tk_por_area_54)  
+
+      
             
 
     ;}else {

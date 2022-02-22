@@ -107,14 +107,14 @@
         </div>
       </div> 
      
-        <div class="col-xl-6">
+      <!--  <div class="col-xl-6">
           <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
               <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
                   style="min-height: 400px; ">
                     <div id="graflineal"  > </div>
               </div>
             </div>
-          </div>
+          </div> -->
         
       
     </div>
@@ -219,7 +219,7 @@ window.onload = function (){
       										 dataPoints: [
       										 { label: "Tikets Nuevos - {{$nuevo}} ", y: {{$nuevo }}  },
                            { label: "Tickets Cerrados Exitosamente-{{$rticket }} ", y: {{$rticket }}  },
-                           { label: "Tikets cerradoinex-{{$cerradocinEX }} ", y: {{$cerradocinEX }}  },
+                          
                            { label: "Tikets Abierto-{{ $open}} ", y: {{ $open}}  },
                            
                            { label: "Tikets Cerrado por Tiempo-{{$cerradoPT }} ", y: {{$cerradoPT }}  },
@@ -230,7 +230,7 @@ window.onload = function (){
                            
                            { label: "Tikets En Tramite - {{$Entramite}} ", y: {{$Entramite }}  },
                            
-                           { label: "Tikets Falta Acta Res - {{$FalteActaRES}} ", y: {{$FalteActaRES }}  },
+                           { label: "Tikets Falta Acta Responsiva - {{$FalteActaRES}} ", y: {{$FalteActaRES }}  },
 
       										 ]
       									 }
@@ -364,8 +364,7 @@ function explodePie (e) {
 	}
 	e.chart.render();
 }
-    
-
+  
   // Fin Grafica por mes
 
 
@@ -382,11 +381,10 @@ var chart = new CanvasJS.Chart("chartContainer4",{
 
     axisX:{
       interval: 1,
-  intervalType: "month",
-  valueFormatString: "MMMM"
+      intervalType: "month",
+      valueFormatString: "MMMM"
 
-    },
-
+    }, 
     toolTip: {
 		shared: true
 	},
