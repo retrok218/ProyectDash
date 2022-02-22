@@ -202,7 +202,7 @@ class GraficController extends Controller
       // consulta por mes
 // variables para  generar la grafica lineal de  mes año 
   $inicioaño=2019;      
-  $iniciomes =1;
+  $iniciomes = 0;
   $n=0;
   $totalmes= array ();    
   for ($iniciomes ; $iniciomes <= 12 ; $iniciomes++) {
@@ -211,11 +211,13 @@ class GraficController extends Controller
      ->whereYear('create_time','=', $inicioaño)
      ->count();         
      $n++;
-     if ($iniciomes === 12 and $inicioaño <= $fecha_año ) {   
+     if ($iniciomes === 12) {   
+       if ($inicioaño <= $fecha_año ) {
          $inicioaño++;
-         $iniciomes=0;                        
-     }    
-;};
+         $iniciomes=1;
+       }                          
+     };      
+ };
 
 $totalMesJson = json_encode($totalmes); 
 //$ticket_allJson = json_encode($ticket_all);

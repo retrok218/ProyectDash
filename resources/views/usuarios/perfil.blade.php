@@ -173,10 +173,10 @@
                                         </div>
                                         <div class="form-group row">
                                             {{ Form::label('password_actual', 'Contraseña actual', array('class' => 'col-xl-3 col-lg-3 col-form-label')) }}
-                                            <div class="col-lg-9 col-xl-6">
+                                            /*<div class="col-lg-9 col-xl-6">
                                                 {{ Form::password('password_actual', array('class' => 'form-control')) }}
                                                 <a href="#" class="kt-link kt-font-sm kt-font-bold kt-margin-t-5">¿Olvidaste tu contraseña?</a>
-                                            </div>
+                                            </div>*/
                                         </div>
                                         <div class="form-group row">
                                             {{ Form::label('new_password', 'Nueva Contraseña', array('class' => 'col-xl-3 col-lg-3 col-form-label')) }}

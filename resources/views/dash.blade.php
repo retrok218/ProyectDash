@@ -665,7 +665,7 @@ chart.render();
 
 
 // se carga la grafica cada segundo
-setInterval(function(){updateChart()}, 1000); 
+setInterval(function(){updateChart()}, 200); 
 // Fin se carga la grafica cada segundo  
 //Fin Grafica Lineal AÑo - Mes cada segundo 
      
