@@ -1,6 +1,6 @@
 @extends('home')
   @section('content')
-  <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.1/css/dataTables.dateTime.min.css">
+  
 
     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
     @include('Graficas/card_estatus_tk')
@@ -69,7 +69,7 @@
 
   </div>
 
-@include('layouts/scripts/scripts')
+
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script>
@@ -229,32 +229,7 @@ var table = $('#tablatk').DataTable({
                 ]
                     
         },
-         columnDefs:[{
-          targets: false,
-          visible: false,
-        initComplete: function () {
-            this.api().columns().every( function () {
-                var column = this;
-                var select = $('<select><option value=""></option></select>')
-                    .appendTo( $(column.footer()).empty() )
-                    .on( 'change', function () {
-                        var val = $.fn.dataTable.util.escapeRegex(
-                            $(this).val()
-                        );
- 
-                        column
-                            .search( val ? '^'+val+'$' : '', true, false )
-                            .draw();
-                    } );
- 
-                column.data().unique().sort().each( function ( d, j ) {
-                    select.append( '<option value="'+d+'">'+d+'</option>' )
-                } );
-            } );
-        }
-
-
-                        }] 
+         
         
 
 

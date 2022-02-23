@@ -100,7 +100,7 @@
                 </li>
                 <hr size="2px"  noshade="noshade"  />
                 <li>
-                  <a class=" nav-link tickets_pendiente" href=" {{url('users/tickets_pendiente')}}" > <strong>Tickets Pendientes </strong> </a>
+                  <a class=" nav-link tickets_pendiente" href=" {{url('users/tickets_pendiente')}}" > <strong>Tickets Nuevos </strong> </a>
                 </li>
                 <hr size="2px"  noshade="noshade"  />
 

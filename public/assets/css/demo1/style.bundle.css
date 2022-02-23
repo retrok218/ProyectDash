@@ -68,7 +68,7 @@ body {
     font-family: Poppins;
     font-size: 1rem;
     font-weight: 400;
-    line-height: 25px;
+    line-height: 15px;
     color: #212529;
     text-align: left;
     background-color: #fff
@@ -16218,9 +16218,8 @@ html {
     height: 100%;
     margin: 0;
     padding: 0;
-    font-size: 13px;
-    
-    font-family: Poppins;
+    font-size: 14px;
+    font-family:Sourse Sans Pro;
     -ms-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale
@@ -35332,7 +35331,7 @@ body.swal2-height-auto {
     margin: 1rem 0 !important;
     
     font-kerning: none;
-    font-weight: 600;
+    font-weight: 400;
     text-align: center;
 }
 
@@ -45870,7 +45869,7 @@ body {
     }
 
     .kt-container {
-        padding: 0 8px
+        padding: 0 0px
     }
 
     .kt-subheader--enabled:not(.kt-subheader--fixed) .kt-content {

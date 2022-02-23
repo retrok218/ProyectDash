@@ -364,7 +364,8 @@ function explodePie (e) {
 	}
 	e.chart.render();
 }
-  
+    
+
   // Fin Grafica por mes
 
 
@@ -381,10 +382,11 @@ var chart = new CanvasJS.Chart("chartContainer4",{
 
     axisX:{
       interval: 1,
-      intervalType: "month",
-      valueFormatString: "MMMM"
+    intervalType: "month",
+  valueFormatString: "MMMM"
 
-    }, 
+    },
+
     toolTip: {
 		shared: true
 	},

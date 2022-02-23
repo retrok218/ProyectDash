@@ -41,7 +41,8 @@
     background-repeat: no-repeat;
     /* border: 2px dashed #333; */
     background-position: center bottom; /*Positioning*/
-    background-size: 60% 30%;
+    background-size: 100% 50%;
+    background-attachment: fixed;
 }
 
 @media (max-width: 667px) and (min-width: 375px){
