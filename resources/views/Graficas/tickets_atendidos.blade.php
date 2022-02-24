@@ -1,8 +1,6 @@
 @extends('home')
 @section('content')
 
-
-
     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
       <div class="card-deck mt-3">
         <div class="card text-center  mb-3 bg-white" >
@@ -23,34 +21,19 @@
       </div>
 
      
-<!-- Grafica Tickets Atendidos -->
-<!--
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
-              <div class="kt-portlet__body kt-portlet__body--fit kt-portlet__body--unfill">
-                  <div class="kt-widget19__pic kt-portlet-fit--top kt-portlet-fit--sides"
-                      style="min-height: 400px; background-image: url(./assets/media//products/product4.jpg)">
-                        <div id="chartContainer"  > </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      -->
-<!-- Creacion de graica tickets atendidos -->
 
       <div class="row">
         <div class="col-xl-12">
-          <div class="card ">
+          
             <div class="card text-center"  >
             <div class="card-header titulo_card"><h2> Tickets Atendido </h2> </div>
             </div>
   <!--begin: Datatable -->
-
-            <div class="card-body" >  
+  <br>
+            <h5>Filtrar por rango de Fecha : <input id="Date_search" type="text" placeholder="Selecciona el Rango " /> </h5> 
+            <div class="card-body" > 
               
-            Filtrar de la Fecha : <input id="Date_search" type="text" placeholder="Escoge las Fechas " /><br>
+            
 
                 <table id="tablatk"  class="table table-striped table-bordered " >
                     <thead >
@@ -85,111 +68,25 @@
                       </tr>
                       @endforeach
                     </tbody>
+                    <tfoot>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>Filtro/Filas </th>
+                        <th></th>
+                    </tfoot>
                     
                 </table>
               <!--end: Datatable -->
              
               </div>
-              </div>
+              
 
           </div>
       </div>
       </div>
-      @include('layouts/scripts/scripts')
-      @section('scripts')
-
       
-
-    <script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    
-<script>
-minDateFilter = "";
-maxDateFilter = "";
-$.fn.dataTableExt.afnFiltering.push(
-  function(oSettings, aData, iDataIndex) {
-    if (typeof aData._date == 'undefined') {
-      aData._date = new Date(aData[1]).getTime();
-    }
-
-    if (minDateFilter && !isNaN(minDateFilter)) {
-      if (aData._date < minDateFilter) {
-        return false;
-      }
-    }
-
-    if (maxDateFilter && !isNaN(maxDateFilter)) {
-      if (aData._date > maxDateFilter) {
-        return false;
-      }
-    }
-
-    return true;
-  }
-);
-$(document).ready(function(){
-  $("#Date_search").val("");
-});
-
-var table = $('#tablatk').DataTable( {
-  deferRender:    true, 
-  "autoWidth": false,     
-  "search": {
-    "regex": true,
-    "caseInsensitive": false,
-  },});
-
-$("#Date_search").daterangepicker({
-  "locale": {
-    "format": "YYYY-MM-DD",
-    "separator": " a ",
-    "applyLabel": "Filtrar",
-    "cancelLabel": "Cancelar",
-    "fromLabel": "De",
-    "toLabel": "To",
-    "customRangeLabel": "Custom",
-    "weekLabel": "W",
-    "daysOfWeek": [
-      "Su",
-      "Mo",
-      "Tu",
-      "We",
-      "Th",
-      "Fr",
-      "Sa"
-    ],
-    "monthNames": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "firstDay": 1
-  },
-  "opens": "center",
-}, function(start, end, label) {
-  maxDateFilter = end;
-  minDateFilter = start;
-  table.draw();  
-});
-</script>
-
-
-
-
-
-
-
+@section('scripts')
 @endsection
 @endsection

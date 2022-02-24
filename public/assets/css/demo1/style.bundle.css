@@ -1637,6 +1637,7 @@ pre code {
     vertical-align: bottom;
     border-bottom: 3px solid #000000f5;
     color: white;
+    font-size: 15px;
 }
 
 .table tbody+tbody {
@@ -1670,7 +1671,7 @@ pre code {
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #f7f8fa
+    background-color: #96ca906b
 }
 
 .table-hover tbody tr:hover {

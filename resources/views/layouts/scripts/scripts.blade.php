@@ -28,13 +28,15 @@
 <script src="{{ URL::asset('assets/vendors/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>
 
 
-<!-- Scrips para generar graficas en paginas secundarias -->
+<!-- Scrips para generar graficas   -->
 <script src="{{ URL::asset('assets/vendors/general/canvas/canvasjs.min.js')}}" type="text/javascript"></script>
 <script src="{{ URL::asset('assets/vendors/general/canvas/canvasjs.react.js')}}" type="text/javascript"></script>
 <script src="{{ URL::asset('assets/vendors/general/canvas/jquery.canvasjs.min.js')}}" type="text/javascript"></script>
-<!-- FIN Scrips para generar graficas en paginas secundarias -->
-
-
+<!-- FIN Scrips para generar graficas  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script src="{{URL::asset('js/datatable.js')}}"></script> <!-- script para datatable creacion y control de tablas-->
+<script src="{{URL::asset('js/dateTime.min.js')}}"></script> <!--script para calendario datatable-->
 
 
 

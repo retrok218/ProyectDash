@@ -468,7 +468,7 @@ $totalMesJson = json_encode($totalmes);
       ->join('customer_user','ticket.customer_id', 'customer_user.customer_id')
       ->select('ticket.tn','ticket.create_time','ticket.title','ticket.user_id','queue.name as qname','ticket_state.name','customer_user.first_name as nombre','customer_user.last_name as apellido')
       ->get();      
-      $tickets_registro =DB::connection('pgsql2')->table('ticket') ->get();
+      
 
       $tickte = DB::connection('pgsql2')->table('ticket')->count();
       $asignado =DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 12)->count();
@@ -485,7 +485,6 @@ $totalMesJson = json_encode($totalmes);
       $rticket = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 2)->count();
 
       return view('graficas/estatustickets')
-      ->with('tickets_registro',$tickets_registro)
       ->with('tickets_totales',$tickets_totales)
         ->with('ticket', $tickte)
         ->with('asignado',$asignado)
@@ -501,8 +500,6 @@ $totalMesJson = json_encode($totalmes);
         ->with('cerradoPT',$cerradoPT)
         ->with('cerradoexitosamente',$rticket)
         
-      
-
     ;}
 
 

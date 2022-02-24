@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             
 
-    <table id="tablatk"  class="table table-striped table-bordered " >
+    <table id="tablatktoner"  class="table table-striped table-bordered " >
         
         <thead >           
             <tr>
@@ -283,7 +283,7 @@ $(document).ready(function(){
   $("#Date_search").val("");
 });
 
-var table = $('#tablatk').DataTable({ 
+var table = $('#tablatktoner').DataTable({ 
       select:true,  
       "pageLength": 10,   
       "lengthChange": true,
