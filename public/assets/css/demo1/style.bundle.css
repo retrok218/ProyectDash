@@ -68,7 +68,7 @@ body {
     font-family: Poppins;
     font-size: 1rem;
     font-weight: 400;
-    line-height: 15px;
+    line-height: 16px;
     color: #212529;
     text-align: left;
     background-color: #fff
@@ -45933,7 +45933,7 @@ body {
     }
 
     .kt-aside--enabled .kt-header.kt-header--fixed {
-        left: 265px
+        left: 205px
     }
 
     .kt-header--fixed.kt-header--minimize .kt-header {
@@ -48256,7 +48256,7 @@ body {
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    padding: 0 25px;
+    padding: 28px 0px;
     height: 30px
 }
 
@@ -48271,7 +48271,8 @@ body {
 
 .kt-aside__brand .kt-aside__brand-tools {
     display: flex;
-    justify-content: flex-end
+    justify-content: flex-end;
+    margin-right:7px;
 }
 
 .kt-aside__brand .kt-aside__brand-tools .kt-aside__brand-aside-toggler {
@@ -48843,8 +48844,8 @@ body {
 }
 
 .kt-aside-menu .kt-menu__nav>.kt-menu__section {
-    margin: 20px 0 0 0;
-    height: 40px
+    margin: 2px 0 0 0;
+    height: 18px
 }
 
 .kt-aside-menu .kt-menu__nav>.kt-menu__section .kt-menu__section-text {
@@ -49814,16 +49815,15 @@ body {
 .mcd-menu li a {
   display: block;
   text-decoration: none;
-  padding: 10px 10px;
+  padding: 8px 10px;
   color: rgb(202 176 143);
-  /*text-align: center;
-  border-right: 1px solid #E7E7E7;*/
-  
+  text-align: center;
+  border-right: 1px solid #E7E7E7;
   /* == */
   text-align: left;
-  
   position: relative;
   border-bottom: 1px solid #EEE;
+  
   /* == */
 }
 .mcd-menu li a i {
@@ -49901,12 +49901,12 @@ body {
   box-shadow: 0 0 5px #DDD;
   -moz-box-shadow: 0 0 5px #DDD;
   -webkit-box-shadow: 0 0 5px #DDD;
-  
   /* == */
-  border-left: 5px solid #008805f0;
+  border-left: 5px solid #75293d;
   border-right: 10px solid #75293d;
   margin: 0 -4px;
-  background-color: #a0214c29;
+   
+  background: #bc955c59;
   /* == */
 }
 .mcd-menu li a.active:before {
@@ -49919,7 +49919,7 @@ body {
   border-right: 5px solid transparent;*/
   
   /* == */
-  top: 42%;
+  top: 35%;
   left: 0;
   border-left: 5px solid #75293d;
   border-top: 5px solid transparent;
@@ -49929,13 +49929,13 @@ body {
 
 /* == */
 .mcd-menu li a.active:after {
-  content: "";
+  /*content: "";*/
   position: absolute;
   top: 42%;
   right: 0;
-  border-right: 5px solid #75293d;
+  /*border-right: 5px solid #75293d;
   border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
+  border-bottom: 5px solid transparent;*/
 }
 /* == */
 
@@ -50369,6 +50369,7 @@ body {
     overflow: hidden;
     height: 40px;
     margin-left: 0.35em;
+    line-height:40px
 
 }
 

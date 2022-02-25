@@ -60,7 +60,36 @@
       </div>
 
     </div>
-    <br>
+
+
+    <div class="col-xl-12">
+          <div class="card-header text-center border-dark  mb-3  " ><h4>Buscar Ticke</h4></div>
+          <table id="tabladeuno" class="table table-striped table-bordered ">
+            <thead>
+              <tr>
+                        <th>N Ticket</th>
+                        <th> Creado </th>
+                        <th> Asunto </th>
+                        <th> Usuario </th>
+                        <th> Area </th>
+                        <th> Status TK</th>
+  
+            </thead>
+            <tbody>
+              <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+    
   
     
 
@@ -382,7 +411,7 @@ var chart = new CanvasJS.Chart("chartContainer4",{
 
     axisX:{
       interval: 1,
-    intervalType: "month",
+  intervalType: "month",
   valueFormatString: "MMMM"
 
     },
@@ -695,6 +724,12 @@ var nuevotk = [
 
 
 
+
+
+
+$(document).ready(function() {
+$('#tabladeuno').DataTable();
+} );
 
 
 

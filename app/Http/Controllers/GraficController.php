@@ -35,7 +35,8 @@ class GraficController extends Controller
       $fecha_diap= $fecha_dia-1;
 
       // creacion de funcion de auto update
-      $ultimoTK =DB::connection('pgsql2')->table('ticket')->orderBy('create_time','DESC')->first();
+      $ultimoTK =DB::connection('pgsql2')->table('ticket')
+      ->orderBy('create_time','DESC')->first();
       
       // creacion de funcion de auto update
 
