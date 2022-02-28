@@ -60,35 +60,70 @@
       </div>
 
     </div>
+<div class="card col-lg-12 " >
+<div class="card-header text-center"><h5> Buscar Ticke </h5></div>
+  <div class="col-lg-4">
+    <form method="GET">
+      <div > <input name="tktaconsultar" type="text" placeholder="Ingresa el Numero de TKT a Buscar" class="form-control" required>
+      <button type="submit" class="btn btn-success">Consultar</button> 
+       
+    </div> 
+         
+  </form>
+  <div class="container">
+ 
+  @if($_GET)
+    @php
+          echo "El Ticket con el numero ".$_GET['tktaconsultar'];
+          $tktbuscado = $_GET['tktaconsultar'];
+          $consulta = DB::connection('pgsql2')->table('ticket')->where('ticket.tn','=',$tktbuscado)
+          ->join('queue','queue.id','queue_id')
+            ->join('ticket_state','ticket_state.id','ticket_state_id')
+            ->join('customer_user','ticket.customer_id', 'customer_user.customer_id')
+            ->select('ticket.tn','ticket.create_time','ticket.title','ticket.user_id','queue.name as qname','ticket_state.name','customer_user.first_name as nombre','customer_user.last_name as apellido')
+          ->get();
+          
+    @endphp
+
+          @if(count($consulta))
+           @php 
+            echo " Pero claro que shiiii existe en la DB ";
+            foreach($consulta as $tktconsultado)
+              $numerotiket= $tktconsultado ->tn;
+              $fechadeltiket=$tktconsultado->create_time;
+              $asuntodeltiket=$tktconsultado->title;
+              $nusuario=$tktconsultado->nombre;
+              $apusuario=$tktconsultado->apellido;
+              $areadeltiket=$tktconsultado->qname;
 
 
-    <div class="col-xl-12">
-          <div class="card-header text-center border-dark  mb-3  " ><h4>Buscar Ticke</h4></div>
-          <table id="tabladeuno" class="table table-striped table-bordered ">
-            <thead>
-              <tr>
-                        <th>N Ticket</th>
-                        <th> Creado </th>
-                        <th> Asunto </th>
-                        <th> Usuario </th>
-                        <th> Area </th>
-                        <th> Status TK</th>
+            @endphp
+        <div class="w3-card-4" style="width:70%"><h4>Ticket encontrado {{$numerotiket}}</h4></div>
+        <table>
+          <thead class="table table-striped table-bordered">
+            <th>Fecha creacion del TKT</th>
+            <th>Asunto del TKT</th>
+            <th>Nombre Solicitante </th>
+            <th>Apellido Solicitante</th>
+            <th>Area de donde se genero el TKT</th>
+          </thead>
+          <td>{{$fechadeltiket}}</td>
+          <td>{{$asuntodeltiket}}</td>
+          <td>{{$nusuario}}</td>
+          <td>{{$apusuario}}</td>
+          <td>{{$areadeltiket}}</td>
+        </table>
+          @else
+            {{"/  no existe en la Base de datos  " }}
+          @endif
   
-            </thead>
-            <tbody>
-              <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              
-              </tr>
-            </tbody>
-          </table>
+  @endif
+  
 
-        </div>
+  
+  </div>
+ </div>
+ </div>
     
   
     
@@ -729,6 +764,7 @@ var nuevotk = [
 
 $(document).ready(function() {
 $('#tabladeuno').DataTable();
+
 } );
 
 

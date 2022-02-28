@@ -35,8 +35,7 @@ class GraficController extends Controller
       $fecha_diap= $fecha_dia-1;
 
       // creacion de funcion de auto update
-      $ultimoTK =DB::connection('pgsql2')->table('ticket')
-      ->orderBy('create_time','DESC')->first();
+      $ultimoTK =DB::connection('pgsql2')->table('ticket')->orderBy('create_time','DESC')->first();
       
       // creacion de funcion de auto update
 
@@ -410,6 +409,7 @@ $totalMesJson = json_encode($totalmes);
       ->join('customer_user','ticket.customer_id', 'customer_user.customer_id')
       ->select('ticket.tn','ticket.create_time','ticket.title','ticket.user_id','queue.name as qname','ticket_state.name','customer_user.first_name as nombre','customer_user.last_name as apellido')
       ->get();
+     
     $tickets_registro =DB::connection('pgsql2')->table('ticket') ->get();
       $tickte = DB::connection('pgsql2')->table('ticket')->count();
       $asignado =DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 12)->count();
