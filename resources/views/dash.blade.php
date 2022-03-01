@@ -64,7 +64,7 @@
 <div class="card-header text-center"><h5> Buscar Ticke </h5></div>
   <div class="col-lg-4">
     <form method="GET">
-      <div > <input name="tktaconsultar" type="text" placeholder="Ingresa el Numero de TKT a Buscar" class="form-control" required>
+      <div > <input name="tktaconsultar" type="text"  maxlength="8" minlength="8" placeholder="Ingresa el Numero de TKT a Buscar" class="form-control" required>
       <button type="submit" class="btn btn-success">Consultar</button> 
        
     </div> 
@@ -99,6 +99,9 @@
 
             @endphp
         <div class="w3-card-4" style="width:70%"><h4>Ticket encontrado {{$numerotiket}}</h4></div>
+
+
+        
         <table>
           <thead class="table table-striped table-bordered">
             <th>Fecha creacion del TKT</th>
@@ -756,17 +759,6 @@ var nuevotk = [
     
   }
   
-
-
-
-
-
-
-$(document).ready(function() {
-$('#tabladeuno').DataTable();
-
-} );
-
 
 
 </script>

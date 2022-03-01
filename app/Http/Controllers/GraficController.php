@@ -470,6 +470,7 @@ $totalMesJson = json_encode($totalmes);
       ->select('ticket.tn','ticket.create_time','ticket.title','ticket.user_id','queue.name as qname','ticket_state.name','customer_user.first_name as nombre','customer_user.last_name as apellido')
       ->get();      
       
+    
 
       $tickte = DB::connection('pgsql2')->table('ticket')->count();
       $asignado =DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 12)->count();
