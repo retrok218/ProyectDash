@@ -116,12 +116,42 @@
     color: #fff;
 }
 
-
-
-
-
-
-
-
-
 /*table.dataTable thead {background-color:#00B056;font-weight: bold;}*/
+
+
+/*css animaciones que se encuentran en la pagina principal */
+
+.textoanimado1{
+    height: 100vh;
+  /*This part is important for centering*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.textoanimado2{
+    width: 22ch;
+  animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  font-family: monospace;
+  font-size: 2em;
+}
+
+.card-tktbuscado{
+    flex: 1 1 auto;
+    padding: 1rem;
+    width: var(--card-width);
+    height: var(--card-height);
+    position: relative;
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    /* border: 16px; */
+    border: groove;
+    background-color: #b9f7aea8;
+    border: ridge;
+}

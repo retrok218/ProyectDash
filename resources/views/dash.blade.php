@@ -9,12 +9,14 @@
 
     <div class=" card-header shadow-sm p-3 mb-5 rounded " style="background: transparent ">
       <div class="col-lg-12 ">
-         <h1 class="h1t">Monitoreo de Tickets  </h1>
+         <h1 class="h1t ">Monitoreo de Tickets  </h1>
          
+         
+
           <div class="nav2">
-          <div class="new2" > New </div>
-          <div id="news2"></div>
-          <div class="clear2"></div>
+            <div class="new2" > New </div>
+            <div id="news2"></div>
+            <div class="clear2"></div>
           </div>
 
           
@@ -60,21 +62,22 @@
       </div>
 
     </div>
-<div class="card col-lg-12 " >
+<div class="container">
+
 <div class="card-header text-center"><h5> Buscar Ticke </h5></div>
-  <div class="col-lg-4">
-    <form method="GET">
-      <div > <input name="tktaconsultar" type="text"  maxlength="8" minlength="8" placeholder="Ingresa el Numero de TKT a Buscar" class="form-control" required>
-      <button type="submit" class="btn btn-success">Consultar</button> 
+ 
+ <form method="GET" class="form">      
+        <input name="tktaconsultar" type="text"  maxlength="8" minlength="8" placeholder="Ingresa el Numero de TKT a Buscar"   style="background-color: #fff8f8e0;"  required>
+      <button type="submit" class="btn btn-success text-cemter">Consultar</button> 
        
-    </div> 
+   
          
   </form>
-  <div class="container">
+  
  
   @if($_GET)
     @php
-          echo "El Ticket con el numero ".$_GET['tktaconsultar'];
+          
           $tktbuscado = $_GET['tktaconsultar'];
           $consulta = DB::connection('pgsql2')->table('ticket')->where('ticket.tn','=',$tktbuscado)
           ->join('queue','queue.id','queue_id')
@@ -87,7 +90,7 @@
 
           @if(count($consulta))
            @php 
-            echo " Pero claro que shiiii existe en la DB ";
+            
             foreach($consulta as $tktconsultado)
               $numerotiket= $tktconsultado ->tn;
               $fechadeltiket=$tktconsultado->create_time;
@@ -98,17 +101,19 @@
 
 
             @endphp
-        <div class="w3-card-4" style="width:70%"><h4>Ticket encontrado {{$numerotiket}}</h4></div>
+
+            <div class="card-tktbuscado">
+        <div class="w3-card-4" ><h4>Ticket encontrado {{$numerotiket}}</h4></div>
 
 
         
         <table>
-          <thead class="table table-striped table-bordered">
+          <thead class="table table table-striped table-bordered">
             <th>Fecha creacion del TKT</th>
             <th>Asunto del TKT</th>
-            <th>Nombre Solicitante </th>
-            <th>Apellido Solicitante</th>
-            <th>Area de donde se genero el TKT</th>
+            <th>Solicitante </th> <!--ingresar nombre completo del requeridor -->
+            <th>Apellido Solicitante</th> <!--quitar-->
+            <th>Area</th>
           </thead>
           <td>{{$fechadeltiket}}</td>
           <td>{{$asuntodeltiket}}</td>
@@ -116,19 +121,15 @@
           <td>{{$apusuario}}</td>
           <td>{{$areadeltiket}}</td>
         </table>
+        </div>
           @else
-            {{"/  no existe en la Base de datos  " }}
+          <p>{{$tktbuscado}} "no existe en la Base de datos" </p>
           @endif
+          
   
   @endif
-  
-
-  
-  </div>
- </div>
- </div>
     
-  
+ </div>
     
 
 </div >
@@ -736,7 +737,9 @@ setInterval(function(){updateChart()}, 200);
 // Fin se carga la grafica cada segundo  
 //Fin Grafica Lineal AÑo - Mes cada segundo 
      
+
 };
+
 
 
 var nuevotk = [
@@ -746,11 +749,14 @@ var nuevotk = [
   y = 0,
  num = 100,
   news = document.getElementById("news2"),
+  
   last = setInterval(function() {
-    news.textContent += nuevotk[y][x++] ; 
+    news.textContent += nuevotk[y][x++] ;
+     
       if(x > nuevotk[y].length) { 
         x = 0;
-        news.textContent = "";              
+        news.textContent = "";    
+                  
       }  
   },num );
 

@@ -61,7 +61,7 @@ background: linear-gradient(170deg, #0DA50A 0%, #ADF1AC 80%);
 
 .fondo1{
 	
-	background-image: url(../assets/media/bg/bg-cdmx.png);
+	/*background-image: url(../assets/media/bg/bg-cdmx.png);*/
 	background-repeat: no-repeat;
 	background-position:center ;
 	background-position-y: top;
