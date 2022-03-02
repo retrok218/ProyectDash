@@ -4905,7 +4905,7 @@ input[type=submit].btn-block {
         flex: 1 0 0%;
         flex-direction: column;
         margin-right: 10px;
-        margin-bottom: 0;
+        margin-bottom: 14px;
         margin-left: 10px
     }
 }
@@ -16219,7 +16219,7 @@ html {
     height: 100%;
     margin: 0;
     padding: 0;
-    font-size: 14px;
+    /*font-size: 1px;*/
     font-family:Sourse Sans Pro;
     -ms-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;

@@ -108,10 +108,7 @@
                                         } 
                                         $narreglo++;                                            
         }    
-        $color= null;
-
-
-        
+        $color= null;        
     @endphp       
 
                     @php    

@@ -153,5 +153,18 @@
     /* border: 16px; */
     border: groove;
     background-color: #b9f7aea8;
-    border: ridge;
+    
+}
+
+.card-noencontrado{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #e03a2ee1;
+    background-clip: border-box;
+    border: 1px solid #0f4006;
+    border-radius: 0.25rem;
+    color: #ffffff;
 }

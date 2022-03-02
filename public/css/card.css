@@ -112,6 +112,54 @@ S
 
 }
 
+.container-busqueda{
+	position: relative;
+    margin: 3px 5px;
+	width: 1000px;
+	
+    padding: 0px 0;
+    clear: both;
+   /* border: 1px solid;*/
+    /*background: #f9f0ec;*/
+}
 
+
+.botonbusqueda{
+	display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 7px 13px;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+	background-color: #0a5507;
+    border-color: #048f10;
+	color: #fff;
+	
+}
+
+.formulario-tkt
+{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #e6eae5e6;
+    background-clip: border-box;
+    border: 1px solid #0f4006;
+    border-radius: 0.25rem;
+    color: #000000;
+	align-items: center;
+
+}
 
 

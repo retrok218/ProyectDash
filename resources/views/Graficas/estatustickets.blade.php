@@ -43,7 +43,7 @@
                         <td>{{$nombre.''.$apellido}}</td>
                         <td>{{$tickets_totales->qname}}</td>
                         
-                        <!--se cambia tecto de closed successful a Cerrado Exitosamente -->
+                        <!--se cambia closed successful a Cerrado Exitosamente -->
                           @if($tickets_totales->name == 'closed successful' )
                             <td>Cerrado Exitosamente</td> 
                           @elseif($tickets_totales->name == 'open')

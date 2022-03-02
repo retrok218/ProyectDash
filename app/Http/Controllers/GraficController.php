@@ -248,6 +248,9 @@ $totalMesJson = json_encode($totalmes);
 
 
 
+
+
+
 // Fin consulta por mes
 
 

@@ -62,17 +62,15 @@
       </div>
 
     </div>
-<div class="container">
+<div class="container-busqueda">
 
 <div class="card-header text-center"><h5> Buscar Ticke </h5></div>
- 
- <form method="GET" class="form">      
-        <input name="tktaconsultar" type="text"  maxlength="8" minlength="8" placeholder="Ingresa el Numero de TKT a Buscar"   style="background-color: #fff8f8e0;"  required>
-      <button type="submit" class="btn btn-success text-cemter">Consultar</button> 
-       
-   
-         
+ <div class="formulario-tkt">
+ <form method="GET" class="form fas fa-ticket-alt" style='font-size:30px; '>      
+        <input name="tktaconsultar" type="text"  maxlength="8" minlength="8" placeholder="Buscar Ticket"   style="background-color: #fff8f8e0; font-size:20px"  required>
+      <button type="submit" class="btn btn-success text-cemter   " >Consultar</button>              
   </form>
+  </div>
   
  
   @if($_GET)
@@ -80,12 +78,25 @@
           
           $tktbuscado = $_GET['tktaconsultar'];
           $consulta = DB::connection('pgsql2')->table('ticket')->where('ticket.tn','=',$tktbuscado)
-          ->join('queue','queue.id','queue_id')
-            ->join('ticket_state','ticket_state.id','ticket_state_id')
-            ->join('customer_user','ticket.customer_id', 'customer_user.customer_id')
-            ->select('ticket.tn','ticket.create_time','ticket.title','ticket.user_id','queue.name as qname','ticket_state.name','customer_user.first_name as nombre','customer_user.last_name as apellido')
+            ->join("queue","queue.id","=","ticket.queue_id")
+            ->join("ticket_state","ticket_state.id","=","ticket.ticket_state_id")
+            ->join("customer_user","customer_user.customer_id","=","ticket.customer_id")
+            ->select(
+            'ticket.tn',
+            'ticket.create_time',
+            'ticket.title',
+            'ticket.user_id',
+            'queue.name as qname',
+            'ticket_state.name',
+            'customer_user.first_name as nombre',
+            'customer_user.last_name as apellido')
+
+
+            
+            
           ->get();
-          
+         
+    
     @endphp
 
           @if(count($consulta))
@@ -98,32 +109,42 @@
               $nusuario=$tktconsultado->nombre;
               $apusuario=$tktconsultado->apellido;
               $areadeltiket=$tktconsultado->qname;
+              if($tktconsultado->name == "closed successful"){
+                $estado= "Cerrado Exitosamente";
+              }else{
+                $estado=$tktconsultado->name;
+              }
+              
 
 
             @endphp
 
             <div class="card-tktbuscado">
-        <div class="w3-card-4" ><h4>Ticket encontrado {{$numerotiket}}</h4></div>
+        <div class="card" ><h4>Ticket encontrado {{$numerotiket}}</h4></div>
 
 
         
         <table>
           <thead class="table table table-striped table-bordered">
-            <th>Fecha creacion del TKT</th>
-            <th>Asunto del TKT</th>
-            <th>Solicitante </th> <!--ingresar nombre completo del requeridor -->
-            <th>Apellido Solicitante</th> <!--quitar-->
-            <th>Area</th>
+            <tr class ="card-header">
+              <th>Fecha creacion del TKT</th>
+              <th>Asunto del TKT</th>
+              <th>Usuario</th> <!--ingresar nombre completo del requeridor -->
+              <th>Area</th>
+              <th>Estado</th>
+            </tr>
           </thead>
           <td>{{$fechadeltiket}}</td>
           <td>{{$asuntodeltiket}}</td>
-          <td>{{$nusuario}}</td>
-          <td>{{$apusuario}}</td>
+          <td>{{$nusuario}}.{{$apusuario}}</td>
           <td>{{$areadeltiket}}</td>
+          <td>{{$estado}}</td>
         </table>
         </div>
           @else
-          <p>{{$tktbuscado}} "no existe en la Base de datos" </p>
+          <div class="card-noencontrado text-center">
+          <h3>{{$tktbuscado}}</h3> <p> "No se encontro el TKT"</p>  
+          </div>
           @endif
           
   
