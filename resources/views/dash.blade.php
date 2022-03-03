@@ -111,6 +111,8 @@
               $areadeltiket=$tktconsultado->qname;
               if($tktconsultado->name == "closed successful"){
                 $estado= "Cerrado Exitosamente";
+              }else if($tktconsultado->name == "open"){
+                $estado= "Abierto";
               }else{
                 $estado=$tktconsultado->name;
               }

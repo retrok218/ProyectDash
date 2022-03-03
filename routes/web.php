@@ -108,6 +108,13 @@ Route::get('/monitoreotks','Tks_DT_controlle@monitoreo_tks');
 Route::get('/tkt_pru_toner','Tks_DT_controlle@pr_sol_toner')->name('solicitudtoner');
 
 
+// Prueva de codigo ****************************************************************************************
+Route::get('/Puevacodigo','GraficController@pruevacod');
+
+// Prueva de codigo ****************************************************************************************
+
+
+
 //Fin Rutas para Gestor de tickets
     
     });

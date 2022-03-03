@@ -553,7 +553,15 @@ $totalMesJson = json_encode($totalmes);
     
 
   ;}
-  
+
+
+  public function pruevacod(){
+    $tktts = DB::connection('pgsql2')->table('ticket')->get();
+
+    
+    return view('graficas/pruevacod')
+    ->with('tktts',$tktts)
+  ;}
   
 
 }
