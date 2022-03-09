@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" translate="no">
+
+Fuente: https://www.iteramos.com/pregunta/93728/como-desactivar-el-traductor-de-google-desde-el-html-en-chrome >
 <!-- begin::Head -->
 <head>
     <!--begin::Base Path (base relative path for assets of this page) -->
@@ -8,6 +10,7 @@
     <meta charset="utf-8" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="Updates and statistics">
+    <meta name="google" content="notranslate" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <!--Recarga del sistema cada x-s  activado-->
