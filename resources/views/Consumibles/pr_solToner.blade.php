@@ -17,10 +17,10 @@
                 <th>Descripcion de TKT</th>
                 <th>Fila</th>
                 <th>Dependencia</th>
-                <th>Tipo de Toner </th>
-                <th>Cantidad</th>
-                <th>Tipo de Toner2 </th>
-                <th>Cantidad</th>
+                <th>1.-Tipo de Toner </th>
+                <th>1.-Cantidad</th>
+                <th>2.-Tipo de Toner2 </th>
+                <th>2.-Cantidad</th>
                 <th>Cantidad entregada </th>
                 <th>Cometario de Entrega</th>                                                    
                 <th>Estado</th>      
@@ -108,6 +108,7 @@
                                         } 
                                         $narreglo++;                                            
         }    
+        
         $color= null;        
     @endphp       
 

@@ -1,3 +1,9 @@
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,19 +17,6 @@
 <h1>Prueva de codigo objetos  </h1>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 @php
 class ticketdefinitivo {
      public $numerodetkt;
@@ -31,30 +24,37 @@ class ticketdefinitivo {
         
 
 // Metodp de contruccion 
-        public function __construct($t,$des){
+        public function __construct($t,$des,$fech,$que){
             $this->numerodetkt = $t;
             $this->descripicontkt = $des;
+            $this->fechacreacion = $fech;
+            $this->statustkt = $que;
 
         }
         public function __destruct(){
             
         }
+
  }
+
+
+
  foreach($tktts as $ticket){
     
 
      $nombretkt = $ticket->tn;
      $contenidotkt = $ticket->title;
-    $tkt = new ticketdefinitivo($nombretkt,$contenidotkt); 
-    echo $tkt->numerodetkt.'<br> '.$tkt->descripicontkt.'<br>';
+     $fechacreacion = $ticket->create_time;
+     $statustkt = $ticket->queue_id;
+
+    $tkt = new ticketdefinitivo($nombretkt,$contenidotkt,$fechacreacion,$statustkt); 
+    echo $tkt->numerodetkt,'  '.$tkt->descripicontkt.'  '.$tkt->fechacreacion.' -> '.$tkt->statustkt.'<br>'; 
+    
  }   
- 
+
+ dd($ticketdefinitivo);
  
 @endphp 
-
-
-
-
     
 </body>
 </html>

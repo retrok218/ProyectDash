@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <!--Recarga del sistema cada x-s -->
-    <!-- <meta http-equiv="refresh" content="70"> -->
+     <meta http-equiv="refresh" content="30"> 
     
    
 
@@ -115,7 +115,7 @@
 
                     </div>
                 </div>
-<!-- Fin Spiner  -->
+<!-- Fin Spiner   url(../assets/media/bg/bg-cdmx_bn.png) -->
 
                 <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
                     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
