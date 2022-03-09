@@ -52,7 +52,9 @@ class ticketdefinitivo {
     
  }   
 
- dd($ticketdefinitivo);
+ var_dump($tkt);
+
+ 
  
 @endphp 
     

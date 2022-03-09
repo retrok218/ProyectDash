@@ -27,6 +27,20 @@
             </tr>
         </thead>
         <tbody>
+
+        @php
+            class tktdefinitivo {
+              public $numero_tiket = $tk_id ->tn; <!--Numero que identfica el TKT -->
+
+            }
+
+
+        @endphp
+
+
+
+
+
     @php
 // Funcion que limpia los datos traidos de la db dentro de la variable texto
         function eliminasimbolos($texto){                           
