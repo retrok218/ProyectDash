@@ -182,6 +182,9 @@ a:hover {
     text-decoration: underline
 }
 
+
+
+
 a:not([href]):not([tabindex]) {
     color: inherit;
     text-decoration: none
@@ -50466,6 +50469,43 @@ body {
   table.dataTable thead .sorting_desc_disabled {
     background-position: 100% 10px;
   }
+
+
+
+.cardhvr {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #e6eae5e6;
+    background-clip: border-box;
+    border: 1px solid #0f4006;
+    border-radius: .25rem;
+    color: #000000
+}
+
+.cardhvr:hover{
+    color: #9e1d49;
+    text-decoration: underline;
+    background-color: #ffc4cb4d;
+    font_size: 30px
+
+}
+
+
+
+.urla {
+    color: rgb(228, 72, 24);
+    text-decoration: none;
+    font-size: 20px
+
+}
+.urla:hover{
+    color: #9e1d49;
+    text-decoration: underline;
+    background-color: #ffc4cb4d
+}
 
 
 

@@ -18,6 +18,10 @@
 
 
 @php
+
+
+
+
 class ticketdefinitivo {
      public $numerodetkt;
      public $descripicontkt;
@@ -57,6 +61,8 @@ class ticketdefinitivo {
  
  
 @endphp 
+
+<!--$tktts contiene el primer ticket dentro de el campo ticket en la db -->
     
 </body>
 </html>

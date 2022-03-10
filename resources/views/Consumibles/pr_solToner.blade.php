@@ -29,12 +29,12 @@
         <tbody>
 
         @php
-            class tktdefinitivo {
-              public $numero_tiket = $tk_id ->tn; <!--Numero que identfica el TKT -->
-
+           /* class tktdefinitivo {
+              public $numero_tiket = $tk_id ->tn; 
+            Numero que identfica el TKT
             }
 
-
+*/
         @endphp
 
 

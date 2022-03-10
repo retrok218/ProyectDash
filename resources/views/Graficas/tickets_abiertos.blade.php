@@ -33,7 +33,7 @@
                 <table id="tablatk"  class="table table-striped table-bordered "  >
                     <thead >
                       <tr>
-                        <th>N Ticket</th>
+                        <th>Numero de Ticket</th>
                         <th> Creado </th>
                         <th> Asunto </th>
                         <th> Usuario </th>
@@ -45,7 +45,7 @@
                     <tbody>
                       @foreach($tickets_abiertos as $tickets_abiertos)
                       <tr>
-                        <td>{{$tickets_abiertos->tn}}</td>
+                        <td><a class="cardhvr" href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID={{$tickets_abiertos->id}}" target="_blank" title="Ir en busca del TKT en OTRS">{{$tickets_abiertos->tn}}</a></td>
                         <td>{{$tickets_abiertos->create_time}}</td>
                         <td>{{$tickets_abiertos->title}}</td>
                         <td>{{$tickets_abiertos->nombre .' '. $tickets_abiertos->apellido}}</td>

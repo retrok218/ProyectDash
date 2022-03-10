@@ -82,6 +82,7 @@
             ->join("ticket_state","ticket_state.id","=","ticket.ticket_state_id")
             ->join("customer_user","customer_user.customer_id","=","ticket.customer_id")
             ->select(
+            'ticket.id',
             'ticket.tn',
             'ticket.create_time',
             'ticket.title',
@@ -103,6 +104,7 @@
            @php 
             
             foreach($consulta as $tktconsultado)
+              $idtkt = $tktconsultado->id;
               $numerotiket= $tktconsultado ->tn;
               $fechadeltiket=$tktconsultado->create_time;
               $asuntodeltiket=$tktconsultado->title;
@@ -122,7 +124,15 @@
             @endphp
 
             <div class="card-tktbuscado">
-        <div class="card" ><h4>Ticket encontrado {{$numerotiket}}</h4></div>
+        <div  >
+          <h4>Ticket encontrado
+            <a  href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID={{$idtkt}}" target="_blank" title="Ir en busca del TKT en OTRS">
+              <div class="cardhvr">
+                {{$numerotiket}}
+              </div>
+            </a>
+          </h4>
+        </div>
 
 
         

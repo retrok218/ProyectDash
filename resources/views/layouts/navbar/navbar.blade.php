@@ -174,7 +174,7 @@
 
                   </ul>
                </div>
-            </li> -->
+            </li>
 <!-- Fin Creacion de lista para consumibles   -->
 
 <!-- Monitoreo de TKS -->

@@ -267,7 +267,7 @@ class Tks_DT_controlle extends Controller
     ->join('ticket_state','ticket_state.id','ticket_state_id')
     ->join('queue','queue.id','queue_id')
     ->join('customer_user','ticket.customer_id', 'customer_user.customer_id')
-    ->select('ticket.tn','ticket.create_time','ticket.title','ticket.user_id','queue.name as qname','ticket_state.name','customer_user.first_name as nombre','customer_user.last_name as apellido')
+    ->select('ticket.id','ticket.tn','ticket.create_time','ticket.title','ticket.user_id','queue.name as qname','ticket_state.name','customer_user.first_name as nombre','customer_user.last_name as apellido')
     ->get();
     $tickets_registro =DB::connection('pgsql2')->table('ticket') ->get();
     
@@ -285,6 +285,9 @@ class Tks_DT_controlle extends Controller
       $cerradoPT = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',10)->count(); 
       $rticket = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 2)->count();
 
+
+
+     
     return view('graficas/tickets_abiertos')
     ->with('tickets_abiertos',$tickets_abiertos)
     ->with('tickets_registro',$tickets_registro)
