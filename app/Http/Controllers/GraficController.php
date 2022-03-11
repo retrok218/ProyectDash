@@ -633,7 +633,7 @@ foreach ($ticketfusion as $limpiezatkt) {
 }
 
 
-  dd($ticketfusion);
+  
 //----------------------------------------------------------------------------------------------------
     //dd($ticketfusion);
     return view('graficas/pruevacod')

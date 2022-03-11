@@ -21,21 +21,25 @@
               </div>
                 
             </div>
-          <div class="card-deck mt-3 " >
-              
-            <div class="card text-center  mb-3 bg-white" >
+          <div class="card-deck  " >
+          <div class="card text-center "  >   
+           
               <div class="card-header" ><h4>Tickets Totales</h4> </div>
-                <div class="card-body">
+                <a href="{{url('users/grafic')}}"><div class="card-body cardhvr" >
                     <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fas fa-ticket-alt" style="font-size:36px  "> {{ $ticket}} </i> </div>
                 </div>
+                </a>
                 <!--<a href="{{url('users/grafic')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
             </div>
+            
       
             <div class="card text-center  mb-3 bg-white" >
               <div class="card-header " ><h4>Tickets Asignados</h4> </div>
-              <div class="card-body ">
+              <a href="{{url('users/tks_asignados')}}"> <div class="card-body  cardhvr">
                   <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fas fa-ticket-alt" style="font-size:36px " id="btAsignados"> {{ $asignado}} </i> </div>
+                  
               </div>
+              </a>
               <!--<a href="{{url('users/tks_asignados')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>-->
             </div>
       
