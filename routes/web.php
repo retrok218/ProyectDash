@@ -57,11 +57,11 @@ Route::get('/', function ()  {
             return redirect('/admin');
             }
             else{
-                return redirect('/login');
+                return redirect('/home');
                 }
 
           }
-          //else{//return redirect('/login'); //}
+          else{return redirect('/login'); }
 
 
 
