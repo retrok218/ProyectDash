@@ -116,11 +116,7 @@
                 //Entregado cantidadtoner1                           
                                     elseif(strncasecmp($datotoner,'%%%%Required35',14)===0){
                                       $cantidadtonerentregado1 = preg_replace('/%%%%Required35/',' ',$datotoner);                                       
-                                      }
-                                    
-
-
-                                   
+                                      }                                   
                                         $narreglo++;                                            
         }    
         
@@ -128,7 +124,6 @@
     @endphp       
 
                     @php    
-                    
                         switch($tk_id->name)  {
                             case 'Asignado' : $color = '#fff7085e'; break;
                             case 'Notificado al Usuario': $color = '#16ff1352'; break;
@@ -137,6 +132,8 @@
                            case 'Atendido': $color = '#01c4ff82'; break;
                         }                   
                     @endphp
+
+
                  <tr style="background:<?php echo $color ?>;">
                  <!--cuerpo principal de solicitu de toner -->
                     <td > <a  class="cardhvr" href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID={{$tk_id->ticket_id}}" target="_blank" title="Ir en busca del TKT en OTRS"   > {{$tk_id ->tn }}</a></td> 
@@ -471,7 +468,7 @@ initComplete: function() {
                     return intVal(a) + intVal(b);
                 }, 0 );
                 $( api.column( 6 ).footer() ).html(
-              'Toner solicitados: ' +  pageTotal 
+              'Toner solicitados: <br>' +  pageTotal 
             );
 
             pageTotal2 = api
@@ -481,7 +478,7 @@ initComplete: function() {
                     return intVal(a) + intVal(b);
                 }, 0 );
                 $( api.column(9).footer() ).html(
-                  'Toner Entregados: ' + pageTotal2 
+                  'Toner Entregados: <br>' + pageTotal2 
                 );
            
         }

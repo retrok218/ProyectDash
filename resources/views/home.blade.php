@@ -13,9 +13,9 @@
     <meta name="google" content="notranslate" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <!--Recarga del sistema cada x-s  activado
+    <!--Recarga del sistema cada x-s  activado-->
      <meta http-equiv="refresh" content="30"> 
-    Recarga del sistema cada x-s  activado-->
+    <!--Recarga del sistema cada x-s  activado-->
    
 
     <title>Sistema Gestion de Tickets</title>

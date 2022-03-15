@@ -630,25 +630,6 @@ $totalMesJson = json_encode($totalmes);
   $solicitudToner = DB::connection('pgsql2')-> table('ticket')->where('service_id','=',79)->count();
   $tickte = DB::connection('pgsql2')->table('ticket')->count();
 
-  function eliminasimbolos($tktalimpiar){                           
-    $eliminados1 = preg_replace('/FieldName/','',$tktalimpiar);
-    $eliminados2 = preg_replace('/[\&\$\{\}""]+/','',$eliminados1);
-    $eliminados  = preg_replace('/ITSMReview/','',$eliminados2);
-    $eliminados3 = preg_replace('/@/','',$eliminados);
-    $eliminados4 = preg_replace('/#/','',$eliminados3);
-    $eliminados5 = preg_replace('/a-Vacio/','',$eliminados4);
-    $eliminados6 = preg_replace('/%%Value%%/','',$eliminados5);
-    $eliminados7 = preg_replace('/%%OldValue%%0/',' ',$eliminados6);
-    $eliminados8 = preg_replace('/%%OldValue%%/','',$eliminados7);
-    return $eliminados8;
-}
-
-foreach ($ticketfusion as $limpiezatkt) {
-  $limpip1 = eliminasimbolos($limpiezatkt->ticket_compuesto);
- 
-}
-
-
   
 //----------------------------------------------------------------------------------------------------
     //dd($ticketfusion);
