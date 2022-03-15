@@ -4900,7 +4900,8 @@ input[type=submit].btn-block {
     .card-deck {
         flex-flow: row wrap;
         margin-right: -10px;
-        margin-left: -10px
+        margin-left: -10px;
+        margin: auto
     }
 
     .card-deck .card {
@@ -4908,7 +4909,7 @@ input[type=submit].btn-block {
         flex: 1 0 0%;
         flex-direction: column;
         margin-right: 10px;
-        margin-bottom: 14px;
+        margin-bottom: 45px;
         margin-left: 10px
     }
 }
@@ -50481,15 +50482,17 @@ body {
     background-color: #e6eae5e6;
     background-clip: border-box;
     border: 1px solid #0f4006;
-    border-radius: .25rem;
-    color: #000000
+    border-radius: 50.00rem;
+    color: #000000;
+    
+    
 }
 
 .cardhvr:hover{
     color: #9e1d49;
     text-decoration: underline;
     background-color: #ffc4cb4d;
-    font_size: 30px
+    
 
 }
 

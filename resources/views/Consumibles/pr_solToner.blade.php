@@ -62,10 +62,14 @@
     @php 
             $texto = $tk_id->ticket_compuesto ;
             $modificado = eliminasimbolos($texto);                    
-            $esptoner= array_pad(explode(',',$modificado),11,null);
+            $esptoner= array_pad(explode(',',$modificado),12," ");
 
              /* nuevo arreglo para quitar los require Repetidos*/
              $narreglo=0;
+
+            
+
+            
             
       
         foreach($esptoner as $datotoner){
@@ -103,23 +107,20 @@
                                     }
                 // Entregado tipotoner1         
 
-                                    if(strncasecmp($datotoner,'%%%%Required34',14)===0){
+                                    elseif(strncasecmp($datotoner,'%%%%Required34',14)===0){
                                             $ttonerentregado = preg_replace ('/%%%%Required34/','',$datotoner);
-                                            $ticketocmpleto[$narreglo]=$ttonerentregado;
+                                            
                                                         
                                     }
-                                    if(empty($datotoner) or isset($datotoner)){ 
-                                       
-                                            $ttonerentregado = "Sin datos";
-                                            $ticketocmpleto[$narreglo]=$ttonerentregado;
-                                    }
+                                   
                 //Entregado cantidadtoner1                           
-                                    if(strncasecmp($datotoner,'%%%%Required35',14)==0){
+                                    elseif(strncasecmp($datotoner,'%%%%Required35',14)===0){
                                       $cantidadtonerentregado1 = preg_replace('/%%%%Required35/',' ',$datotoner);                                       
                                       }
-                                    elseif(empty($datotoner) or null){
-                                            $cantidadtonerentregado1 = 0; 
-                                        } 
+                                    
+
+
+                                   
                                         $narreglo++;                                            
         }    
         
@@ -127,6 +128,7 @@
     @endphp       
 
                     @php    
+                    
                         switch($tk_id->name)  {
                             case 'Asignado' : $color = '#fff7085e'; break;
                             case 'Notificado al Usuario': $color = '#16ff1352'; break;
@@ -136,9 +138,8 @@
                         }                   
                     @endphp
                  <tr style="background:<?php echo $color ?>;">
-                 
                  <!--cuerpo principal de solicitu de toner -->
-                    <td>{{$tk_id ->tn }}</td> 
+                    <td > <a  class="cardhvr" href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID={{$tk_id->ticket_id}}" target="_blank" title="Ir en busca del TKT en OTRS"   > {{$tk_id ->tn }}</a></td> 
                     <td>{{$tk_id->create_time}}</td>
                     <td>{{$tk_id->title}}</td>                         
                     <td>{{$dependencia}}</td>
@@ -148,8 +149,27 @@
                 <!--Campos extra en solicitud de toner  -->      
                     <td>{{$tipotoner2}}</td>
                     <td>{{$cantidad2}}</td> 
-                    <td>{{$cantidadtonerentregado1}}</td> 
-                    <td>{{$ttonerentregado}}</td> 
+                    
+                    @if(!isset($cantidadtonerentregado1)  or  !empty($cantidadtonerentregado1)  == false)    
+                      @php
+                      $cantidadtonerentregado1 = "Sin datos";
+                      @endphp    
+                    @endif
+                    <td>{{$cantidadtonerentregado1}}</td>
+              
+                    @if(!isset($ttonerentregado) or !empty($ttonerentregado) == false) <!--Comentario de entrega del toner -->
+                        @php
+                        $ttonerentregado = "Sin Datos";
+                        @endphp
+                    @endif
+                     <td>{{$ttonerentregado}}</td> 
+                        
+                    
+                     
+                    
+
+
+                     
                     <td>{{$tk_id->name}}</td>  
                     
                     
@@ -157,9 +177,11 @@
                 
                 
     @endforeach
+
+    
     
    
-      
+    
         
      
         </tbody>
@@ -301,6 +323,7 @@ $(document).ready(function(){
 });
 
 var table = $('#tablatktoner').DataTable({ 
+  
       select:true,  
       "pageLength": 10,   
       "lengthChange": true,
@@ -309,14 +332,11 @@ var table = $('#tablatktoner').DataTable({
       "info": true,
       "autoWidth": true,
       "language": idioma,
-      "lengthMenu": [[10,20, -1],[10,20,30,"Mostrar Todo"]],
+      "lengthMenu": [[10,20, -1],[10,20,"Mostrar Todo"]],
       "order":[1 ,'desc'],
-      dom: 'Bfrt<"col-md-6 inline"i> <"col-md-6 inline"p>',
-      dom: 'Bfrtip',
-     
-
-
-      deferRender:    true, 
+      dom:'Bfrt<"col-md-6 inline"i> <"col-md-6 inline"p>',
+      dom:'Bfrtip',
+      deferRender:true, 
       "search": {
         "regex": true,
         "caseInsensitive": false,

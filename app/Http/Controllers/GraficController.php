@@ -20,6 +20,17 @@ use App\ConexionBD2;
 class GraficController extends Controller
 {
 
+
+   /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->except('condTerminos');
+    }
+
   
     public function index()
     {
@@ -398,9 +409,14 @@ $totalMesJson = json_encode($totalmes);
             
 
     ;}else {
-      return view('auth/login');
-    }
- ;}
+      return view('login');
+    };
+  }
+
+  public function condTerminos(){
+
+    return view('modals/home/condTerminos');
+}
 
 // controlador para tickets asignados
   public function ticketa(){

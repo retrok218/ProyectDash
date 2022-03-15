@@ -86,6 +86,7 @@ class Tks_DT_controlle extends Controller
     INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
 	  INNER JOIN queue ON ticket.queue_id = queue.id
     WHERE 
+    
     (ticket.service_id = 79 or ticket.service_id = 78)
   and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIKE '%ITSMReviewRequired65%' or ticket_history.name LIKE '%ITSMReviewRequired7%' 
 	  or ticket_history.name LIKE '%ITSMReviewRequired66%' or ticket_history.name LIKE '%ITSMReviewRequired67%' or ticket_history.name LIKE '%ITSMReviewRequired35%'
@@ -109,8 +110,10 @@ class Tks_DT_controlle extends Controller
   $solicitudToner = DB::connection('pgsql2')-> table('ticket')->where('service_id','=',79)->count();
   $tickte = DB::connection('pgsql2')->table('ticket')->count();
 
+  
+
 //----------------------------------------------------------------------------------------------------
-    //dd($ticketfusion);
+  
     return view('Consumibles/pr_solToner')
     ->with('tk_id',$ticketfusion )
     ->with('solicitudToner',$solicitudToner)

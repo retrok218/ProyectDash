@@ -21,55 +21,71 @@
               </div>
                 
             </div>
-          <div class="card-deck  " >
-          <div class="card text-center "  >   
-           
+       <div class="card-deck  " >
+          <div class="card text-center" style="background-color: transparent;" >   
               <div class="card-header" ><h4>Tickets Totales</h4> </div>
-                <a href="{{url('users/grafic')}}"><div class="card-body cardhvr" >
-                    <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fas fa-ticket-alt" style="font-size:36px  "> {{ $ticket}} </i> </div>
-                </div>
+                <a href="{{url('users/grafic')}}">
+                  <div class="card-body cardhvr" >
+                       <i class="fas fa-ticket-alt" style="font-size:36px  "> {{ $ticket}} </i>
+                  </div>
                 </a>
                 <!--<a href="{{url('users/grafic')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
-            </div>
+          </div>
             
       
-            <div class="card text-center  mb-3 bg-white" >
+            <div class="card text-center" style="background-color: transparent; " >
               <div class="card-header " ><h4>Tickets Asignados</h4> </div>
-              <a href="{{url('users/tks_asignados')}}"> <div class="card-body  cardhvr">
-                  <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fas fa-ticket-alt" style="font-size:36px " id="btAsignados"> {{ $asignado}} </i> </div>
-                  
-              </div>
+              <a href="{{url('users/tks_asignados')}}"> 
+                <div class="card-body  cardhvr">
+                   <i class="fas fa-ticket-alt" style="font-size:36px " id="btAsignados"> {{ $asignado}} </i>   
+                </div>
               </a>
               <!--<a href="{{url('users/tks_asignados')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a>-->
             </div>
-      
-            
-          </div>
-          <div class="card-deck mt-3">
-            <div class="card text-center  mb-3 bg-white" >
-              <div class="card-header"><h4>Tickets Atendidos</h4> </div>
-              <div class="card-body">
-                  <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fas fa-ticket-alt" style="font-size:36px "> {{ $atendido}} </i> </div>
-              </div>
-            <!--  <a href="{{url('users/tks_atendidos')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
-            </div>
-            <div class="card text-center  mb-3 bg-white" >
-              <div class="card-header"><h4>Tickets Falta de Acta Responsiva</h4> </div>
-              <div class="card-body">
-                  <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fas fa-ticket-alt" style="font-size:36px "> {{$FaltaActaRES}} </i> </div>
-              </div>
-              <!--<a href=" {{url('users/tickets_sol_toner')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
-            </div>
-            <div class="card text-center  mb-3 bg-white" >
-              <div class="card-header"><h4>Tickets Nuevos</h4> </div>
-              <div class="card-body">
-                  <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fas fa-ticket-alt" style="font-size:36px "> {{ $pendienteatc}} </i> </div>
-              </div>
-             <!-- <a href=" {{url('users/tickets_pendiente')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
-            </div>
-            
-              
-          </div>
+
+        </div>
+
+
+
+
+<div class="card-deck">
+    <div class="card cardhvr">
+      <div class="card-header text-center " ><h4>Tickets Atendidos</h4> </div>
+      <a href="{{url('users/tks_atendidos')}}">
+      <div class="card-body text-center ">
+        
+          <i class="fas fa-ticket-alt" style="font-size:36px"  id="btAsignados"> {{ $atendido}} </i>   
+         
+      </div>
+      </a> 
+    </div>
+
+    <div class="card cardhvr">
+      <div class="card-header text-center"><h4>Tickets Falta de Acta Responsiva</h4></div>
+      <a href="{{url('users/tickets_falta_acta_responsiva')}}">
+      <div class="card-body text-center">
+
+          <i class="fas fa-ticket-alt" style="font-size:36px"  id="btAsignados"> {{$FaltaActaRES}} </i>   
+         
+      </div>
+      </a> 
+    </div>
+    <div class="card cardhvr ">
+      <div class="card-header text-center " ><h4>Tickets Nuevos</h4> </div>
+      <a href=" {{url('users/tickets_pendiente')}}">
+        <div class="card-body text-center ">
+          
+            <i class="fas fa-ticket-alt" style="font-size:36px"  id="btAsignados"> {{$pendienteatc}} </i>   
+        </div>
+      </a> 
+      </div> 
+    </div>
+</div>
+
+
+
+
+  
       
           <!--Nuevos Status-->
           <div class="card-deck mt-3">
@@ -135,7 +151,7 @@
         <!-- FinCarts de estatus de tks -->
       
         </div>
-</div>
+
 
 
 
