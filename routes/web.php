@@ -111,7 +111,7 @@ Route::get('/tickets_notificado_al_Usuario','Tks_DT_controlle@notificadosalusuar
 //Monitoreo de Tickets por medio de Cards 
 Route::get('/monitoreotks','Tks_DT_controlle@monitoreo_tks');
 //Ruta prueba para la solicitud de toners
-Route::get('/tkt_pru_toner','Tks_DT_controlle@pr_sol_toner')->name('solicitudtoner');
+Route::get('/tkt_pru_toner','Tks_DT_controlle@pr_sol_toner');
 
 
 // Prueva de codigo ****************************************************************************************

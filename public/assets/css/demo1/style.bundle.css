@@ -4776,7 +4776,7 @@ input[type=submit].btn-block {
     word-wrap: break-word;
     background-color: #e6eae5e6;
     background-clip: border-box;
-    border: 1px solid #0f4006;
+    
     border-radius: .25rem;
     color: #000000
 }
@@ -50482,9 +50482,9 @@ body {
     background-color: #e6eae5e6;
     background-clip: border-box;
     border: 1px solid #0f4006;
-    border-radius: .25rem;
+    border-radius: 15px;
     color: #000000;
-    
+    border:solid;
     
 }
 
