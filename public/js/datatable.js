@@ -75,7 +75,7 @@
       "language": idioma,
       "lengthMenu": [
           [10, 20, -1],
-          [10, 20, 30, "Mostrar Todo"]
+          [10,20,"Mostrar Todo"]
       ],
       "order": [1, 'desc'],
       dom: 'Bfrt<"col-md-6 inline"i> <"col-md-6 inline"p>',

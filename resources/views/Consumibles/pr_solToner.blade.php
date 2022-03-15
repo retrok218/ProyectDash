@@ -91,18 +91,18 @@
                 //tipo de toner1
                                     elseif(strncasecmp($datotoner,'%%%%Required65',14)===0){
                                         $tipodetoner1= preg_replace('/%%%%Required65/',' ' ,$datotoner);
-                                        $ticketocmpleto[$narreglo] =$tipodetoner1;
+                                        
                                     }
                 // solicitado cantidad 2                           
                                     elseif(strncasecmp($datotoner,'%%%%Required66',14)===0){
                                             $cantidad2 = preg_replace ('/%%%%Required66/',' ',$datotoner);
-                                            $ticketocmpleto[$narreglo] =$cantidad2;
+                                            
                                              
                                     }
                 // tipo de toner 2                           
                                     elseif(strncasecmp($datotoner,'%%%%Required67',14)===0){
                                             $tipotoner2 = preg_replace ('/%%%%Required67/','',$datotoner);
-                                            $ticketocmpleto[$narreglo] =$cantidad2;
+                                            
                                             
                                     }
                 // Entregado tipotoner1         
@@ -152,24 +152,18 @@
                     
                     @if(!isset($cantidadtonerentregado1)  or  !empty($cantidadtonerentregado1)  == false)    
                       @php
-                      $cantidadtonerentregado1 = "Sin datos";
+                      $cantidadtonerentregado1 = 0;
                       @endphp    
                     @endif
                     <td>{{$cantidadtonerentregado1}}</td>
               
                     @if(!isset($ttonerentregado) or !empty($ttonerentregado) == false) <!--Comentario de entrega del toner -->
                         @php
-                        $ttonerentregado = "Sin Datos";
+                        $ttonerentregado = "Sin datos";
                         @endphp
                     @endif
                      <td>{{$ttonerentregado}}</td> 
-                        
-                    
-                     
-                    
-
-
-                     
+                                     
                     <td>{{$tk_id->name}}</td>  
                     
                     
