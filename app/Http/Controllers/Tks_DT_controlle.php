@@ -53,7 +53,7 @@ class Tks_DT_controlle extends Controller
 
   ;}
 
-  public function pr_sol_toner(){
+  public function tkts_sol_toner(){
     $perfil = Auth::user()->hasAnyRole(['SuperAdmin', 'Admin']);
 
 

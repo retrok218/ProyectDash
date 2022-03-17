@@ -85,7 +85,7 @@ Route::get('/', function ()  {
 
     // Rutas para Gestor de tickets
 Route::get('/dash','GraficController@index');
-Route::get('/grafic','GraficController@graficas');
+Route::get('/all_tickets','GraficController@all_tickets');
 // tikes totales tabla
 Route::get('/dash2','GraficController@tickett');
 //  Tickets asignados
@@ -111,7 +111,7 @@ Route::get('/tickets_notificado_al_Usuario','Tks_DT_controlle@notificadosalusuar
 //Monitoreo de Tickets por medio de Cards 
 Route::get('/monitoreotks','Tks_DT_controlle@monitoreo_tks');
 //Ruta prueba para la solicitud de toners
-Route::get('/tkt_pru_toner','Tks_DT_controlle@pr_sol_toner');
+Route::get('/tikets_toner','Tks_DT_controlle@tkts_sol_toner');
 
 
 // Prueva de codigo ****************************************************************************************

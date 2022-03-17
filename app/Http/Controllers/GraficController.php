@@ -472,7 +472,7 @@ $totalMesJson = json_encode($totalmes);
         ->with('cerradoexitosamente',$rticket)
         ->with('titulotksJson',$titulotksJson)
         ;}else {
-          return view('auth/login');
+          return view('login');
         }
 
     ;}
@@ -480,8 +480,9 @@ $totalMesJson = json_encode($totalmes);
 
 
 // controlador tickets totales
-    public function graficas()
+    public function all_tickets()
     {
+      $perfil = Auth::user()->hasAnyRole(['SuperAdmin', 'Admin']);
       $tickets_totales = DB::connection('pgsql2')->table('ticket')
       ->join('queue','queue.id','queue_id')
       ->join('ticket_state','ticket_state.id','ticket_state_id')
@@ -505,6 +506,7 @@ $totalMesJson = json_encode($totalmes);
       $cerradoPT = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',10)->count(); 
       $rticket = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 2)->count();
 
+      if($perfil == true){
       return view('graficas/estatustickets')
       ->with('tickets_totales',$tickets_totales)
         ->with('ticket', $tickte)
@@ -520,8 +522,11 @@ $totalMesJson = json_encode($totalmes);
         ->with('Entramite',$Entramite)
         ->with('cerradoPT',$cerradoPT)
         ->with('cerradoexitosamente',$rticket)
+      ;}else {
+        return view('login');
+      }
         
-    ;}
+    }
 
 
 // controlador tickets Atendidos

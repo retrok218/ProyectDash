@@ -1,5 +1,5 @@
 @extends('home')
-<meta http-equiv="refresh" content="120"> 
+<meta http-equiv="refresh" content="120 "> 
 @section('content')
 
 
@@ -137,7 +137,18 @@
 
                  <tr style="background:<?php echo $color ?>;">
                  <!--cuerpo principal de solicitu de toner -->
-                    <td > <a  class="cardhvr" href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID={{$tk_id->ticket_id}}" target="_blank" title="Ir en busca del TKT en OTRS"   > {{$tk_id ->tn }}</a></td> 
+                    <td > 
+                      <div class="login-box">
+                        <a class="cardhvr" href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID={{$tk_id->ticket_id}}" target="_blank" title="Ir en busca del TKT en OTRS"> 
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                            {{$tk_id ->tn }}
+                        </a>
+                      </div>
+                      
+                    </td> 
                     <td>{{$tk_id->create_time}}</td>
                     <td>{{$tk_id->title}}</td>                         
                     <td>{{$dependencia}}</td>
@@ -450,10 +461,12 @@ initComplete: function() {
   $(".mymsel").select2();
 },
 //fin de la seleccion multiple 
+
+
+
            
 "footerCallback": function ( row, data, start, end, display ) {
             var api = this.api();
- 
             // Remove the formatting to get integer data for summation
             var intVal = function ( i ) {
                 return typeof i === 'string' ?

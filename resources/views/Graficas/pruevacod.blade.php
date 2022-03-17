@@ -1,9 +1,3 @@
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,14 +13,10 @@
 
 @php
 
-
-
-
 class ticketdefinitivo {
      public $numerodetkt;
      public $descripicontkt;
         
-
 // Metodp de contruccion 
         public function __construct($t,$des,$fech,$que){
             $this->numerodetkt = $t;
@@ -66,3 +56,9 @@ class ticketdefinitivo {
     
 </body>
 </html>
+
+
+<script>  
+console.log({{$tkfusion->tn}})
+
+</script>
