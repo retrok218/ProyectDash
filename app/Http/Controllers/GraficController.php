@@ -20,17 +20,6 @@ use App\ConexionBD2;
 class GraficController extends Controller
 {
 
-
-   /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth')->except('condTerminos');
-    }
-
   
     public function index()
     {
@@ -409,14 +398,9 @@ $totalMesJson = json_encode($totalmes);
             
 
     ;}else {
-      return view('login');
-    };
-  }
-
-  public function condTerminos(){
-
-    return view('modals/home/condTerminos');
-}
+      return view('auth/login');
+    }
+ ;}
 
 // controlador para tickets asignados
   public function ticketa(){
@@ -472,7 +456,7 @@ $totalMesJson = json_encode($totalmes);
         ->with('cerradoexitosamente',$rticket)
         ->with('titulotksJson',$titulotksJson)
         ;}else {
-          return view('login');
+          return view('auth/login');
         }
 
     ;}
@@ -480,9 +464,8 @@ $totalMesJson = json_encode($totalmes);
 
 
 // controlador tickets totales
-    public function all_tickets()
+    public function graficas()
     {
-      $perfil = Auth::user()->hasAnyRole(['SuperAdmin', 'Admin']);
       $tickets_totales = DB::connection('pgsql2')->table('ticket')
       ->join('queue','queue.id','queue_id')
       ->join('ticket_state','ticket_state.id','ticket_state_id')
@@ -506,7 +489,6 @@ $totalMesJson = json_encode($totalmes);
       $cerradoPT = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',10)->count(); 
       $rticket = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 2)->count();
 
-      if($perfil == true){
       return view('graficas/estatustickets')
       ->with('tickets_totales',$tickets_totales)
         ->with('ticket', $tickte)
@@ -522,11 +504,8 @@ $totalMesJson = json_encode($totalmes);
         ->with('Entramite',$Entramite)
         ->with('cerradoPT',$cerradoPT)
         ->with('cerradoexitosamente',$rticket)
-      ;}else {
-        return view('login');
-      }
         
-    }
+    ;}
 
 
 // controlador tickets Atendidos
@@ -635,7 +614,6 @@ $totalMesJson = json_encode($totalmes);
   $solicitudToner = DB::connection('pgsql2')-> table('ticket')->where('service_id','=',79)->count();
   $tickte = DB::connection('pgsql2')->table('ticket')->count();
 
-  
 //----------------------------------------------------------------------------------------------------
     //dd($ticketfusion);
     return view('graficas/pruevacod')

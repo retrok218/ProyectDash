@@ -1,6 +1,10 @@
 @extends('home')
 <meta http-equiv="refresh" content="30">
 @section('content')
+<script>
+  var titulo_tab = 'Tickets Abiertos';
+</script>
+
     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
       <div class="card-deck mt-3">
         <div class="card text-center  mb-3 bg-white" >
@@ -85,6 +89,7 @@
 <!--se agrega el includ para creacion de datatable -->
 
 @section('scripts')
+
 
 @endsection
 @endsection

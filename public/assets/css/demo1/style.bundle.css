@@ -4829,6 +4829,7 @@ input[type=submit].btn-block {
     border-bottom: 1px solid #ebedf2;
     color: white;
     
+    
 }
 
 .card-header:first-child {
@@ -45946,7 +45947,7 @@ body {
     }
 
     .kt-header--fixed.kt-aside--minimize .kt-header {
-        left: 70px;
+        left: 0px;
         transition: all .3s ease
     }
 }

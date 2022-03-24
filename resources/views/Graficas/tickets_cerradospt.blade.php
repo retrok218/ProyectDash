@@ -1,6 +1,9 @@
 @extends('home')
 <meta http-equiv="refresh" content="30">
 @section('content')
+<script>
+  var titulo_tab = 'Tickets Cerrados Por Tiempo';
+</script>
 
 
     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">

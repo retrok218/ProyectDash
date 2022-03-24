@@ -106,7 +106,7 @@
 
                   extend: 'pdfHtml5',
                   text: '<i class="fa fa-file-pdf-o"></i>PDF',
-                  title: 'Tickets Asignados ',
+                  title: titulo_tab ,
                   titleAttr: 'PDF',
                   className: 'btn btn-app export pdf',
                   orientation: 'landscape',
@@ -144,7 +144,7 @@
               {
                   extend: 'excelHtml5',
                   text: '<i class="fa fa-file-excel-o"></i>Excel',
-                  title: 'Tickets Asignados',
+                  title: titulo_tab,
                   titleAttr: 'Excel',
                   className: 'btn btn-app export excel',
                   exportOptions: {
@@ -155,7 +155,7 @@
               {
                   extend: 'print',
                   text: '<i class="fa fa-print"></i>Imprimir',
-                  title: 'Tickets Asignados',
+                  title: titulo_tab,
                   titleAttr: 'Imprimir',
                   className: 'btn btn-app export imprimir',
                   exportOptions: {

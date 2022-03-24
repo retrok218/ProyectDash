@@ -1,9 +1,9 @@
 @extends('home')
- <meta http-equiv="refresh" content="30"> 
+<meta http-equiv="refresh" content="60">
 @section('content')
 
 
-<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid ">
+
 
 <div class="row shadow-lg p-3 mb-5  rounded fondo1 " >
 
@@ -265,7 +265,7 @@
       </div>
     </div>
    
-</div>
+
 
 
 @section('scripts')

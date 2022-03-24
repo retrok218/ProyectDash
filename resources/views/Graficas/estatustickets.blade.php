@@ -1,6 +1,9 @@
 @extends('home')
-<meta http-equiv="refresh" content="300">
+<meta http-equiv="refresh" content="120">
   @section('content')
+  <script>
+  var titulo_tab = 'Tickets Totales';
+</script>
   
 
     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">

@@ -13,6 +13,12 @@
     <meta name="google" content="notranslate" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="//datatables.net/download/build/nightly/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.19/api/sum().js"></script>
+
+		<meta charset=utf-8 />
+    
     <!--Recarga del sistema cada x-s  activado-->
      
     <!--Recarga del sistema cada x-s  activado-->

@@ -2,6 +2,9 @@
 <meta http-equiv="refresh" content="120 "> 
 @section('content')
 
+<script>
+  var titulo_tab = 'Tickets Solicitud Toner';
+</script>
 
 <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">  
     <div class="row">
@@ -326,7 +329,9 @@ $(document).ready(function(){
 });
 
 var table = $('#tablatktoner').DataTable({ 
-  
+
+
+     
       select:true,  
       "pageLength": 10,   
       "lengthChange": true,
@@ -495,7 +500,17 @@ initComplete: function() {
                   'Toner Entregados: <br>' + pageTotal2 
                 );
            
-        }
+        },
+
+        drawCallback: function () {
+        var sum = $('#tablatktoner').DataTable().column(6).data().sum();
+        $('#total').html(sum);
+      }
+
+
+
+
+
           
 });
 
@@ -540,6 +555,9 @@ $("#Date_search").daterangepicker({
   minDateFilter = start;
   table.draw();  
 });
+
+
+
 
 </script>
 <!-- fin de la datatable-->
