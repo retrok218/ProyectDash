@@ -79,15 +79,15 @@
         foreach($esptoner as $datotoner){
           
                                 if(strncasecmp($datotoner,'%%%%Required7',13)===0){
-                                        $dependencia=preg_replace('/%%%%Required7/','',$datotoner . "alajbada");
+                                        $dependencia=preg_replace('/%%%%Required7/','',$datotoner . " ");
                                         $ticketocmpleto[$narreglo] =$dependencia;
                                         
                                     }                          
                 // Solicitado cantidad 1
                                     elseif(strncasecmp($datotoner,'%%%%Required64',14)===0){
                                             $cantidad = preg_replace ('/%%%%Required64/','',$datotoner);
-                                            $cantidad1 =str_replace(' ', '', $cantidad); 
-                                            $trnsbar = (int)$cantidad1;
+                                            $cantidad1 = (int) str_replace(' ', '', $cantidad); 
+                                            $trnsbar = (int) $cantidad1;
                                         $acumuladorsolicitado += $trnsbar ;  
                                         $ticketocmpleto[$narreglo] =$cantidad1;
                                              
@@ -119,7 +119,7 @@
                                    
                 //Entregado cantidadtoner1                           
                                     elseif(strncasecmp($datotoner,'%%%%Required35',14)===0){
-                                      $cantidadtonerentregado1 = preg_replace('/%%%%Required35/',' ',$datotoner);                                       
+                                      $cantidadtonerentregado1 = (int) preg_replace('/%%%%Required35/',' ',$datotoner);                                       
                                       }                                   
                                         $narreglo++;                                            
         }    
@@ -166,6 +166,8 @@
                       @php
                       $cantidadtonerentregado1 = 0;
                       @endphp    
+
+                      
                     @endif
                     <td>{{$cantidadtonerentregado1}}</td>
               
