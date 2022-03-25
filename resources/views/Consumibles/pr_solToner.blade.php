@@ -1,5 +1,5 @@
 @extends('home')
-<meta http-equiv="refresh" content="120 "> 
+<!-- <meta http-equiv="refresh" content="120 ">  -->
 @section('content')
 
 <script>
@@ -56,7 +56,7 @@
                         $eliminados5 = preg_replace('/a-Vacio/','',$eliminados4);
                         $eliminados6 = preg_replace('/%%Value%%/','',$eliminados5);
                         $eliminados7 = preg_replace('/%%OldValue%%0/',' ',$eliminados6);
-                        $eliminados8 = preg_replace('/%%OldValue%%/','',$eliminados7);
+                        $eliminados8 = preg_replace('/%%OldValue%%/',' ',$eliminados7);
                         return $eliminados8;
                     }                          
                     $acumuladorsolicitado = 0;
