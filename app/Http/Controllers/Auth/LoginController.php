@@ -80,7 +80,7 @@ class LoginController extends Controller {
     public function verify($code) {
         $user=User::where('confirmation_code', $code)->first();
 
-        if ( !$user) return redirect('/dash');
+        if ( !$user) return redirect('/login');
         $user->confirmed=true;
         $user->confirmation_code=null;
         $user->estatus=1;

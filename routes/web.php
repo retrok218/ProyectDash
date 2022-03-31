@@ -50,11 +50,11 @@ Route::get('/passModal', 'Auth\ForgotPasswordController@');
 
 
 
-
+// si se elimina no causa problema en el sistema 
 Route::get('/', function ()  {
     if (Auth::check()){
-            if( Auth::user()->hasRole('admin') || Auth::user()->hasRole('SuperAdmin')){
-            return redirect('/admin');
+            if( Auth::user()->hasRole('admin,admin1') || Auth::user()->hasRole('SuperAdmin')){
+            return redirect('users/grafic');
             }
             else{
                 return redirect('/home');
@@ -63,13 +63,12 @@ Route::get('/', function ()  {
           }
           else{return redirect('/login'); }
 
-
-
-
-
-
     
-    });
+    }); // si se elimina no causa problema en el sistema 
+
+
+
+
 
  //Usuarios
  //editar usuarios

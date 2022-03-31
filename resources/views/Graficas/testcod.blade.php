@@ -10,7 +10,7 @@
     <title>Prueva conexion local con archivo de datatables </title>
 </head>
 <body>
-
+<button id="print" onclick="printContent('id name of your div');" >Print</button>
 <!-- <meta http-equiv="refresh" content="120 "> -->
 @include('layouts/scripts/scriptsGuest')
 @yield('scripts')
@@ -34,6 +34,22 @@
 $(document).ready(function(){
     $('ejemplotab').DataTavle({});
 });
+
+
+
+
+</script>
+
+
+<script>
+
+function printContent(el){
+var restorepage = $('body').html();
+var printcontent = $('#' + el).clone();
+$('body').empty().html(printcontent);
+window.print();
+$('body').html(restorepage);
+}
 </script>
 
 

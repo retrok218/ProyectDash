@@ -19,7 +19,7 @@ use App\ConexionBD2;
 
 class GraficController extends Controller
 {
-
+  
   
     public function index()
     {
@@ -405,6 +405,9 @@ $totalMesJson = json_encode($totalmes);
 // controlador para tickets asignados
   public function ticketa(){
     $perfil = Auth::user()->hasAnyRole(['SuperAdmin', 'Admin']);
+    if (condition) {
+      # code...
+    }
     $tkasignado =DB::connection('pgsql2')->table('ticket')
       ->where('ticket_state_id','=', 12)
       ->join('queue','queue.id','queue_id')
