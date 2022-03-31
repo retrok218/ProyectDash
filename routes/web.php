@@ -113,6 +113,11 @@ Route::get('/monitoreotks','Tks_DT_controlle@monitoreo_tks');
 //Ruta prueba para la solicitud de toners
 Route::get('/tkt_pru_toner','Tks_DT_controlle@tkts_sol_toner')->name('solicitudtoner');
 
+// Prueva de Ruta para test de js 
+Route::get('/pruejs', function(){
+  return view('Graficas/testcod');
+});
+
 
 // Prueva de codigo ****************************************************************************************
 Route::get('/Puevacodigo','GraficController@pruevacod');

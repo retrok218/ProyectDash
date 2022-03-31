@@ -105,7 +105,7 @@
               {
 
                   extend: 'pdfHtml5',
-                  text: '<i class="fa fa-file-pdf-o"></i>PDF',
+                  text: '<i class="fas fa-file-pdf"></i>PDF',
                   title: titulo_tab ,
                   titleAttr: 'PDF',
                   className: 'btn btn-app export pdf',
@@ -143,7 +143,7 @@
 
               {
                   extend: 'excelHtml5',
-                  text: '<i class="fa fa-file-excel-o"></i>Excel',
+                  text: '<i class="fas fa-file-excel"></i> Exel',
                   title: titulo_tab,
                   titleAttr: 'Excel',
                   className: 'btn btn-app export excel',

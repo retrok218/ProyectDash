@@ -1,19 +1,12 @@
 @extends('home')
-<!-- <meta http-equiv="refresh" content="120 ">  -->
+<!-- <meta http-equiv="refresh" content="120 "> -->
 @section('content')
-
-<script>
-  var titulo_tab = 'Tickets Solicitud Toner';
-</script>
-
 <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">  
     <div class="row">
+      
           
-        <div class="col-lg-12">
-            
-
+<div class="col-lg-12">                 
     <table id="tablatktoner"  class="table table-striped table-bordered " >
-        
         <thead >           
             <tr>
                 <th>Numero del TKT</th>
@@ -21,11 +14,20 @@
                 <th>Descripcion de TKT</th>
                 <th>Fila</th>
                 <th>Dependencia</th>
-                <th>1.-Tipo de Toner </th>
-                <th>1.-Cantidad</th>
-                <th>2.-Tipo de Toner2 </th>
-                <th>2.-Cantidad</th>
-                <th>Cantidad entregada </th>
+                
+                <th>1.-Solicitado Tipo de Toner </th>
+                <th>1.-Solicitado Cantidad</th>
+                <th>2.-Solicitado Tipo de Toner2 </th>
+                <th>2.-Solicitado Cantidad</th>
+                <th>3.-Solicitado Tipo de Toner</th>  <!-- Tipo de toner solicitado 3 -->
+                <th>3.-Solicitado Catidad</th>       <!-- Cantidad de toner  -->
+
+                <th>1.-Cantidad entregada </th>
+                <th>1.-Tipo de Toner Entregado</th>
+                <th>2.-Cantidad entregada </th>
+                <th>2.-Tipo de Toner Entregado</th>
+                <th>3.-Cantidad entregada </th>
+                <th>3.-Tipo de Toner Entregado</th>
                 <th>Cometario de Entrega</th>                                                    
                 <th>Estado</th>      
             </tr>
@@ -67,61 +69,78 @@
             $texto = $tk_id->ticket_compuesto ;
             $modificado = eliminasimbolos($texto);                    
             $esptoner= array_pad(explode(',',$modificado),12," ");
-
-             /* nuevo arreglo para quitar los require Repetidos*/
-             $narreglo=0;
-
-            
-
-            
+        
             
       
         foreach($esptoner as $datotoner){
           
                                 if(strncasecmp($datotoner,'%%%%Required7',13)===0){
-                                        $dependencia=preg_replace('/%%%%Required7/','',$datotoner . " ");
-                                        $ticketocmpleto[$narreglo] =$dependencia;
-                                        
+                                        $dependencia=preg_replace('/%%%%Required7/',' ',$datotoner . "");                                                                                
                                     }                          
                 // Solicitado cantidad 1
                                     elseif(strncasecmp($datotoner,'%%%%Required64',14)===0){
-                                            $cantidad = preg_replace ('/%%%%Required64/','',$datotoner);
-                                            $cantidad1 = (int) str_replace(' ', '', $cantidad); 
-                                            $trnsbar = (int) $cantidad1;
-                                        $acumuladorsolicitado += $trnsbar ;  
-                                        $ticketocmpleto[$narreglo] =$cantidad1;
+                                            $cantidad1 = (int)preg_replace ('/%%%%Required64/',' ',$datotoner);
+                                            
                                              
+                                                                                    
                                     }                          
                 //tipo de toner1
-                                    elseif(strncasecmp($datotoner,'%%%%Required65',14)===0){
-                                        $tipodetoner1= preg_replace('/%%%%Required65/',' ' ,$datotoner);
-                                        
+                                    if(strncasecmp($datotoner,'%%%%Required65',14)===0){
+                                        $tipodetoner1= preg_replace('/%%%%Required65/','',$datotoner);                                        
                                     }
                 // solicitado cantidad 2                           
                                     elseif(strncasecmp($datotoner,'%%%%Required66',14)===0){
-                                            $cantidad2 = preg_replace ('/%%%%Required66/',' ',$datotoner);
-                                            
-                                             
+                                            $cantidad2 =(int) preg_replace ('/%%%%Required66/',' ',$datotoner);                                           
                                     }
                 // tipo de toner 2                           
-                                    elseif(strncasecmp($datotoner,'%%%%Required67',14)===0){
-                                            $tipotoner2 = preg_replace ('/%%%%Required67/','',$datotoner);
-                                            
-                                            
+                                    if(strncasecmp($datotoner,'%%%%Required67',14)===0){
+                                            $tipotoner2 = preg_replace ('/%%%%Required67/','',$datotoner);                                                                                       
                                     }
+                //solicitado cantidad 3 
+                                    if(strncasecmp($datotoner,'%%%%Required68',14)===0){
+                                      $cantidad3 = preg_replace ('/%%%%Required68/','',$datotoner);
+                                    }
+                //tipo de toner 3  
+                                    elseif(strncasecmp($datotoner,'%%%%Required69' ,14)===0){                                      
+                                      $tipotoner3 = preg_replace('/%%%%Required69/','',$datotoner); 
+                                    }
+          
+          
+          
+
                 // Entregado tipotoner1         
 
-                                    elseif(strncasecmp($datotoner,'%%%%Required34',14)===0){
-                                            $ttonerentregado = preg_replace ('/%%%%Required34/','',$datotoner);
-                                            
-                                                        
+                                    if(strncasecmp($datotoner,'%%%%Required34',14)===0){
+                                            $comentario_entrega = preg_replace ('/%%%%Required34/','',$datotoner);                                                             
                                     }
                                    
-                //Entregado cantidadtoner1                           
-                                    elseif(strncasecmp($datotoner,'%%%%Required35',14)===0){
-                                      $cantidadtonerentregado1 = (int) preg_replace('/%%%%Required35/',' ',$datotoner);                                       
-                                      }                                   
-                                        $narreglo++;                                            
+                //Entregado cantidad toner 1                           
+                                    if(strncasecmp($datotoner,'%%%%Required35',14)===0){
+                                            $cantidadtonerentregado1 = (int)preg_replace('/%%%%Required35/',' ',$datotoner);                                       
+                                    }    
+                //Toner entregado 1
+                                      elseif(strncasecmp($datotoner,'%%%%Required53',14)===0){
+                                          $tipotonerentregado1 = preg_replace('/%%%%Required53/','',$datotoner);                                          
+                                      }
+
+                //Entregado cantidad 2
+                                   if(strncasecmp($datotoner,'%%%%Required56',14)===0){
+                                            $cantidadtonerentregado2 = (int)preg_replace('/%%%%Required56/',' ',$datotoner);                                       
+                                    }
+                //Toner Entregado Tipo 2
+                                    elseif(strncasecmp($datotoner,'%%%%Required57',14)===0){
+                                          $tipotonerentregado2 = preg_replace('/%%%%Required57/','',$datotoner);                                          
+                                      }
+                //Toner Entregado cantidad 3
+                                    if(strncasecmp($datotoner,'%%%%Required60',14)===0){
+                                            $cantidadtonerentregado3 = (int)preg_replace('/%%%%Required60/',' ',$datotoner);                                       
+                                    }
+
+                //Toner Entregado tipo 3
+                                    if(strncasecmp($datotoner,'%%%%Required61',14)===0){
+                                            $tipotonerentregado3 = preg_replace('/%%%%Required61/',' ',$datotoner);                                       
+                                    }                                    
+                                                              
         }    
         
         $color= null;        
@@ -134,7 +153,8 @@
                             case 'open' : $color = '#ff0d0d52'; $tk_id->name = preg_replace('/open/','Abierto',$tk_id->name); break;
                            case 'closed successful' : $color = '#11ff018f' ; $tk_id->name = preg_replace('/closed successful/','Cerrado Exitosamente',$tk_id->name); break;
                            case 'Atendido': $color = '#01c4ff82'; break;
-                        }                   
+                        }          
+                       
                     @endphp
 
 
@@ -142,48 +162,125 @@
                  <!--cuerpo principal de solicitu de toner -->
                     <td > 
                       <div class="login-box">
-                        <a class="cardhvr" href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID={{$tk_id->ticket_id}}" target="_blank" title="Ir en busca del TKT en OTRS"> 
-                          <span></span>
-                          <span></span>
-                          <span></span>
-                          <span></span>
-                            {{$tk_id ->tn }}
+                        <a class="cardhvr" href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID={{$tk_id->ticket_id}}" target="_blank" title="Ir en busca del TKT en OTRS">                           
+                          {{$tk_id ->tn }}
                         </a>
                       </div>
-                      
                     </td> 
                     <td>{{$tk_id->create_time}}</td>
                     <td>{{$tk_id->title}}</td>                         
                     <td>{{$dependencia}}</td>
                     <td>{{$tk_id->fila}}</td>
+                        @if(!isset($tipodetoner1) or !empty($tipodetoner1) == false)
+                          @php 
+                          $tipodetoner1 =" ";
+                          @endphp  
+                        @endif
                     <td>{{$tipodetoner1}}</td>
-                    <td>{{$cantidad1}}</td>
-                <!--Campos extra en solicitud de toner  -->      
-                    <td>{{$tipotoner2}}</td>
-                    <td>{{$cantidad2}}</td> 
-                    
-                    @if(!isset($cantidadtonerentregado1)  or  !empty($cantidadtonerentregado1)  == false)    
-                      @php
-                      $cantidadtonerentregado1 = 0;
-                      @endphp    
 
-                      
-                    @endif
+                        @if(!isset($cantidad1) or !empty($cantidad1) == false)
+                          @php 
+                            $cantidad1 = 0;
+                          @endphp  
+                        @endif
+                    <td>{{$cantidad1}}</td> 
+
+                 
+                        @if(!isset($tipotoner2) or !empty($tipotoner2) == false)
+                          @php 
+                            $tipotoner2 = " ";
+                          @endphp  
+                        @endif                   
+                    <td>{{$tipotoner2}}</td>
+
+                        @if(!isset($cantidad2) or !empty($cantidad2) == false)
+                          @php 
+                            $cantidad2 = 0;
+                          @endphp  
+                        @endif
+                    <td>{{$cantidad2}}</td> 
+
+                        @if(!isset($tipotoner3) or !empty($tipotoner3) == false)
+                          @php 
+                            $tipotoner3 = "";
+                          @endphp  
+                        @endif
+                    <td>{{$tipotoner3}}</td>
+
+                        @if(!isset($cantidad3) or !empty($cantidad3) == false)
+                          @php 
+                            $cantidad3 = 0 ;
+                          @endphp  
+                        @endif
+                    <td>{{$cantidad3}}</td> 
+                        @if(!isset($cantidadtonerentregado1)  or  !empty($cantidadtonerentregado1)  == false)    
+                          @php
+                           $cantidadtonerentregado1 = 0;
+                          @endphp    
+                        @endif
                     <td>{{$cantidadtonerentregado1}}</td>
-              
-                    @if(!isset($ttonerentregado) or !empty($ttonerentregado) == false) <!--Comentario de entrega del toner -->
+                        @if(!isset($tipotonerentregado1)  or  !empty($tipotonerentregado1)  == false )    
+                              @php
+                                  $tipotonerentregado1 = " ";
+                              @endphp                                 
+                        @endif      
+                    <td>{{$tipotonerentregado1}}</td> 
+                    
+                    @if(!isset($cantidadtonerentregado2)  or  !empty($cantidadtonerentregado2)  == false)    
+                          @php
+                           $cantidadtonerentregado2 = 0;
+                          @endphp    
+                        @endif
+                    <td>{{$cantidadtonerentregado2}}</td>
+                        @if(!isset($tipotonerentregado2)  or  !empty($tipotonerentregado2)  == false )    
+                              @php
+                                  $tipotonerentregado2 = " ";
+                              @endphp                                 
+                        @endif      
+                    <td>{{$tipotonerentregado2}}</td> 
+
+
+                    @if(!isset($cantidadtonerentregado3)  or  !empty($cantidadtonerentregado3)  == false)    
+                          @php
+                           $cantidadtonerentregado3 = 0;
+                          @endphp    
+                        @endif
+                    <td>{{$cantidadtonerentregado3}}</td>
+                        @if(!isset($tipotonerentregado3)  or  !empty($tipotonerentregado3)  == false )    
+                              @php
+                                  $tipotonerentregado3 = " ";
+                              @endphp                                 
+                        @endif      
+                    <td>{{$tipotonerentregado3}}</td>
+                    
+                    
+                    
+
+
+
+
+
+
+
+                    @if(!isset($comentario_entrega) or !empty($comentario_entrega) == false) <!--Comentario de entrega del toner -->
                         @php
-                        $ttonerentregado = "Sin datos";
+                         $comentario_entrega = "Sin datos";
                         @endphp
                     @endif
-                     <td>{{$ttonerentregado}}</td> 
+                     <td>{{$comentario_entrega}}</td> 
                                      
-                    <td>{{$tk_id->name}}</td>  
-                    
-                    
+                    <td>{{$tk_id->name}}</td>                     
                 </tr>   
                 
                 
+
+              @php 
+                unset($tk_id ->tn,$tk_id->create_time,$tk_id->title,$dependencia,$tk_id->fila,$tipodetoner1
+                  ,$cantidad1,$tipotoner2,$cantidad2,$tipotoner3,$cantidad3,$cantidadtonerentregado1
+                  ,$comentario_entrega,$tk_id->name,$tipotonerentregado1,$cantidadtonerentregado2,$tipotonerentregado2
+                );
+              @endphp
+
     @endforeach
 
     
@@ -197,9 +294,16 @@
             <th></th>
             <th></th>
             <th></th>
+            <th title="Al no seleccionar ningun campo se muestran todos los tickets con solicitud de toner no importando la marca del mismo ">Filtro por Fila</th>
+            <th title="Al no seleccionar ningun campo se muestran todos los tickets con solicitud de toner no importando la marca del mismo ">Filtro por dependecia</th>
+            <th ></th>
             <th></th>
-            <th >Filtro por dependecia</th>
-            <th title="Al no seleccionar ningun campo se muestran todos los tickets con solicitud de toner no importando la marca del mismo ">Filtro por tipo de toner</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -228,7 +332,8 @@
         </div>
         
       </div>
-        <div class="card text-center  mb-3 bg-white" >
+      <div class="card-deck mt-2">
+        <div class="card text-center   bg-white" >
           <div class="card-header" ><h4>Toner Solicitados</h4> </div>
             <div class="card-body">
                 <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{$acumuladorsolicitado}} </i> </div>
@@ -236,7 +341,20 @@
             <!--<a href="{{url('users/grafic')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
             
         </div>
+        <div class="card text-center   bg-white" >
+          <div class="card-header" ><h4></h4> </div>
+            <div class="card-body">
+                <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{$acumuladorsolicitado}} </i> </div>
+            </div>
+            <!--<a href="{{url('users/grafic')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
+            
+        </div>
+        </div>
+
         <h5>Filtrar por rango de Fecha : <input id="Date_search" type="text" placeholder="Selecciona el Rango " /> </h5> 
+                  
+        
+        
 
     </table>
 </div>
@@ -331,9 +449,7 @@ $(document).ready(function(){
 });
 
 var table = $('#tablatktoner').DataTable({ 
-
-
-     
+  
       select:true,  
       "pageLength": 10,   
       "lengthChange": true,
@@ -371,8 +487,7 @@ var table = $('#tablatktoner').DataTable({
                        {
 
                            extend:    'pdfHtml5',
-                           text:      '<i class="bi bi-filetype-pdf"></i>PDF',
-                           
+                           text:      '<i class="fas fa-file-pdf"></i>PDF',                           
                            title:'Tickets Solicitud de Toner',
                            titleAttr: 'PDF',
                            className: 'btn btn-app export pdf',
@@ -409,13 +524,31 @@ var table = $('#tablatktoner').DataTable({
 
                        {
                            extend:    'excelHtml5',
-                           text:      '<i class="bi bi-filetype-exe"></i>Excel',
+                           text:      '<i class="fas fa-file-excel"></i> Exel',
                            title:'Tickets Solicitud de Toner ',
+                           messageTop:'Toners entregados',
                            titleAttr: 'Excel',
                            className: 'btn btn-app export excel',
+                           footer:true  ,
                            exportOptions: {
-                               columns: ':visible'
+                           columns: ':visible',
+                           
                            },
+                           customize: function( xlsx ) {
+
+                          
+                             
+                            var hoja = xlsx.xl.worksheets['sheet1.xml'];
+                              $('c[r=A2] t', hoja).text('Toners Entregados' + '  ' + sumcol(pageTotal,sumsol2,sumsol3) );
+                              $('messageTop c', hoja).attr( 's', '30' );
+
+                            var ttlsolicitados = xlsx.xl.worksheets['sheet1.xml'];
+                              $('c[r=A3] t', ttlsolicitados).text('Toners Solicitados' + '  ' + sumcol(tonerentregado1,tonerentregado2,tonerentregado3) );
+                              
+                              $('messageTop c', ttlsolicitados).attr( 's', '32' );
+                            },
+                            
+
                        },
 
                        {
@@ -437,36 +570,36 @@ var table = $('#tablatktoner').DataTable({
                    ]         
            },
            columnDefs:[{
-                        targets: [7,8,10], // null para no ocultar columnas [1,2,3 ... ] cuando se requiera bloquear colmn 
+                        targets: [7,8,9,10,13,14,15,16], // null para no ocultar columnas [1,2,3 ... ] cuando se requiera bloquear colmn 
                         visible: false
                         }] ,
             
 // Filtro por seleccion multiple
-initComplete: function() {            
-  this.api().columns([4,5,11]).every(function() {
-    var column = this;
-    
-    var select = $('<select class="mymsel" multiple="multiple" ><option value=""></option></select>')
-      .appendTo($(column.footer()))
-      .on('change', function() {
-        var vals = $('option:selected', this).map(function(index, element) {
-          return $.fn.dataTable.util.escapeRegex($(element).val());
-        }).toArray().join('|');
+                initComplete: function() {            
+                  this.api().columns([3,4,18]).every(function() {
+                    var column = this;
+                    
+                    var select = $('<select class="mymsel" multiple="multiple" ><option value=""></option></select>')
+                      .appendTo($(column.footer()))
+                      .on('change', function() {
+                        var vals = $('option:selected', this).map(function(index, element) {
+                          return $.fn.dataTable.util.escapeRegex($(element).val());
+                        }).toArray().join('|');
 
-        column
-          .search(vals.length > 0 ? '^(' + vals + ')$' : '', true, false)
-          .draw();
-      });
+                        column
+                          .search(vals.length > 0 ? '^(' + vals + ')$' : '', true, false)
+                          .draw();
+                      });
 
-    column.data().unique().sort().each(function(d, j) {
-      select.append('<option value="' + d + '">' + d + '</option>')
-    });
-    var title = $(this).text();
-       
-  });
-  //select2 init for .mymsel class
-  $(".mymsel").select2();
-},
+                    column.data().unique().sort().each(function(d, j) {
+                      select.append('<option value="' + d + '">' + d + '</option>')
+                    });
+                    var title = $(this).text();
+                      
+                  });
+                  //select2 init for .mymsel class
+                  $(".mymsel").select2();
+                },
 //fin de la seleccion multiple 
 
 
@@ -489,32 +622,73 @@ initComplete: function() {
                     return intVal(a) + intVal(b);
                 }, 0 );
                 $( api.column( 6 ).footer() ).html(
-              'Toner solicitados: <br>' +  pageTotal 
+              '1.-Toners Solicitados: <br>' +  pageTotal 
             );
-
-            pageTotal2 = api
-                .column( 9, { search: "applied" } )
+                sumsol2 = api
+                .column( 8, { search: "applied" } )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
-                $( api.column(9).footer() ).html(
-                  'Toner Entregados: <br>' + pageTotal2 
+                $( api.column(8).footer() ).html(
+                  '2.-Toners Solicitados: <br>' + sumsol2 
                 );
-           
-        },
 
-        drawCallback: function () {
-        var sum = $('#tablatktoner').DataTable().column(6).data().sum();
-        $('#total').html(sum);
-      }
+                sumsol3 = api
+                .column(10, { search: "applied" } )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+                $( api.column(10).footer() ).html(
+                  '3.-Toners Solicitados: <br>' + sumsol3 
+                );
+
+                tonerentregado1 = api
+                .column( 11, { search: "applied" } )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+                $( api.column(11).footer() ).html(
+                  '1.-Toner Entregados: <br>' + tonerentregado1 
+                );
+
+                tonerentregado2 = api
+                .column( 13, { search: "applied" } )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+                $( api.column(13).footer() ).html(
+                  '2.-Toner Entregados: <br>' + tonerentregado2 
+                );
+
+                tonerentregado3 = api
+                .column( 15, { search: "applied" } )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+                $( api.column(15).footer() ).html(
+                  '3.-Toner Entregados: <br>' + tonerentregado3 
+                );
+
+                
 
 
 
 
 
+
+                    
+        }    
           
 });
+
+function sumcol(col1,col2,col3){
+           return col1+col2+col3;
+        }
 
 $("#Date_search").daterangepicker({
   "locale": {
@@ -557,9 +731,6 @@ $("#Date_search").daterangepicker({
   minDateFilter = start;
   table.draw();  
 });
-
-
-
 
 </script>
 <!-- fin de la datatable-->

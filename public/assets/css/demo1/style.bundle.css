@@ -11639,7 +11639,7 @@ a.text-dark:hover {
 .btn-secondary:focus,
 .btn-secondary:hover,
 .show>.btn-secondary.dropdown-toggle {
-    color: #fff;
+    color: #d6c5aa;
     border-color: #144205;
     background-color: #75293d;
     
@@ -50503,6 +50503,30 @@ body {
     text-decoration: underline;
     background-color: #ffc4cb4d
 }
+
+
+.abierto {
+    border: ridge;
+    background: #f6a9ac;
+}
+.asignado {
+    border: ridge;
+    background: #f7f4a0;
+}
+.cerradoex {
+    border: ridge;
+    background: #6be863;
+}
+.cerradopt {
+    border: ridge;
+    /*background: #f7f4a0;*/
+}
+.notalususario {
+    border: ridge;
+    background: #b1e38d;
+}
+
+
 
 
 

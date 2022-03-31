@@ -782,7 +782,7 @@ var nuevotk = [
   x = 0,
   y = 0,
  num = 100,
-  news = document.getElementById("news2"),
+ news = document.getElementById("news2"),
   
   last = setInterval(function() {
     news.textContent += nuevotk[y][x++] ;
