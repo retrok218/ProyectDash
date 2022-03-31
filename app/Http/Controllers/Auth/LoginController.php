@@ -68,15 +68,11 @@ class LoginController extends Controller {
         else {
             $response=['success'=>false];
         }
-
-
     }
-
     public function logout(Request $request) {
         session()->flush();
         return redirect('/login');
     }
-
     public function verify($code) {
         $user=User::where('confirmation_code', $code)->first();
 

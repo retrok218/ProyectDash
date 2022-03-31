@@ -23,7 +23,6 @@ class GraficController extends Controller
   
     public function index()
     {
-      
       $perfil = Auth::user()->hasAnyRole(['SuperAdmin', 'Admin']);
 // regresa la vista admin.dashboard
       $fecha_actual = Carbon::now()->toDateString(); //fecha ->toDateString da el formato que maneja la bd
