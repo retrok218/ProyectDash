@@ -35,7 +35,7 @@
 <!-- FIN Scrips para generar graficas  -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<!-- <script src="{{URL::asset('js/datatable.js')}}"></script>  script para datatable creacion y control de tablas-->
+ <script src="{{URL::asset('js/datatable.js')}}"></script>  
 <script src="{{URL::asset('js/dateTime.min.js')}}"></script> <!--script para calendario datatable-->
 
 
