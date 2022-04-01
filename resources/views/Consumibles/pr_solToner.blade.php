@@ -336,15 +336,15 @@
         <div class="card text-center   bg-white" >
           <div class="card-header" ><h4>Toner Solicitados</h4> </div>
             <div class="card-body">
-                <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{$acumuladorsolicitado}} </i> </div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> </i><h4 id="tonsolicitado"></h4> </div>
             </div>
             <!--<a href="{{url('users/grafic')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
             
         </div>
         <div class="card text-center   bg-white" >
-          <div class="card-header" ><h4></h4> </div>
+          <div class="card-header" ><h4>Toners Entregadoss</h4> </div>
             <div class="card-body">
-                <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px "> {{$acumuladorsolicitado}} </i> </div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800" > <i class="fa fa-address-card" style="font-size:36px ">  </i> <h4 id="tonentregado"></h4> </div>
             </div>
             <!--<a href="{{url('users/grafic')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
             
@@ -539,7 +539,7 @@ var table = $('#tablatktoner').DataTable({
                           
                              
                             var hoja = xlsx.xl.worksheets['sheet1.xml'];
-                              $('c[r=A2] t', hoja).text('Toners Entregados' + '  ' + sumcol(pageTotal,sumsol2,sumsol3) );
+                              $('c[r=A2] t', hoja).text('Toners Entregados' + '  ' + sumcol(pageTotal,sumsol2,sumsol3) + 'Toners Solicitados' + '  ' + sumcol(tonerentregado1,tonerentregado2,tonerentregado3) );
                               $('messageTop c', hoja).attr( 's', '30' );
 
                             var ttlsolicitados = xlsx.xl.worksheets['sheet1.xml'];
@@ -672,23 +672,20 @@ var table = $('#tablatktoner').DataTable({
                 }, 0 );
                 $( api.column(15).footer() ).html(
                   '3.-Toner Entregados: <br>' + tonerentregado3 
-                );
-
-                
-
-
-
-
-
-
-                    
+                );                
         }    
           
 });
-
 function sumcol(col1,col2,col3){
-           return col1+col2+col3;
+            col1+col2+col3;
+            
         }
+document.getElementById("tonsolicitado").innerHTML=pageTotal+sumsol2+sumsol3;
+document.getElementById("tonentregado").innerHTML =tonerentregado1+tonerentregado3+tonerentregado2;
+
+
+
+
 
 $("#Date_search").daterangepicker({
   "locale": {

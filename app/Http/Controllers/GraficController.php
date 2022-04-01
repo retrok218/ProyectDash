@@ -23,6 +23,7 @@ class GraficController extends Controller
   
     public function index()
     {
+      
       $perfil = Auth::user()->hasAnyRole(['SuperAdmin', 'Admin']);
 // regresa la vista admin.dashboard
       $fecha_actual = Carbon::now()->toDateString(); //fecha ->toDateString da el formato que maneja la bd
@@ -404,9 +405,7 @@ $totalMesJson = json_encode($totalmes);
 // controlador para tickets asignados
   public function ticketa(){
     $perfil = Auth::user()->hasAnyRole(['SuperAdmin', 'Admin']);
-    if (condition) {
-      # code...
-    }
+    
     $tkasignado =DB::connection('pgsql2')->table('ticket')
       ->where('ticket_state_id','=', 12)
       ->join('queue','queue.id','queue_id')
