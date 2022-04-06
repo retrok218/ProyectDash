@@ -149,8 +149,8 @@
 
    
 
-            <!--Creacion de lista para consumibles   -->
-          <!--  <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--close" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+            
+           <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--close" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
                <a href="javascript:;" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
                   <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                      <rect id="bound" x="0" y="0" width="24" height="24" />
@@ -175,7 +175,7 @@
                   </ul>
                </div>
             </li>
-<!-- Fin Creacion de lista para consumibles   -->
+
 
 <!-- Monitoreo de TKS -->
 <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--close" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">

@@ -117,13 +117,17 @@ class Tks_DT_controlle extends Controller
    
 
 //----------------------------------------------------------------------------------------------------
-  
+  if($perfil == true ){ 
     return view('Consumibles/pr_solToner')
     ->with('tk_id',$ticketfusion )
     ->with('solicitudToner',$solicitudToner)
     ->with('ticket',$tickte)
+  ;}elseif($perfil == false ){
+
+    return view ('auth/login');
+  }
   
-  ;}
+  }
 
 
 

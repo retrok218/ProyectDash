@@ -9,9 +9,9 @@
     <table id="tablatktoner"  class="table table-striped table-bordered " >
         <thead >     
         <tr>
-                <th colspan="5" style="border-color: #cab08f;" >Tickets</th>
-                <th colspan="6" style="border-color: #cab08f;">Solicitados </th>
-                <th colspan="8" style="border-color: #cab08f;" >Entregados</th>
+                <th colspan="5" style="border-left-color: #cab08f;border-left-width: 3px;border-bottom-color: #cab08f;border-bottom-width: 3px;" >Tickets</th>
+                <th colspan="6" style="border-left-color: #cab08f;border-left-width: 3px;border-bottom-color: #cab08f;border-bottom-width: 3px;">Solicitados </th>
+                <th colspan="8" style="border-left-color: #cab08f;border-left-width: 3px;border-bottom-color: #cab08f;border-bottom-width: 3px;" >Entregados</th>
             </tr>
 
             <tr>
@@ -19,16 +19,16 @@
                 <th>Fecha </th>
                 <th>Descripcion de TKT</th>
                 <th>Fila</th>
-                <th>Dependencia</th>
+                <th >Dependencia</th>
                 
-                <th>1.-Solicitado Tipo de Toner </th>
+                <th style="border-left-color: #cab08f;border-left-width: 3px;">1.-Solicitado Tipo de Toner </th>
                 <th>1.-Solicitado Cantidad</th>
                 <th>2.-Solicitado Tipo de Toner2 </th>
                 <th>2.-Solicitado Cantidad</th>
                 <th>3.-Solicitado Tipo de Toner</th>  <!-- Tipo de toner solicitado 3 -->
                 <th>3.-Solicitado Catidad</th>       <!-- Cantidad de toner  -->
 
-                <th>1.-Cantidad entregada </th>
+                <th style="border-left-color: #cab08f;border-left-width: 3px;">1.-Cantidad entregada </th>
                 <th>1.-Tipo de Toner Entregado</th>
                 <th>2.-Cantidad entregada </th>
                 <th>2.-Tipo de Toner Entregado</th>
@@ -182,7 +182,7 @@
                           $tipodetoner1 =" ";
                           @endphp  
                         @endif
-                    <td>{{$tipodetoner1}}</td>
+                    <td style="border-left-color: #cab08f;border-left-width: 3px;">{{$tipodetoner1}}</td>
 
                         @if(!isset($cantidad1) or !empty($cantidad1) == false)
                           @php 
@@ -224,7 +224,7 @@
                            $cantidadtonerentregado1 = 0;
                           @endphp    
                         @endif
-                    <td>{{$cantidadtonerentregado1}}</td>
+                    <td style="border-left-color: #cab08f;border-left-width: 3px;">{{$cantidadtonerentregado1}}</td>
                         @if(!isset($tipotonerentregado1)  or  !empty($tipotonerentregado1)  == false )    
                               @php
                                   $tipotonerentregado1 = " ";
@@ -455,6 +455,12 @@ $(document).ready(function(){
 });
 
 var table = $('#tablatktoner').DataTable({ 
+
+  
+      
+
+
+
   
       select:true,  
       "pageLength": 10,   
@@ -499,43 +505,7 @@ var table = $('#tablatktoner').DataTable({
             
             buttons: [
               
-                       {
-
-                           extend:    'pdfHtml5',
-                           text:      '<i class="fas fa-file-pdf"></i>PDF',                           
-                           title:'Tickets Solicitud de Toner',
-                           titleAttr: 'PDF',
-                           className: 'btn btn-app export pdf',
-                           orientation: 'landscape',
-                           pageSize: 'TABLOID',
-                           exportOptions: {
-                          columns: ':visible'
-                           },
-                            customize:function(doc) {
-                           doc.styles.title = {
-                                   color: '#75293db9',
-                                   fontSize: '30',
-                                   alignment: 'center'
-                               }
-                               doc.styles['td:nth-child(2)'] = {
-                                   width: '100px',
-                                   'max-width': '100px',
-                                    margin: [ 0, 0, 0, 12 ],
-                               },
-                               doc.styles.tableHeader = {
-                                   fillColor:'#75293db9',
-                                   color:'white',
-                                   alignment:'center',
-
-                               }
-
-                               doc.content[0].margin = [ 0, 0, 0, 12 ]
-
-
-                           }
-                           
-
-                       },
+                       
 
                        {
                            extend:    'excelHtml5',
@@ -557,6 +527,54 @@ var table = $('#tablatktoner').DataTable({
                             
 
                        },
+
+                       {
+
+extend:    'pdfHtml5',
+text:      '<i class="fas fa-file-pdf"></i>PDF',                           
+title:'Tickets Solicitud de Toner' ,
+messageTop: function (){
+          return  'Toner Solicitado'+' '+ tonersol +' ' +'Toner Entregado'+ tonerentregado;        
+        },
+titleAttr: 'PDF',
+className: 'btn btn-app export pdf',
+orientation: 'landscape',
+pageSize: 'TABLOID',
+exportOptions: {
+columns: ':visible'
+},
+ customize:function(doc) {
+doc.styles.title = {
+        color: 'peru',
+        fontSize: '30',
+        alignment: 'center'
+    },
+    doc.styles.messageTop = {
+        color: 'peru',
+        fontSize: '20',
+        alignment: 'center'
+    },
+    doc.styles['td:nth-child(2)'] = {
+        width: '100px',
+        'max-width': '100px',
+         margin: [ 0, 0, 0, 12 ],
+    },
+    doc.styles.tableHeader = {
+        fillColor:'maroon',
+        color:'antiquewhite',
+        alignment:'center',
+        
+        
+
+    }
+
+    doc.content[0].margin = [ 0, 0, 0, 12 ]
+
+
+}
+
+
+},
 
                        {
                            extend:    'print',
@@ -685,14 +703,16 @@ var table = $('#tablatktoner').DataTable({
         }    
           
 });
+var tonersol = pageTotal+sumsol2+sumsol3;
+var tonerentregado=tonerentregado1+tonerentregado3+tonerentregado2;
+
 function sumcol(col1,col2,col3){
             return col1+col2+col3;        
         };
 
-var sumsoli = document.getElementById("tonsolicitado").innerHTML=pageTotal+sumsol2+sumsol3;
+var tonsolicitado = document.getElementById("tonsolicitado").innerHTML=pageTotal+sumsol2+sumsol3;
 var sumentregado = document.getElementById("tonentregado").innerHTML =tonerentregado1+tonerentregado3+tonerentregado2;
-document.getElementById('sump1').innerHTML=sumsoli;
-document.getElementById('sump2').innerHTML=sumentregado;
+
 
 
 
