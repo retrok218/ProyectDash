@@ -54,7 +54,7 @@ Route::get('/passModal', 'Auth\ForgotPasswordController@');
 Route::get('/', function ()  {
     if (Auth::check()){
             if( Auth::user()->hasRole('admin,admin1') || Auth::user()->hasRole('SuperAdmin')){
-            return redirect('users/grafic');
+            return redirect('users/dash');
             }
             else{
                 return redirect('/home');
