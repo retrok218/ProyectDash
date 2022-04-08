@@ -24,7 +24,7 @@ class GraficController extends Controller
     public function index()
     {
       
-      $perfil = Auth::user()->hasAnyRole(['SuperAdmin', 'Admin']);
+      
 // regresa la vista admin.dashboard
       $fecha_actual = Carbon::now()->toDateString(); //fecha ->toDateString da el formato que maneja la bd
       $fecha_mes = Carbon::now()->format('m');
@@ -256,7 +256,7 @@ $totalMesJson = json_encode($totalmes);
 
      
           
-    if($perfil == true){
+   
       return view('dash')
       //prueva creacion de funcion de auto update
       ->with('ultimoTK',$ultimoTK)
@@ -397,14 +397,12 @@ $totalMesJson = json_encode($totalmes);
       
             
 
-    ;}else {
-      return view('auth/login');
-    }
- ;}
+    ;}
+ 
 
 // controlador para tickets asignados
   public function ticketa(){
-    $perfil = Auth::user()->hasAnyRole(['SuperAdmin', 'Admin']);
+   
     
     $tkasignado =DB::connection('pgsql2')->table('ticket')
       ->where('ticket_state_id','=', 12)
@@ -436,7 +434,7 @@ $totalMesJson = json_encode($totalmes);
       
       // fin nuevos asignados 
     
-      if($perfil == true){
+      
     
       return view('graficas/tickets_asignados')
 
@@ -456,9 +454,7 @@ $totalMesJson = json_encode($totalmes);
         ->with('cerradoPT',$cerradoPT)
         ->with('cerradoexitosamente',$rticket)
         ->with('titulotksJson',$titulotksJson)
-        ;}else {
-          return view('auth/login');
-        }
+        ;
 
     ;}
 // Fin Controlador tickets asignados

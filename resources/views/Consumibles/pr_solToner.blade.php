@@ -2,10 +2,9 @@
 <!-- <meta http-equiv="refresh" content="120 "> -->
 @section('content')
 <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">  
-    <div class="row">
-      
-          
-<div class="col-lg-12">                 
+    <div class="row">                
+<div class="col-lg-12">     
+                
     <table id="tablatktoner"  class="table table-striped table-bordered " >
         <thead >     
         <tr>
@@ -355,14 +354,15 @@
             <!--<a href="{{url('users/grafic')}}" class="btn btn-success btn-sm enable" role="button" aria-disabled="true"> Desplegar </a> -->
             
         </div>
+       
         </div>
-
-        <h5>Filtrar por rango de Fecha : <input id="Date_search" type="text" placeholder="Selecciona el Rango " /> </h5> 
-                  
-        
         
 
+        <h5>Filtrar por rango de Fecha : <input id="Date_search" type="text" placeholder="Selecciona el Rango " /> </h5>                       
     </table>
+
+   
+
 </div>
 </div>
 
@@ -458,10 +458,6 @@ var table = $('#tablatktoner').DataTable({
 
   
       
-
-
-
-  
       select:true,  
       "pageLength": 10,   
       "lengthChange": true,
@@ -475,7 +471,6 @@ var table = $('#tablatktoner').DataTable({
       dom:'Bfrtip<"col-md-6 inline"i> <"col-md-6 inline"p>',
       dom:'Bfrtip',
       deferRender:true, 
-
       "columnDefs": [ {
             "visible": false,
             "targets": -1
@@ -492,22 +487,13 @@ var table = $('#tablatktoner').DataTable({
 
 
       buttons: {
-            dom: {
-              container:{
-                tag:'div',
- 
-              },
-              buttonLiner: {
-                tag: null
-              }
-            },
+            
 
             
             buttons: [
               
-                       
-
                        {
+                         
                            extend:    'excelHtml5',
                            text:      '<i class="fas fa-file-excel"></i> Exel',
                            title:'Tickets Solicitud de Toner ',
@@ -528,13 +514,11 @@ var table = $('#tablatktoner').DataTable({
 
                        },
 
-                       {
-
-extend:    'pdfHtml5',
+{ extend:    'pdfHtml5',
 text:      '<i class="fas fa-file-pdf"></i>PDF',                           
 title:'Tickets Solicitud de Toner' ,
 messageTop: function (){
-          return  'Toner Solicitado'+' '+ tonersol +' ' +'Toner Entregado'+ tonerentregado;        
+          return  'Toner Solicitado'+' '+ sumcol(pageTotal,sumsol2,sumsol3) +' ' +'Toner Entregado'+ sumcol(tonerentregado1,tonerentregado2,tonerentregado3);        
         },
 titleAttr: 'PDF',
 className: 'btn btn-app export pdf',
@@ -544,7 +528,10 @@ exportOptions: {
 columns: ':visible'
 },
  customize:function(doc) {
-doc.styles.title = {
+
+  
+
+    doc.styles.title = {
         color: 'peru',
         fontSize: '30',
         alignment: 'center'
@@ -562,16 +549,14 @@ doc.styles.title = {
     doc.styles.tableHeader = {
         fillColor:'maroon',
         color:'antiquewhite',
-        alignment:'center',
-        
-        
-
+        alignment:'center',                
     }
-
     doc.content[0].margin = [ 0, 0, 0, 12 ]
+  },
 
 
-}
+
+
 
 
 },
@@ -697,10 +682,13 @@ doc.styles.title = {
                 }, 0 );
                 $( api.column(15).footer() ).html(
                   '3.-Toner Entregados: <br>' + tonerentregado3 
-                );       
-                
-               
+                );                                      
         }    
+
+        
+
+
+
           
 });
 var tonersol = pageTotal+sumsol2+sumsol3;
@@ -716,8 +704,6 @@ var sumentregado = document.getElementById("tonentregado").innerHTML =tonerentre
 
 
 
-
-
 $("#Date_search").daterangepicker({
   "locale": {
     "format": "YYYY-MM-DD",
@@ -729,27 +715,27 @@ $("#Date_search").daterangepicker({
     "customRangeLabel": "Custom",
     "weekLabel": "W",
     "daysOfWeek": [
-      "Su",
-      "Mo",
-      "Tu",
-      "We",
-      "Th",
-      "Fr",
-      "Sa"
+      "Sa",
+      "Do",
+      "Lu" ,
+      "Ma" ,
+      "Mi" ,
+      "Ju" ,
+      "Vi" 
     ],
     "monthNames": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
+      "Enero",
+      "Febrero",
+      "Marzo",
+      "Abril",
+      "Mayo",
+      "Junio",
+      "Julio",
+      "Agosto",
+      "Septiembre",
+      "Octubre",
+      "Noviembre",
+      "Diciembre"
     ],
     "firstDay": 1
   },
@@ -759,6 +745,7 @@ $("#Date_search").daterangepicker({
   minDateFilter = start;
   table.draw();  
 });
+
 
 </script>
 <!-- fin de la datatable-->

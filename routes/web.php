@@ -50,21 +50,18 @@ Route::get('/passModal', 'Auth\ForgotPasswordController@');
 
 
 
-// si se elimina no causa problema en el sistema 
 Route::get('/', function ()  {
     if (Auth::check()){
-            if( Auth::user()->hasRole('admin,admin1') || Auth::user()->hasRole('SuperAdmin')){
-            return redirect('users/dash');
+            if( Auth::user()->hasRole('admin') || Auth::user()->hasRole('SuperAdmin')){
+            return redirect('users/tks_atendidos');
             }
             else{
-                return redirect('/home');
+                return redirect('/monitoreotks');
                 }
 
           }
-          else{return redirect('/login'); }
-
-    
-    }); // si se elimina no causa problema en el sistema 
+          else{return redirect('/login'); }    
+    }); 
 
 
 
