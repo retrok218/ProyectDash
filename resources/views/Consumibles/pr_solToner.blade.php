@@ -494,31 +494,27 @@ var table = $('#tablatktoner').DataTable({
               
                        {
                          
-                           extend:    'excelHtml5',
-                           text:      '<i class="fas fa-file-excel"></i> Exel',
+                           extend:'excelHtml5',
+                           text:'<i class="fas fa-file-excel"></i> Exel ',
                            title:'Tickets Solicitud de Toner ',
-                           messageTop:'Toners entregados',
-                           titleAttr: 'Excel',
-                           className: 'btn btn-app export excel',
-                           
+                           messageTop:'Toners entregados :',
+                           titleAttr: 'Gestor Toners Entregados',
+                           className: 'btn btn-app export excel',                           
                            exportOptions: {
-                           columns: ':visible',
-                           
+                           columns: ':visible',                           
                            },
                            customize: function( xlsx ) {                      
                             var hoja = xlsx.xl.worksheets['sheet1.xml'];
-                              $('c[r=A2] t', hoja).text('Toners Solicitados' + '  ' + sumcol(pageTotal,sumsol2,sumsol3) +'  '+ 'Toners Entregados' + '  ' + sumcol(tonerentregado1,tonerentregado2,tonerentregado3) );
-                              $('messageTop c', hoja).attr( 's', '30' );                                                    
-                            },
-                            
-
+                              $('c[r=A2] t', hoja).text(' Toners Solicitados :' + '  ' + sumcol(pageTotal,sumsol2,sumsol3) +'  '+ 'Toners Entregados :' + '  ' + sumcol(tonerentregado1,tonerentregado2,tonerentregado3) );
+                              $('messageTop c', hoja).attr( 's', '30' );                                                            
+                            },                            
                        },
 
 { extend:    'pdfHtml5',
 text:      '<i class="fas fa-file-pdf"></i>PDF',                           
-title:'Tickets Solicitud de Toner' ,
+title:'Gestor Toners Entregados' ,
 messageTop: function (){
-          return  'Toner Solicitado'+' '+ sumcol(pageTotal,sumsol2,sumsol3) +' ' +'Toner Entregado'+ sumcol(tonerentregado1,tonerentregado2,tonerentregado3);        
+          return  'Toners Solicitado :'+' '+ sumcol(pageTotal,sumsol2,sumsol3) +' ' +'Toners Entregado'+ sumcol(tonerentregado1,tonerentregado2,tonerentregado3);        
         },
 titleAttr: 'PDF',
 className: 'btn btn-app export pdf',
@@ -554,17 +550,12 @@ columns: ':visible'
     doc.content[0].margin = [ 0, 0, 0, 12 ]
   },
 
-
-
-
-
-
 },
 
                        {
                            extend:    'print',
                            text:      '<i class="fa fa-print"></i>Imprimir',
-                           title:'Tickets Solicitud de Toner',
+                           title:'Gestor Toners Entregados',
                            titleAttr: 'Imprimir',
                            className: 'btn btn-app export imprimir',
                            exportOptions: {
@@ -683,12 +674,7 @@ columns: ':visible'
                 $( api.column(15).footer() ).html(
                   '3.-Toner Entregados: <br>' + tonerentregado3 
                 );                                      
-        }    
-
-        
-
-
-
+        }            
           
 });
 var tonersol = pageTotal+sumsol2+sumsol3;

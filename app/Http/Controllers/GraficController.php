@@ -25,7 +25,7 @@ class GraficController extends Controller
     {
       
       
-// regresa la vista admin.dashboard
+
       $fecha_actual = Carbon::now()->toDateString(); //fecha ->toDateString da el formato que maneja la bd
       $fecha_mes = Carbon::now()->format('m');
       $fecha_dia = Carbon::now()->format('d');
@@ -33,11 +33,8 @@ class GraficController extends Controller
       $fecha_mesp= $fecha_mes-1;
       $fecha_añop= $fecha_año-1;
       $fecha_diap= $fecha_dia-1;
-
-      // creacion de funcion de auto update
       $ultimoTK =DB::connection('pgsql2')->table('ticket')->orderBy('create_time','DESC')->first();
       
-      // creacion de funcion de auto update
 
 
       $tickte = DB::connection('pgsql2')->table('ticket')->count();

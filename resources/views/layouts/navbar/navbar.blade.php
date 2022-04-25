@@ -82,25 +82,25 @@
                 
 
                 <li>
-                  <a class=" nav-link tickets_abiertos" href="{{url('users/tickets_abiertos')}}" >
+                  <a class=" nav-link tickets_abiertos" href="{{url('/tickets_abiertos')}}" >
                      <strong>Tickets Abierto </strong> 
                   </a>
                 </li>
                 <hr size="2px"  noshade="noshade"  />
                 
                 <li>
-                  <a class=" nav-link tks_asignados" href="{{url('users/tks_asignados')}}" >
+                  <a class=" nav-link tks_asignados" href="{{url('/tks_asignados')}}" >
                    <strong>Tickets  Asignados</strong>                  
                   </a>
                 </li>
                 <hr size="2px"  noshade="noshade"  />
                 <li>
-                  <a  class=" nav-link tks_atendidos" href="{{url('users/tks_atendidos')}}" > <strong>Tickets Atendidos </strong> </a>
+                  <a  class=" nav-link tks_atendidos" href="{{url('/tks_atendidos')}}" > <strong>Tickets Atendidos </strong> </a>
                 </li>
                 <hr size="2px"  noshade="noshade"  />
 
                 <li>
-                  <a class=" nav-link tickets_cerradosEX" href="{{url('users/tickets_cerradosEX')}}">
+                  <a class=" nav-link tickets_cerradosEX" href="{{url('/tickets_cerradosEX')}}">
                      <strong>Tickets Cerrados Exitosamente</strong> 
                   </a>
                 </li>
@@ -108,35 +108,35 @@
                 
 
                 <li>
-                  <a class=" nav-link tickets_cerradosPT" href="{{url('users/tickets_cerradosPT')}}">
+                  <a class=" nav-link tickets_cerradosPT" href="{{url('/tickets_cerradosPT')}}">
                      <strong>Tickets Cerrado por Tiempo</strong> 
                   </a>
                 </li>
                 <hr size="2px"  noshade="noshade"  />
                 <li>
-                  <a  class=" nav-link tickets_espera_inf" href="{{url('users/tickets_espera_inf')}}" > <strong>Tickets Espera de Información</strong> </a>
+                  <a  class=" nav-link tickets_espera_inf" href="{{url('/tickets_espera_inf')}}" > <strong>Tickets Espera de Información</strong> </a>
                 </li>
                 <hr size="2px"  noshade="noshade"  />
                 <li>
-                  <a class=" nav-link tickets_falta_acta_responsiva" href="{{url('users/tickets_falta_acta_responsiva')}}">
+                  <a class=" nav-link tickets_falta_acta_responsiva" href="{{url('/tickets_falta_acta_responsiva')}}">
                      <strong>Ticket Falta Acta Responsiva</strong> 
                   </a>
                 </li>
                 <hr size="2px"  noshade="noshade"/>
 
                 <li>
-                  <a class=" nav-link tickets_notificado_al_Usuario" href="{{url('users/tickets_notificado_al_Usuario')}}">
+                  <a class=" nav-link tickets_notificado_al_Usuario" href="{{url('/tickets_notificado_al_Usuario')}}">
                      <strong>Tickets Notificado al Usuario </strong> 
                   </a>
                 </li>
                 <hr size="2px"  noshade="noshade"  />
                 <li>
-                  <a class=" nav-link tickets_pendiente" href=" {{url('users/tickets_pendiente')}}" > <strong>Tickets Nuevos </strong> </a>
+                  <a class=" nav-link tickets_pendiente" href=" {{url('/tickets_pendiente')}}" > <strong>Tickets Nuevos </strong> </a>
                 </li>
                 <hr size="2px"  noshade="noshade"  />
 
                 <li>
-                  <a class=" nav-link grafic" href="{{url('users/grafic')}}" >
+                  <a class=" nav-link grafic" href="{{url('/grafic')}}" >
                      <strong>Tickets Totales</strong> 
                   </a>
                 </li>
@@ -166,7 +166,7 @@
                         <ul class="mcd-menu">
                            
                             <li>
-                               <a class=" nav-link tickets_sol_toner" href="{{url('users/tkt_pru_toner')}}"><strong>Tickets Solicitud de Toner</strong>(Situacion entrega de Toner  )</a>
+                               <a class=" nav-link tickets_sol_toner" href="{{url('/tkt_pru_toner')}}"><strong>Tickets Solicitud de Toner</strong>(Situacion entrega de Toner  )</a>
                             </li>
                             
                         </ul>
@@ -194,7 +194,7 @@
             <ul class="mcd-menu">
                <li>
                   
-                  <a class=" nav-link monitoreotks" href=" {{url('users/monitoreotks')}}"> <strong>Monitoreo de TIKETS </strong>  (operadores)</a>
+                  <a class=" nav-link monitoreotks" href=" {{url('/monitoreotks')}}"> <strong>Monitoreo de TIKETS </strong>  (operadores)</a>
                   
                 </li>
             </ul>

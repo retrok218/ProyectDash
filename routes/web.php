@@ -32,6 +32,7 @@ Route::resource('posts', 'PostController');*/
   });
 
 
+
 Route::post('/login', 'Auth\LoginController@login');
 Route::get('/register/verify/{code}', 'Auth\LoginController@verify');
 Route::post('/register', 'Auth\RegisterController@create')->name('create');
@@ -47,39 +48,7 @@ Route::get('/forgot/verify/{id}', 'Auth\ForgotPasswordController@validateTokenPa
 Route::get('/passModal', 'Auth\ForgotPasswordController@');
 
 
-
-
-
-Route::get('/', function ()  {
-    if (Auth::check()){
-            if( Auth::user()->hasRole('admin') || Auth::user()->hasRole('SuperAdmin')){
-            return redirect('users/tks_atendidos');
-            }
-            else{
-                return redirect('/monitoreotks');
-                }
-
-          }
-          else{return redirect('/login'); }    
-    }); 
-
-
-
-
-
- //Usuarios
- //editar usuarios
-    Route::group(['prefix' => 'users'], function() {
-    Route::get('/profile', 'UserController@profile');
-    Route::get('/index', 'UserController@index');
-    Route::post('/updatePassword', 'UserController@updatePassword');
-    Route::post('/validPassword', 'UserController@validPassword');
-    Route::post('/validUser', 'Auth\RegisterController@validUser');
-    Route::post('/validEmail', 'Auth\RegisterController@validEmail');
-    Route::post('/editUser', 'UserController@editUser');
-
-
-    // Rutas para Gestor de tickets
+// Rutas para Gestor de tickets
 Route::get('/dash','GraficController@index');
 Route::get('/grafic','GraficController@graficas');
 // tikes totales tabla
@@ -114,11 +83,54 @@ Route::get('/pruejs', function(){
   return view('Graficas/testcod');
 });
 
-
 // Prueva de codigo ****************************************************************************************
 Route::get('/Puevacodigo','GraficController@pruevacod');
 
 // Prueva de codigo ****************************************************************************************
+
+
+
+
+
+
+Route::get('/', function ()  {
+    if (Auth::check()){
+            if( Auth::user()->hasRole('admin') || Auth::user()->hasRole('SuperAdmin')){
+            return redirect('/admin ');
+            }
+            else{
+                return redirect('/monitoreotks');
+                }
+
+          }
+          else{return redirect('/login'); }    
+    }); 
+
+
+
+
+
+ //Usuarios
+ //editar usuarios
+    Route::group(['prefix' => 'users'], function() {
+    Route::get('/profile', 'UserController@profile');
+    Route::get('/index', 'UserController@index');
+    Route::post('/updatePassword', 'UserController@updatePassword');
+    Route::post('/validPassword', 'UserController@validPassword');
+    Route::post('/validUser', 'Auth\RegisterController@validUser');
+    Route::post('/validEmail', 'Auth\RegisterController@validEmail');
+    Route::post('/editUser', 'UserController@editUser');
+
+
+    
+
+
+
+
+
+
+
+
 
 
 
