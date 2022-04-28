@@ -18,9 +18,7 @@ use App\ConexionBD2;
 
 
 class GraficController extends Controller
-{
-  
-  
+{  
     public function index()
     {
       

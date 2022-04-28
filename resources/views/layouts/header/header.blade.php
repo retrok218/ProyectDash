@@ -58,6 +58,20 @@
                            </div>
                        </div>
                    </a>
+
+                   <a href="{{url('admin/listar_usuarios')}}" class="kt-notification__item">
+                       <div class="kt-notification__item-icon">
+                           <i class="flaticon-profile kt-font-warning"></i>
+                       </div>
+                       <div class="kt-notification__item-details">
+                           <div class="kt-notification__item-title kt-font-bold">
+                               Lista De Usuarios
+                           </div>
+                           <div class="kt-notification__item-time">
+                               Agregar Eliminar y Modificar Usuarios
+                           </div>
+                       </div>
+                   </a>
                                      
                    <input type="hidden" id='nombre'name="nombre" value="{{Auth::user()->name}}">
                    <input type="hidden" id='avatar'name="avatar" value="{{Auth::user()->avatar}}">
