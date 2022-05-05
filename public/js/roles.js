@@ -152,4 +152,10 @@ function edit_user() {
      });
 }
 
+// Modal para busqueda de tickets 
+
+
+
+
+
    

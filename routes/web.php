@@ -86,22 +86,6 @@ Route::get('/pruejs', function(){
 Route::get('/Puevacodigo','GraficController@pruevacod');
 
 // Prueva de codigo ****************************************************************************************
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Route::get('/', function ()  {
     if (Auth::check()){
             if( Auth::user()->hasRole('admin') || Auth::user()->hasRole('SuperAdmin')){
@@ -116,9 +100,6 @@ Route::get('/', function ()  {
     }); 
 
 
-
-
-
  //Usuarios
  //editar usuarios
     Route::group(['prefix' => 'users'], function() {
@@ -129,19 +110,6 @@ Route::get('/', function ()  {
     Route::post('/validUser', 'Auth\RegisterController@validUser');
     Route::post('/validEmail', 'Auth\RegisterController@validEmail');
     Route::post('/editUser', 'UserController@editUser');
-
-
-    
-
-
-
-
-
-
-
-
-
-
 
 //Fin Rutas para Gestor de tickets
     

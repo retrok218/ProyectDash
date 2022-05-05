@@ -493,7 +493,8 @@
                                 @yield('message')
                             </p>
 
-                            <a href="{{ app('router')->has('home') ? route('home') : url('/') }}">
+                            <a href="{{ app('router')->has('dash') ? route('dash') : url('/') }}">
+                            <!-- se cambia de home a dash para redirigir a la pagin a principal en caso de error   <a href="{{ app('router')->has('home') ? route('home') : url('/') }}">  -->
                                 <button
                                     class="bg-transparent text-grey-darkest font-bold uppercase tracking-wide py-3 px-6 border-2 border-grey-light hover:border-grey rounded-lg">
                                     {{ __('Inicio') }}

@@ -15,15 +15,7 @@
     
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<script src="//datatables.net/download/build/nightly/jquery.dataTables.js"></script>
-    <script src="https://cdn.datatables.net/plug-ins/1.10.19/api/sum().js"></script>
-
-		<meta charset=utf-8 />
-    
-    <!--Recarga del sistema cada x-s  activado-->
-     
-    <!--Recarga del sistema cada x-s  activado-->
-   
-
+		<meta charset=utf-8 />   
     <title>Sistema Gestion de Tickets</title>
 
     <link rel="icon" type="image/vnd.microsoft.icon" href="{{ asset('assets/media/logos/favicon.ico') }}" sizes="48X16">
@@ -116,10 +108,10 @@
                     <div id="loader"></div>
 
                         <div class="loader-section section-left" >
-                            <img src="../public/assets/media/bg/bg-cdmx.png" width="100%" height="100%"> 
+                            <img src="{{url('/assets/media/bg/bg-cdmx.png')}}" alt="Image" width="100%" height="75%"> 
                         </div>
                         <div class="loader-section section-right"> 
-                            <img src="../public/assets/media/bg/bg-cdmx.png" width="100%" height="100%"> 
+                            <img src="{{url('/assets/media/bg/bg-cdmx.png')}}" alt="Image2" width="100%" height="75%"> 
                         </div>
 
                     </div>
@@ -145,14 +137,14 @@
     @include('layouts/scripts/scripts')
     <script src="{{ URL::asset('js/layout.js') }}" type="text/javascript"></script>
     <script type="text/javascript">
-        // var global URL
+        // URL
         var url = '{!! URL::asset('') !!}';
     </script>
     <!-- end:: Page -->
 
 
 
-<!-- scrip para seleccion en el menu lateral-->
+<!-- seleccion en el menu lateral-->
 <script>
     $(document).ready(function(){
     var URLactual = window.location.pathname; //utilizada para detemrinar que tab del menu activar
@@ -167,8 +159,8 @@
 });
 
 window.addEventListener('load',function(){
-        document.querySelector('body').classList.add("loaded") 
-        });
+    document.querySelector('body').classList.add("loaded") 
+});
 
 </script>
 
@@ -178,3 +170,4 @@ window.addEventListener('load',function(){
 @endguest
 
 </html>
+

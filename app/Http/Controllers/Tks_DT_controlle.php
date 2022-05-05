@@ -272,6 +272,9 @@ class Tks_DT_controlle extends Controller
   ;}
 
   public function tickets_abiertos(){
+   
+   
+    $usuario = Auth::user()->email;
 
     $tickets_abiertos =DB::connection('pgsql2')->table('ticket')
     ->where('ticket_state_id','=',4)
@@ -296,13 +299,10 @@ class Tks_DT_controlle extends Controller
       $cerradoPT = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',10)->count(); 
       $rticket = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 2)->count();
 
-
-
      
     return view('graficas/tickets_abiertos')
     ->with('tickets_abiertos',$tickets_abiertos)
     ->with('tickets_registro',$tickets_registro)
-
     ->with('ticket', $tickte)
         ->with('asignado',$asignado)
         ->with('atendido',$atendido)

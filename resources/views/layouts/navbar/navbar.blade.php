@@ -136,7 +136,7 @@
                 <hr size="2px"  noshade="noshade"  />
 
                 <li>
-                  <a class=" nav-link grafic" href="{{url('/grafic')}}" >
+                  <a class=" nav-link grafic" href="{{url('/todos_los_tickets')}}" >
                      <strong>Tickets Totales</strong> 
                   </a>
                 </li>

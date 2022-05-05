@@ -1,5 +1,5 @@
 @extends('home')
-<meta http-equiv="refresh" content="120">
+<meta http-equiv="refresh" content="180"> <!--se refresca la pagina cada x-s -->
   @section('content')
   <script>
   var titulo_tab = 'Tickets Totales';

@@ -256,16 +256,7 @@
                                   $tipotonerentregado3 = " ";
                               @endphp                                 
                         @endif      
-                    <td>{{$tipotonerentregado3}}</td>
-                    
-                    
-                    
-
-
-
-
-
-
+                    <td>{{$tipotonerentregado3}}</td>                                                        
 
                     @if(!isset($comentario_entrega) or !empty($comentario_entrega) == false) <!--Comentario de entrega del toner -->
                         @php

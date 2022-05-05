@@ -387,11 +387,7 @@ $totalMesJson = json_encode($totalmes);
       ->with('tk_por_area_51',$tk_por_area_51)
       ->with('tk_por_area_52',$tk_por_area_52)
       ->with('tk_por_area_53',$tk_por_area_53)
-      ->with('tk_por_area_54',$tk_por_area_54)  
-
-      
-            
-
+      ->with('tk_por_area_54',$tk_por_area_54)             
     ;}
  
 
@@ -481,7 +477,7 @@ $totalMesJson = json_encode($totalmes);
       $cerradoPT = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',10)->count(); 
       $rticket = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 2)->count();
 
-      return view('graficas/estatustickets')
+      return view('graficas/todos_los_tickets')
       ->with('tickets_totales',$tickets_totales)
         ->with('ticket', $tickte)
         ->with('asignado',$asignado)

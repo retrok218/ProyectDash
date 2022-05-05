@@ -1,26 +1,17 @@
 @extends('home')
-<meta http-equiv="refresh" content="60">
+<!-- <meta http-equiv="refresh" content="60"> -->
 @section('content')
 
 
-
-
 <div class="row shadow-lg p-3 mb-5  rounded fondo1 " >
-
-
     <div class=" card-header shadow-sm p-3 mb-5 rounded " style="background: transparent ">
       <div class="col-lg-12 ">
-         <h1 class="h1t ">Monitoreo de Tickets  </h1>
-         
-         
-
+         <h1 class="h1t ">Monitoreo de Tickets  </h1>                  
           <div class="nav2">
             <div class="new2" > New </div>
             <div id="news2"></div>
             <div class="clear2"></div>
-          </div>
-
-          
+          </div>          
       </div>
     </div>
 
@@ -49,8 +40,9 @@
         
           <div class="card-header titulo_card"><h2>Tickets del dia - {{$dia}}</h2></div>
           <div class="card-body"> <i class="fa fa-address-card tkts_del_dia"> {{ $tickets_por_dia }} </i> </div>
-          <!--
-          <button type="button" class="btn btn-default dropdown-toggle"
+          
+          <!-- Grafica en dona del dia pasado 
+            <button type="button" class="btn btn-default dropdown-toggle"
              data-toggle="dropdown"> Ticket del Dia Pasado <span class="">
            </span>
           </button>
@@ -62,21 +54,27 @@
        
       </div>
 
-    </div>
-<div class="container-busqueda">
+    </div>    
 
-<div class="card-header text-center"><h5> Buscar Ticke </h5></div>
- <div class="formulario-tkt">
- <form method="GET" class="form fas fa-ticket-alt" style='font-size:30px; '>      
-        <input name="tktaconsultar" type="text"  maxlength="8" minlength="8" placeholder="Buscar Ticket"   style="background-color: #fff8f8e0; font-size:20px"  required>
-      <button type="submit" class="btn btn-success text-cemter   " >Consultar</button>              
-  </form>
-  </div>
-  
- 
-  @if($_GET)
-    @php
-          
+
+<!-- intento fallido de creacion de formulario con modal  fin -->
+<!-- 
+  <div class="container-busqueda ">
+  <form method="GET" class="form fas fa-ticket-alt" style='font: size 28px;' onsubmit="return true">
+    <label for="tktaconsultar">Buscar Ticket</label>
+    <input type="text" name="tktaconsultar" >
+    
+
+  <button id="modalBtn" class="button">Buscar Ticket </button>
+            <div id="modal_simple" class="modal-tkt">
+              <div class="modal-content-tkt">
+                  <div class="modal-heade">
+                    <span class="closeBtn">&times;</span>
+                    <h2>Quieres bucar un Ticket?</h2>
+                  </div>           
+                  
+                  @if($_GET)
+    @php          
           $tktbuscado = $_GET['tktaconsultar'];
           $consulta = DB::connection('pgsql2')->table('ticket')->where('ticket.tn','=',$tktbuscado)
             ->join("queue","queue.id","=","ticket.queue_id")
@@ -91,19 +89,11 @@
             'queue.name as qname',
             'ticket_state.name',
             'customer_user.first_name as nombre',
-            'customer_user.last_name as apellido')
-
-
-            
-            
-          ->get();
-         
-    
+            'customer_user.last_name as apellido')                        
+          ->get();             
     @endphp
-
           @if(count($consulta))
-           @php 
-            
+           @php             
             foreach($consulta as $tktconsultado)
               $idtkt = $tktconsultado->id;
               $numerotiket= $tktconsultado ->tn;
@@ -118,12 +108,8 @@
                 $estado= "Abierto";
               }else{
                 $estado=$tktconsultado->name;
-              }
-              
-
-
+              }              
             @endphp
-
             <div class="card-tktbuscado">
         <div  >
           <h4>Ticket encontrado
@@ -133,16 +119,113 @@
               </div>
             </a>
           </h4>
-        </div>
-
-
-        
+        </div>        
         <table>
           <thead class="table table table-striped table-bordered">
             <tr class ="card-header">
               <th>Fecha creacion del TKT</th>
               <th>Asunto del TKT</th>
-              <th>Usuario</th> <!--ingresar nombre completo del requeridor -->
+              <th>Usuario</th> 
+              <th>Area</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <td>{{$fechadeltiket}}</td>
+          <td>{{$asuntodeltiket}}</td>
+          <td>{{$nusuario}}.{{$apusuario}}</td>
+          <td>{{$areadeltiket}}</td>
+          <td>{{$estado}}</td>
+        </table>
+        </div>
+          @else
+          <div class="card-noencontrado text-center">
+          <h3>{{$tktbuscado}}</h3> <p> "No se encontro el TKT"</p>  
+          </div>
+          @endif
+          
+          
+  @endif
+ 
+                  
+              </div>
+            </div>
+
+            
+  </form>
+
+  </div>
+            -->
+
+  <!-- intento fallido de creacion de formulario con modal  fin -->
+    
+    
+            
+ <div class="container-busqueda">
+
+<div class="card-header text-center"><h5> Buscar Ticke </h5></div>
+
+ <div class="formulario-tkt">
+ <form method="GET" class="form fas fa-ticket-alt" style='font-size:30px; '>      
+        <input name="tktaconsultar" type="text"  maxlength="8" minlength="8" placeholder="Buscar Ticket"   style="background-color: #fff8f8e0; font-size:20px"  required>
+      <button type="submit" class="btn btn-success text-cemter" >Consultar</button>       
+  </form>
+  </div>
+  
+
+
+  @if($_GET)
+    @php          
+          $tktbuscado = $_GET['tktaconsultar'];
+          $consulta = DB::connection('pgsql2')->table('ticket')->where('ticket.tn','=',$tktbuscado)
+            ->join("queue","queue.id","=","ticket.queue_id")
+            ->join("ticket_state","ticket_state.id","=","ticket.ticket_state_id")
+            ->join("customer_user","customer_user.customer_id","=","ticket.customer_id")
+            ->select(
+            'ticket.id',
+            'ticket.tn',
+            'ticket.create_time',
+            'ticket.title',
+            'ticket.user_id',
+            'queue.name as qname',
+            'ticket_state.name',
+            'customer_user.first_name as nombre',
+            'customer_user.last_name as apellido')                        
+          ->get();             
+    @endphp
+          @if(count($consulta))
+           @php             
+            foreach($consulta as $tktconsultado)
+              $idtkt = $tktconsultado->id;
+              $numerotiket= $tktconsultado ->tn;
+              $fechadeltiket=$tktconsultado->create_time;
+              $asuntodeltiket=$tktconsultado->title;
+              $nusuario=$tktconsultado->nombre;
+              $apusuario=$tktconsultado->apellido;
+              $areadeltiket=$tktconsultado->qname;
+              if($tktconsultado->name == "closed successful"){
+                $estado= "Cerrado Exitosamente";
+              }else if($tktconsultado->name == "open"){
+                $estado= "Abierto";
+              }else{
+                $estado=$tktconsultado->name;
+              }              
+            @endphp
+            <div class="card-tktbuscado">
+        <div  >
+          <h4>Ticket encontrado
+            <a  href="https://aplicaciones.finanzas.cdmx.gob.mx/otrs/index.pl?Action=AgentTicketZoom;TicketID={{$idtkt}}" target="_blank" title="Ir en busca del TKT en OTRS">
+              <div class="cardhvr">
+                {{$numerotiket}}
+              </div>
+            </a>
+          </h4>
+        </div>        
+        <table>
+          <thead class="table table table-striped table-bordered">
+            <tr class ="card-header">
+              <th>Fecha creacion del TKT</th>
+              <th>Asunto del TKT</th>
+              <th>Usuario</th> 
               <th>Area</th>
               <th>Estado</th>
             </tr>
@@ -163,7 +246,7 @@
   
   @endif
     
- </div>
+ </div> 
     
 
 </div >
@@ -234,9 +317,7 @@
     </div>    
   </div>
  
-    
-
-    
+        
     <!--Fin Grafica por Area-->
 
     <div class="row shadow-lg p-3 mb-5 bg-white rounded">
@@ -264,7 +345,12 @@
         </div>
       </div>
     </div>
-   
+
+
+    
+
+    
+    
 
 
 
@@ -706,74 +792,11 @@ e.chart.render();
      chart.render();
 */
 // fin grafica de dona tickets cerrados
-
-
-
 //Grafica Lineal AÑo - Mes cada segundo  
-
-var dataPoints = [{x: new Date(año_x, mesinicio), y: totalMesJson[ndia]}];
-var chart = new CanvasJS.Chart("graflineal", {
-        zoomEnabled: true,
-        exportEnabled: true,
-
-         // theme: "dark2", // cambi el tema de la  grafica 
-        
-        title : {
-          text : "Grafica Mes - Año"
-        }, 
-        data : [{
-            type : "splineArea",
-            color: "rgb(161 28 74)",
-            dataPoints : dataPoints
-          }
-        ]
-      });
-  
-    chart.render();
-
-
-    var updateCount = 0;
-    var ndia =0;
-// Actualizando y agregando atos  
-var updateChart = function () {
-  var cantidadmes=
-// dato  que se va a ir ingresando 
-      dataPoints.push({
-        x: new Date(año_x, mesinicio), 
-        y: totalMesJson[ndia], 
-      });
-      updateCount++;
-      ndia++;
-//dato  que se va a ir ingresando  en el eje x 
-chart.options.title.text = "Grafica Mes - Año " + año_x;
-if (año_x=={{$año}} & mesinicio=={{$mes}}) {
-  mesinicio=6;
-}
-if (mesinicio<=12 ) {
-  mesinicio++;
-}
-if (mesinicio==12) {
-    mesinicio=0; 
-    if (año_x < {{$año}}){
-      año_x++;
-    }   
-  }
-chart.render();             
-};
-
-// Fin Actualizando y agregando Datos  
-
-
-
-
 // se carga la grafica cada segundo
-setInterval(function(){updateChart()}, 200); 
 // Fin se carga la grafica cada segundo  
 //Fin Grafica Lineal AÑo - Mes cada segundo 
-     
-
 };
-
 
 
 var nuevotk = [
@@ -800,9 +823,35 @@ var nuevotk = [
   }
   
 
+var tkt_buscado = document.getElementById('tkt_buscado');
+var modal = document.getElementById('modal_simple');
+var modalBtn = document.getElementById('modalBtn');
+var closeBtn = document.getElementsByClassName('closeBtn')[0];
+
+modalBtn.addEventListener('click', openModal);
+closeBtn.addEventListener('click', closeModal);
+
+// clikeo fuera de la pagina 
+window.addEventListener('click',clickfuerade);
+
+
+function openModal(){
+    modal.style.display = 'block';
+}
+function closeModal(){
+    modal.style.display = 'none';
+}
+// funcion para cerra el modal por fuera 
+function clickfuerade(e){
+if (e.target == modal) {
+    modal.style.display = 'none';
+}
+    
+}
+
+
 
 </script>
-
 
 
 

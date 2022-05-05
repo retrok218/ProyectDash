@@ -50526,9 +50526,50 @@ body {
     background: #b1e38d;
 }
 
+.modal-tkt{
+    display: none;
+    position:fixed;
+    z-index: 1050;
+    left: 0; 
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0,0 ,0 ,0.5 );
+}
 
 
 
+.modal-content-tkt{
+    background-color: aliceblue;
+    background-image: url(/assets/media/bg/bg-cdmx_bn.png) ;
+    margin: 20% auto;
+    padding: 8%;
+    width: 90%;
+    box-shadow: 0 5px 8px 0  rgba(0,0,0,0.2), 0 7px 20px 0  rgba(0,0,0,0.17);
+    animation-name:modalabierto;
+    animation-duration:1s;
+}
+
+.closeBtn{
+    color: #ccc;
+    float: right;
+    font-size:30px;
+}
+
+.closeBtn:hover,.closeBtn:focus{
+    color:#000;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+
+
+
+@keyframes modalabierto{
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
 
 
 
