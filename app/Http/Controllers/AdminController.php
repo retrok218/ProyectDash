@@ -47,7 +47,9 @@ class AdminController extends Controller
 
     public function create() {
                 $roles = DB::table('roles')->get();
-                return view('modals/users/add_user')->with('roles', $roles);
+                $areas=DB::connection('pgsql2')->table('queue')->get();
+                return view('modals/users/add_user')->with('roles', $roles)
+                ->with(compact('areas'));
         }
     /**
      * Show the form for editing the specified resource.
@@ -57,13 +59,18 @@ class AdminController extends Controller
      */
     public function edit(Request $request)
     {
+
+               
         $id = $request->id;
         $datosRoles = User::getRol($id);
         $roles = DB::table('roles')->get();
         $user = User::find($id);
+         
+
         return view('modals/users/edit_user')
             ->with(compact('user'))
             ->with(compact('datosRoles'))
+            
             ->with(compact('roles'));
     }
     /**
@@ -145,6 +152,7 @@ class AdminController extends Controller
 
     public function listar_usuarios()
     {
+        
         return view('usuarios.listar_usuarios');
     }
 
@@ -156,7 +164,7 @@ class AdminController extends Controller
     public function listar_roles()
     {
         $roles = Role::all();//Get all roles
-   //     return view('roles.index')->with('roles', $roles);
+   //   return view('roles.index')->with('roles', $roles);
     return view('admin.roles.listar_roles')->with('roles', $roles);
     }
 

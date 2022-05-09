@@ -22,7 +22,7 @@
 
                                     
                                     <div class="form-group">
-                                        <label class="control-label">Nombre</label>
+                                        <label class="control-label">Nombre </label>
                                         <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre(s)" required>
                                         <span id="nombre-error" class="help-block"></span>
                                     </div>
@@ -64,7 +64,7 @@
                                     </div>      
                                     <div class="form-group row">
 						
-                                        <label class="col-4 col-form-label">Habilitado</label>
+                                        <label class="col-4 col-form-label">Habilitado </label>
                                         <div class="col-4">
                                             <span class="kt-switch kt-switch--icon">
                                                 <label>
@@ -74,7 +74,34 @@
                                             </span>
                                         </div>
                                     </div>
+
+                                    <section class="content-check">
+                                        <h5>Area Para el Usuario </h5>
+                                        <hr>
+                                        <ul class="list-check">
+                                        @foreach($areas as $area )
+                                            <li class="list__item-check">
+                                                <label class="lable--checkbox">
+                                                    <input type="checkbox" class="checkbox">
+                                                    {{$area->name}}                                                 
+                                                </label>
+                                            </li>
+
+                                        @endforeach 
+                                        </ul>
+                                    </section>
+                                                                                                                                                                                                                       
+                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+                                                    
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
                                     
+
+
+
+                                                                
+
+
                                 </div>
 
                                 
@@ -104,3 +131,5 @@
         </div>
     </div>
 </div>
+
+

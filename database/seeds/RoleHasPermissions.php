@@ -37,11 +37,7 @@ class RoleHasPermissions extends Seeder
                 'role_id' =>'4'
             ),
 
-            5 =>
-            array (
-                'permission_id' => '6',
-                'role_id' =>'1'
-            ),
+            
         ));
     }
 }
