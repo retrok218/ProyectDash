@@ -50,7 +50,7 @@ Route::get('/passModal', 'Auth\ForgotPasswordController@');
 
 // Rutas para Gestor de tickets
 Route::get('/dash','GraficController@index');
-Route::get('/grafic','GraficController@graficas');
+Route::get('/todos_los_tickets','GraficController@graficas');
 // tikes totales tabla
 Route::get('/dash2','GraficController@tickett');
 //  Tickets asignados
