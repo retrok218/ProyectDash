@@ -1,3 +1,4 @@
+
 <div class="modal fade" id="mod_add_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -75,14 +76,21 @@
                                         </div>
                                     </div>
 
+                                   
+                                    </div>
+                                    
+                                    
+                                    
+                                    <div class="form-group">
+                                                                        
                                     <section class="content-check">
-                                        <h5>Area Para el Usuario </h5>
+                                        <h5>Seleccione el Area Para el Usuario </h5>
                                         <hr>
                                         <ul class="list-check">
                                         @foreach($areas as $area )
                                             <li class="list__item-check">
-                                                <label class="lable--checkbox">
-                                                    <input type="checkbox" class="checkbox">
+                                                <label class="label--checkbox">
+                                                    <input type="checkbox" class="checkbox" name="checkbox[]" value= '{{$area->name}}' >
                                                     {{$area->name}}                                                 
                                                 </label>
                                             </li>
@@ -90,17 +98,7 @@
                                         @endforeach 
                                         </ul>
                                     </section>
-                                                                                                                                                                                                                       
-                                                                                                                                                                                                                        
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-                                                    
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
-                                    
-
-
-
-                                                                
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
 
                                 </div>
 
@@ -133,3 +131,10 @@
 </div>
 
 
+<script>
+$(document).ready(function(){
+  $(".bot").click(function(){
+    $(".content-check h5").hide();
+  });
+});
+</script>
