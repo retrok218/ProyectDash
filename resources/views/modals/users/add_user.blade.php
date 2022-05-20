@@ -18,7 +18,7 @@
                                   
                                     <div class="form-group">
                                             {{ Form::label('usuario', 'Usuario', array('class' => 'col-xl-3 col-lg-3 col-form-label')) }}
-                                            {{ Form::text('usuario', '', array('class' => 'form-control','required'=>true)) }}
+                                            {{ Form::text('usuario', '', array('class' => 'form-control','required'=>true ,'placeholder'=> 'Usuario')) }}
                                     </div>
 
                                     
@@ -38,6 +38,14 @@
                                         <span id="apellido_materno-error" class="help-block"></span>
                                     </div><br>                                   
                                 </div>
+
+                                
+
+
+
+
+
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Correo electrónico</label>
@@ -74,37 +82,24 @@
                                                 </label>
                                             </span>
                                         </div>
-                                    </div>
+                                    </div>                                   
+                                    </div> 
 
-                                   
-                                    </div>
-                                    
-                                    
-                                    
-                                    <div class="form-group">
-                                                                        
-                                    <section class="content-check">
-                                        <h5>Seleccione el Area Para el Usuario </h5>
-                                        <hr>
-                                        <ul class="list-check">
-                                        @foreach($areas as $area )
-                                            <li class="list__item-check">
-                                                <label class="label--checkbox">
-                                                    <input type="checkbox" class="checkbox" name="checkbox[]" value= '{{$area->name}}' >
-                                                    {{$area->name}}                                                 
-                                                </label>
-                                            </li>
+                                    <div class="col-md-12">                                                                                                    
+                                            <h5>Area/s Asignada  </h5>
+                                            <hr>
+                                            @foreach($areas as $area )
+                                                <li class="list__item-check">
+                                                    <label class="label--checkbox">
+                                                        <input type="checkbox" class="checkbox"  name="checkbox[]" value= '{{$area->name}}'>
+                                                        {{$area->id}}-{{$area->name}}                                                 
+                                                    </label>
+                                                </li>
+                                            @endforeach     
 
-                                        @endforeach 
-                                        </ul>
-                                    </section>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-
-                                </div>
-
-                                
-
-
+                                                                                                                                                           
+                                    </div>  
+                                                                                                   
                             </div>
                         </div>
                     </div>
@@ -131,10 +126,3 @@
 </div>
 
 
-<script>
-$(document).ready(function(){
-  $(".bot").click(function(){
-    $(".content-check h5").hide();
-  });
-});
-</script>

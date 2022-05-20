@@ -1,4 +1,8 @@
-  minDateFilter = "";
+ 
+ $(document).ready(function(){
+
+ 
+ minDateFilter = "";
   maxDateFilter = "";
   $.fn.dataTableExt.afnFiltering.push(
       function (oSettings, aData, iDataIndex) {
@@ -242,3 +246,4 @@
       minDateFilter = start;
       table.draw();
   });
+ });

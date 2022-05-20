@@ -15,7 +15,7 @@ class User extends Authenticatable
      use HasRoles;
      use Notifiable;
     protected $guard_name = 'web';
-    protected $fillable =  ['name','apellido_paterno','apellido_materno','email','password','estatus','id_rol','usuario','id_ubicacion','confirmation_code','remember_token',];
+    protected $fillable =  ['name','apellido_paterno','apellido_materno','email','password','estatus','id_rol','usuario','id_ubicacion','area','confirmation_code','remember_token',];
 
     //Trae los usuarios generales de la BD
     public static function getusuario($request)

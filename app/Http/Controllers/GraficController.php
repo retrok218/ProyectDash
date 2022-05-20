@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\User;
 use App\Models\ModelHasRole;
@@ -15,15 +13,12 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use App\ConexionBD2;
-
+use App\dato_prueva;
 
 class GraficController extends Controller
 {  
     public function index()
-    {
-      
-      
-
+    {          
       $fecha_actual = Carbon::now()->toDateString(); //fecha ->toDateString da el formato que maneja la bd
       $fecha_mes = Carbon::now()->format('m');
       $fecha_dia = Carbon::now()->format('d');
@@ -33,8 +28,6 @@ class GraficController extends Controller
       $fecha_diap= $fecha_dia-1;
       $ultimoTK =DB::connection('pgsql2')->table('ticket')->orderBy('create_time','DESC')->first();
       
-
-
       $tickte = DB::connection('pgsql2')->table('ticket')->count();
       $ticket_all = DB::connection('pgsql2')->table('ticket')->get();
       $nuevo = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',1)->count();
@@ -153,14 +146,7 @@ class GraficController extends Controller
         $tksañopJosn= json_encode($tksañop);
         $tksañoactualJson= json_encode($tksañoactual);
 */
-        
-
-       
-
-
-
-
-                                                             
+                                                                
       // ticket por Area
       $tk_por_area_1=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',1)->count();
       $tk_por_area_2=DB::connection('pgsql2')->table('ticket')->where('queue_id','=',2)->count();
@@ -240,18 +226,8 @@ class GraficController extends Controller
 
 $totalMesJson = json_encode($totalmes); 
 //$ticket_allJson = json_encode($ticket_all);
-
-
-
-
-
-
-// Fin consulta por mes
-
-
-     
-          
-   
+// Fin consulta por mes      
+  
       return view('dash')
       //prueva creacion de funcion de auto update
       ->with('ultimoTK',$ultimoTK)
@@ -392,18 +368,20 @@ $totalMesJson = json_encode($totalmes);
  
 
 // controlador para tickets asignados
-  public function ticketa(){
+  public function ticketa(){      
    
-    
+    $areas =array(auth()->user()->area); // aqui se recive el contenido del usuario las areas con las que cuenta
+    $areas_queue = DB::connection('pgsql2')->table('queue')->get();
     $tkasignado =DB::connection('pgsql2')->table('ticket')
-      ->where('ticket_state_id','=', 12)
       ->join('queue','queue.id','queue_id')
       ->join('ticket_state','ticket_state.id','ticket_state_id')
       ->join('customer_user','ticket.customer_id', 'customer_user.customer_id')
-      ->select('ticket.tn','ticket.create_time','ticket.title','ticket.user_id','queue.name as qname','ticket_state.name','customer_user.first_name as nombre','customer_user.last_name as apellido')
-      ->get();
-     
-    $tickets_registro =DB::connection('pgsql2')->table('ticket') ->get();
+      ->where('ticket_state_id','=', 12)
+      //->whereIn('queue_name',$areas)
+      
+      ->get();  
+dd( $areas_queue);
+      $tickets_registro =DB::connection('pgsql2')->table('ticket') ->get();
       $tickte = DB::connection('pgsql2')->table('ticket')->count();
       $asignado =DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 12)->count();
       $atendido = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 13)->count();
@@ -416,17 +394,14 @@ $totalMesJson = json_encode($totalmes);
       $NotificadoAlUsuario = DB:: connection('pgsql2')->table('ticket')->where('ticket_state_id','=',11)->count();
       $Entramite = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',18)->count();
       $cerradoPT = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',10)->count(); 
-      $rticket = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 2)->count();
-     
+      $rticket = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 2)->count();     
       $titulotks =DB::connection('pgsql2')->table('ticket')->select('title')->distinct('title')->get();
-
       $titulotksJson = json_encode($titulotks);
       
-      
-      // fin nuevos asignados 
-    
-      
-    
+     //dd($areas);
+      //dd(auth()->user()->area);
+         
+
       return view('graficas/tickets_asignados')
 
       ->with('tkasignado',$tkasignado)
@@ -542,74 +517,16 @@ $totalMesJson = json_encode($totalmes);
 
   ;}
 
-
-  public function pruevacod(){
-
-    $perfil = Auth::user()->hasAnyRole(['SuperAdmin', 'Admin']);
-    $tktts = DB::connection('pgsql2')->table('ticket')->get(); // se  crea para contener tkt de l db
-
-
-
-      $tk_id = DB::connection('pgsql2')
-        ->table('ticket_history')
-        ->where('history_type_id', '=', 28)
-        ->where('state_id','=', 13 )
-        ->where('name','LIKE','%Value%%Toner%')
-        ->orwhere('name','LIKE','%ITSMReviewRequired64%')
-        ->orwhere('name','LIKE','%ITSMReviewRequired65%')
-        ->orwhere('name','LIKE','%ITSMReviewRequired7%')
-        ->orderBy('ticket_id','DESC')
-        ->join('ticket','ticket_history.ticket_id','ticket.id')
-        ->get();
-
-        //select ingresa codigo sql puro 
-    $ticketfusion =DB::connection('pgsql2')
-    //->select("SELECT * FROM ticket");
-    ->select("SELECT
-    ticket.tn,ticket_history.ticket_id,ticket.title,queue.name as fila,
-    
-    ARRAY_AGG (
-      ticket_history.name
-    )ticket_compuesto,
-    ticket_state.name,
-    ticket.create_time
-    
-  FROM 
-    (ticket_history INNER JOIN ticket ON ticket_history.ticket_id = ticket.id)
-    INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
-	  INNER JOIN queue ON ticket.queue_id = queue.id
-    WHERE 
-    (ticket.service_id = 79 or ticket.service_id = 78)
-  and (ticket_history.name LIKE '%ITSMReviewRequired64%'or ticket_history.name LIKE '%ITSMReviewRequired65%' or ticket_history.name LIKE '%ITSMReviewRequired7%' 
-	  or ticket_history.name LIKE '%ITSMReviewRequired66%' or ticket_history.name LIKE '%ITSMReviewRequired67%' or ticket_history.name LIKE '%ITSMReviewRequired35%'
-		or ticket_history.name LIKE '%ITSMReviewRequired34%')
-     
-	   and (ticket_history.name NOT LIKE '%ITSMReviewRequired71%'and ticket_history.name NOT LIKE '%ITSMReviewRequired70%'and ticket_history.name NOT LIKE '%ITSMReviewRequired72%'
-	   and ticket_history.name NOT LIKE '%ITSMReviewRequired73%'and ticket_history.name NOT LIKE '%ITSMReviewRequired74%'and ticket_history.name NOT LIKE '%ITSMReviewRequired75%'
-	   and ticket_history.name NOT LIKE '%ITSMReviewRequired76%'and ticket_history.name NOT LIKE '%ITSMReviewRequired77%'and ticket_history.name NOT LIKE '%ITSMReviewRequired78%'
-	   and ticket_history.name NOT LIKE '%ITSMReviewRequired79%')
+/*Separacion de prueva de codigo  */
+public function pruevacod(Request $req){
+  $roles = DB::table('roles')->get();
   
-  GROUP BY 
-    ticket_id,
-    ticket.create_time,
-    ticket.title,
-    ticket.tn,
-    ticket_history.ticket_id,
-    ticket_state.name,
-    queue.name
-    
-  ORDER BY ticket.tn DESC");
-  $solicitudToner = DB::connection('pgsql2')-> table('ticket')->where('service_id','=',79)->count();
-  $tickte = DB::connection('pgsql2')->table('ticket')->count();
-
-//----------------------------------------------------------------------------------------------------
-    //dd($ticketfusion);
-    return view('graficas/pruevacod')
-    ->with('tkfusion',$ticketfusion )
-    ->with('solicitudToner',$solicitudToner)
-    ->with('ticket',$tickte)
-    ->with('tktts',$tktts)
+ // print_r($req->input());
+ //dd($req->all());
+  $user=new dato_prueva ;
+ // $user->id= $req->input ('Id');
+  $user->nombre_pru= $req->input ('nombre_pru');
+  $user->Area= implode(',',$req->input('Areas'));
+  $user->save();
   ;}
-  
-
 }

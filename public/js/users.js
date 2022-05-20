@@ -30,6 +30,8 @@ $(document).ready(function() {
             { data: 'usuario', name: 'usuario' },
             // { data: 'perfil', name: 'perfil' },
             { data: 'email', name: 'email' },
+            // vista para las areas 
+            {data: 'area',area: 'area' },
             {
                 "mRender": function (data, type, row) {
                     var id_user = row.id;

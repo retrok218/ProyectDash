@@ -77,6 +77,7 @@
                 <th> Apellido Materno </th>
                 <th> Usuario </th>
                 <th> Correo </th>
+                <th> Areas </th>
                 <th> Acciones</th>
             </tr>
             </thead>

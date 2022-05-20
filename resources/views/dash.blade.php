@@ -796,8 +796,6 @@ e.chart.render();
 // se carga la grafica cada segundo
 // Fin se carga la grafica cada segundo  
 //Fin Grafica Lineal AÑo - Mes cada segundo 
-};
-
 
 var nuevotk = [
   "Ultimo Ticket ingresado {{$ultimoTK->tn}}  /  {{$ultimoTK->create_time}}  .  .  ." 
@@ -848,6 +846,12 @@ if (e.target == modal) {
 }
     
 }
+
+
+};
+
+
+
 
 
 

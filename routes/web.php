@@ -82,10 +82,16 @@ Route::get('/pruejs', function(){
   return view('Graficas/testcod');
 });
 
-// Prueva de codigo ****************************************************************************************
-Route::get('/Puevacodigo','GraficController@pruevacod');
 
 // Prueva de codigo ****************************************************************************************
+Route::view('/form','graficas/prueva_check');
+Route::post('submit','GraficController@pruevacod');
+// Prueva de codigo ****************************************************************************************
+
+
+
+
+
 Route::get('/', function ()  {
     if (Auth::check()){
             if( Auth::user()->hasRole('admin') || Auth::user()->hasRole('SuperAdmin')){

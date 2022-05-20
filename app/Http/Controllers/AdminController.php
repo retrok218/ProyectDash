@@ -44,12 +44,17 @@ class AdminController extends Controller
 
 
 
+/*creacion de nuevos usuarios */
+
+
+
 
     public function create() {
                 $roles = DB::table('roles')->get();
-                $areas=DB::connection('pgsql2')->table('queue')->get();
+                $areas=DB::connection('pgsql2')->table('queue')->orderBy('id')->get();
                 return view('modals/users/add_user')->with('roles', $roles)
                 ->with(compact('areas'));
+                
         }
     /**
      * Show the form for editing the specified resource.
@@ -58,19 +63,15 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request)
-    {
-
-               
+    {               
         $id = $request->id;
         $datosRoles = User::getRol($id);
         $roles = DB::table('roles')->get();
         $user = User::find($id);
          
-
         return view('modals/users/edit_user')
             ->with(compact('user'))
-            ->with(compact('datosRoles'))
-            
+            ->with(compact('datosRoles'))            
             ->with(compact('roles'));
     }
     /**
@@ -87,7 +88,6 @@ class AdminController extends Controller
             $id = $request->id_usuario;
             $id_rol = $request->id_rol;
             $estatus = ($request->estatus_user == "on" )? 1 : 0;
-
             $users = User::find($id);
             $users->name = $request->nombres;
             $users->apellido_paterno = $request->apellido_paterno;
@@ -122,8 +122,16 @@ class AdminController extends Controller
         return $response;
     }
     public function store(Request $request) {
+     $emails_endb=array(DB::table('users')->select('email')->get());
+        if (in_array($request->email, $emails_endb) == false) {
+            $error= 'Error en Email Favor de validarlo';
+            }else{
+                $error ='Error al guardar el usuario.';
+            }
+
+
            \Log::info(__METHOD__.' Crear nuevo Usuario');
-           try {
+    try {
                $id_rol = $request->id_rol;
                DB::beginTransaction();
                $user = User::create([
@@ -135,20 +143,42 @@ class AdminController extends Controller
                        'password' => bcrypt($request->password),
                        'email' => $request->email,
                        'estatus' => (!$request->cat_status) ? '0' : '1',
-                       'id_ubicacion' => '1'
+                       'id_ubicacion' => '1',
+                       'area' =>implode(' , ',$request->input('checkbox')) //agregado para agregar area
                    ]);
+
+                   
                $grol = DB::table('roles')->where('id', '=', $id_rol)->first();
                // Le asignamos el rol
                $user->assignRole($grol->name);
+               
                $response = array('success' => true, 'message' => 'Usuario creado correctamente.');
                DB::commit();
+              // dd($user);
            } catch (\Exception $th) {
-
+            \Log::info(__METHOD__.$th->getMessage());
                DB::rollback();
-               $response = ['success' => false, 'message' => 'Error al guardar el usuario.'];
+               $response = ['success' => false, 'message' => $error];
            }
+           
            return $response;
        }
+
+
+
+       public function validacion_correo(){
+        
+        //comprobacion datos duplicados
+            $consulta_db_duo = $conect_my_db -> prepare("SELECT * FROM usuarios WHERE EMAIL=:email_d;");
+            $consulta_db_duo -> bindParam(":email_d", $email);
+            $consulta_db_duo -> execute();
+
+        
+       }
+
+
+/* listando usuario */
+
 
     public function listar_usuarios()
     {
