@@ -124,12 +124,10 @@ class AdminController extends Controller
     public function store(Request $request) {
      $emails_endb=array(DB::table('users')->select('email')->get());
         if (in_array($request->email, $emails_endb) == false) {
-            $error= 'Error en Email Favor de validarlo';
+            $error= 'Error en Correo favor de validarlo';
             }else{
                 $error ='Error al guardar el usuario.';
             }
-
-
            \Log::info(__METHOD__.' Crear nuevo Usuario');
     try {
                $id_rol = $request->id_rol;

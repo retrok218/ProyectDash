@@ -111,7 +111,7 @@
       .kt-aside-menu .kt-menu__nav > .kt-menu__item.kt-menu__item--open > .kt-menu__heading .kt-menu__ver-arrow,
       .kt-aside-menu .kt-menu__nav > .kt-menu__item.kt-menu__item--open > .kt-menu__link .kt-menu__ver-arrow {
         color: #75293d ;
-        border-style: outset; }
+        /*border-style: outset; }*/
         
   .kt-aside-menu .kt-menu__nav > .kt-menu__item.kt-menu__item--here {
     -webkit-transition: background-color 0.3s;

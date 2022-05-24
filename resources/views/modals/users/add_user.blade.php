@@ -88,14 +88,27 @@
                                     <div class="col-md-12">                                                                                                    
                                             <h5>Area/s Asignada  </h5>
                                             <hr>
-                                            @foreach($areas as $area )
-                                                <li class="list__item-check">
-                                                    <label class="label--checkbox">
-                                                        <input type="checkbox" class="checkbox"  name="checkbox[]" value= '{{$area->name}}'>
-                                                        {{$area->id}}-{{$area->name}}                                                 
-                                                    </label>
-                                                </li>
-                                            @endforeach     
+                                            
+                                            <table>
+                                                <tr>
+                                                    <th>ID_ Area</th>
+                                                    <th>Nombre de Area </th>
+                                                </tr>
+                                                @foreach($areas as $area )
+                                                    <tr>
+                                                        <td>
+                                                        <li class="list__item-check">
+                                                            <label class="label--checkbox">
+                                                                <input type="checkbox" class="checkbox"  name="checkbox[]" value= '{{$area->name}}'>
+                                                                {{$area->name}}                                                                                                        
+                                                            </label>                                                             
+                                                        </li>                                                        
+                                                        </td>
+                                                        <td>{{$area->id}}</td>
+                                                    </tr>
+                                                    @endforeach  
+                                            </table>
+                                               
 
                                                                                                                                                            
                                     </div>  

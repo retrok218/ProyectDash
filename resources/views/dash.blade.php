@@ -37,6 +37,7 @@
          
         </div>
       <div class="card">
+      
         
           <div class="card-header titulo_card"><h2>Tickets del dia - {{$dia}}</h2></div>
           <div class="card-body"> <i class="fa fa-address-card tkts_del_dia"> {{ $tickets_por_dia }} </i> </div>
@@ -246,10 +247,8 @@
   
   @endif
     
- </div> 
-    
-
-</div >
+ </div>    
+</div>
     <div  class="row shadow-lg p-3   rounded fondo  fondo1" >
       
           <div class="col-md-12">

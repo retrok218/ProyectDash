@@ -185,12 +185,10 @@
                       var vals = $('option:selected', this).map(function (index, element) {
                           return $.fn.dataTable.util.escapeRegex($(element).val());
                       }).toArray().join('|');
-
                       column
                           .search(vals.length > 0 ? '^(' + vals + ')$' : '', true, false)
                           .draw();
                   });
-
               column.data().unique().sort().each(function (d, j) {
                   select.append('<option value="' + d + '">' + d + '</option>')
               });

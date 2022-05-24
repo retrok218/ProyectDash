@@ -40,7 +40,7 @@
     background-image: url(../assets/media/bg/bg-cdmx_op.png) !important ;
     background-repeat: no-repeat;
     /* border: 2px dashed #333; */
-    background-position: center center; /*Posicion del bacground*/
+    background-position: center bottom; /*Posicion del bacground*/
     background-size: contain; /*de 100% 50%*/
     background-attachment: fixed;
 }

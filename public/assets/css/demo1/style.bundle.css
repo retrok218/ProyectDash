@@ -4910,7 +4910,7 @@ input[type=submit].btn-block {
         display: flex;
         flex: 1 0 0%;
         flex-direction: column;
-        margin-right: 10px;
+        /*margin-right: 10px;*/
         margin-bottom: 45px;
         margin-left: 10px
     }
@@ -16225,8 +16225,8 @@ html {
     height: 100%;
     margin: 0;
     padding: 0;
-    /*font-size: 1px;*/
-    font-family:Sourse Sans Pro;
+    font-size: 13px;
+    font-family:Poppins;
     -ms-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale
@@ -25103,7 +25103,7 @@ canvas {
 
 b,
 strong {
-    font-weight: 700
+    font-weight: 300
 }
 
 .kt-font-brand {
@@ -48661,8 +48661,9 @@ body {
 
 .kt-aside-menu .kt-menu__nav>.kt-menu__item>.kt-menu__heading .kt-menu__link-text,
 .kt-aside-menu .kt-menu__nav>.kt-menu__item>.kt-menu__link .kt-menu__link-text {
-    font-weight: 600;
-    font-size: 18px;
+    font-weight: 300;
+    font-size: 13px;
+    font-family: Poppins;
     text-transform: initial
 }
 
@@ -48713,7 +48714,7 @@ body {
 .kt-aside-menu .kt-menu__nav>.kt-menu__item>.kt-menu__heading .kt-menu__ver-arrow,
 .kt-aside-menu .kt-menu__nav>.kt-menu__item>.kt-menu__link .kt-menu__ver-arrow {
     flex: 0 0 20px;
-    font-size: 28px
+    font-size: 20px
 }
 
 .kt-aside-menu .kt-menu__nav>.kt-menu__item>.kt-menu__heading .kt-menu__ver-arrow:before,
@@ -49821,14 +49822,14 @@ body {
 .mcd-menu li a {
   display: block;
   text-decoration: none;
-  padding: 8px 10px;
-  color: rgb(202 176 143);
+  /*padding: 15px 0 0 0;*/
+  color:#313752;
   text-align: center;
-  border-right: 1px solid #E7E7E7;
+  /*border-right: 1px solid #E7E7E7;*/
   /* == */
   text-align: left;
   position: relative;
-  border-bottom: 1px solid #EEE;
+  /*border-bottom: 1px solid #EEE;*/
   
   /* == */
 }
