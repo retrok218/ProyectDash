@@ -367,7 +367,6 @@ class Tks_DT_controlle extends Controller
 
 
       public function tickets_cerradosPT(){
-
         $tickets_cerradosPT =DB::connection('pgsql2')->table('ticket')
         ->where('ticket_state_id','=',10)
         ->join('ticket_state','ticket_state.id','ticket_state_id')
@@ -376,7 +375,6 @@ class Tks_DT_controlle extends Controller
         ->select('ticket.tn','ticket.create_time','ticket.title','ticket.user_id','queue.name as qname','ticket_state.name','customer_user.first_name as nombre','customer_user.last_name as apellido')
         ->get();
         $tickets_registro =DB::connection('pgsql2')->table('ticket') ->get();
-        
         $tickte = DB::connection('pgsql2')->table('ticket')->count();
           $asignado =DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 12)->count();
           $atendido = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 13)->count();
@@ -390,11 +388,9 @@ class Tks_DT_controlle extends Controller
           $Entramite = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',18)->count();
           $cerradoPT = DB::connection('pgsql2')-> table('ticket')->where('ticket_state_id','=',10)->count(); 
           $rticket = DB::connection('pgsql2')->table('ticket')->where('ticket_state_id','=', 2)->count();
-    
         return view('graficas/tickets_cerradosPT')
         ->with('tickets_cerradosPT',$tickets_cerradosPT)
-        ->with('tickets_registro',$tickets_registro)
-    
+        ->with('tickets_registro',$tickets_registro)    
         ->with('ticket', $tickte)
             ->with('asignado',$asignado)
             ->with('atendido',$atendido)
@@ -409,6 +405,9 @@ class Tks_DT_controlle extends Controller
             ->with('cerradoPT',$cerradoPT)
             ->with('cerradoexitosamente',$rticket)  
         ;}
+
+
+        
 
         public function notificadosalusuario(){
 

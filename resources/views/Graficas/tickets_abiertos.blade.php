@@ -1,5 +1,5 @@
 @extends('home')
-<meta http-equiv="refresh" content="30">
+<meta http-equiv="refresh" content="30"> 
 @section('content')
 <!--  Variable para usar en las descargas de diferentes tipos -->
 <script>

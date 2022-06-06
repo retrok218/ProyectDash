@@ -22,7 +22,7 @@
           <div class="card-body">
            
 
-                <table id="tablatk"  class="table table-striped table-bordered" >
+                <table id="tablatk"  class="table table-striped- table-bordered table-hover table-checkable" >
                     <thead>
                       <tr>
                         <th>N Ticket</th>
@@ -34,31 +34,7 @@
 
                       </tr>
                     </thead>
-                    <tbody>
-                      @foreach($tickets_totales as $tickets_totales)
-                      @php
-                      $nombre=$tickets_totales->nombre;
-                      $apellido=$tickets_totales->apellido;
-                      @endphp
-                      <tr>
-                        <td>{{$tickets_totales->tn}}</td>
-                        <td>{{$tickets_totales->create_time}}</td>
-                        <td>{{$tickets_totales->title}}</td>
-                        <td>{{$nombre.''.$apellido}}</td>
-                        <td>{{$tickets_totales->qname}}</td>
-                        
-                        <!--se cambia closed successful a Cerrado Exitosamente -->
-                          @if($tickets_totales->name == 'closed successful' )
-                            <td>Cerrado Exitosamente</td> 
-                          @elseif($tickets_totales->name == 'open')
-                            <td>Abierto</td>
-                          @else
-                            <td>{{$tickets_totales->name}}</td>
-                          @endif                          
-                      <!-- Fin del cambio de texto-->
-                      </tr>
-                      @endforeach
-                    </tbody>
+                    
                     <tfoot>
                       <tr>
                         <th></th>

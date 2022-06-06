@@ -170,8 +170,7 @@
                   extend: 'pageLength',
                   titleAttr: 'Registros a mostrar',
                   className: 'selectTable'
-              },
-              'colvis'
+              },         
           ]
       },
       // Filtro por seleccion multiple
@@ -197,7 +196,35 @@
           });
           //select2 init for .mymsel class
           $(".mymsel").select2();
-      }
+      },
+
+
+      
+    language: {
+        "url": url + "assets/vendors/general/datatables/Spanish.json",
+    },
+    ajax: {
+        "url": url + '/data/todoslostkte',
+    },
+    columns: [{
+            data: 'tn',name: 'tn'
+        },
+        {
+            data: 'create_time', name: 'create_time'
+        },
+        {
+            data: 'title',name: 'title'
+        },
+        {
+            data: 'qname',name: 'qname'
+        },
+        {
+            data: 'name'
+        },
+        {
+            data: 'nombre' ,name: 'nombre'
+        },
+    ]
       //fin de la seleccion multiple 
 
 
